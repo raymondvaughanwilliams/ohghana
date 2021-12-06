@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <form class="form-group" method="POST">
+     {{ form.hidden_tag() }}
+
+     <div class="form-group">
+     {{ form.title.label(class="form-control-label") }}
+     {{ form.title(class="form-control form-control-lg ") }}
+     </div>
+     <div class="form-group">
+     {{ form.text.label(class="form-control-label") }}
+     {{ form.text(class="form-control form-control-lg") }}
+     </div>
+          <div class="form-group">
+     {{ form.location.label(class="form-control-label") }}
+     {{ form.location(class="form-control form-control-lg") }}
+     </div>
+          <div class="form-group">
+     {{ form.number.label(class="form-control-label") }}
+     {{ form.number(class="form-control form-control-lg") }}
+     </div>
+          <div class="form-group">
+     {{ form.contact_subtitle.label(class="form-control-label") }}
+     {{ form.contact_subtitle(class="form-control form-control-lg") }}
+     </div>
+     <div class="form-group">
+          {{ form.about_subtitle.label(class="form-control-label") }}
+          {{ form.about_subtitle(class="form-control form-control-lg") }}
+          </div>
+          <div class="form-group">
+     {{ form.email.label(class="form-control-label") }}
+     {{ form.email(class="form-control form-control-lg") }}
+     </div>
+     <div class="form-group">
+         {{ form.submit(class="btn btn-outline-info") }}
+     </div>
+  </form>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+CREATE PRICE
+  <form class="form-group" method="POST">
+     {{ form.hidden_tag() }}
+
+     <div class="form-group">
+     {{ form.title.label(class="form-control-label") }}
+     {{ form.title(class="form-control form-control-lg ") }}
+     </div>
+     <div class="form-group">
+     {{ form.amount.label(class="form-control-label") }}
+     {{ form.amount(class="form-control form-control-lg") }}
+     </div>
+     <div class="form-group">
+     {{ form.features.label(class="form-control-label") }}
+     {{ form.features(class="form-control form-control-lg") }}
+     </div>
+     <div class="form-group">
+         {{ form.submit(class="btn btn-outline-info") }}
+     </div>
+  </form>
+
+</div>
+
+
+{% for prices in price %}
+<div class="jumbotron">
+  <div align='center'>
+    <h1 >Welcome to the page for {{current_user.username}}</h1>
+  </div>
+</div>
+<div class="container">
+  <form  method="POST" action = "" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.title.label(class="form-group") }}
+      {{form.title(class='form-control')  }}
+    </div
+    <div class="form-group">
+      {{ form.amount.label(class="form-group") }}
+      {{form.amount(class='form-control')  }}
+    </div>
+    <div class="form-group">
+      {{ form.features.label(class="form-group") }}
+      {{ form.features(class="form-control-file") }}
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+
+</div>
+{% endfor %}
+
+
+
+{% endblock content %}
