@@ -66,7 +66,7 @@
 <script>
 
   
-  
+  //: if request.auth != null;
  // Push batch images to storage and store references in the database
  var pushImage = function (file) {
   document.getElementById('submitButton').innerHTML = `
@@ -75,8 +75,10 @@
     // var uid = firebase.auth().currentUser.uid;
     // Create storage reference
    // var ref = firebase.storage().ref(`/ineruu-142dc-default-rtdb/ineruu/`).child(file.name + ".jpg");
-    //var ref = firebase.storage().ref(`/tray-7621e-default-rtdb/tray/`).child(file.name + ".jpg");
-    var ref = firebase.storage().ref(`https://tray-7621e-default-rtdb.firebaseio.com`).child(file.name + ".jpg");
+    var ref = firebase.storage().ref(`/tray-7621e-default-rtdb/tray/`).child(file.name + ".jpg");
+   // var ref = firebase.storage().ref(`https://tray-7621e-default-rtdb.firebaseio.com`).child(file.name + ".jpg");
+  //  var ref = firebase.storage().ref(`gs://tray-7621e.appspot.com`).child(file.name + ".jpg");
+
 
     // Upload file and get task
     var task = ref.put(file, {contentType: file.type});

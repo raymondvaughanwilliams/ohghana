@@ -17,7 +17,7 @@ class AboutForm(FlaskForm):
     subtitle = StringField('Subtitle', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
     contact_subtitle = StringField('Contact Subtitle', validators=[DataRequired()])
-    picture = FileField('Update About Picture', validators=[FileAllowed(['jpg', 'png'])])
+    about_picture = FileField('Update About Picture', validators=[FileAllowed(['jpg', 'png'])])
     about_subtitle = StringField('About Subtitle', validators=[DataRequired()])
     faq_title = StringField('Faq Title', validators=[DataRequired()])
     faq_subtitle = StringField('Faq Subtitle', validators=[DataRequired()])
@@ -28,6 +28,11 @@ class AboutForm(FlaskForm):
     team_title = StringField('Team Title', validators=[DataRequired()])
     team_subtitle = StringField('Team Subtitle', validators=[DataRequired()])
     team_paragraph = StringField('Team Paragraph', validators=[DataRequired()])
+    link1 = StringField('Firebase Link')
+    link2 = StringField('Firebase Link')
+    link3 = StringField('Firebase Link')
+    logo = FileField('Update Logo', validators=[FileAllowed(['jpg', 'png'])])
+    carousel_image_1 =FileField('Update Banner Image', validators=[FileAllowed(['jpg', 'png'])])
 
     submit = SubmitField('Add Feature')
 
@@ -55,6 +60,11 @@ class UpdateAboutForm(FlaskForm):
     team_title = StringField('Team Title', validators=[DataRequired()])
     team_subtitle = StringField('Team Subtitle', validators=[DataRequired()])
     team_paragraph = StringField('Team Paragraph', validators=[DataRequired()])
-    picture = FileField('Update About Picture', validators=[FileAllowed(['jpg', 'png'])])
+    about_picture = FileField('Update About Picture', validators=[FileAllowed(['jpg', 'png'])])
+    link1 = StringField('Firebase Link')
+    link2 = StringField('Firebase Link')
+    link3 = StringField('Firebase Link')
+    logo = FileField('Update Logo', validators=[FileAllowed(['jpg', 'png'])])
+    carousel_image_1 =FileField('Update Banner Image', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 

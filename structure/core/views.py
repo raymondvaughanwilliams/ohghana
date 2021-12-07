@@ -43,4 +43,4 @@ def hmsui():
     # services=[]
     # service= serv.split(',')
     # services.append(service)
-    return render_template('base2.html',web_features=web_features, about=about,pricing=price,faq=faq,testimonial=testimonial)
+    return render_template('base2.html',web_features=web_features, about=about,pricing=price,faq=faq,testimonial=testimonial,team=team)

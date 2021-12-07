@@ -17,6 +17,7 @@ class UpdateTeamForm(FlaskForm):
     facebook = StringField('Facebook', validators=[DataRequired()])
     twitter = StringField('Twitter', validators=[DataRequired()])
     instagram = StringField('Instagram', validators=[DataRequired()])
+    link = StringField('Firebase Link')
     picture = FileField('Update Teammate Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Add Teammate')
 
@@ -28,6 +29,7 @@ class TeamForm(FlaskForm):
     facebook = StringField('Facebook', validators=[DataRequired()])
     twitter = StringField('Twitter', validators=[DataRequired()])
     instagram = StringField('Instagram', validators=[DataRequired()])
+    link = StringField('Firebase Link')
     picture = FileField('Update Teammate Picture', validators=[FileAllowed(['jpg', 'png'])])
     link = StringField('Firebase Link')
 

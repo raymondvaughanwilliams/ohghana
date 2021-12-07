@@ -61,7 +61,8 @@ class About(db.Model):
     title = db.Column(db.String(140),nullable=False)
     subtitle= db.Column(db.String(140),nullable=True)
     text = db.Column(db.Text,nullable=False)
-    image = db.Column(db.String(64),nullable=False,default='default_profile.png')
+    image = db.Column(db.String(64),nullable=True,default='default_profile.png')
+    about_image = db.Column(db.String(64),nullable=True,default='default_profile.png')
     location = db.Column(db.String(140),nullable=False,default='location')
     number = db.Column(db.Integer,nullable=True)
     email = db.Column(db.String(64),unique=True,index=True)
@@ -78,10 +79,12 @@ class About(db.Model):
     team_title = db.Column(db.String(140),nullable=True)
     team_subtitle = db.Column(db.String(140),nullable=True)
     team_paragraph = db.Column(db.String(140),nullable=True)
+    logo = db.Column(db.String(64),nullable=True,default='default_profile.png')
+    carousel_image_1 = db.Column(db.String(64),nullable=True,default='default_profile.png')
 
     def __init__(self,title,text,user_id,location,number,email,contact_subtitle,about_subtitle,
     feature_subtitle,feature_paragraph,faq_title,faq_subtitle,faq_paragraph,testimonial_title,
-    testimonial_subtitle,testimonial_paragraph,team_title,team_subtitle,team_paragraph):
+    testimonial_subtitle,testimonial_paragraph,team_title,team_subtitle,team_paragraph,logo,carousel_image_1,subtitle,about_image):
         self.title = title
         self.text = text
         self.location = location
@@ -100,9 +103,13 @@ class About(db.Model):
         self.team_title = team_title
         self.team_subtitle = team_subtitle
         self.team_paragraph = team_paragraph
+        self.logo = logo
+        self.subtitle = subtitle
+        self.about_image = about_image
+        self.carousel_image_1 = carousel_image_1
 
     def __repr__(self):
-        return f"Post ID: {self.id} -- {self.title} -- {self.location} -- {self.number} -- {self.email} -- {self.contact_subtitle}-- {self.about_subtitle}-- {self.feature_subtitle}-- {self.feature_paragraph}-- {self.faq_title}-- {self.faq_subtitle}-- {self.faq_paragraph}-- {self.testimonial_title}-- {self.testimonial_subtitle}-- {self.testimonial_paragraph}-- {self.team_title}-- {self.team_subtitle}-- {self.team_paragraph}"
+        return f"Post ID: {self.id} -- {self.title} -- {self.location} -- {self.number} -- {self.email} -- {self.contact_subtitle}-- {self.about_subtitle}-- {self.feature_subtitle}-- {self.feature_paragraph}-- {self.faq_title}-- {self.faq_subtitle}-- {self.faq_paragraph}-- {self.testimonial_title}-- {self.testimonial_subtitle}-- {self.testimonial_paragraph}-- {self.team_title}-- {self.team_subtitle}-- {self.team_paragraph} -- {self.logo} -- {self.carousel_image_1}"
 
 
 
@@ -173,14 +180,16 @@ class Team(db.Model):
     faceboook = db.Column(db.String(140),nullable=True)
     instagram = db.Column(db.Integer,nullable=True)
     twitter = db.Column(db.Integer,nullable=True)
+    picture = db.Column(db.String(64),nullable=True)
 
 
-    def __init__(self,name,position,faceboook,instagram,twitter):
+    def __init__(self,name,position,faceboook,instagram,twitter,picture):
         self.name = name
         self.position = position
         self.faceboook = faceboook
         self.instagram = instagram
         self.twitter = twitter
+        self.picture = picture
 
     def __repr__(self):
-        return f"{self.name} -- {self.position} -- {self.faceboook} -- {self.instagram} -- {self.twitter}"
+        return f"{self.name} -- {self.position} -- {self.faceboook} -- {self.instagram} -- {self.twitter}-- {self.picture}"

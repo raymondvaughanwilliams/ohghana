@@ -100,15 +100,18 @@ def updateabout():
         about.team_title = form.team_title.data
         about.team_paragraph = form.team_paragraph.data
         about.team_subtitle = form.team_subtitle.data
+        about.logo = form.link.data
+        about.about_image = form.link2.data
+        about.carousel_image_1 = form.link3.data
         db.session.commit()
         flash(' Updated')
         print('updated')
-        return redirect(url_for('core.index'))
+        return redirect(url_for('about.updateabout'))
 
     elif request.method == 'GET':
         form.title.data = about.title
         form.text.data = about.text
-        form.picture.data = about.image
+        form.about_picture.data = about.image
         form.location.data = about.location
         form.number.data = about.number
         form.email.data = about.email
@@ -126,8 +129,9 @@ def updateabout():
         form.team_title.data = about.team_title
         form.team_subtitle.data = about.team_subtitle
         form.team_paragraph.data = about.team_paragraph
+        form.logo.data = about.logo
+        form.carousel_image_1.data = about.carousel_image_1
 
 
 
-    about_pic = url_for('static', filename='profile_pics/' + about.image)
-    return render_template('about.html', profile_image=about_pic, form=form,about=about)
+    return render_template('create_about.html', form=form,about=about)
