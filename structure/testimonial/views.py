@@ -22,7 +22,7 @@ def create_testimonial():
         db.session.add(testimonial)
         db.session.commit()
         flash("Pricing Created")
-        return redirect(url_for('core.hmsui'))
+        return redirect(url_for('core.index'))
 
     return render_template('create_testimonial.html',form=form)
 
@@ -37,7 +37,7 @@ def testimonial(testimonial_id):
     
     
 
-@testimonials.route("/update/<int:testimonial_id>", methods=['GET', 'POST'])
+@testimonials.route("/<int:testimonial_id>/updatetestimonial", methods=['GET', 'POST'])
 @login_required
 def updatetestimonial(testimonial_id):
     testimonial = Testimonial.query.get_or_404(testimonial_id)
@@ -77,3 +77,13 @@ def alltestimonials():
         return render_template('base2.html', question=question, answer=answer,testimonial=testimonial)
 
    
+
+
+@testimonials.route("/<int:testimonial_id>/delete", methods=['POST','GET'])
+@login_required
+def delete_post(testimonial_id):
+    testimonial = Testimonial.query.get_or_404(testimonial_id)
+    db.session.delete(testimonial)
+    db.session.commit()
+    flash('Post has been deleted')
+    return redirect(url_for('core.index'))

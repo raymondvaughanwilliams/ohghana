@@ -9,4 +9,4 @@ class PriceForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     amount = TextAreaField('Text', validators=[DataRequired()])
     features = TextAreaField('Features', validators=[DataRequired()])
-    submit = SubmitField('Price')
+    submit = SubmitField('Submit')

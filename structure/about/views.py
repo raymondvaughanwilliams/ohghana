@@ -104,7 +104,7 @@ def updateabout():
         about.about_image = form.link2.data
         about.carousel_image_1 = form.link3.data
         db.session.commit()
-        flash(' Updated')
+        console.log(about.logo)
         print('updated')
         return redirect(url_for('about.updateabout'))
 

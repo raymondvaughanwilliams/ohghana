@@ -13,7 +13,7 @@ from flask_wtf.file import FileField,FileAllowed
 
 class UpdateTeamForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    position = StringField('Username', validators=[DataRequired()])
+    position = StringField('Positioon', validators=[DataRequired()])
     facebook = StringField('Facebook', validators=[DataRequired()])
     twitter = StringField('Twitter', validators=[DataRequired()])
     instagram = StringField('Instagram', validators=[DataRequired()])
@@ -24,8 +24,8 @@ class UpdateTeamForm(FlaskForm):
 
 
 class TeamForm(FlaskForm):
-    name = StringField('Email', validators=[DataRequired()])
-    position = StringField('Username', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired()])
+    position = StringField('Position', validators=[DataRequired()])
     facebook = StringField('Facebook', validators=[DataRequired()])
     twitter = StringField('Twitter', validators=[DataRequired()])
     instagram = StringField('Instagram', validators=[DataRequired()])

@@ -15,9 +15,7 @@ def create_post():
 
         web_feature = WebFeature(title=form.title.data,
                              text=form.text.data,
-                             user_id=current_user.id,
-                             paragraph=form.paragraph.data,
-                             subtitle=form.subtitle.data,
+
                              )
         db.session.add(web_feature)
         db.session.commit()
@@ -49,7 +47,7 @@ def update(web_feature_id):
         web_feature.text = form.text.data
         db.session.commit()
         flash('Post Updated')
-        return redirect(url_for('web_features.web_feature', web_feature_id=web_feature.id))
+        return redirect(url_for('core.index'))
     # Pass back the old blog post information so they can start again with
     # the old text and title.
     elif request.method == 'GET':

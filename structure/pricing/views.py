@@ -20,7 +20,7 @@ def create_post():
         db.session.add(pricing)
         db.session.commit()
         flash("Pricing Created")
-        return redirect(url_for('core.hmsui'))
+        return redirect(url_for('core.index'))
 
     return render_template('create_price.html',form=form)
 
@@ -30,14 +30,14 @@ def create_post():
 @pricings.route('/<int:price_id>')
 def price(price_id):
     # grab the requested blog post by id number or return 404
-    price = BlogPost.query.get_or_404(price_id)
+    price = Price.query.get_or_404(price_id)
     return render_template('price.html',title=price.title,
                             amount=price.amount,features=price.features,price=price
     )
 
-@pricings.route("/<int:price_id>/update", methods=['GET', 'POST'])
+@pricings.route("/<int:price_id>/update_pricing", methods=['GET', 'POST'])
 @login_required
-def update(price_id):
+def update_pricing(price_id):
     price = Price.query.get_or_404(price_id)
 
     form = PriceForm()
@@ -47,14 +47,14 @@ def update(price_id):
         price.features = form.features.data
         db.session.commit()
         flash('Post Updated')
-        return redirect(url_for('pricings.price', price_id=price.id))
+        return redirect(url_for('core.index', price_id=price.id))
     # Pass back the old blog post information so they can start again with
     # the old text and title.
     elif request.method == 'GET':
         form.title.data = price.title
         form.amount.data = price.amount
-        form.services.data = price.services
-    return render_template('create_pricing.html', title='Update',
+        form.features.data = price.features
+    return render_template('create_price.html', title='Update',
                            form=form)
 
 
@@ -77,3 +77,12 @@ def allprices():
         return render_template('base2.html',pricing=pricing,title=title,amount=amount,services=services)
 
    
+
+@pricings.route("/<int:price_id>/delete_post", methods=['POST','GET'])
+@login_required
+def delete_post(price_id):
+    pricing = Price.query.get_or_404(price_id)
+    db.session.delete(pricing)
+    db.session.commit()
+    flash('Post has been deleted')
+    return redirect(url_for('core.index'))

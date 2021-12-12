@@ -34,7 +34,7 @@ class AboutForm(FlaskForm):
     logo = FileField('Update Logo', validators=[FileAllowed(['jpg', 'png'])])
     carousel_image_1 =FileField('Update Banner Image', validators=[FileAllowed(['jpg', 'png'])])
 
-    submit = SubmitField('Add Feature')
+    submit = SubmitField('Update')
 
 
 

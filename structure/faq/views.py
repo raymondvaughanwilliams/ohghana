@@ -18,8 +18,8 @@ def create_faq():
                              )
         db.session.add(faq)
         db.session.commit()
-        flash("Pricing Created")
-        return redirect(url_for('core.hmsui'))
+        flash("Faq Created")
+        return redirect(url_for('core.index'))
 
     return render_template('create_faq.html',form=form)
 
@@ -70,3 +70,11 @@ def allfaqs():
         return render_template('base2.html', question=question, answer=answer,faq=faq)
 
    
+@faqs.route("/<int:faq_id>/delete_faq", methods=['POST','GET'])
+@login_required
+def delete_faq(faq_id):
+    faq = Faq.query.get_or_404(faq_id)
+    db.session.delete(faq)
+    db.session.commit()
+    flash('Post has been deleted')
+    return redirect(url_for('core.index'))

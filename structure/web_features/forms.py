@@ -10,4 +10,4 @@ class WebFeatureForm(FlaskForm):
     # subtitle = StringField('Subtitle', validators=[DataRequired()])
     # paragraph = StringField('Paragraph', validators=[DataRequired()])
     text = TextAreaField('Text', validators=[DataRequired()])
-    submit = SubmitField('BlogPost')
+    submit = SubmitField('Submit')
