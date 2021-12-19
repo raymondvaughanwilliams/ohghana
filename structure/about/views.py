@@ -15,7 +15,7 @@ def create_about():
     if form.validate_on_submit():
 
         about = About(title=form.title.data,
-                             text=form.text.data,
+                             atext=form.text.data,
                              user_id=current_user.id,
                              location=form.location.data,
                              number= form.number.data,

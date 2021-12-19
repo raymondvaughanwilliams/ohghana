@@ -14,7 +14,7 @@ def create_post():
     if form.validate_on_submit():
 
         web_feature = WebFeature(title=form.title.data,
-                             text=form.text.data,
+                             wtext=form.text.data,
 
                              )
         db.session.add(web_feature)

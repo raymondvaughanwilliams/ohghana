@@ -1,1096 +1,1295 @@
-<!-- =========
-
-	Template Name: Play
-	Author: UIdeck
-	Author URI: https://uideck.com/
-	Support: https://uideck.com/support/
-	Version: 1.1
-
-========== -->
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{about.title}}</title>
 
-    <!-- Primary Meta Tags -->
-<meta name="title" content="Play - Free Open Source HTML Bootstrap Template by UIdeck">
-<meta name="description" content="Play - Free Open Source HTML Bootstrap Template by UIdeck Team">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{about.title}}</title>
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://uideck.com/play/">
-<meta property="og:title" content="Play - Free Open Source HTML Bootstrap Template by UIdeck">
-<meta property="og:description" content="Play - Free Open Source HTML Bootstrap Template by UIdeck Team">
-<meta property="og:image" content="https://uideck.com/wp-content/uploads/2021/09/play-meta-bs.jpg">
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://uideck.com/play/">
-<meta property="twitter:title" content="Play - Free Open Source HTML Bootstrap Template by UIdeck">
-<meta property="twitter:description" content="Play - Free Open Source HTML Bootstrap Template by UIdeck Team">
-<meta property="twitter:image" content="https://uideck.com/wp-content/uploads/2021/09/play-meta-bs.jpg">
+  <!--====== Favicon Icon ======-->
+  <link rel="shortcut icon" href="{{ url_for('static',filename='images/favicon.svg') }}" type="image/svg" />
 
-    <!--====== Favicon Icon ======-->
-    <link
-      rel="shortcut icon"
-      href="assets/images/favicon.svg"
-      type="image/svg"
-    />
+  <!-- ===== All CSS files ===== -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/animate.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/lineicons.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/ud-styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- ===== All CSS files ===== -->
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/animate.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/lineicons.css') }}">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/ud-styles.css') }}">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/lineicons.css" />
-    <link rel="stylesheet" href="assets/css/ud-styles.css" />
-  </head>
-  <body>
-    <!-- ====== Header Start ====== -->
-    <header class="ud-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand" href="index.html">
-                <img src="{{ url_for('static',filename='images/logo/logo.svg') }}" alt="Logo" />
+
+
+
+  <style>
+    .center {
+      margin: auto;
+      width: 60%;
+      padding: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .hideform {
+      display: none;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+  <!-- ====== Header Start ====== -->
+  <header class="ud-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="{{ url_for('core.editui') }}">
+              <img src="{{ url_for('static',filename='images/logo/logo.svg') }}" alt="Logo" />
+            </a>
+            <button class="navbar-toggler">
+              <span class="toggler-icon"> </span>
+              <span class="toggler-icon"> </span>
+              <span class="toggler-icon"> </span>
+            </button>
+
+            <div class="navbar-collapse">
+              <ul id="nav" class="navbar-nav mx-auto">
+                <li class="nav-item">
+                  <a class="ud-menu-scroll" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="ud-menu-scroll" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="ud-menu-scroll" href="#pricing">Pricing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="ud-menu-scroll" href="#team">Team</a>
+                </li>
+                <li class="nav-item">
+                  <a class="ud-menu-scroll" href="#contact">Contact</a>
+                </li>
+                <li class="nav-item nav-item-has-children">
+                  <a href="javascript:void(0)"> Pages </a>
+                  <ul class="ud-submenu">
+                    <li class="ud-submenu-item">
+                      <a href="about.html" class="ud-submenu-link">
+                        About Page
+                      </a>
+                    </li>
+                    <li class="ud-submenu-item">
+                      <a href="pricing.html" class="ud-submenu-link">
+                        Pricing Page
+                      </a>
+                    </li>
+                    <li class="ud-submenu-item">
+                      <a href="contact.html" class="ud-submenu-link">
+                        Contact Page
+                      </a>
+                    </li>
+                    <li class="ud-submenu-item">
+                      <a href="blog.html" class="ud-submenu-link">
+                        Blog Grid Page
+                      </a>
+                    </li>
+                    <li class="ud-submenu-item">
+                      <a href="blog-details.html" class="ud-submenu-link">
+                        Blog Details Page
+                      </a>
+                    </li>
+                    <li class="ud-submenu-item">
+                      <a href="{{ url_for('users.login') }}" class="ud-submenu-link">
+                        Sign In Page
+                      </a>
+                    </li>
+                    <li class="ud-submenu-item">
+                      <a href="404.html" class="ud-submenu-link">404 Page</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="navbar-btn d-none d-sm-inline-block">
+              <a href="{{ url_for('users.login') }}" class="ud-main-btn ud-login-btn">
+                Sign In
               </a>
-              <button class="navbar-toggler">
-                <span class="toggler-icon"> </span>
-                <span class="toggler-icon"> </span>
-                <span class="toggler-icon"> </span>
-              </button>
-
-              <div class="navbar-collapse">
-                <ul id="nav" class="navbar-nav mx-auto">
-                  <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#home">Home</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#about">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#pricing">Pricing</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#team">Team</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="ud-menu-scroll" href="#contact">Contact</a>
-                  </li>
-                  <li class="nav-item nav-item-has-children">
-                    <a href="javascript:void(0)"> Pages </a>
-                    <ul class="ud-submenu">
-                      <li class="ud-submenu-item">
-                        <a href="about.html" class="ud-submenu-link">
-                          About Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="pricing.html" class="ud-submenu-link">
-                          Pricing Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="contact.html" class="ud-submenu-link">
-                          Contact Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="blog.html" class="ud-submenu-link">
-                          Blog Grid Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="blog-details.html" class="ud-submenu-link">
-                          Blog Details Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="{{ url_for('users.login') }}" class="ud-submenu-link">
-                          Sign In Page
-                        </a>
-                      </li>
-                      <li class="ud-submenu-item">
-                        <a href="404.html" class="ud-submenu-link">404 Page</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="navbar-btn d-none d-sm-inline-block">
-                <a href="login.html" class="ud-main-btn ud-login-btn">
-                  Sign In
-                </a>
-                <a class="ud-main-btn ud-white-btn" href="javascript:void(0)">
-                  Sign Up
-                </a>
-              </div>
-            </nav>
-          </div>
+              <a href="{{ url_for('users.register') }}" class="ud-main-btn ud-login-btn">
+                Sign Up
+              </a>
+            </div>
+          </nav>
         </div>
       </div>
-    </header>
-    <!-- ====== Header End ====== -->
+    </div>
+  </header>
+  <!-- ====== Header End ====== -->
 
-    <!-- ====== Hero Start ====== -->
-    <section class="ud-hero" id="home">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
-              <h1 class="ud-hero-title" style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:10px; ' class="ribbon"/></a>
-                
-                {{ about.title }}
-              </h1>
-              <p class="ud-hero-desc" style='position: relative;'>
-                <a href="#" ><img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-10px; ' class="ribbon"/></a>
-{{about.subtitle}}            </p>
-              <ul class="ud-hero-buttons">
-               <!----<li>
+  <!-- ====== Hero Start ====== -->
+  <section class="ud-hero" id="home">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
+            <h1 class="ud-hero-title" style='position: relative;'>
+              <button data-toggle="modal" data-target="#editabouttitleModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="modal fade" id="editabouttitleModal" tabindex="-1" role="dialog" aria-labelledby="editabouttitleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          {{ aboutform.title.label(class="form-control-label") }}
+                          {{ aboutform.title(class="form-control form-control-lg " ,value=about.title) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.subtitle.label(class="form-control-label") }}
+                          {{ aboutform.subtitle(class="form-control form-control-lg " ,value=about.subtitle) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.submit(class="btn btn-outline-info") }}
+                        </div>
+                      </form>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+
+              {{about.title}}
+            </h1>
+            <p class="ud-hero-desc" style='position: relative;'>
+             
+              
+              {{about.subtitle}} </p>
+            
+
+
+            
+      
+
+
+
+
+
+            <ul class="ud-hero-buttons">
+              <!----<li>
                   <a href="https://links.uideck.com/play-bootstrap-download" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
                     Download Now
                   </a>
                 </li>-->
-                <li>
-                  <a href="https://github.com/uideck/play-bootstrap" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-link-btn">
-                    Learn More <i class="lni lni-arrow-right"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div
-              class="ud-hero-brands-wrapper wow fadeInUp"
-              data-wow-delay=".3s"
-            
-            >
-            
-              <img src="{{ url_for('static',filename='images/hero/brand.svg') }}" alt="brand" />
-            </div>
-            <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
-              <img src="{{ url_for('static',filename='images/hero/hero-image.svg') }}" alt="hero-image" />
-              <img
-                src="{{ url_for('static',filename='images/hero/dotted-shape.svg') }}" 
-                alt="shape"
-                class="shape shape-1"
-              />
-              <img
-                src="{{ url_for('static',filename='images/hero/dotted-shape.svg') }}"
-                alt="shape"
-                class="shape shape-2"
-              />
-            </div>
+              <li>
+                <a href="#about" rel="nofollow noopener" class="ud-main-btn ud-link-btn">
+                  Learn More <i class="lni lni-arrow-right"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="ud-hero-brands-wrapper wow fadeInUp" data-wow-delay=".3s">
+
+            <img src="{{ url_for('static',filename='images/hero/brand.svg') }}" alt="brand" />
+          </div>
+          <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
+            <img src="{{ url_for('static',filename='images/hero/hero-image.svg') }}" alt="hero-image" />
+            <img src="{{ url_for('static',filename='images/hero/dotted-shape.svg') }}" alt="shape"
+              class="shape shape-1" />
+            <img src="{{ url_for('static',filename='images/hero/dotted-shape.svg') }}" alt="shape"
+              class="shape shape-2" />
           </div>
         </div>
       </div>
-    </section>
-    <!-- ====== Hero End ====== -->
+    </div>
+  </section>
+  <!-- ====== Hero End ====== -->
 
-    <!-- ====== Features Start ====== -->
-    <section id="features" class="ud-features">
-      <div class="container">
-
-
-
+  <!-- ====== Features Start ====== -->
+  <section id="features" class="ud-features">
+    <div class="container">
 
 
 
 
 
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ud-section-title">
+            <span>Features</span>
+            <h2 style='position: relative;'>
+              <button data-toggle="modal" data-target="#editfeaturesubtitleModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="modal fade" id="editfeaturesubtitleModal" tabindex="-1" role="dialog" aria-labelledby="editfeaturesubtitleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editfeaturesubtitleModal">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          {{ aboutform.feature_subtitle.label(class="form-control-label") }}
+                          {{ aboutform.feature_subtitle(class="form-control form-control-lg " ,value=about.feature_subtitle) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.feature_paragraph.label(class="form-control-label") }}
+                          {{ aboutform.feature_paragraph(class="form-control form-control-lg " ,value=about.feature_paragraph) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.submit(class="btn btn-outline-info") }}
+                        </div>
+                      </form>
+                    </div> 
+                  </div>
+                </div>
+              </div>
 
+              {{about.feature_subtitle}}</h2>
+            <p style='position: relative;'>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title">
-              <span>Features</span>
-              <h2 style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:100px; ' /></a>
-
-                
-                {{about.feature_subtitle}}</h2>
-              <p style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:100px; ' /></a>
-
-                {{about.feature_paragraph}}
-              </p>
-            </div>
+              {{about.feature_paragraph}}
+            </p>
           </div>
         </div>
-<div class="row">
+      </div>
+      <div class="row">
+
+
+
+
+
 
         {% for web_feature in web_features.items %}
+      
+        <div class="col-xl-3 col-lg-3 col-sm-6">
+          <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
+            <div class="ud-feature-icon">
+              <i class="lni lni-gift"></i>
+            </div>
+            <div class="ud-feature-content">
+              <!-- ====== Features Form ====== -->
+              <h2 style='position: relative;'> 
+                <button data-toggle="modal" data-target="#edit{{web_feature.id}}" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+                
+                <div class="modal fade" id="edit{{web_feature.id|string|join('wf')}}" tabindex="-1" role="dialog" aria-labelledby="editfeatureCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="edit{{web_feature.id|string|join('wf')}}">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
 
-
-
-
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
-              <div class="ud-feature-icon">
-                <i class="lni lni-gift"></i>
-              </div>
-              <div class="ud-feature-content">
-                <h2><a class="ud-feature-title" href="  {{ url_for('web_features.web_feature', web_feature_id=web_feature.id) }}">{{ web_feature.title }}</a></h2>
+                        <form>
+                          <div class="form-group">
+                            {{ webfeatureform.title.label(class="form-control-label") }}
+                            {{ webfeatureform.title(class="form-control form-control-lg " ,value=web_feature.title)}}
+                          </div>
+                          <div class="form-group">
+                            {{ webfeatureform.text.label(class="form-control-label") }}
+                            {{ webfeatureform.text(class="form-control form-control-lg " ,value=web_feature.wtext) }}
+                          </div>
+                          
+                          <div class="form-group">
+                            {{ webfeatureform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                {{ web_feature.title }}</h2>
                 <p class="ud-feature-desc">
-                 {{ web_feature.text[:100] }}...
-                </p>
-                <div class="row">
-                <a href="{{ url_for('web_features.web_feature', web_feature_id=web_feature.id) }}" class="btn btn-primary">Edit Feature</a>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-
-   {% endfor %}
-
-     
-    <!-- ====== Features End ====== -->
-
-    <!-- ====== About Start ====== -->
-    <section id="about" class="ud-about">
-      <div class="container">
-        <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
-          <div class="ud-about-content-wrapper">
-            <div class="ud-about-content">
-              <span class="tag">About Us</span>
-              <h2 style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:0px; ' /></a>
-
-                {{about.about_subtitle}}</h2>
-              
-              <p style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-20px; ' /></a>
-                {{about.text}}
-              </p>
-
-             
-            </div>
-          </div>
-          <div class="ud-about-image">
-            <img  src="{{ url_for('static',filename='images/about/about-image.svg') }}" />
-           
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== About End ====== -->
-
-    <!-- ====== Pricing Start ====== -->
-    <section id="pricing" class="ud-pricing">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center">
-              <span>Pricing</span>
-              <h2 style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:100px; ' /></a>
-                Our Pricing Plans</h2>
-              <p>
-
-              
-              </p>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row g-0 align-items-center justify-content-center">
-                  {% for price in pricing %}
-
-          <div class="col-lg-4 col-md-6 col-sm-10">
-            <div
-              class="ud-single-pricing first-item wow fadeInUp"
-              data-wow-delay=".15s"
-            >
-              <div class="ud-pricing-header" 
-              style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:100px; ' /></a>
-
-                <h3>{{price.title}}</h3>
-                <h4>{{price.amount}}</h4>
-              </div>
-
-
-
-
-              <div class="ud-pricing-body">
-                <ul>
-{% set list1 = price.features.split(',') %}
-<br>
-{% for item in list1 %}
-                  <li>{{ item }}</li>
-          {% endfor %}
-
-                </ul>
-              </div>
-              <div class="ud-pricing-footer">
-                <a href="javascript:void(0)" class="ud-main-btn ud-border-btn">
-                  Purchase Now
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {% endfor %}
-          
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Pricing End ====== -->
-
-    <!-- ====== FAQ Start ====== -->
-    <section id="faq" class="ud-faq">
-      <div class="shape">
-        <img src="assets/images/faq/shape.svg" alt="shape" />
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title text-center mx-auto">
-              <span style='position: relative;'>
-
-                {{about.faq_title}}
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-              </span>
-              <h2 style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.faq_subtitle}}</h2>
-              <p style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.faq_paragraph}}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-
-            {% for faqs in faq %}
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-
-                  <span style='position: relative;'>
-                    <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                    {{faqs.question}}</span>
-                </button>
-                <div id="collapseOne" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    
-                   {{faqs.answer}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>How to download icons from Lineicons?</span>
-                </button>
-                <div id="collapseTwo" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Is GrayGrids part of UIdeck?</span>
-                </button>
-                <div id="collapseThree" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Can I use this template for commercial project?</span>
-                </button>
-                <div id="collapseFour" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFive"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Do you have plan releasing Play Pro?</span>
-                </button>
-                <div id="collapseFive" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-              <div class="accordion">
-                <button
-                  class="ud-faq-btn collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseSix"
-                >
-                  <span class="icon flex-shrink-0">
-                    <i class="lni lni-chevron-down"></i>
-                  </span>
-                  <span>Where and how to host this template?</span>
-                </button>
-                <div id="collapseSix" class="accordion-collapse collapse">
-                  <div class="ud-faq-body">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== FAQ End ====== -->
-
-    <!-- ====== Testimonials Start ====== -->
-    <section id="testimonials" class="ud-testimonials">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center">
-              <span style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.testimonial_title}}</span>
-              <h2 style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.testimonial_subtitle}}</h2>
-              <p style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.testimonial_paragraph}}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-
-          {% for testimonials in testimonial %}
-          <div class="col-lg-4 col-md-6">
-            <div
-              class="ud-single-testimonial wow fadeInUp"
-              data-wow-delay=".1s"
-            >
-   
-            <div class="ud-testimonial-ratings">
-              {% for i in range(testimonials.rating)  %}
-                <i class="lni lni-star-filled"></i>
-              {% endfor %}
-              </div>
-              <div class="ud-testimonial-content">
-                <p>
-                  {{testimonials.text}}
+                 {{ web_feature.wtext[:100] }}...
                 </p>
               </div>
-              <div class="ud-testimonial-info" style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 0px; right:-30px; ' /></a>
-
-                <div class="ud-testimonial-image">
-                  <img
-                    src="assets/images/testimonials/author-01.png"
-                    alt="author"
-                  />
-                </div>
-                <div class="ud-testimonial-meta">
-                  <h4>{{testimonials.name}}</h4>
-                  <p>{{testimonials.company}}</p>
-                </div>
-              </div>
             </div>
           </div>
-          {% endfor %}
 
 
-
-          
-              </div>
-            </div>
-          </div>
-        </div>
-
-        </div>
-      </div>
-    </section>
-    <!-- ====== Testimonials End ====== -->
-
-    <!-- ====== Team Start ====== -->
-    <section id="team" class="ud-team">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center">
-              <span style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.team_title}}</span>
-              <h2 style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.team_subtitle}}</h2>
-              <p style='position: relative;'>
-                <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-
-                {{about.team_paragraph}}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
+        {% endfor %}
 
 
-          {% for teammate in team%}
-          <div class="col-xl-3 col-lg-3 col-sm-6" style='position: relative;'>
+        <!-- ====== Features End ====== -->
 
-            <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="{{teammate.picture}}" alt="team" />
-                </div>
-
-                <img
-                  src="{{ url_for('static',filename='images/team/dotted-shape.svg') }}"
+        <!-- ====== About Start ====== -->
+        <section id="about" class="ud-about">
+          <div class="container">
+            <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
+              <div class="ud-about-content-wrapper">
+                <div class="ud-about-content">
+                  <span class="tag">About Us</span>
                   
-                  alt="shape"
-                  class="shape shape-1"
-                />
-                <img
-                  src="{{ url_for('static',filename='images/team/shape-2.svg') }}"
-                  alt="shape"
-                  class="shape shape-2"
-                />
-              </div>
-              <div class="ud-team-info">
-                <h5>{{teammate.name}}</h5>
-                <h6>{{teammate.position}}</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="https://facebook.com/{{teammate.facebook}}">
-                    <i class="lni lni-facebook-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/{{teammate.twiitter}}">
-                    <i class="lni lni-twitter-filled"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://instagram.com/{{teammate.instagram}}">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-{% endfor %}
-
-
-
-
-
-
-          
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Team End ====== -->
-
-    <!-- ====== Contact Start ====== -->
-    <section id="contact" class="ud-contact">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-xl-8 col-lg-7">
-            <div class="ud-contact-content-wrapper">
-              <div class="ud-contact-title">
-                <span>CONTACT US</span>
-                <h2 style='position: relative;'>
-                  <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:450px; ' /></a>
-                  {{ about.contact_subtitle }}
-                </h2>
-              </div>
-              <div class="ud-contact-info-wrapper">
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-map-marker"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5>Our Location</h5>
-                <h2 >
+                  <h2 style='position: relative;'>
+                    <button data-toggle="modal" data-target="#editaboutsubtitle" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+                    <div class="modal fade" id="editaboutsubtitle" tabindex="-1" role="dialog" aria-labelledby="editaboutsubtitleCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="editaboutsubtitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                {{ aboutform.about_subtitle.label(class="form-control-label") }}
+                                {{ aboutform.about_subtitle(class="form-control form-control-lg " ,value=about.about_subtitle) }}
+                              </div>
+                              <div class="form-group">
+                                {{ aboutform.text.label(class="form-control-label") }}
+                                {{ aboutform.text(class="form-control form-control-lg " ,value=about.atext) }}
+                              </div>
+                              <div class="form-group">
+                                {{ aboutform.submit(class="btn btn-outline-info") }}
+                              </div>
+                            </form>
+                          </div> 
+                        </div>
+                      </div>
+                    </div>
+                    {{about.about_subtitle}}</h2>
 
                   <p style='position: relative;'>
-                    <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
+                    <
+                  </p>
+                  <p style='position: relative;'>
+                    {{about.atext}}
 
-                    {{ about.location }}</p>
-                  </div>
-                </div>
-                <div class="ud-single-info">
-                  <div class="ud-info-icon">
-                    <i class="lni lni-envelope"></i>
-                  </div>
-                  <div class="ud-info-meta">
-                    <h5>How Can We Help?</h5>
-                    <p style='position: relative;'>
-                      <a href="#" >  <img src="{{ url_for('static',filename='images/edit.png') }}" style='position: absolute;top: 5px; right:-30px; ' /></a>
+                  </p>
 
-                      {{about.email}}</p>
-                    <p>contact@yourdomain.com</p>
-                  </div>
+
                 </div>
+              </div>
+              <div class="ud-about-image">
+                <img src="{{ url_for('static',filename='images/about/about-image.svg') }}" />
+
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-lg-5">
-            <div
-              class="ud-contact-form-wrapper wow fadeInUp"
-              data-wow-delay=".2s"
-            >
-              <h3 class="ud-contact-form-title">Send us a Message</h3>
-              <form class="ud-contact-form">
-                <div class="ud-form-group">
-                  <label for="fullName">Full Name*</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    placeholder="Adam Gelius"
-                  />
+        </section>
+        <!-- ====== About End ====== -->
+
+        <!-- ====== Pricing Start ====== -->
+        <section id="pricing" class="ud-pricing">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="ud-section-title mx-auto text-center">
+                  <span>Pricing</span>
+                  <h2 style='position: relative;'>
+                    
+
+                    Our Pricing Plans
+                  </h2>
+                  <p>
+
+
+                  </p>
                 </div>
-                <div class="ud-form-group">
-                  <label for="email">Email*</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="example@yourmail.com"
-                  />
-                </div>
-                <div class="ud-form-group">
-                  <label for="phone">Phone*</label>
-                  <input
-                    type="text"
-                    name="phone"
-                    placeholder="+885 1254 5211 552"
-                  />
-                </div>
-                <div class="ud-form-group">
-                  <label for="message">Message*</label>
-                  <textarea
-                    name="message"
-                    rows="1"
-                    placeholder="type your message here"
-                  ></textarea>
-                </div>
-                <div class="ud-form-group mb-0">
-                  <button type="submit" class="ud-main-btn">
-                    Send Message
-                  </button>
-                </div>
-              </form>
+              </div>
             </div>
+
+
+            <div class="row g-0 align-items-center justify-content-center">
+              {% for price in pricing %}
+
+              <div class="col-lg-4 col-md-6 col-sm-10">
+                <div class="ud-single-pricing first-item wow fadeInUp" data-wow-delay=".15s">
+                  <div class="ud-pricing-header" style='position: relative;'>
+
+
+
+
+
+                    
+                    <button data-toggle="modal" data-target="#{{price.id|string|join('pr')}}"  style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+                    <div class="modal fade" id="{{price.id|string|join('pr')}}" tabindex="-1" role="dialog" aria-labelledby="editpricingModal" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="{{price.id|string|join('pr')}}">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group">
+                                {{ priceform.title.label(class="form-control-label") }}
+                                {{ priceform.title(class="form-control form-control-lg " ,value=price.title) }}
+                              </div>
+                              <div class="form-group">
+                                {{ priceform.amount.label(class="form-control-label") }}
+                                {{ priceform.amount(class="form-control form-control-lg " ,value=price.amount) }}
+                              </div>
+                              <div class="form-group">
+                                {{ priceform.features.label(class="form-control-label") }}
+                                {{ priceform.features(class="form-control form-control-lg " ,value=price.features) }}
+                              </div>
+                              <div class="form-group">
+                                {{ priceform.submit(class="btn btn-outline-info") }}
+                              </div>
+                            </form>
+                          </div> 
+                        </div>
+                      </div>
+                    </div>
+
+                    <h3>{{price.title}}</h3>
+                    <h4>{{price.amount}}</h4>
+                  </div>
+
+
+
+
+                  <div class="ud-pricing-body">
+                    <ul>
+                      {% set list1 = price.features.split(',') %}
+                      <br>
+                      {% for item in list1 %}
+                      <li>{{ item }}</li>
+                      {% endfor %}
+
+                    </ul>
+                  </div>
+                  <div class="ud-pricing-footer">
+                    <a href="javascript:void(0)" class="ud-main-btn ud-border-btn">
+                      Purchase Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {% endfor %}
+
+            </div>
+          </div>
+      </div>
+  </section>
+  <!-- ====== Pricing End ====== -->
+
+  <!-- ====== FAQ Start ====== -->
+  <section id="faq" class="ud-pricing">
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ud-section-title text-center mx-auto">
+            <span >
+
+              FAQs
+            </span>
+            <h2 style='position: relative;'>
+              <button data-toggle="modal" data-target="#editfaqsubtitle" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="modal fade" id="editfaqsubtitle" tabindex="-1" role="dialog" aria-labelledby="editfaqsubtitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editfaqsubtitle">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          {{ aboutform.faq_subtitle.label(class="form-control-label") }}
+                          {{ aboutform.faq_subtitle(class="form-control form-control-lg " ,value=about.faq_subtitle) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.faq_paragraph.label(class="form-control-label") }}
+                          {{ aboutform.faq_paragraph(class="form-control form-control-lg " ,value=about.faq_paragraph) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.submit(class="btn btn-outline-info") }}
+                        </div>
+                      </form>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+
+              {{about.faq_subtitle}}</h2>
+            <p style='position: relative;'>
+              
+
+              {{about.faq_paragraph}}
+            </p>
           </div>
         </div>
       </div>
-    </section>
-    <!-- ====== Contact End ====== -->
 
-    <!-- ====== Footer Start ====== -->
-    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
-      <div class="shape shape-1">
-        <img src="assets/images/footer/shape-1.svg" alt="shape" />
-      </div>
-      <div class="shape shape-2">
-        <img src="assets/images/footer/shape-2.svg" alt="shape" />
-      </div>
-      <div class="shape shape-3">
-        <img src="assets/images/footer/shape-3.svg" alt="shape" />
-      </div>
-      <div class="ud-footer-widgets">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="ud-widget">
-                <a href="index.html" class="ud-footer-logo">
-                  <img src="assets/images/logo/logo.svg" alt="logo" />
-                </a>
-                <p class="ud-widget-desc">
-                  We create digital experiences for brands and companies by
-                  using technology.
-                </p>
-                <ul class="ud-widget-socials">
-                  <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-facebook-filled"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-twitter-filled"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-instagram-filled"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+      <div class="row">
+        <div class="col-lg-6">
 
-            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title">About Us</h5>
-                <ul class="ud-widget-links">
-                  <li>
-                    <a href="javascript:void(0)">Home</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Features</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">About</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Testimonial</a>
-                  </li>
-                </ul>
+          {% for faqs in faq %}
+
+          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
+            <div class="accordion">
+              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                <span class="icon flex-shrink-0">
+                  <i class="lni lni-chevron-down"></i>
+                </span>
+                {{faqs.question}}
+              </button>
+
+                <h2 style='position: relative;'>
+                  <button data-toggle="modal" data-target="#faq{{faqs.id}}" style="font-size:24px; position: absolute;top: -100px; right:-30px;  "><i class="fa fa-edit"></i></button>
+                  
+                  <div class="modal fade" id="faq{{faqs.id}}" tabindex="-1" role="dialog" aria-labelledby="editfaqModalTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="faq{{faqs.id}}">Modal title</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="form-group">
+                              {{ faqform.question.label(class="form-control-label") }}
+                              {{ faqform.question(class="form-control form-control-lg " ,value=faqs.question) }}
+                            </div>
+                            <div class="form-group">
+                              {{ faqform.answer.label(class="form-control-label") }}
+                              {{ faqform.answer(class="form-control form-control-lg " ,value=faqs.answer) }}
+                            </div>
+                            <div class="form-group">
+                              {{ faqform.submit(class="btn btn-outline-info") }}
+                            </div>
+                          </form>
+
+
+
+
+                        </div> 
+      </h2>
+              
+              <div id="collapseOne" class="accordion-collapse collapse">
+                <div class="ud-faq-body">
+
+                  {{faqs.answer}}
+                </div>
               </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title">Features</h5>
-                <ul class="ud-widget-links">
-                  <li>
-                    <a href="javascript:void(0)">How it works</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Privacy policy</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Terms of service</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)">Refund policy</a>
-                  </li>
-                </ul>
+          </div>
+          {% endfor %}
+          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
+            <div class="accordion">
+              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                <span class="icon flex-shrink-0">
+                  <i class="lni lni-chevron-down"></i>
+                </span>
+                <span>How to download icons from Lineicons?</span>
+              </button>
+              <div id="collapseTwo" class="accordion-collapse collapse">
+                <div class="ud-faq-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a
+                  type specimen book.
+                </div>
               </div>
             </div>
-            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title">Our Products</h5>
-                <ul class="ud-widget-links">
-                  <li>
-                    <a
-                      href="https://lineicons.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Lineicons
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://ecommercehtml.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Ecommerce HTML</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://ayroui.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Ayro UI</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://graygrids.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                      >Plain Admin</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xl-3 col-lg-6 col-md-8 col-sm-10">
-              <div class="ud-widget">
-                <h5 class="ud-widget-title">Partners</h5>
-                <ul class="ud-widget-brands">
-                  <li>
-                    <a
-                      href="https://ayroui.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="assets/images/footer/brands/ayroui.svg"
-                        alt="ayroui"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://ecommercehtml.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="assets/images/footer/brands/ecommerce-html.svg"
-                        alt="ecommerce-html"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://graygrids.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="assets/images/footer/brands/graygrids.svg"
-                        alt="graygrids"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://lineicons.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="assets/images/footer/brands/lineicons.svg"
-                        alt="lineicons"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://uideck.com/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="assets/images/footer/brands/uideck.svg"
-                        alt="uideck"
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://tailwindtemplates.co/"
-                      rel="nofollow noopner"
-                      target="_blank"
-                    >
-                      <img
-                        src="assets/images/footer/brands/tailwindtemplates.svg"
-                        alt="tailwindtemplates"
-                      />
-                    </a>
-                  </li>
-                </ul>
+          </div>
+          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
+            <div class="accordion">
+              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                <span class="icon flex-shrink-0">
+                  <i class="lni lni-chevron-down"></i>
+                </span>
+                <span>Is GrayGrids part of UIdeck?</span>
+              </button>
+              <div id="collapseThree" class="accordion-collapse collapse">
+                <div class="ud-faq-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a
+                  type specimen book.
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="ud-footer-bottom">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-8">
-              <ul class="ud-footer-bottom-left">
-                <li>
-                  <a href="javascript:void(0)">Privacy policy</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">Support policy</a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">Terms of service</a>
-                </li>
-              </ul>
+        <div class="col-lg-6">
+          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
+            <div class="accordion">
+              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                <span class="icon flex-shrink-0">
+                  <i class="lni lni-chevron-down"></i>
+                </span>
+                <span>Can I use this template for commercial project?</span>
+              </button>
+              <div id="collapseFour" class="accordion-collapse collapse">
+                <div class="ud-faq-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a
+                  type specimen book.
+                </div>
+              </div>
             </div>
-            <div class="col-md-4">
-              <p class="ud-footer-bottom-right">
-                Designed and Developed by
-                <a href="https://uideck.com" rel="nofollow">UIdeck</a>
+          </div>
+          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
+            <div class="accordion">
+              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                <span class="icon flex-shrink-0">
+                  <i class="lni lni-chevron-down"></i>
+                </span>
+                <span>Do you have plan releasing Play Pro?</span>
+              </button>
+              <div id="collapseFive" class="accordion-collapse collapse">
+                <div class="ud-faq-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a
+                  type specimen book.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
+            <div class="accordion">
+              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                <span class="icon flex-shrink-0">
+                  <i class="lni lni-chevron-down"></i>
+                </span>
+                <span>Where and how to host this template?</span>
+              </button>
+              <div id="collapseSix" class="accordion-collapse collapse">
+                <div class="ud-faq-body">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a
+                  type specimen book.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- ====== FAQ End ====== -->
+
+  <!-- ====== Testimonials Start ====== -->
+  <section id="testimonials" class="ud-testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ud-section-title mx-auto text-center">
+            <span style='position: relative;'>
+              <button data-toggle="modal" data-target="#edittestimonialModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="modal fade" id="edittestimonialModal" tabindex="-1" role="dialog" aria-labelledby="edittestimonialModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="edittestimonialModal">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          {{ aboutform.testimonial_title.label(class="form-control-label") }}
+                          {{ aboutform.testimonial_title(class="form-control form-control-lg " ,value=about.testimonial_title) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.testimonial_subtitle.label(class="form-control-label") }}
+                          {{ aboutform.testimonial_subtitle(class="form-control form-control-lg " ,value=about.testimonial_subtitle) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.testimonial_paragraph.label(class="form-control-label") }}
+                          {{ aboutform.testimonial_paragraph(class="form-control form-control-lg " ,value=about.testimonial_paragraph) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.submit(class="btn btn-outline-info") }}
+                        </div>
+                      </form>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+
+
+
+              {{about.testimonial_title}}</span>
+            <h2 style='position: relative;'>
+
+
+              {{about.testimonial_subtitle}}</h2>
+            <p style='position: relative;'>
+
+              {% for data in faq %}
+
+
+              <li>{{data.id}}</li>
+              <li>{{data.question}}</li>
+              {% endfor %}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        {% for testimonials in testimonial %}
+
+        <div class="col-lg-4 col-md-6">
+          <div class="ud-single-testimonial wow fadeInUp" data-wow-delay=".1s">
+
+            <div class="ud-testimonial-ratings">
+              {% for i in range(testimonials.rating)  %}
+              <i class="lni lni-star-filled"></i>
+              {% endfor %}
+            </div>
+            <div class="ud-testimonial-content">
+              <p>
+                {{testimonials.text}}
               </p>
             </div>
+            <div class="ud-testimonial-info" style='position: relative;'>
+              <button data-toggle="modal" data-target="#tm{{testimonials.id}}" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="modal fade" id="tm{{testimonials.id}}" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="tm{{testimonials.id}}">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          {{ testimonialform.name.label(class="form-control-label") }}
+                          {{ testimonialform.name(class="form-control form-control-lg " ,value=templist) }}
+                        </div>
+                        <div class="form-group">
+                          {{ testimonialform.company.label(class="form-control-label") }}
+                          {{ testimonialform.company(class="form-control form-control-lg " ,value=testimonials.company) }}
+                        </div>
+                        <div class="form-group">
+                          {{ testimonialform.rating.label(class="form-control-label") }}
+                          {{ testimonialform.rating(class="form-control form-control-lg " ,value=testimonials.rating) }}
+                        </div>
+                        <div class="form-group">
+                          {{ testimonialform.submit(class="btn btn-outline-info") }}
+                        </div>
+                      </form>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+</div>
+</div>
+              <div class="ud-testimonial-image">
+                <img src="{{ url_for('static',filename='images/testimonials/author-01.png') }}" />
+              </div>
+              <div class="ud-testimonial-meta">
+                <h4>{{testimonials.name}}</h4>
+                <p>{{testimonials.company}}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </footer>
-    <!-- ====== Footer End ====== -->
+      </div>
+        {% endfor %}
 
-    <!-- ====== Back To Top Start ====== -->
-    <a href="javascript:void(0)" class="back-to-top">
-      <i class="lni lni-chevron-up"> </i>
-    </a>
-    <!-- ====== Back To Top End ====== -->
 
-    <!-- ====== All Javascript Files ====== -->
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
 
-    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-      // ==== for menu scroll
-      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+      </div>
+    </div>
+    </div>
+    </div>
 
-      pageLink.forEach((elem) => {
-        elem.addEventListener("click", (e) => {
-          e.preventDefault();
-          document.querySelector(elem.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-            offsetTop: 1 - 60,
-          });
+    </div>
+    </div>
+  </section>
+  <!-- ====== Testimonials End ====== -->
+
+  <!-- ====== Team Start ====== -->
+  <section id="team" class="ud-team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ud-section-title mx-auto text-center">
+            <span style='position: relative;'>
+              <button data-toggle="modal" data-target="#aboutteamModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="modal fade" id="aboutteamModal" tabindex="-1" role="dialog" aria-labelledby="aboutteamModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="aboutteamModal">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          {{ aboutform.team_title.label(class="form-control-label") }}
+                          {{ aboutform.team_title(class="form-control form-control-lg " ,value=about.team_title) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.team_subtitle.label(class="form-control-label") }}
+                          {{ aboutform.team_subtitle(class="form-control form-control-lg " ,value=about.team_subtitle) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.team_paragraph.label(class="form-control-label") }}
+                          {{ aboutform.team_paragraph(class="form-control form-control-lg " ,value=about.testimonial_paragraph) }}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.submit(class="btn btn-outline-info") }}
+                        </div>
+                      </form>
+                    </div> 
+                  </div>
+                </div>
+              </div>
+              {{about.team_title}}</span>
+            <h2 style='position: relative;'>
+
+
+              {{about.team_subtitle}}</h2>
+            <p style='position: relative;'>
+
+
+              {{about.team_paragraph}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+
+        {% for teammate in team%}
+        <div class="col-xl-3 col-lg-3 col-sm-6" style='position: relative;'>
+          <button data-toggle="modal" data-target="#{{teammate.id|string|join('te')}}" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+
+          <div class="modal fade" id="{{teammate.id|string|join('te')}}" tabindex="-1" role="dialog" aria-labelledby="editteammateModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="{{teammate.id|string|join('te')}}">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                  <div class="form-group">
+                    {{ teammateform.name.label(class="form-control-label") }}
+                    {{ teammateform.name(class="form-control form-control-lg " ,value=teammate.name) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.position.label(class="form-control-label") }}
+                    {{ teammateform.position(class="form-control form-control-lg " ,value=teammate.position) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.facebook.label(class="form-control-label") }}
+                    {{ teammateform.facebook(class="form-control form-control-lg " ,value=teammate.facebook) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.twitter.label(class="form-control-label") }}
+                    {{ teammateform.twitter(class="form-control form-control-lg " ,value=teammate.twitter) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.instagram.label(class="form-control-label") }}
+                    {{ teammateform.instagram(class="form-control form-control-lg " ,value=teammate.instagram) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.submit(class="btn btn-outline-info") }}
+                  </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s">
+            <div class="ud-team-image-wrapper">
+              <div class="ud-team-image">
+                <img src="{{teammate.picture}}" alt="team" />
+              </div>
+
+              <img src="{{ url_for('static',filename='images/team/dotted-shape.svg') }}" alt="shape"
+                class="shape shape-1" />
+              <img src="{{ url_for('static',filename='images/team/shape-2.svg') }}" alt="shape" class="shape shape-2" />
+            </div>
+            <div class="ud-team-info">
+              <h5>{{teammate.name}}</h5>
+              <h6>{{teammate.position}}</h6>
+            </div>
+            <ul class="ud-team-socials">
+              <li>
+                <a href="https://facebook.com/{{teammate.facebook}}">
+                  <i class="lni lni-facebook-filled"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/{{teammate.twiitter}}">
+                  <i class="lni lni-twitter-filled"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://instagram.com/{{teammate.instagram}}">
+                  <i class="lni lni-instagram-filled"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {% endfor %}
+
+
+
+
+
+
+
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- ====== Team End ====== -->
+
+  <!-- ====== Contact Start ====== -->
+  <section id="contact" class="ud-contact">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-8 col-lg-7">
+          <div class="ud-contact-content-wrapper">
+            <div class="ud-contact-title">
+              <span>CONTACT US</span>
+              <h2 style='position: relative;'>
+                <button data-toggle="modal" data-target="#bottomabouts" style="font-size:24px; position: absolute;top: 5px; right:450px;  "><i class="fa fa-edit"></i></button>
+          
+                <div class="modal fade" id="bottomabouts" tabindex="-1" role="dialog" aria-labelledby="bottomabouts" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="bottomabouts">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            {{ aboutform.location.label(class="form-control-label") }}
+                            {{ aboutform.location(class="form-control form-control-lg " ,value=about.location) }}
+                          </div>
+                          <div class="form-group">
+                            {{ aboutform.contact_subtitle.label(class="form-control-label") }}
+                            {{ aboutform.contact_subtitle(class="form-control form-control-lg " ,value=about.contact_subtitle) }}
+                          </div>
+                          <div class="form-group">
+                            {{ aboutform.email.label(class="form-control-label") }}
+                            {{ aboutform.email(class="form-control form-control-lg " ,value=about.email) }}
+                          </div>
+                          <div class="form-group">
+                            {{ aboutform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                {{ about.contact_subtitle }}
+              </h2>
+            </div>
+            <div class="ud-contact-info-wrapper">
+              <div class="ud-single-info">
+                <div class="ud-info-icon">
+                  <i class="lni lni-map-marker"></i>
+                </div>
+                <div class="ud-info-meta">
+                  <h5>Our Location</h5>
+                  <h2>
+
+                    <p style='position: relative;'>
+
+                      {{ about.location }}</p>
+                </div>
+              </div>
+              <div class="ud-single-info">
+                <div class="ud-info-icon">
+                  <i class="lni lni-envelope"></i>
+                </div>
+                <div class="ud-info-meta">
+                  <h5>How Can We Help?</h5>
+                  <p style='position: relative;'>
+
+                    {{about.email}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="ud-contact-form-wrapper wow fadeInUp" data-wow-delay=".2s">
+            <h3 class="ud-contact-form-title">Send us a Message</h3>
+            <form class="ud-contact-form">
+              <div class="ud-form-group">
+                <label for="fullName">Full Name*</label>
+                <input type="text" name="fullName" placeholder="Adam Gelius" />
+              </div>
+              <div class="ud-form-group">
+                <label for="email">Email*</label>
+                <input type="email" name="email" placeholder="example@yourmail.com" />
+              </div>
+              <div class="ud-form-group">
+                <label for="phone">Phone*</label>
+                <input type="text" name="phone" placeholder="+885 1254 5211 552" />
+              </div>
+              <div class="ud-form-group">
+                <label for="message">Message*</label>
+                <textarea name="message" rows="1" placeholder="type your message here"></textarea>
+              </div>
+              <div class="ud-form-group mb-0">
+                <button type="submit" class="ud-main-btn">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    {% for web_feature in web_features.items %}
+    <div class="center hideform col-sm-3">
+      <button id="close" style="float: right;">X</button>
+      <form>
+        <div class="form-group">
+          {{ webfeatureform.title.label(class="form-control-label") }}
+          {{ webfeatureform.title(class="form-control form-control-lg " ,value=web_feature.title) }}
+        </div>
+        <div class="form-group">
+          {{ webfeatureform.text.label(class="form-control-label") }}
+          {{ webfeatureform.text(class="form-control form-control-lg"  ,value=web_feature.title) }}
+        </div>
+        <div class="form-group">
+          {{ webfeatureform.submit(class="btn btn-outline-info") }}
+        </div>
+      </form>
+    </div>
+    <button href="{{ url_for('web_features.update', web_feature_id=web_feature.id) }}" id="show"> Edit
+      {{web_feature.title}}</button>
+    <button href="{{ url_for('web_features.update', web_feature_id=web_feature.id) }}" id="show"> Edit
+      {{web_feature.title}}</button>
+
+    {%endfor%}
+
+
+
+
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Launch demo modal
+    </button>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+  <!-- ====== Contact End ====== -->
+
+  <!-- ====== Footer Start ====== -->
+  <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
+    <div class="shape shape-1">
+
+    </div>
+    </div>
+    </div>
+  </footer>
+  <!-- ====== Footer End ====== -->
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- ====== Back To Top Start ====== -->
+  <a href="javascript:void(0)" class="back-to-top">
+    <i class="lni lni-chevron-up"> </i>
+  </a>
+  <!-- ====== Back To Top End ====== -->
+
+  <!-- ====== All Javascript Files ====== -->
+  <link  type="application/javascript" href="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+  <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+
+  <script>
+    // ==== for menu scroll
+    const pageLink = document.querySelectorAll(".ud-menu-scroll");
+
+    pageLink.forEach((elem) => {
+      elem.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector(elem.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
+          offsetTop: 1 - 60,
         });
       });
+    });
 
-      // section menu active
-      function onScroll(event) {
-        const sections = document.querySelectorAll(".ud-menu-scroll");
-        const scrollPos =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
+    // section menu active
+    function onScroll(event) {
+      const sections = document.querySelectorAll(".ud-menu-scroll");
+      const scrollPos =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
 
-        for (let i = 0; i < sections.length; i++) {
-          const currLink = sections[i];
-          const val = currLink.getAttribute("href");
-          const refElement = document.querySelector(val);
-          const scrollTopMinus = scrollPos + 73;
-          if (
-            refElement.offsetTop <= scrollTopMinus &&
-            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
-          ) {
-            document
-              .querySelector(".ud-menu-scroll")
-              .classList.remove("active");
-            currLink.classList.add("active");
-          } else {
-            currLink.classList.remove("active");
-          }
+      for (let i = 0; i < sections.length; i++) {
+        const currLink = sections[i];
+        const val = currLink.getAttribute("href");
+        const refElement = document.querySelector(val);
+        const scrollTopMinus = scrollPos + 73;
+        if (
+          refElement.offsetTop <= scrollTopMinus &&
+          refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+        ) {
+          document
+            .querySelector(".ud-menu-scroll")
+            .classList.remove("active");
+          currLink.classList.add("active");
+        } else {
+          currLink.classList.remove("active");
         }
       }
+    }
 
-      window.document.addEventListener("scroll", onScroll);
-    </script>
-  </body>
+    window.document.addEventListener("scroll", onScroll);
+  </script>
+
+
+  <script>
+    $('#showfeaturesform').on('click', function (name) {
+      $('.center').show(name);
+      $(this).hide();
+    })
+
+    $('#featuresclose').on('click', function () {
+      $('.center').hide();
+      $('#show').show();
+    })
+
+
+
+    $('#show').on('click', function () {
+      $('.center').show();
+      $(this).hide();
+    })
+
+    $('#close').on('click', function () {
+      $('.center').hide();
+      $('#show').show();
+    })
+
+
+    $('#showaboutsubtitleform').on('click', function () {
+      $('.center').show();
+      $(this).hide();
+    })
+
+    $('#close').on('click', function () {
+      $('.center').hide();
+      $('#show').show();
+    })
+
+
+
+    // When the user clicks on <div>, open the popup
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
+  </script>
+</body>
+
 </html>

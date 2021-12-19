@@ -273,7 +273,7 @@
 
 
         <h2><a class="card-title" href="  {{ url_for('web_features.update', web_feature_id=feature.id) }}">{{ feature.title }}</a></h2>
-        <p class="card-text">{{ feature.text[:100] }}...</p>
+        <p class="card-text">{{ feature.wtext[:100] }}...</p>
         <a href="{{ url_for('web_features.update', web_feature_id=feature.id) }}" class="btn btn-primary">Edit Feature</a>
         <a href="{{ url_for('web_features.delete_post', web_feature_id=feature.id) }}" class="btn btn-warning">Delete Feature</a>
       </div>
@@ -314,7 +314,7 @@
 Edit About
 
         <h2><a class="card-title" href="{{ url_for('abouts.updateabout') }}">{{ abouts.title }}</a></h2>
-        <p class="card-text">{{ abouts.text[:100] }}...</p>
+        <p class="card-text">{{ abouts.atext[:100] }}...</p>
         <a href="{{ url_for('abouts.updateabout') }}" class="btn btn-primary">Edit About</a>
       </div>
     </div>

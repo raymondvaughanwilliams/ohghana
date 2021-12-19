@@ -37,7 +37,7 @@ class WebFeature(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     title = db.Column(db.String(140),nullable=False)
-    text = db.Column(db.Text,nullable=False)
+    wtext = db.Column(db.Text,nullable=False)
 
 
     def __init__(self,title,text):
@@ -56,7 +56,7 @@ class About(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     title = db.Column(db.String(140),nullable=False)
     subtitle= db.Column(db.String(140),nullable=True)
-    text = db.Column(db.Text,nullable=False)
+    atext = db.Column(db.Text,nullable=False)
     image = db.Column(db.String(64),nullable=True,default='default_profile.png')
     about_image = db.Column(db.String(64),nullable=True,default='default_profile.png')
     location = db.Column(db.String(140),nullable=False,default='location')
