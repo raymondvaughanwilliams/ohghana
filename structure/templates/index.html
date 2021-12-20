@@ -413,14 +413,33 @@ Edit Faqs
                         </div>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0">{{ feature.text }}</p>
+                        <p class="text-xs font-weight-bold mb-0">{{ feature.wtext }}</p>
                       </td>
                    
                       <td class="align-middle">
                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           <a href="{{ url_for('web_features.update', web_feature_id=feature.id) }}" class="btn btn-primary">Edit Feature</a>
-                          <a href="{{ url_for('web_features.delete_post', web_feature_id=feature.id) }}" class="btn btn-primary">Delete Feature</a>
-                        </a>
+                          
+                          <button data-toggle="modal" data-target="#deletefeature{{feature.id}}"  class="btn btn-danger"><i class="fa fa-edit"></i>Delete</button>
+                          <div class="modal fade" id="deletefeature{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="deletefeature{{feature.id}}">Modal title</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form action="{{ url_for('web_features.delete_post', web_feature_id=feature.id) }}"
+                                  >
+                                    <input class='btn btn-danger' type="submit" value="Delete">
+                                    </div>
+                                  </form>
+                                </div> 
+                              </div>
+                            </div>
+                            </div>
                       </td>
                     </tr>
                     <tr>
@@ -488,8 +507,26 @@ Edit Faqs
                   <td class="align-middle">
                     <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                       <a href="{{ url_for('faqs.updatefaq',faq_id=faqs.id) }}" class="btn btn-primary">Edit Faq</a>
-                      <a href="{{ url_for('faqs.delete_faq',faq_id=faqs.id) }}" class="btn btn-primary">Delete Faq</a>
-                    </a>
+                      <button data-toggle="modal" data-target="#deletefaq{{faqs.id}}"  class="btn btn-danger"><i class="fa fa-edit"></i>Delete</button>
+                      <div class="modal fade" id="deletefaq{{faqs.id}}" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="deletefaq{{faqs.id}}">Delete FAQ</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{ url_for('faqs.delete_faq',faq_id=faqs.id) }}"
+                              >
+                                <input class='btn btn-danger' type="submit" value="Delete">
+                                </div>
+                              </form>
+                            </div> 
+                          </div>
+                        </div>
+                        </div>
                   </td>
                 </tr>
                 <tr>
@@ -576,8 +613,26 @@ Edit Faqs
                     <td class="align-middle">
                       <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                       <a href="{{ url_for('teams.update_team',team_id=teammate.id) }}" class="btn btn-primary">Edit Team Member</a>
-                      <a href="{{ url_for('teams.delete_post',team_id=teammate.id) }}" class="btn btn-primary">Delete Team Member</a>
-                      </a>
+                      <button data-toggle="modal" data-target="#deleteteammate{{teammate.id}}"  class="btn btn-danger"><i class="fa fa-edit"></i>Delete</button>
+                      <div class="modal fade" id="deleteteammate{{teammate.id}}" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="deleteteammate{{teammate.id}}}">Delete Teammate?</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{ url_for('teams.delete_post',team_id=teammate.id) }}"
+                              >
+                                <input class='btn btn-danger' type="submit" value="Delete">
+                                </div>
+                              </form>
+                            </div> 
+                          </div>
+                        </div>
+                        </div>                      </a>
                     </td>
                   </tr>
                   <tr>
@@ -647,8 +702,26 @@ Edit Faqs
                       <td class="align-middle">
                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                           <a href="{{ url_for('pricings.update_pricing',price_id=pricings.id) }}" class="btn btn-primary">Edit Pricing</a>
-                          <a href="{{ url_for('pricings.delete_post',price_id=pricings.id) }}" class="btn btn-primary">Delete Pricing</a>
-
+                          <button data-toggle="modal" data-target="#deletepricing{{pricings.id}}"  class="btn btn-danger"><i class="fa fa-edit"></i>Delete</button>
+                          <div class="modal fade" id="deletepricing{{pricings.id}}" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="deletepricing{{pricings.id}}">Delete Pricing?</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form action="{{ url_for('pricings.delete_post',price_id=pricings.id) }}"
+                                  >
+                                    <input class='btn btn-danger' type="submit" value="Delete">
+                                    </div>
+                                  </form>
+                                </div> 
+                              </div>
+                            </div>
+                            </div>         
 
 
 
@@ -726,8 +799,26 @@ Edit Faqs
                       <td class="align-middle">
                         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                         <a href="{{ url_for('testimonials.updatetestimonial',testimonial_id=testimonials.id) }}" class="btn btn-primary">Edit Testimonial</a>
-                          <a href="{{ url_for('testimonials.delete_post',testimonial_id=testimonials.id) }}" class="btn btn-primary">Delete Testimonial</a>
-
+                        <button data-toggle="modal" data-target="#deletetestimonial{{testimonials.id}}"  class="btn btn-danger"><i class="fa fa-edit"></i>Delete</button>
+                        <div class="modal fade" id="deletetestimonial{{testimonials.id}}" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="deletetestimonial{{testimonials.id}}">Delete Testimonial?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form action="{{ url_for('testimonials.delete_testimonial',testimonial_id=testimonials.id) }}"
+                                >
+                                  <input class='btn btn-danger' type="submit" value="Delete">
+                                  </div>
+                                </form>
+                              </div> 
+                            </div>
+                          </div>
+                          </div>         
 
 
 

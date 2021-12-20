@@ -320,7 +320,37 @@
 
         {% endfor %}
 
+        <div>
+          <button data-toggle="modal" data-target="#addafeature" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
+          <div class="modal fade" id="addafeature" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addafeature">Add Testimonial</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                < <form>
+                  <div class="form-group">
+                    {{ webfeatureform.title.label(class="form-control-label") }}
+                    {{ webfeatureform.title(class="form-control form-control-lg " )}}
+                  </div>
+                  <div class="form-group">
+                    {{ webfeatureform.text.label(class="form-control-label") }}
+                    {{ webfeatureform.text(class="form-control form-control-lg " ) }}
+                  </div>
+                  
+                  <div class="form-group">
+                    {{ webfeatureform.submit(class="btn btn-outline-info") }}
+                  </div>
+                </form>
 
+                </div> 
+              </div>
+            </div>
+            </div> 
+<</div>
         <!-- ====== Features End ====== -->
 
         <!-- ====== About Start ====== -->
@@ -474,7 +504,41 @@
               </div>
 
               {% endfor %}
-
+<div class="row g-0 align-items-center justify-content-center">
+              <button data-toggle="modal" data-target="#addaprice" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
+              <div class="modal fade" id="addaprice" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addaprice">Add Testimonial</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="form-group">
+                          {{ priceform.title.label(class="form-control-label") }}
+                          {{ priceform.title(class="form-control form-control-lg " ) }}
+                        </div>
+                        <div class="form-group">
+                          {{ priceform.amount.label(class="form-control-label") }}
+                          {{ priceform.amount(class="form-control form-control-lg " ) }}
+                        </div>
+                        <div class="form-group">
+                          {{ priceform.features.label(class="form-control-label") }}
+                          {{ priceform.features(class="form-control form-control-lg " ) }}
+                        </div>
+                        <div class="form-group">
+                          {{ priceform.submit(class="btn btn-outline-info") }}
+                        </div>
+                      </form>
+    
+                    </div> 
+                  </div>
+                </div>
+                </div> 
+</div>
             </div>
           </div>
       </div>
@@ -685,6 +749,41 @@
               </div>
             </div>
           </div>
+
+
+
+
+
+
+          <button data-toggle="modal" data-target="#addanfaq" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
+          <div class="modal fade" id="addanfaq" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addanfaq">Add Testimonial</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      {{ faqform.question.label(class="form-control-label") }}
+                      {{ faqform.question(class="form-control form-control-lg " ) }}
+                    </div>
+                    <div class="form-group">
+                      {{ faqform.answer.label(class="form-control-label") }}
+                      {{ faqform.answer(class="form-control form-control-lg " ) }}
+                    </div>
+                    <div class="form-group">
+                      {{ faqform.submit(class="btn btn-outline-info") }}
+                    </div>
+                  </form>
+
+                </div> 
+              </div>
+            </div>
+            </div> 
         </div>
       </div>
     </div>
@@ -780,12 +879,13 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    </div>
                     <div class="modal-body">
-                      <form>
+                      <form class="form-group" method="POST" action="{{ url_for('testimonials.updatetestimonial',testimonial_id=testimonials.id) }}">
+
+                        {{ testimonialform.hidden_tag() }}
                         <div class="form-group">
                           {{ testimonialform.name.label(class="form-control-label") }}
-                          {{ testimonialform.name(class="form-control form-control-lg " ,value=templist) }}
+                          {{ testimonialform.name(class="form-control form-control-lg " ,value=testimonials.name) }}
                         </div>
                         <div class="form-group">
                           {{ testimonialform.company.label(class="form-control-label") }}
@@ -802,9 +902,7 @@
                     </div> 
                   </div>
                 </div>
-              </div>
-</div>
-</div>
+                </div>
               <div class="ud-testimonial-image">
                 <img src="{{ url_for('static',filename='images/testimonials/author-01.png') }}" />
               </div>
@@ -815,11 +913,51 @@
             </div>
           </div>
         </div>
-      </div>
-      </div>
+      
         {% endfor %}
 
+<div>
 
+ <button data-toggle="modal" data-target="#addtestimonial" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
+ <div class="modal fade" id="addtestimonial" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="addtestimonial">Add Testimonial</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+        <form class="form-group" method="POST" action="{{ url_for('testimonials.create_testimonial') }}">
+          {{ testimonialform.hidden_tag() }}
+
+<div class="form-group">
+{{ testimonialform.name.label(class="form-control-label") }}
+{{ testimonialform.name(class="form-control form-control-lg ") }}
+</div>
+<div class="form-group">
+{{ testimonialform.company.label(class="form-control-label") }}
+{{ testimonialform.company(class="form-control form-control-lg") }}
+</div>
+<div class="form-group">
+{{ testimonialform.text.label(class="form-control-label") }}
+{{ testimonialform.text(class="form-control form-control-lg") }}
+</div>
+<div class="form-group">
+{{ testimonialform.rating.label(class="form-control-label") }}
+{{ testimonialform.rating(class="form-control form-control-lg") }}
+</div>
+<div class="form-group">
+{{ testimonialform.submit(class="btn btn-outline-info") }}
+</div>
+          </form>
+         </form>
+       </div> 
+     </div>
+   </div>
+   </div>
+</div>
 
 
       </div>
@@ -931,10 +1069,11 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                
               </div>
             </div>
           </div>
+        </div>
 
 
 
@@ -975,14 +1114,53 @@
         {% endfor %}
 
 
+      </div>
+        <button data-toggle="modal" data-target="#addteammate" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
+        <div class="modal fade" id="addteammate" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addteammate">Add Testimonial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    {{ teammateform.name.label(class="form-control-label") }}
+                    {{ teammateform.name(class="form-control form-control-lg " ) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.position.label(class="form-control-label") }}
+                    {{ teammateform.position(class="form-control form-control-lg " ) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.facebook.label(class="form-control-label") }}
+                    {{ teammateform.facebook(class="form-control form-control-lg " ) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.twitter.label(class="form-control-label") }}
+                    {{ teammateform.twitter(class="form-control form-control-lg " ) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.instagram.label(class="form-control-label") }}
+                    {{ teammateform.instagram(class="form-control form-control-lg " ) }}
+                  </div>
+                  <div class="form-group">
+                    {{ teammateform.submit(class="btn btn-outline-info") }}
+                  </div>
+                </form>
+              </div> 
+            </div>
+          </div>
+          </div>
 
-
-
-
+        </div>
 
       </div>
     </div>
-    </div>
+
   </section>
   <!-- ====== Team End ====== -->
 

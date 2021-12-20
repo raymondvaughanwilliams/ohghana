@@ -130,5 +130,5 @@ def editui():
     # services=[]
     # service= serv.split(',')
     # services.append(service)
-    return render_template('editui.html',web_features=web_features,about=about,webfeatureform = Webfeatureform,teammateform=Teammateform,faqform = Faqform,testimonialform=Testimonialform,priceform=Pricingform,aboutform=Aboutform,team=team,price=price,faq=faq,testimonial=testimonial,templist=templist,emplist=emplist)
+    return render_template('editui.html',web_features=web_features,about=about,webfeatureform = Webfeatureform,teammateform=Teammateform,faqform = Faqform,testimonialform=Testimonialform,priceform=Pricingform,aboutform=Aboutform,team=team,pricing=price,faq=faq,testimonial=testimonial,templist=templist,emplist=emplist)
     # return render_template('info.html',context=context,faq=faq)

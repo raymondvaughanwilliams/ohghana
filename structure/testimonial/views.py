@@ -43,7 +43,7 @@ def updatetestimonial(testimonial_id):
     testimonial = Testimonial.query.get_or_404(testimonial_id)
 
     form = TestimonialForm()
-    if form.validate_on_submit():
+    if request.method == 'POST':
         testimonial.name = form.name.data
         testimonial.company = form.company.data
         testimonial.text = form.text.data
@@ -60,6 +60,30 @@ def updatetestimonial(testimonial_id):
         form.rating.data = testimonial.rating
     return render_template('create_testimonial.html',
                            form=form)
+
+
+@testimonials.route("/<int:testimonial_id>/updatet", methods=['GET', 'POST'])
+@login_required
+def updatet(testimonial_id):
+    testimonial = Testimonial.query.get_or_404(testimonial_id)
+
+    form = TestimonialForm()
+    if form.validate_on_submit():
+        testimonial.name = form.name.data
+        testimonial.company = form.company.data
+        testimonial.text = form.text.data
+        testimonial.rating = form.rating.data
+        db.session.commit()
+        flash('Post Updated')
+        return redirect(url_for('core.index', testimonial_id=testimonial.id))
+    # Pass back the old blog post information so they can start again with
+    # the old text and title.
+    elif request.method == 'GET':
+        form.name.data = testimonial.name
+        form.company.data = testimonial.company
+        form.text.data = testimonial.text
+        form.rating.data = testimonial.rating
+    return redirect(url_for('core.editui'))
 
 
 
@@ -79,9 +103,9 @@ def alltestimonials():
    
 
 
-@testimonials.route("/<int:testimonial_id>/delete", methods=['POST','GET'])
+@testimonials.route("/<int:testimonial_id>/delete_testimonial", methods=['POST','GET'])
 @login_required
-def delete_post(testimonial_id):
+def delete_testimonial(testimonial_id):
     testimonial = Testimonial.query.get_or_404(testimonial_id)
     db.session.delete(testimonial)
     db.session.commit()

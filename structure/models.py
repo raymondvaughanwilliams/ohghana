@@ -40,9 +40,9 @@ class WebFeature(db.Model):
     wtext = db.Column(db.Text,nullable=False)
 
 
-    def __init__(self,title,text):
+    def __init__(self,title,wtext):
         self.title = title
-        self.text = text
+        self.wtext = wtext
 
     def __repr__(self):
         return f"Post ID: {self.id} -- Date: {self.date} --- {self.title}---{self.text}"
