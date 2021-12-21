@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-CREATE PRICE
-<form action="{{ url_for('pricings.create_post',next=url_for('core.index')) }}" method="post">
+Update PRICE
+<form action="{{ url_for('pricings.update_pricing',price_id=price.id,next=url_for('core.index')) }}" method="post" enctype="multipart/form-data">
   {{ form.hidden_tag() }}
 
      <div class="form-group">
@@ -23,6 +23,9 @@ CREATE PRICE
   </form>
 
 </div>
+
+
+
 
 
 

@@ -11,7 +11,7 @@ web_features = Blueprint('web_features',__name__)
 def create_post():
     form = WebFeatureForm()
 
-    if form.validate_on_submit():
+    if request.method == 'POST':
 
         web_feature = WebFeature(title=form.title.data,
                              wtext=form.text.data,
@@ -20,7 +20,8 @@ def create_post():
         db.session.add(web_feature)
         db.session.commit()
         flash("Blog Post Created")
-        return redirect(url_for('core.index'))
+        return redirect(request.args.get('next') or request.referrer )
+
 
     return render_template('create_post.html',form=form)
 
@@ -42,19 +43,20 @@ def update(web_feature_id):
 
 
     form = WebFeatureForm()
-    if form.validate_on_submit():
+    if request.method =='POST':
         web_feature.title = form.title.data
-        web_feature.text = form.text.data
+        web_feature.wtext = form.text.data
         db.session.commit()
         flash('Post Updated')
-        return redirect(url_for('core.index'))
+        return redirect(request.args.get('next') or request.referrer )
+
     # Pass back the old blog post information so they can start again with
     # the old text and title.
     elif request.method == 'GET':
         form.title.data = web_feature.title
-        form.text.data = web_feature.text
-    return render_template('create_post.html', title='Update',
-                           form=form)
+        form.text.data = web_feature.wtext
+    return render_template('update_features.html', title='Update',
+                           form=form,web_feature=web_feature)
 
 
 @web_features.route("/<int:web_feature_id>/delete", methods=['POST','GET'])

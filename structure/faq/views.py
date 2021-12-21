@@ -11,7 +11,7 @@ faqs = Blueprint('faqs',__name__)
 def create_faq():
     form = FaqForm()
 
-    if form.validate_on_submit():
+    if request.method == 'POST':
 
         faq = Faq(question=form.question.data,
                              answer=form.answer.data,
@@ -19,9 +19,9 @@ def create_faq():
         db.session.add(faq)
         db.session.commit()
         flash("Faq Created")
-        return redirect(url_for('core.index'))
+        return redirect(request.args.get('next') or request.referrer )
 
-    return render_template('create_faq.html',form=form)
+    return render_template('create_faq.html')
 
 
 # # int: makes sure that the faq_id gets passed as in integer
@@ -30,7 +30,7 @@ def create_faq():
 def faq(faq_id):
     # grab the requested blog post by id number or return 404
     faq = Faq.query.get_or_404(faq_id)
-    return render_template('faq.html',question=faq.question,answer=faq.answer
+    return render_template('create_faq.html',question=faq.question,answer=faq.answer
                             ,faq=faq
     )
 
@@ -40,19 +40,19 @@ def updatefaq(faq_id):
     faq = Faq.query.get_or_404(faq_id)
 
     form = FaqForm()
-    if form.validate_on_submit():
+    if request.method =='POST':
         faq.question = form.question.data
         faq.answer = form.answer.data
         db.session.commit()
         flash('Post Updated')
-        return redirect(url_for('core.index', faq_id=faq.id))
+        return redirect(request.args.get('next') or request.referrer)
     # Pass back the old blog post information so they can start again with
     # the old text and title.
     elif request.method == 'GET':
         form.question.data = faq.question
         form.answer.data = faq.answer
     return render_template('create_faq.html',
-                           form=form)
+                           form=form,faq=faq)
 
 
 

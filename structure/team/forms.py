@@ -19,7 +19,7 @@ class UpdateTeamForm(FlaskForm):
     instagram = StringField('Instagram', validators=[DataRequired()])
     link = StringField('Firebase Link')
     picture = FileField('Update Teammate Picture', validators=[FileAllowed(['jpg', 'png'])])
-    submit = SubmitField('Add Teammate')
+    submit = SubmitField('Submit')
 
 
 
@@ -33,4 +33,4 @@ class TeamForm(FlaskForm):
     picture = FileField('Update Teammate Picture', validators=[FileAllowed(['jpg', 'png'])])
     link = StringField('Firebase Link')
 
-    submit = SubmitField('Update')
+    submit = SubmitField('Submit')

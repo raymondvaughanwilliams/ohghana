@@ -36,7 +36,7 @@ def create_team():
         db.session.add(team)
         db.session.commit()
         flash('Done')
-        return redirect(url_for('core.index'))
+        return redirect(request.args.get('next') or request.referrer )
 
    
 
@@ -52,17 +52,18 @@ def update_team(team_id):
 
 
     form = TeamForm()
-    if form.validate_on_submit():
+    if request.method=='POST':
+
         team.name = form.name.data
         team.position = form.position.data
-        team.facebook = form.facebook.data
+        team.faceboook = form.facebook.data
         team.instagram = form.instagram.data
         team.twitter = form.twitter.data
         team.picture = form.link.data
 
         db.session.commit()
         flash('Post Updated')
-        return redirect(url_for('core.index'))
+        return redirect(request.args.get('next') or request.referrer )
    
     elif request.method == 'GET':
         form.name.data = team.name
@@ -71,8 +72,8 @@ def update_team(team_id):
         form.twitter.data = team.twitter
         form.picture.data = team.picture
         form.facebook.data = team.faceboook
-    return render_template('create_team.html',
-                           form=form)
+    return render_template('update_team.html',
+                           form=form,team=team)
 
 
 

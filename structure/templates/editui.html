@@ -147,7 +147,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form  class="form-group" method="POST"  action="{{ url_for('abouts.updatecarouselinfo', about_id=about.id,next=url_for('core.editui'))}}">
                         <div class="form-group">
                           {{ aboutform.title.label(class="form-control-label") }}
                           {{ aboutform.title(class="form-control form-control-lg " ,value=about.title) }}
@@ -235,7 +235,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form  class="form-group" method="POST"  action="{{ url_for('abouts.updatefeatureinfo', about_id=about.id,next=url_for('core.editui'))}}">
                         <div class="form-group">
                           {{ aboutform.feature_subtitle.label(class="form-control-label") }}
                           {{ aboutform.feature_subtitle(class="form-control form-control-lg " ,value=about.feature_subtitle) }}
@@ -291,16 +291,20 @@
                       </div>
                       <div class="modal-body">
 
-                        <form>
+                        <form class="form-group" method="POST" action="{{ url_for('web_features.update',web_feature_id=web_feature.id ,next=url_for('core.editui')) }}">
+                          
+
+
                           <div class="form-group">
                             {{ webfeatureform.title.label(class="form-control-label") }}
-                            {{ webfeatureform.title(class="form-control form-control-lg " ,value=web_feature.title)}}
-                          </div>
-                          <div class="form-group">
+                            {{ webfeatureform.title(class="form-control form-control-lg " ,value=web_feature.title) }}
+                            </div>
+                            <div class="form-group">
                             {{ webfeatureform.text.label(class="form-control-label") }}
-                            {{ webfeatureform.text(class="form-control form-control-lg " ,value=web_feature.wtext) }}
-                          </div>
-                          
+                            {{ webfeatureform.text(class="form-control form-control-lg" ,value=web_feature.wtext) }}
+                            </div>
+
+
                           <div class="form-group">
                             {{ webfeatureform.submit(class="btn btn-outline-info") }}
                           </div>
@@ -326,12 +330,12 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="addafeature">Add Testimonial</h5>
+                  <h5 class="modal-title" id="addafeature">Add Feature</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                < <form>
+                <form class="form-group" method="POST" action="{{ url_for('web_features.create_post' ,next=url_for('core.editui')) }}">
                   <div class="form-group">
                     {{ webfeatureform.title.label(class="form-control-label") }}
                     {{ webfeatureform.title(class="form-control form-control-lg " )}}
@@ -373,7 +377,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <form>
+                            <form  class="form-group" method="POST"  action="{{ url_for('abouts.updateasubntext', about_id=about.id,next=url_for('core.editui'))}}">
                               <div class="form-group">
                                 {{ aboutform.about_subtitle.label(class="form-control-label") }}
                                 {{ aboutform.about_subtitle(class="form-control form-control-lg " ,value=about.about_subtitle) }}
@@ -393,7 +397,7 @@
                     {{about.about_subtitle}}</h2>
 
                   <p style='position: relative;'>
-                    <
+                    
                   </p>
                   <p style='position: relative;'>
                     {{about.atext}}
@@ -456,7 +460,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <form>
+                            <form class="form-group" method="POST" action="{{ url_for('pricings.update_pricing',price_id=price.id ,next=url_for('core.editui')) }}">
                               <div class="form-group">
                                 {{ priceform.title.label(class="form-control-label") }}
                                 {{ priceform.title(class="form-control form-control-lg " ,value=price.title) }}
@@ -516,7 +520,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form class="form-group" method="POST" action="{{ url_for('pricings.create_post',next=url_for('core.editui')) }}">
                         <div class="form-group">
                           {{ priceform.title.label(class="form-control-label") }}
                           {{ priceform.title(class="form-control form-control-lg " ) }}
@@ -568,7 +572,11 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form  class="form-group" method="POST"  action="{{ url_for('abouts.updatefaqinfo', about_id=about.id,next=url_for('core.editui'))}}">
+                        <div class="form-group">
+                          {{ aboutform.faq_title.label(class="form-control-label") }}
+                          {{ aboutform.faq_title(class="form-control form-control-lg " ,value=about.faq_title) }}
+                        </div>
                         <div class="form-group">
                           {{ aboutform.faq_subtitle.label(class="form-control-label") }}
                           {{ aboutform.faq_subtitle(class="form-control form-control-lg " ,value=about.faq_subtitle) }}
@@ -623,7 +631,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          <form>
+                          <form class="form-group" method="POST" action="{{ url_for('faqs.updatefaq',faq_id=faqs.id ,next=url_for('core.editui')) }}">
                             <div class="form-group">
                               {{ faqform.question.label(class="form-control-label") }}
                               {{ faqform.question(class="form-control form-control-lg " ,value=faqs.question) }}
@@ -760,13 +768,13 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="addanfaq">Add Testimonial</h5>
+                  <h5 class="modal-title" id="addanfaq">Add Faq</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form>
+                  <form class="form-group" method="POST" action="{{ url_for('faqs.create_faq',next=url_for('core.editui')) }}">
                     <div class="form-group">
                       {{ faqform.question.label(class="form-control-label") }}
                       {{ faqform.question(class="form-control form-control-lg " ) }}
@@ -809,7 +817,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form  class="form-group" method="POST"  action="{{ url_for('abouts.updatetestimonialsinfo', about_id=about.id,next=url_for('core.editui'))}}">
                         <div class="form-group">
                           {{ aboutform.testimonial_title.label(class="form-control-label") }}
                           {{ aboutform.testimonial_title(class="form-control form-control-lg " ,value=about.testimonial_title) }}
@@ -838,15 +846,10 @@
 
 
               {{about.testimonial_subtitle}}</h2>
-            <p style='position: relative;'>
-
-              {% for data in faq %}
+              <h4 style='position: relative;'>
 
 
-              <li>{{data.id}}</li>
-              <li>{{data.question}}</li>
-              {% endfor %}
-            </p>
+                {{about.testimonial_paragraph}}</h2>
           </div>
         </div>
       </div>
@@ -880,7 +883,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form class="form-group" method="POST" action="{{ url_for('testimonials.updatetestimonial',testimonial_id=testimonials.id) }}">
+                      <form class="form-group" method="POST" action="{{ url_for('testimonials.updatetestimonial',testimonial_id=testimonials.id,next=url_for('core.editui')) }}">
 
                         {{ testimonialform.hidden_tag() }}
                         <div class="form-group">
@@ -929,7 +932,7 @@
          </button>
        </div>
        <div class="modal-body">
-        <form class="form-group" method="POST" action="{{ url_for('testimonials.create_testimonial') }}">
+        <form class="form-group" method="POST" action="{{ url_for('testimonials.create_testimonial',next=url_for('core.editui')) }}">
           {{ testimonialform.hidden_tag() }}
 
 <div class="form-group">
@@ -988,7 +991,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form  class="form-group" method="POST"  action="{{ url_for('abouts.updateteaminfo', about_id=about.id,next=url_for('core.editui'))}}">
                         <div class="form-group">
                           {{ aboutform.team_title.label(class="form-control-label") }}
                           {{ aboutform.team_title(class="form-control form-control-lg " ,value=about.team_title) }}
@@ -999,7 +1002,7 @@
                         </div>
                         <div class="form-group">
                           {{ aboutform.team_paragraph.label(class="form-control-label") }}
-                          {{ aboutform.team_paragraph(class="form-control form-control-lg " ,value=about.testimonial_paragraph) }}
+                          {{ aboutform.team_paragraph(class="form-control form-control-lg " ,value=about.team_paragraph) }}
                         </div>
                         <div class="form-group">
                           {{ aboutform.submit(class="btn btn-outline-info") }}
@@ -1028,19 +1031,19 @@
 
         {% for teammate in team%}
         <div class="col-xl-3 col-lg-3 col-sm-6" style='position: relative;'>
-          <button data-toggle="modal" data-target="#{{teammate.id|string|join('te')}}" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+          <button data-toggle="modal" data-target="#te{{teammate.id}}" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
 
-          <div class="modal fade" id="{{teammate.id|string|join('te')}}" tabindex="-1" role="dialog" aria-labelledby="editteammateModalTitle" aria-hidden="true">
+          <div class="modal fade" id="te{{teammate.id}}" tabindex="-1" role="dialog" aria-labelledby="editteammateModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="{{teammate.id|string|join('te')}}">Modal title</h5>
+                  <h5 class="modal-title" id="te{{teammate.id}}">Modal title</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form>
+                  <form method="POST" action="{{ url_for('teams.update_team',team_id=teammate.id,next=url_for('core.editui')) }}">
                   <div class="form-group">
                     {{ teammateform.name.label(class="form-control-label") }}
                     {{ teammateform.name(class="form-control form-control-lg " ,value=teammate.name) }}
@@ -1066,11 +1069,7 @@
                   </div>
                 </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
                 
-              </div>
             </div>
           </div>
         </div>
@@ -1126,7 +1125,9 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form>
+                <form class="form-group" method="POST" action="{{ url_for('teams.create_team',next=url_for('core.editui')) }}">
+                  {{ testimonialform.hidden_tag() }}
+
                   <div class="form-group">
                     {{ teammateform.name.label(class="form-control-label") }}
                     {{ teammateform.name(class="form-control form-control-lg " ) }}
@@ -1186,7 +1187,7 @@
                       </div>
                       <div class="modal-body">
                         <form>
-                          <div class="form-group">
+                          <form  class="form-group" method="POST"  action="{{ url_for('abouts.updatelna', about_id=about.id,next=url_for('core.editui'))}}">
                             {{ aboutform.location.label(class="form-control-label") }}
                             {{ aboutform.location(class="form-control form-control-lg " ,value=about.location) }}
                           </div>
@@ -1197,6 +1198,10 @@
                           <div class="form-group">
                             {{ aboutform.email.label(class="form-control-label") }}
                             {{ aboutform.email(class="form-control form-control-lg " ,value=about.email) }}
+                          </div>
+                          <div class="form-group">
+                            {{ aboutform.number.label(class="form-control-label") }}
+                            {{ aboutform.number(class="form-control form-control-lg " ,value=about.number) }}
                           </div>
                           <div class="form-group">
                             {{ aboutform.submit(class="btn btn-outline-info") }}
@@ -1285,57 +1290,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    {% for web_feature in web_features.items %}
-    <div class="center hideform col-sm-3">
-      <button id="close" style="float: right;">X</button>
-      <form>
-        <div class="form-group">
-          {{ webfeatureform.title.label(class="form-control-label") }}
-          {{ webfeatureform.title(class="form-control form-control-lg " ,value=web_feature.title) }}
-        </div>
-        <div class="form-group">
-          {{ webfeatureform.text.label(class="form-control-label") }}
-          {{ webfeatureform.text(class="form-control form-control-lg"  ,value=web_feature.title) }}
-        </div>
-        <div class="form-group">
-          {{ webfeatureform.submit(class="btn btn-outline-info") }}
-        </div>
-      </form>
-    </div>
-    <button href="{{ url_for('web_features.update', web_feature_id=web_feature.id) }}" id="show"> Edit
-      {{web_feature.title}}</button>
-    <button href="{{ url_for('web_features.update', web_feature_id=web_feature.id) }}" id="show"> Edit
-      {{web_feature.title}}</button>
-
-    {%endfor%}
-
-
-
-
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-      Launch demo modal
-    </button>
-
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
 
 

@@ -18,7 +18,7 @@ def index():
     number of posts by limiting its query size and then calling paginate.
     '''
     page = request.args.get('page', 1, type=int)
-    about = About.query.all()
+    about = About.query.get(1)
     faq = Faq.query.all()
     team = Team.query.all()
     pricing = Price.query.all()

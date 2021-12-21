@@ -71,14 +71,14 @@ def create_about():
 
 
 
-@abouts.route("/updateabout", methods=['GET', 'POST'])
+@abouts.route("/updateabout/<int:about_id>", methods=['GET', 'POST'])
 @login_required
-def updateabout():
+def updateabout(about_id):
 
     form = UpdateAboutForm()
-    about = About.query.get_or_404(1)
+    about = About.query.get_or_404(about_id)
 
-    if form.validate_on_submit():
+    if request.method == 'POST':
 
         
         about.title = form.title.data
@@ -100,17 +100,17 @@ def updateabout():
         about.team_title = form.team_title.data
         about.team_paragraph = form.team_paragraph.data
         about.team_subtitle = form.team_subtitle.data
-        about.logo = form.link.data
+        about.logo = form.link1.data
         about.about_image = form.link2.data
         about.carousel_image_1 = form.link3.data
         db.session.commit()
-        console.log(about.logo)
         print('updated')
-        return redirect(url_for('about.updateabout'))
+        return redirect(request.args.get('next') or request.referrer )
+
 
     elif request.method == 'GET':
         form.title.data = about.title
-        form.text.data = about.text
+        form.text.data = about.atext
         form.about_picture.data = about.image
         form.location.data = about.location
         form.number.data = about.number
@@ -133,5 +133,199 @@ def updateabout():
         form.carousel_image_1.data = about.carousel_image_1
 
 
+
+    return render_template('create_about.html', form=form,about=about)
+
+
+
+
+
+
+
+@abouts.route("/updateasubntext/<int:about_id>", methods=['GET', 'POST'])
+@login_required
+def updateasubntext(about_id):
+
+    form = UpdateAboutForm()
+    about = About.query.get_or_404(about_id)
+
+    if request.method == 'POST':
+        about.about_subtitle = form.about_subtitle.data
+        about.atext = form.text.data
+        db.session.commit()
+        print('updated')
+        return redirect(request.args.get('next') or request.referrer )
+
+
+    elif request.method == 'GET':
+       
+        form.text.data = about.atext
+        form.about_subtitle.data = about.about_subtitle
+     
+
+    return render_template('create_about.html', form=form,about=about)
+
+
+@abouts.route("/updatefaqinfo/<int:about_id>", methods=['GET', 'POST'])
+@login_required
+def updatefaqinfo(about_id):
+
+    form = UpdateAboutForm()
+    about = About.query.get_or_404(about_id)
+
+    if request.method == 'POST':
+        about.team_title = form.team_title.data
+        about.team_paragraph = form.team_paragraph.data
+        about.team_subtitle = form.team_subtitle.data
+        db.session.commit()
+        print('updated')
+        return redirect(request.args.get('next') or request.referrer )
+
+
+    elif request.method == 'GET':
+       
+        form.faq_title.data = about.faq_title
+        form.faq_subtitle.data = about.faq_subtitle
+        form.faq_paragraph.data = about.faq_paragraph
+     
+
+    return render_template('create_about.html', form=form,about=about)
+
+
+
+@abouts.route("/updatetestimonialsinfo/<int:about_id>", methods=['GET', 'POST'])
+@login_required
+def updatetestimonialsinfo(about_id):
+
+    form = UpdateAboutForm()
+    about = About.query.get_or_404(about_id)
+
+    if request.method == 'POST':
+        about.testimonial_title = form.testimonial_title.data
+        about.testimonial_subtitle = form.testimonial_subtitle.data
+        about.testimonial_paragraph = form.testimonial_paragraph.data
+        db.session.commit()
+        print('updated')
+        return redirect(request.args.get('next') or request.referrer )
+
+
+    elif request.method == 'GET':
+       
+        form.testimonial_title.data = about.testimonial_title
+        form.testimonial_subtitle.data = about.testimonial_subtitle
+        form.testimonial_paragraph.data = about.testimonial_paragraph
+     
+
+    return render_template('create_about.html', form=form,about=about)
+
+
+
+
+@abouts.route("/updateteaminfo/<int:about_id>", methods=['GET', 'POST'])
+@login_required
+def updateteaminfo(about_id):
+
+    form = UpdateAboutForm()
+    about = About.query.get_or_404(about_id)
+
+    if request.method == 'POST':
+        about.team_title = form.team_title.data
+        about.team_paragraph = form.team_paragraph.data
+        about.team_subtitle = form.team_subtitle.data
+        db.session.commit()
+        print('updated')
+        return redirect(request.args.get('next') or request.referrer )
+
+
+    elif request.method == 'GET':
+       
+        form.team_title.data = about.team_title
+        form.team_subtitle.data = about.team_subtitle
+        form.team_paragraph.data = about.team_paragraph
+     
+
+    return render_template('create_about.html', form=form,about=about) 
+
+
+
+@abouts.route("/updatefeatureinfo/<int:about_id>", methods=['GET', 'POST'])
+@login_required
+def updatefeatureinfo(about_id):
+
+    form = UpdateAboutForm()
+    about = About.query.get_or_404(about_id)
+
+    if request.method == 'POST':
+        about.feature_subtitle = form.feature_subtitle.data
+        about.feature_paragraph = form.feature_paragraph.data
+        db.session.commit()
+        print('updated')
+        return redirect(request.args.get('next') or request.referrer )
+
+
+    elif request.method == 'GET':
+       
+        form.feature_subtitle.data = about.feature_subtitle
+        form.feature_paragraph.data = about.feature_paragraph
+     
+
+    return render_template('create_about.html', form=form,about=about)
+
+
+
+@abouts.route("/updatecarouselinfo/<int:about_id>", methods=['GET', 'POST'])
+@login_required
+def updatecarouselinfo(about_id):
+
+    form = UpdateAboutForm()
+    about = About.query.get_or_404(about_id)
+
+    if request.method == 'POST':
+        about.title = form.title.data
+        about.subtitle = form.subtitle.data
+        db.session.commit()
+        print('updated')
+        return redirect(request.args.get('next') or request.referrer )
+
+
+    elif request.method == 'GET':
+       
+        form.title.data = about.title
+        form.subtitle.data = about.subtitle
+     
+
+    return render_template('create_about.html', form=form,about=about)
+
+
+
+
+
+@abouts.route("/updatelna/<int:about_id>", methods=['GET', 'POST'])
+@login_required
+def updatelna(about_id):
+
+    form = UpdateAboutForm()
+    about = About.query.get_or_404(about_id)
+
+    if request.method == 'POST':
+        about.location = form.location.data
+        about.number = form.number.data
+        about.email = form.email.data
+        about.contact_subtitle = form.contact_subtitle.data
+
+        db.session.commit()
+        print('updated')
+
+        return redirect(request.args.get('next') or request.referrer )
+
+
+    elif request.method == 'GET':
+       
+        form.location.data = about.location
+        form.number.data = about.number
+        form.email.data = about.email
+        form.contact_subtitle.data = about.contact_subtitle
+
+     
 
     return render_template('create_about.html', form=form,about=about)

@@ -22,7 +22,7 @@ def create_testimonial():
         db.session.add(testimonial)
         db.session.commit()
         flash("Pricing Created")
-        return redirect(url_for('core.index'))
+        return redirect(request.args.get('next') or request.referrer )
 
     return render_template('create_testimonial.html',form=form)
 
@@ -50,7 +50,7 @@ def updatetestimonial(testimonial_id):
         testimonial.rating = form.rating.data
         db.session.commit()
         flash('Post Updated')
-        return redirect(url_for('core.index', testimonial_id=testimonial.id))
+        return redirect(request.args.get('next') or request.referrer )
     # Pass back the old blog post information so they can start again with
     # the old text and title.
     elif request.method == 'GET':
@@ -58,8 +58,8 @@ def updatetestimonial(testimonial_id):
         form.company.data = testimonial.company
         form.text.data = testimonial.text
         form.rating.data = testimonial.rating
-    return render_template('create_testimonial.html',
-                           form=form)
+    return render_template('updatetestimonial.html',
+                           form=form,testimonial=testimonial)
 
 
 @testimonials.route("/<int:testimonial_id>/updatet", methods=['GET', 'POST'])
