@@ -189,3 +189,75 @@ class Team(db.Model):
 
     def __repr__(self):
         return f"{self.name} -- {self.position} -- {self.faceboook} -- {self.instagram} -- {self.twitter}-- {self.picture}"
+
+
+
+
+
+
+
+
+class Block(db.Model):
+    __tablename__ = 'blocks'
+
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String,nullable=True)
+    status = db.Column(db.String,nullable=True,default='active')
+    block_type = db.Column(db.String,nullable=True,default='na')
+    appearances= db.relationship('Appearance',backref='block',lazy=True)
+    appearance_id = db.Column(db.Integer,db.ForeignKey('appearances.id'),nullable=True)
+
+
+    def __init__(self,name,status,block_type):
+        self.name = name
+        self.status = status
+        self.block_type = block_type
+
+    def __repr__(self):
+        return f"{self.name} -- {self.status} -- {self.block_type}"
+
+
+
+
+#create table appearance with relationship to blocks
+class Appearance(db.Model):
+    __tablename__ = 'appearances'
+
+    id = db.Column(db.Integer,primary_key=True)
+    # block_id = db.Column(db.Integer,db.ForeignKey('blocks.id'),nullable=False)
+    # block = db.relationship('Block',backref=db.backref('appearance',lazy=True))
+    title_color = db.Column(db.String(64),nullable=True)
+    subtitle_color = db.Column(db.String(64),nullable=True)
+    paragraph_color = db.Column(db.String(64),nullable=True)
+    title_font = db.Column(db.String(64),nullable=True)
+    subtitle_font = db.Column(db.String(64),nullable=True)
+    paragraph_font = db.Column(db.String(64),nullable=True)
+    title_size = db.Column(db.Integer,nullable=True)
+    subtitle_size = db.Column(db.Integer,nullable=True)
+    paragraph_size = db.Column(db.Integer,nullable=True)
+    bootstrap_class1 = db.Column(db.String(64),nullable=True)
+    bootstrap_class2 = db.Column(db.String(64),nullable=True)
+    bootstrap_class3 = db.Column(db.String(64),nullable=True)
+    
+
+    def __init__(self,id,block_id,block,title_color,subtitle_color,paragraph_color,title_font,subtitle_font,paragraph_font,title_size,subtitle_size,paragraph_size,bootstrap_class1,bootstrap_class2,bootstrap_class3):
+        self.id = id
+        self.block_id = block_id
+        self.block = block
+        self.title_color = title_color
+        self.subtitle_color = subtitle_color
+        self.paragraph_color = paragraph_color
+        self.title_font = title_font
+        self.subtitle_font = subtitle_font
+        self.paragraph_font = paragraph_font
+        self.title_size = title_size
+        self.subtitle_size = subtitle_size
+        self.paragraph_size = paragraph_size
+        self.bootstrap_class1 = bootstrap_class1
+        self.bootstrap_class2 = bootstrap_class2
+        self.bootstrap_class3 = bootstrap_class3
+
+
+
+    def __repr__(self):
+        return f"{self.id} -- {self.block_id} -- {self.block} -- {self.title_color} -- {self.subtitle_color} -- {self.paragraph_color} -- {self.title_font} -- {self.subtitle_font} -- {self.paragraph_font} -- {self.title_size} -- {self.subtitle_size} -- {self.paragraph_size} -- {self.bootstrap_class1} -- {self.bootstrap_class2} -- {self.bootstrap_class3}"

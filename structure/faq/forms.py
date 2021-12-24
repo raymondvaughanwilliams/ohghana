@@ -7,5 +7,5 @@ class FaqForm(FlaskForm):
     # no empty titles or text possible
     # we'll grab the date automatically from the Model later
     question = StringField('Question', validators=[DataRequired()])
-    answer = TextAreaField('Answer', validators=[DataRequired()])
+    answer = StringField('Answer', validators=[DataRequired()])
     submit = SubmitField('SUBMIT')

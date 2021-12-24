@@ -152,6 +152,9 @@ def updateasubntext(about_id):
     if request.method == 'POST':
         about.about_subtitle = form.about_subtitle.data
         about.atext = form.text.data
+        about.about_image = form.aboutimagelink.data
+
+        flash(form.aboutimagelink.data)
         db.session.commit()
         print('updated')
         return redirect(request.args.get('next') or request.referrer )
@@ -161,6 +164,7 @@ def updateasubntext(about_id):
        
         form.text.data = about.atext
         form.about_subtitle.data = about.about_subtitle
+        form.aboutimagelink.data = about.about_image
      
 
     return render_template('create_about.html', form=form,about=about)
@@ -283,6 +287,7 @@ def updatecarouselinfo(about_id):
     if request.method == 'POST':
         about.title = form.title.data
         about.subtitle = form.subtitle.data
+        about.carousel_image_1 = form.carousellink.data
         db.session.commit()
         print('updated')
         return redirect(request.args.get('next') or request.referrer )

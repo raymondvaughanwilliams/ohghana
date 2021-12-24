@@ -147,7 +147,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form  class="form-group" method="POST"  action="{{ url_for('abouts.updatecarouselinfo', about_id=about.id,next=url_for('core.editui'))}}">
+                      <form  class="form-group" method="POST"  enctype=multipart/form-data  action="{{ url_for('abouts.updatecarouselinfo', about_id=about.id,next=url_for('core.editui'))}}">
                         <div class="form-group">
                           {{ aboutform.title.label(class="form-control-label") }}
                           {{ aboutform.title(class="form-control form-control-lg " ,value=about.title) }}
@@ -157,7 +157,15 @@
                           {{ aboutform.subtitle(class="form-control form-control-lg " ,value=about.subtitle) }}
                         </div>
                         <div class="form-group">
-                          {{ aboutform.submit(class="btn btn-outline-info") }}
+                          {{ aboutform.carousel_image_1.label(class="form-control-label") }}
+                          {{ aboutform.carousel_image_1(class="form-control form-control-lg " ,value=about.carousel_image_1,  id="carouselPicture", onchange="changeimagesss(event.target.files[0])") }}
+                        </div>
+                        <div style="display: none;">
+                          {{aboutform.carousellink.label}}
+                          {{aboutform.carousellink (id="firebaseLink")}}
+                        </div>
+                        <div class="form-group">
+                          {{ aboutform.submit(class="button",id="submitButton") }}
                         </div>
                       </form>
                     </div> 
@@ -199,7 +207,7 @@
             <img src="{{ url_for('static',filename='images/hero/brand.svg') }}" alt="brand" />
           </div>
           <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
-            <img src="{{ url_for('static',filename='images/hero/hero-image.svg') }}" alt="hero-image" />
+            <img src="{{about.carousel_image_1 }}" alt="hero-image" />
             <img src="{{ url_for('static',filename='images/hero/dotted-shape.svg') }}" alt="shape"
               class="shape shape-1" />
             <img src="{{ url_for('static',filename='images/hero/dotted-shape.svg') }}" alt="shape"
@@ -222,8 +230,8 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title">
-            <span>Features</span>
-            <h2 style='position: relative;'>
+            <span style="color:black; font-size:30px;">Features</span>
+            <h2 style='position: relative;color:black; font-size:30px;'>
               <button data-toggle="modal" data-target="#editfeaturesubtitleModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
               <div class="modal fade" id="editfeaturesubtitleModal" tabindex="-1" role="dialog" aria-labelledby="editfeaturesubtitleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -244,6 +252,7 @@
                           {{ aboutform.feature_paragraph.label(class="form-control-label") }}
                           {{ aboutform.feature_paragraph(class="form-control form-control-lg " ,value=about.feature_paragraph) }}
                         </div>
+                       
                         <div class="form-group">
                           {{ aboutform.submit(class="btn btn-outline-info") }}
                         </div>
@@ -254,7 +263,7 @@
               </div>
 
               {{about.feature_subtitle}}</h2>
-            <p style='position: relative;'>
+            <p style='position: relative;color:black; font-size:30px;'>
 
               {{about.feature_paragraph}}
             </p>
@@ -377,7 +386,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <form  class="form-group" method="POST"  action="{{ url_for('abouts.updateasubntext', about_id=about.id,next=url_for('core.editui'))}}">
+                            <form  class="form-group" method="POST"   enctype=multipart/form-data action="{{ url_for('abouts.updateasubntext', about_id=about.id,next=url_for('core.editui'))}}">
                               <div class="form-group">
                                 {{ aboutform.about_subtitle.label(class="form-control-label") }}
                                 {{ aboutform.about_subtitle(class="form-control form-control-lg " ,value=about.about_subtitle) }}
@@ -387,7 +396,15 @@
                                 {{ aboutform.text(class="form-control form-control-lg " ,value=about.atext) }}
                               </div>
                               <div class="form-group">
-                                {{ aboutform.submit(class="btn btn-outline-info") }}
+                                {{ aboutform.about_image.label(class="form-control-label") }}
+                                {{ aboutform.about_image(class="form-control form-control-lg " ,value=about.about_image,  id="aboutPicture", onchange="changeimagesss(event.target.files[0])") }}
+                              </div>
+                              <div style="display: none;">
+                                {{aboutform.aboutimagelink.label}}
+                                {{aboutform.aboutimagelink (id="firebaseLink")}}
+                              </div>
+                              <div class="form-group">
+                                {{ aboutform.submit(class="button" , id="submitButton") }}
                               </div>
                             </form>
                           </div> 
@@ -408,7 +425,7 @@
                 </div>
               </div>
               <div class="ud-about-image">
-                <img src="{{ url_for('static',filename='images/about/about-image.svg') }}" />
+                <img src="{{ about.about_image}}" />
 
               </div>
             </div>
@@ -605,13 +622,13 @@
       </div>
 
       <div class="row">
-        <div class="col-lg-6">
 
           {% for faqs in faq %}
+          <div class="col-sm-6">
 
           <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
             <div class="accordion">
-              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapse{{faqs.id}}">
                 <span class="icon flex-shrink-0">
                   <i class="lni lni-chevron-down"></i>
                 </span>
@@ -651,119 +668,22 @@
                         </div> 
       </h2>
               
-              <div id="collapseOne" class="accordion-collapse collapse">
+              <div id="collapse{{faqs.id}}" class="accordion-collapse collapse">
                 <div class="ud-faq-body">
 
                   {{faqs.answer}}
                 </div>
-              </div>
+              </div></div>
             </div>
           </div>
           {% endfor %}
-          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-            <div class="accordion">
-              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                <span class="icon flex-shrink-0">
-                  <i class="lni lni-chevron-down"></i>
-                </span>
-                <span>How to download icons from Lineicons?</span>
-              </button>
-              <div id="collapseTwo" class="accordion-collapse collapse">
-                <div class="ud-faq-body">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a
-                  type specimen book.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-            <div class="accordion">
-              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                <span class="icon flex-shrink-0">
-                  <i class="lni lni-chevron-down"></i>
-                </span>
-                <span>Is GrayGrids part of UIdeck?</span>
-              </button>
-              <div id="collapseThree" class="accordion-collapse collapse">
-                <div class="ud-faq-body">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a
-                  type specimen book.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
-            <div class="accordion">
-              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                <span class="icon flex-shrink-0">
-                  <i class="lni lni-chevron-down"></i>
-                </span>
-                <span>Can I use this template for commercial project?</span>
-              </button>
-              <div id="collapseFour" class="accordion-collapse collapse">
-                <div class="ud-faq-body">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a
-                  type specimen book.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-            <div class="accordion">
-              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive">
-                <span class="icon flex-shrink-0">
-                  <i class="lni lni-chevron-down"></i>
-                </span>
-                <span>Do you have plan releasing Play Pro?</span>
-              </button>
-              <div id="collapseFive" class="accordion-collapse collapse">
-                <div class="ud-faq-body">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a
-                  type specimen book.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-            <div class="accordion">
-              <button class="ud-faq-btn collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSix">
-                <span class="icon flex-shrink-0">
-                  <i class="lni lni-chevron-down"></i>
-                </span>
-                <span>Where and how to host this template?</span>
-              </button>
-              <div id="collapseSix" class="accordion-collapse collapse">
-                <div class="ud-faq-body">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a
-                  type specimen book.
-                </div>
-              </div>
-            </div>
-          </div>
 
 
 
 
 
 
-          <button data-toggle="modal" data-target="#addanfaq" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
+          <button data-toggle="modal" data-target="#addanfaq" class=" row-sm-1"> <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
           <div class="modal fade" id="addanfaq" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -1030,8 +950,9 @@
 
 
         {% for teammate in team%}
+      
         <div class="col-xl-3 col-lg-3 col-sm-6" style='position: relative;'>
-          <button data-toggle="modal" data-target="#te{{teammate.id}}" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+          <button data-toggle="modal" data-target="#te{{teammate.id}}" style="font-size:24px; position: absolute;top: 5px; right:30px;  "><i class="fa fa-edit"></i></button>
 
           <div class="modal fade" id="te{{teammate.id}}" tabindex="-1" role="dialog" aria-labelledby="editteammateModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1186,7 +1107,6 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form>
                           <form  class="form-group" method="POST"  action="{{ url_for('abouts.updatelna', about_id=about.id,next=url_for('core.editui'))}}">
                             {{ aboutform.location.label(class="form-control-label") }}
                             {{ aboutform.location(class="form-control form-control-lg " ,value=about.location) }}
@@ -1256,7 +1176,7 @@
               </div>
               <div class="ud-form-group">
                 <label for="phone">Phone*</label>
-                <input type="text" name="phone" placeholder="+885 1254 5211 552" />
+                <input type="text" name="phone" placeholder="{{about.number}}" />
               </div>
               <div class="ud-form-group">
                 <label for="message">Message*</label>
@@ -1335,6 +1255,12 @@
   <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
   <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+
+
+
+
+
+
 
   <script>
     // ==== for menu scroll
@@ -1425,4 +1351,142 @@
   </script>
 </body>
 
+
+
+
+
+
+<!--firebase js-->
+
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-storage.js"></script>
+  
+  <!-- <script defer src="//firebase/8.9.1/firebase-storage.js"></script> -->
+  
+  <script type="module">
+  
+    // Import the functions you need from the SDKs you need
+  
+
+  
+    // TODO: Add SDKs for Firebase products that you want to use
+  
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+  
+    // Your web app's Firebase configuration
+  
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  
+    var firebaseConfig = {
+  
+      apiKey: "AIzaSyAPB9m0SxPaa-BCfksUJStRXoUt7SMP3MI",
+  
+      authDomain: "tray-7621e.firebaseapp.com",
+
+      databaseURL: "https://tray-7621e-default-rtdb.firebaseio.com",
+  
+      projectId: "tray-7621e",
+  
+      storageBucket: "tray-7621e.appspot.com",
+  
+      messagingSenderId: "746016915134",
+  
+      appId: "1:746016915134:web:4571c5aa35cec33c5368ef",
+  
+      measurementId: "G-ZQNE9ZSB2V"
+
+    
+  
+    };
+  
+  
+    // Initialize Firebase
+  
+   
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+
+
+
+
+
+
+
+<!--image push too firebase-->
+<script>
+  //: if request.auth != null;
+  // Push batch images to storage and store references in the database
+  var pushImage = function (file) {
+    document.getElementById('submitButton').innerHTML = `
+           <button class="button" style="background-color: #7272F2;"><i class="fa fa-pause-circle-o" aria-hidden="true" style="color:'white'"></i>Uploading</button>
+           `
+    // var uid = firebase.auth().currentUser.uid;
+    // Create storage reference
+    // var ref = firebase.storage().ref(`/ineruu-142dc-default-rtdb/ineruu/`).child(file.name + ".jpg");
+    var ref = firebase.storage().ref(`/tray-7621e-default-rtdb/tray/`).child(file.name + ".jpg");
+    // var ref = firebase.storage().ref(`https://tray-7621e-default-rtdb.firebaseio.com`).child(file.name + ".jpg");
+    //  var ref = firebase.storage().ref(`gs://tray-7621e.appspot.com`).child(file.name + ".jpg");
+
+
+    // Upload file and get task
+    var task = ref.put(file, {
+      contentType: file.type
+    });
+
+    // Monitor task for progress
+    task.on('state_changed',
+      // Shows progress of task
+      function progress(snapshot) {
+        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(percentage);
+      },
+      // Shows any errors occurring during progress
+      function error(err) {
+        // Handle unsuccessful uploads
+        console.log(err.message);
+
+      },
+      // Shows when task is completed
+      function complete() {
+        // Handle successful uploads on complete
+        var image = task.snapshot.downloadUrl;
+        var secondImage = task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+          console.log('File available at', downloadURL);
+          document.getElementById("firebaseLink").value = downloadURL
+          console.log(task);
+          document.getElementById('submitButton').innerHTML = `{{aboutform.submit (class="button")}}`
+        });
+
+        // Data model to be uploaded to the database
+        var data = {
+          imageUrl: image
+        };
+
+        // var db = firebase.database().ref(/GHotelBookMan/Hotels/${uid}/Images).push();
+        // db.set(data).then(() => {
+        //     row.empty();
+        //     loadCurrentHotel(uid);
+        // });
+      });
+  };
+
+
+  function changeimagesss(event) {
+    console.log(event)
+    // console.log(event.target.files[0])
+    // var uploadItem = event.target.files[0]
+    // console.log(uploadItem)
+    pushImage(event)
+
+
+  }
+</script>
 </html>

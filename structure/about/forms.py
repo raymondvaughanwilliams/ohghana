@@ -8,7 +8,7 @@ class AboutForm(FlaskForm):
     # no empty titles or text possible
     # we'll grab the date automatically from the Model later
     title = StringField('Title', validators=[DataRequired()])
-    text = TextAreaField('Text', validators=[DataRequired()])
+    text = StringField('Text', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
     number = StringField('Number', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
@@ -17,7 +17,7 @@ class AboutForm(FlaskForm):
     subtitle = StringField('Subtitle', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
     contact_subtitle = StringField('Contact Subtitle', validators=[DataRequired()])
-    about_picture = FileField('Update About Picture', validators=[FileAllowed(['jpg', 'png'])])
+    about_image = FileField('Update About Picture', validators=[FileAllowed(['jpg', 'png'])])
     about_subtitle = StringField('About Subtitle', validators=[DataRequired()])
     faq_title = StringField('Faq Title', validators=[DataRequired()])
     faq_subtitle = StringField('Faq Subtitle', validators=[DataRequired()])
@@ -28,8 +28,8 @@ class AboutForm(FlaskForm):
     team_title = StringField('Team Title', validators=[DataRequired()])
     team_subtitle = StringField('Team Subtitle', validators=[DataRequired()])
     team_paragraph = StringField('Team Paragraph', validators=[DataRequired()])
-    link1 = StringField('Firebase Link')
-    link2 = StringField('Firebase Link')
+    carousellink = StringField('Firebase Link')
+    aboutimagelink = StringField('Firebase Link')
     link3 = StringField('Firebase Link')
     logo = FileField('Update Logo', validators=[FileAllowed(['jpg', 'png'])])
     carousel_image_1 =FileField('Update Banner Image', validators=[FileAllowed(['jpg', 'png'])])
@@ -42,7 +42,7 @@ class AboutForm(FlaskForm):
 
 class UpdateAboutForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(),Email()])
-    text = TextAreaField('Text', validators=[DataRequired()])
+    text = StringField('Text', validators=[DataRequired()])
     location = StringField('location', validators=[DataRequired()])
     number = StringField('Number', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
@@ -61,8 +61,8 @@ class UpdateAboutForm(FlaskForm):
     team_subtitle = StringField('Team Subtitle', validators=[DataRequired()])
     team_paragraph = StringField('Team Paragraph', validators=[DataRequired()])
     about_picture = FileField('Update About Picture', validators=[FileAllowed(['jpg', 'png'])])
-    link1 = StringField('Firebase Link')
-    link2 = StringField('Firebase Link')
+    carousellink = StringField('Firebase Link')
+    aboutimagelink = StringField('Firebase Link')
     link3 = StringField('Firebase Link')
     logo = FileField('Update Logo', validators=[FileAllowed(['jpg', 'png'])])
     carousel_image_1 =FileField('Update Banner Image', validators=[FileAllowed(['jpg', 'png'])])
