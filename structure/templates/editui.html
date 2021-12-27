@@ -225,14 +225,23 @@
 
 
 
-
-
+      {% for blocks in block%}
+{% if blocks.status =='active'%}
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title">
             <span style="color:black; font-size:30px;">Features</span>
             <h2 style='position: relative;color:black; font-size:30px;'>
-              <button data-toggle="modal" data-target="#editfeaturesubtitleModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="dropdown">
+                <button  style="font-size:24px; position: absolute;top: 5px; right:-30px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                 <button data-toggle="modal" data-target="#editfeaturesubtitleModal"  class="col-md-12"><i class="fa fa-edit"></i>Edit Details</button>
+                 <button data-toggle="modal" data-target="#editfeatureappearance" class="col-md-12"><i class="fas fa-palette"></i>Edit Appearance</i></button>
+                 <button data-toggle="modal" data-target="#editbloock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
+                </div>
+              </div>
               <div class="modal fade" id="editfeaturesubtitleModal" tabindex="-1" role="dialog" aria-labelledby="editfeaturesubtitleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -262,17 +271,131 @@
                 </div>
               </div>
 
-              {{about.feature_subtitle}}</h2>
-            <p style='position: relative;color:black; font-size:30px;'>
+
+            
+
+          
+              {% for appearances in appearance %}
+              {%if appearances.id ==1 %}
+
+             
+                
+                <div class="modal fade" id="editfeatureappearance" tabindex="-1" role="dialog" aria-labelledby="editfeatureappearance" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editfeatureappearance">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='1',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ appearanceform.title_color.label(class="form-control-label") }}
+                            {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.subtitle_color.label(class="form-control-label") }}
+                            {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
+                          </div>
+                         
+                          <div class="form-group">
+                            {{ appearanceform.paragraph_color.label(class="form-control-label") }}
+                            {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.title_font.label(class="form-control-label") }}
+                            {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.subtitle_font.label(class="form-control-label") }}
+                            {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.paragraph_font.label(class="form-control-label") }}
+                            {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.title_size.label(class="form-control-label") }}
+                            {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.subtitle_size.label(class="form-control-label") }}
+                            {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.paragraph_size.label(class="form-control-label") }}
+                            {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
+                            {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
+                          </div>
+                         
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+
+                {% endif %} 
+                {% endfor%} 
+
+
+
+{% for blocks in block %}
+{%if blocks.id ==1 %}
+                <div class="modal fade" id="editbloock" tabindex="-1" role="dialog" aria-labelledby="editbloock" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editbloock">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='1',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ blockform.name.label(class="form-control-label") }}
+                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+                          </div>
+                          <div class="form-group">
+                            {{ blockform.status.label(class="form-control-label") }}
+                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+{% endif %}
+{% endfor%}
+<br>
+{% for appearances in appearance %}
+{%if appearances.id ==1  %}
+           <h2 style='color:{{appearances.subtitle_color}};  font-size:40;' class='{{appearances.bootstrap_class1}}'> 
+            
+             {{about.feature_subtitle}}</h2>
+            <p style='position: relative;color:{{appearances.paragraph_color}}; font-size:30px;'>
 
               {{about.feature_paragraph}}
             </p>
+            {% endif %} 
+            {% endfor%} 
           </div>
         </div>
       </div>
       <div class="row">
 
-
+     
 
 
 
@@ -363,7 +486,27 @@
               </div>
             </div>
             </div> 
-<</div>
+</div>
+{% else %}
+<div>
+  {{blocks.name}} is inactive . Activate it below
+  <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='1',next=url_for('core.editui'))}}" >
+    <div class="form-group">
+      {{ blockform.name.label(class="form-control-label") }}
+      {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+    </div>
+    <div class="form-group">
+      {{ blockform.status.label(class="form-control-label") }}
+      {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+    </div>
+    <div class="form-group">
+      {{ appearanceform.submit(class="btn btn-outline-info") }}
+    </div>
+  </form>
+
+</div>
+{% endif %}
+{% endfor %}
         <!-- ====== Features End ====== -->
 
         <!-- ====== About Start ====== -->
@@ -1199,6 +1342,27 @@
 
 
 
+    <div class='media'>
+      <div class='media-left'>
+        <div class='media-object'>
+          <div class='padding-right'>
+            <form action="{{ url_for('blocks.update_block', block_id='1',next=url_for('core.editui'))}}" method="post">
+              {{ blockform.status.label(class="form-control-label") }}
+              {{ blockform.status(class="form-control form-control-lg " ,value=about.location) }}
+            </div>
+            {% if block.status == 'active'%}
+              <input name="toggle" onclick="this.form.submit()" data-off="&lt;i class='fa fa-times'&gt;&lt;/i&gt; " data-on="&lt;i class='fa fa-check'&gt;&lt;/i&gt; " data-onstyle='success' data-size='large' data-toggle='toggle' id='activate-toggle' type='checkbox' value="active">
+            {% else %}
+              <input name="toggle" onclick="this.form.submit()" data-off="&lt;i class='fa fa-times'&gt;&lt;/i&gt; " data-on="&lt;i class='fa fa-check'&gt;&lt;/i&gt; " data-onstyle='success' data-size='large' data-toggle='toggle' id='activate-toggle' type='checkbox' value="inactive">
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class='media-body'>
+        <div id='console-event'></div>
+      </div>
+    </div>
 
 
 

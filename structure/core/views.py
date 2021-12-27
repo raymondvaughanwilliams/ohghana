@@ -1,5 +1,5 @@
 from flask import render_template,request,Blueprint
-from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team
+from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block
 # from structure.team.views import team
 from structure.web_features.forms import WebFeatureForm
 from structure.team.forms import UpdateTeamForm
@@ -8,7 +8,13 @@ from structure.faq.forms import FaqForm
 from structure.pricing.forms import PriceForm
 from structure.testimonial.forms import TestimonialForm
 from structure.about.forms import AboutForm
+from structure.block.forms import BlockForm
 from sqlalchemy.orm import load_only
+from flask_login import login_required
+from structure.appearance.forms import AppearanceForm
+from structure.block.forms import BlockForm
+from structure.appearance.views import appearance
+from structure.models import Appearance
 core = Blueprint('core',__name__)
 
 @core.route('/')
@@ -56,10 +62,15 @@ def hmsui():
     testimonial = Testimonial.query.all()
     team= Team.query.all()
     serv = Price.features
+    Blockform= BlockForm()
+    team= Team.query.all()
+    block= Block.query.all()
+    Appearanceform = AppearanceForm()
+    appearance=Appearance.query.all()
     # services=[]
     # service= serv.split(',')
     # services.append(service)
-    return render_template('base2.html',web_features=web_features, about=about,pricing=price,faq=faq,testimonial=testimonial,team=team)
+    return render_template('base2.html',web_features=web_features, about=about,pricing=price,faq=faq,testimonial=testimonial,team=team,serv=serv,Blockform=Blockform,appearance=appearance,Appearanceform=Appearanceform,block=block)
 
 
 
@@ -80,8 +91,12 @@ def editui():
     about = About.query.get(1)
     price = Price.query.all()
     faq = Faq.query.all()
+    Blockform= BlockForm()
     testimonial = Testimonial.query.all()
     team= Team.query.all()
+    block= Block.query.all()
+    Appearanceform = AppearanceForm()
+    appearance=Appearance.query.all()
 
 
     # fields = ['id']
@@ -130,5 +145,5 @@ def editui():
     # services=[]
     # service= serv.split(',')
     # services.append(service)
-    return render_template('editui.html',web_features=web_features,about=about,webfeatureform = Webfeatureform,teammateform=Teammateform,faqform = Faqform,testimonialform=Testimonialform,priceform=Pricingform,aboutform=Aboutform,team=team,pricing=price,faq=faq,testimonial=testimonial,templist=templist,emplist=emplist)
+    return render_template('editui.html',block = block,web_features=web_features,about=about,webfeatureform = Webfeatureform,teammateform=Teammateform,faqform = Faqform,testimonialform=Testimonialform,priceform=Pricingform,aboutform=Aboutform,team=team,pricing=price,faq=faq,testimonial=testimonial,templist=templist,emplist=emplist,blockform=Blockform,appearanceform=Appearanceform,appearance=appearance)
     # return render_template('info.html',context=context,faq=faq)

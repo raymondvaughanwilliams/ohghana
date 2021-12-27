@@ -217,7 +217,8 @@
 
 
 
-      
+        {% for blocks in block%}
+{% if blocks.status =='active'%}
         <div class="row">
           <div class="col-lg-12">
             <div class="ud-section-title">
@@ -254,6 +255,9 @@
 
    {% endfor %}
 
+
+   {% endif %}
+    {% endfor %}
      
     <!-- ====== Features End ====== -->
 

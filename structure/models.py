@@ -235,9 +235,9 @@ class Appearance(db.Model):
     title_size = db.Column(db.Integer,nullable=True)
     subtitle_size = db.Column(db.Integer,nullable=True)
     paragraph_size = db.Column(db.Integer,nullable=True)
-    bootstrap_class1 = db.Column(db.String(64),nullable=True)
-    bootstrap_class2 = db.Column(db.String(64),nullable=True)
-    bootstrap_class3 = db.Column(db.String(64),nullable=True)
+    bootstrap_class1 = db.Column(db.String(64),nullable=True,default = 'col-md-4')
+    bootstrap_class2 = db.Column(db.String(64),nullable=True,default = 'col-md-8')
+    bootstrap_class3 = db.Column(db.String(64),nullable=True,default = 'col-md-12')
     
 
     def __init__(self,id,block_id,block,title_color,subtitle_color,paragraph_color,title_font,subtitle_font,paragraph_font,title_size,subtitle_size,paragraph_size,bootstrap_class1,bootstrap_class2,bootstrap_class3):
@@ -260,4 +260,4 @@ class Appearance(db.Model):
 
 
     def __repr__(self):
-        return f"{self.id} -- {self.block_id} -- {self.block} -- {self.title_color} -- {self.subtitle_color} -- {self.paragraph_color} -- {self.title_font} -- {self.subtitle_font} -- {self.paragraph_font} -- {self.title_size} -- {self.subtitle_size} -- {self.paragraph_size} -- {self.bootstrap_class1} -- {self.bootstrap_class2} -- {self.bootstrap_class3}"
+        return f"{self.id} -- -- {self.block} -- {self.title_color} -- {self.subtitle_color} -- {self.paragraph_color} -- {self.title_font} -- {self.subtitle_font} -- {self.paragraph_font} -- {self.title_size} -- {self.subtitle_size} -- {self.paragraph_size} -- {self.bootstrap_class1} -- {self.bootstrap_class2} -- {self.bootstrap_class3}"

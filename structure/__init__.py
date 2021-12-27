@@ -40,6 +40,7 @@ from structure.faq.views import faqs
 from structure.testimonial.views import testimonials
 from structure.team.views import teams
 from structure.block.views import blocks
+from structure.appearance.views import appearances
 
 app.register_blueprint(core)
 app.register_blueprint(users)
@@ -51,3 +52,4 @@ app.register_blueprint(faqs)
 app.register_blueprint(testimonials)
 app.register_blueprint(teams)
 app.register_blueprint(blocks)
+app.register_blueprint(appearances)
