@@ -100,9 +100,9 @@ def updateabout(about_id):
         about.team_title = form.team_title.data
         about.team_paragraph = form.team_paragraph.data
         about.team_subtitle = form.team_subtitle.data
-        about.logo = form.link1.data
-        about.about_image = form.link2.data
-        about.carousel_image_1 = form.link3.data
+        about.logo = form.link3.data
+        about.about_image = form.aboutimagelink.data
+        about.carousel_image_1 = form.carousellink.data
         db.session.commit()
         print('updated')
         return redirect(request.args.get('next') or request.referrer )
@@ -129,7 +129,7 @@ def updateabout(about_id):
         form.team_title.data = about.team_title
         form.team_subtitle.data = about.team_subtitle
         form.team_paragraph.data = about.team_paragraph
-        form.logo.data = about.logo
+        form.link3.data = about.logo
         form.carousel_image_1.data = about.carousel_image_1
 
 

@@ -18,6 +18,7 @@ from structure.models import Appearance
 core = Blueprint('core',__name__)
 
 @core.route('/')
+@login_required
 def index():
     '''
     This is the home page view. Notice how it uses pagination to show a limited
@@ -75,6 +76,7 @@ def hmsui():
 
 
 @core.route('/editui')
+@login_required
 def editui():
     '''
     Example view of any other "core" page. Such as a info page, about page,

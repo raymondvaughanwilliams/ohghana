@@ -226,7 +226,7 @@
 
 
       {% for blocks in block%}
-{% if blocks.status =='active'%}
+{% if blocks.id == 1 and blocks.status =='active' %}
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title">
@@ -275,109 +275,10 @@
             
 
           
-              {% for appearances in appearance %}
-              {%if appearances.id ==1 %}
-
              
-                
-                <div class="modal fade" id="editfeatureappearance" tabindex="-1" role="dialog" aria-labelledby="editfeatureappearance" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="editfeatureappearance">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='1',next=url_for('core.editui'))}}" >
-                          <div class="form-group">
-                            {{ appearanceform.title_color.label(class="form-control-label") }}
-                            {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.subtitle_color.label(class="form-control-label") }}
-                            {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
-                          </div>
-                         
-                          <div class="form-group">
-                            {{ appearanceform.paragraph_color.label(class="form-control-label") }}
-                            {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.title_font.label(class="form-control-label") }}
-                            {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.subtitle_font.label(class="form-control-label") }}
-                            {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.paragraph_font.label(class="form-control-label") }}
-                            {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.title_size.label(class="form-control-label") }}
-                            {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.subtitle_size.label(class="form-control-label") }}
-                            {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.paragraph_size.label(class="form-control-label") }}
-                            {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
-                            {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
-                          </div>
-                         
-                          <div class="form-group">
-                            {{ appearanceform.submit(class="btn btn-outline-info") }}
-                          </div>
-                        </form>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-
-                {% endif %} 
-                {% endfor%} 
 
 
 
-{% for blocks in block %}
-{%if blocks.id ==1 %}
-                <div class="modal fade" id="editbloock" tabindex="-1" role="dialog" aria-labelledby="editbloock" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="editbloock">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='1',next=url_for('core.editui'))}}" >
-                          <div class="form-group">
-                            {{ blockform.name.label(class="form-control-label") }}
-                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
-                          </div>
-                          <div class="form-group">
-                            {{ blockform.status.label(class="form-control-label") }}
-                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
-                          </div>
-                          <div class="form-group">
-                            {{ appearanceform.submit(class="btn btn-outline-info") }}
-                          </div>
-                        </form>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-{% endif %}
-{% endfor%}
 <br>
 {% for appearances in appearance %}
 {%if appearances.id ==1  %}
@@ -487,7 +388,7 @@
             </div>
             </div> 
 </div>
-{% else %}
+{% elif blocks.id == 1 and blocks.status =='inactive' %}
 <div>
   {{blocks.name}} is inactive . Activate it below
   <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='1',next=url_for('core.editui'))}}" >
@@ -518,6 +419,16 @@
                   <span class="tag">About Us</span>
                   
                   <h2 style='position: relative;'>
+                    <div class="dropdown">
+                      <button  style="font-size:24px; position: absolute;top: 5px; right:-30px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Settings
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                       <button data-toggle="modal" data-target="#editaboutsubtitle"  class="col-md-12"><i class="fa fa-edit"></i>Edit Details</button>
+                       <button data-toggle="modal" data-target="#editaboutappearance" class="col-md-12"><i class="fas fa-palette"></i>Edit Appearance</i></button>
+                       <button data-toggle="modal" data-target="#editaboutblock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
+                      </div>
+                    </div>
                     <button data-toggle="modal" data-target="#editaboutsubtitle" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
                     <div class="modal fade" id="editaboutsubtitle" tabindex="-1" role="dialog" aria-labelledby="editaboutsubtitleCenterTitle" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -573,6 +484,15 @@
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
         </section>
         <!-- ====== About End ====== -->
 
@@ -721,7 +641,17 @@
               FAQs
             </span>
             <h2 style='position: relative;'>
-              <button data-toggle="modal" data-target="#editfaqsubtitle" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="dropdown">
+                <button  style="font-size:24px; position: absolute;top: 5px; right:-180px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                 <button data-toggle="modal" data-target="#editfaqsubtitle"  class="col-md-12"><i class="fa fa-edit"></i>Edit Details</button>
+                 <button data-toggle="modal" data-target="#editfaqappearance" class="col-md-12"><i class="fas fa-palette"></i>Edit Appearance</i></button>
+                 <button data-toggle="modal" data-target="#editfaqblock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
+                </div>
+              </div>
+              <!---- <button data-toggle="modal" data-target="#editfaqsubtitle" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button> -->
               <div class="modal fade" id="editfaqsubtitle" tabindex="-1" role="dialog" aria-labelledby="editfaqsubtitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -763,6 +693,11 @@
           </div>
         </div>
       </div>
+
+
+
+    
+
 
       <div class="row">
 
@@ -869,7 +804,17 @@
         <div class="col-lg-12">
           <div class="ud-section-title mx-auto text-center">
             <span style='position: relative;'>
-              <button data-toggle="modal" data-target="#edittestimonialModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="dropdown">
+                <button  style="font-size:24px; position: absolute;top: 5px; right:300px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                 <button data-toggle="modal" data-target="#edittestimonialModal"  class="col-md-12"><i class="fa fa-edit"></i>Edit Details</button>
+                 <button data-toggle="modal" data-target="#edittestimonialappearance" class="col-md-12"><i class="fas fa-palette"></i>Edit Appearance</i></button>
+                 <button data-toggle="modal" data-target="#edittestimonialblock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
+                </div>
+              </div>
+            <!----  <button data-toggle="modal" data-target="#edittestimonialModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button> ---->
               <div class="modal fade" id="edittestimonialModal" tabindex="-1" role="dialog" aria-labelledby="edittestimonialModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -1043,7 +988,17 @@
         <div class="col-lg-12">
           <div class="ud-section-title mx-auto text-center">
             <span style='position: relative;'>
-              <button data-toggle="modal" data-target="#aboutteamModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
+              <div class="dropdown">
+                <button  style="font-size:24px; position: absolute;top: 5px; right:300px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                 <button data-toggle="modal" data-target="#aboutteamModal"  class="col-md-12"><i class="fa fa-edit"></i>Edit Details</button>
+                 <button data-toggle="modal" data-target="#editteamappearance" class="col-md-12"><i class="fas fa-palette"></i>Edit Appearance</i></button>
+                 <button data-toggle="modal" data-target="#editteamblock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
+                </div>
+              </div>
+             <!---- <button data-toggle="modal" data-target="#aboutteamModal" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>-->
               <div class="modal fade" id="aboutteamModal" tabindex="-1" role="dialog" aria-labelledby="aboutteamModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -1178,12 +1133,13 @@
 
 
       </div>
+      
         <button data-toggle="modal" data-target="#addteammate" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
         <div class="modal fade" id="addteammate" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="addteammate">Add Testimonial</h5>
+                <h5 class="modal-title" id="addteammate">Add teammate</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -1238,7 +1194,17 @@
             <div class="ud-contact-title">
               <span>CONTACT US</span>
               <h2 style='position: relative;'>
-                <button data-toggle="modal" data-target="#bottomabouts" style="font-size:24px; position: absolute;top: 5px; right:450px;  "><i class="fa fa-edit"></i></button>
+                <div class="dropdown">
+                  <button  style="font-size:24px; position: absolute;top: 5px; right:300px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Settings
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                   <button data-toggle="modal" data-target="#bottomabouts"  class="col-md-12"><i class="fa fa-edit"></i>Edit Details</button>
+                   <button data-toggle="modal" data-target="#bottomaboutsappearance" class="col-md-12"><i class="fas fa-palette"></i>Edit Appearance</i></button>
+                   <button data-toggle="modal" data-target="#editbottomaboutblock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
+                  </div>
+                </div>
+               <!---- <button data-toggle="modal" data-target="#bottomabouts" style="font-size:24px; position: absolute;top: 5px; right:450px;  "><i class="fa fa-edit"></i></button>-->
           
                 <div class="modal fade" id="bottomabouts" tabindex="-1" role="dialog" aria-labelledby="bottomabouts" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -1401,7 +1367,629 @@
   <!-- ====== Footer End ====== -->
 
 
+<!--appearance forms-->
+<!--  Features -->
+{% for appearances in appearance %}
+{%if appearances.id ==1 %}
 
+
+  
+  <div class="modal fade" id="editfeatureappearance" tabindex="-1" role="dialog" aria-labelledby="editfeatureappearance" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editfeatureappearance">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='1',next=url_for('core.editui'))}}" >
+            <div class="form-group">
+              {{ appearanceform.title_color.label(class="form-control-label") }}
+              {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.subtitle_color.label(class="form-control-label") }}
+              {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
+            </div>
+           
+            <div class="form-group">
+              {{ appearanceform.paragraph_color.label(class="form-control-label") }}
+              {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.title_font.label(class="form-control-label") }}
+              {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.subtitle_font.label(class="form-control-label") }}
+              {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.paragraph_font.label(class="form-control-label") }}
+              {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.title_size.label(class="form-control-label") }}
+              {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.subtitle_size.label(class="form-control-label") }}
+              {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.paragraph_size.label(class="form-control-label") }}
+              {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
+              {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
+            </div>
+           
+            <div class="form-group">
+              {{ appearanceform.submit(class="btn btn-outline-info") }}
+            </div>
+          </form>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  {% endif %} 
+  {% endfor%} 
+
+
+
+  <!-- About -->
+  {% for appearances in appearance %}
+  {%if appearances.id == 2  %}
+            <div class="modal fade" id="editaboutappearance" tabindex="-1" role="dialog" aria-labelledby="editaboutappearance" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editaboutappearance">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='2',next=url_for('core.editui'))}}" >
+                      <div class="form-group">
+                        {{ appearanceform.title_color.label(class="form-control-label") }}
+                        {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.subtitle_color.label(class="form-control-label") }}
+                        {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
+                      </div>
+                     
+                      <div class="form-group">
+                        {{ appearanceform.paragraph_color.label(class="form-control-label") }}
+                        {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.title_font.label(class="form-control-label") }}
+                        {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.subtitle_font.label(class="form-control-label") }}
+                        {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.paragraph_font.label(class="form-control-label") }}
+                        {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.title_size.label(class="form-control-label") }}
+                        {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.subtitle_size.label(class="form-control-label") }}
+                        {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.paragraph_size.label(class="form-control-label") }}
+                        {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                      </div>
+                      <div class="form-group">
+                        {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
+                        {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
+                      </div>
+                     
+                      <div class="form-group">
+                        {{ appearanceform.submit(class="btn btn-outline-info") }}
+                      </div>
+                    </form>
+                  </div> 
+                </div>
+              </div>
+            </div>
+  
+  {% endif %}
+  {% endfor %}
+  
+  
+
+
+
+<!--FAQ-->
+{% for appearances in appearance %}
+{%if appearances.id ==3 %}
+
+
+  
+  <div class="modal fade" id="editfaqappearance" tabindex="-1" role="dialog" aria-labelledby="editfaqappearance" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editfaqappearance">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='3',next=url_for('core.editui'))}}" >
+            <div class="form-group">
+              {{ appearanceform.title_color.label(class="form-control-label") }}
+              {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.subtitle_color.label(class="form-control-label") }}
+              {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
+            </div>
+           
+            <div class="form-group">
+              {{ appearanceform.paragraph_color.label(class="form-control-label") }}
+              {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.title_font.label(class="form-control-label") }}
+              {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.subtitle_font.label(class="form-control-label") }}
+              {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.paragraph_font.label(class="form-control-label") }}
+              {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.title_size.label(class="form-control-label") }}
+              {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.subtitle_size.label(class="form-control-label") }}
+              {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.paragraph_size.label(class="form-control-label") }}
+              {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
+              {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
+            </div>
+           
+            <div class="form-group">
+              {{ appearanceform.submit(class="btn btn-outline-info") }}
+            </div>
+          </form>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  {% endif %} 
+  {% endfor%} 
+
+
+
+<!--Testimonials-->
+{% for appearances in appearance %}
+{%if appearances.id == 4  %}
+          <div class="modal fade" id="edittestimonialappearance" tabindex="-1" role="dialog" aria-labelledby="edittestimonialappearance" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="edittestimonialappearance">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='4',next=url_for('core.editui'))}}" >
+                    <div class="form-group">
+                      {{ appearanceform.title_color.label(class="form-control-label") }}
+                      {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_color.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
+                    </div>
+                   
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_color.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.title_font.label(class="form-control-label") }}
+                      {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_font.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_font.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.title_size.label(class="form-control-label") }}
+                      {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_size.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_size.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
+                      {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
+                    </div>
+                   
+                    <div class="form-group">
+                      {{ appearanceform.submit(class="btn btn-outline-info") }}
+                    </div>
+                  </form>
+                </div> 
+              </div>
+            </div>
+          </div>
+
+{% endif %}
+{% endfor %}
+
+<!--team-->
+{% for appearances in appearance %}
+{%if appearances.id == 5  %}
+          <div class="modal fade" id="editteamappearance" tabindex="-1" role="dialog" aria-labelledby="editteamappearance" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editteamappearance">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='5',next=url_for('core.editui'))}}" >
+                    <div class="form-group">
+                      {{ appearanceform.title_color.label(class="form-control-label") }}
+                      {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_color.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
+                    </div>
+                   
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_color.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.title_font.label(class="form-control-label") }}
+                      {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_font.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_font.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.title_size.label(class="form-control-label") }}
+                      {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_size.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_size.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
+                      {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
+                    </div>
+                   
+                    <div class="form-group">
+                      {{ appearanceform.submit(class="btn btn-outline-info") }}
+                    </div>
+                  </form>
+                </div> 
+              </div>
+            </div>
+          </div>
+
+{% endif %}
+{% endfor %}
+
+
+{% for appearances in appearance %}
+{%if appearances.id == 6  %}
+          <div class="modal fade" id="bottomaboutsappearance" tabindex="-1" role="dialog" aria-labelledby="bottomaboutsappearance" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="bottomaboutsappearance">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form  class="form-group" method="POST" action="{{ url_for('appearances.update_appearance', appearance_id='6',next=url_for('core.editui'))}}" >
+                    <div class="form-group">
+                      {{ appearanceform.title_color.label(class="form-control-label") }}
+                      {{ appearanceform.title_color(class="form-control form-control-lg " ,value=appearances.title_color) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_color.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_color(class="form-control form-control-lg " ,value=appearance.subtitle_color) }}
+                    </div>
+                   
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_color.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_color(class="form-control form-control-lg " ,value=appearance.paragraph_color) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.title_font.label(class="form-control-label") }}
+                      {{ appearanceform.title_font(class="form-control form-control-lg " ,value=appearance.title_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_font.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_font(class="form-control form-control-lg " ,value=appearance.subtitle_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_font.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_font(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.title_size.label(class="form-control-label") }}
+                      {{ appearanceform.title_size(class="form-control form-control-lg " ,value=appearance.title_size) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.subtitle_size.label(class="form-control-label") }}
+                      {{ appearanceform.subtitle_size(class="form-control form-control-lg " ,value=appearance.subtitle_size) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.paragraph_size.label(class="form-control-label") }}
+                      {{ appearanceform.paragraph_size(class="form-control form-control-lg " ,value=appearance.paragraph_font) }}
+                    </div>
+                    <div class="form-group">
+                      {{ appearanceform.bootstrap_class1.label(class="form-control-label") }}
+                      {{ appearanceform.bootstrap_class1(class="form-control form-control-lg " ,value=appearance.bootstrap_class1) }}
+                    </div>
+                   
+                    <div class="form-group">
+                      {{ appearanceform.submit(class="btn btn-outline-info") }}
+                    </div>
+                  </form>
+                </div> 
+              </div>
+            </div>
+          </div>
+
+{% endif %}
+{% endfor %}
+
+<!-- Block Configs-->
+<!--features-->
+{% for blocks in block %}
+{%if blocks.id ==1 %}
+                <div class="modal fade" id="editbloock" tabindex="-1" role="dialog" aria-labelledby="editbloock" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editbloock">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='1',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ blockform.name.label(class="form-control-label") }}
+                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+                          </div>
+                          <div class="form-group">
+                            {{ blockform.status.label(class="form-control-label") }}
+                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+{% endif %}
+{% endfor%}
+
+<!--About-->
+{% for blocks in block %}
+{%if blocks.id ==2 %}
+                <div class="modal fade" id="editaboutblock" tabindex="-1" role="dialog" aria-labelledby="editaboutblock" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editaboutblock">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='2',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ blockform.name.label(class="form-control-label") }}
+                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+                          </div>
+                          <div class="form-group">
+                            {{ blockform.status.label(class="form-control-label") }}
+                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+{% endif %}
+{% endfor%}
+
+<!--faq-->
+{% for blocks in block %}
+{%if blocks.id ==3 %}
+                <div class="modal fade" id="editfaqblock" tabindex="-1" role="dialog" aria-labelledby="editfaqblock" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editfaqblock">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='3',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ blockform.name.label(class="form-control-label") }}
+                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+                          </div>
+                          <div class="form-group">
+                            {{ blockform.status.label(class="form-control-label") }}
+                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+{% endif %}
+{% endfor%}
+
+
+<!--testimonial-->
+{% for blocks in block %}
+{%if blocks.id ==4 %}
+                <div class="modal fade" id="edittestimonialblock" tabindex="-1" role="dialog" aria-labelledby="edittestimonialblock" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="edittestimonialblock">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='4',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ blockform.name.label(class="form-control-label") }}
+                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+                          </div>
+                          <div class="form-group">
+                            {{ blockform.status.label(class="form-control-label") }}
+                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+{% endif %}
+{% endfor%}
+
+<!--team-->
+{% for blocks in block %}
+{%if blocks.id ==5 %}
+                <div class="modal fade" id="editteamblock" tabindex="-1" role="dialog" aria-labelledby="editteamblock" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editteamblock">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='5',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ blockform.name.label(class="form-control-label") }}
+                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+                          </div>
+                          <div class="form-group">
+                            {{ blockform.status.label(class="form-control-label") }}
+                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+{% endif %}
+{% endfor%}
+
+
+<!--bottomabouts-->
+{% for blocks in block %}
+{%if blocks.id ==6 %}
+                <div class="modal fade" id="editbottomaboutblock" tabindex="-1" role="dialog" aria-labelledby="editbottomaboutblock" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editbottomaboutblock">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='66',next=url_for('core.editui'))}}" >
+                          <div class="form-group">
+                            {{ blockform.name.label(class="form-control-label") }}
+                            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+                          </div>
+                          <div class="form-group">
+                            {{ blockform.status.label(class="form-control-label") }}
+                            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+                          </div>
+                          <div class="form-group">
+                            {{ appearanceform.submit(class="btn btn-outline-info") }}
+                          </div>
+                        </form>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+{% endif %}
+{% endfor%}
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

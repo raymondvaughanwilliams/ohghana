@@ -4,9 +4,6 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
 
 class User(db.Model,UserMixin):
 
@@ -261,3 +258,8 @@ class Appearance(db.Model):
 
     def __repr__(self):
         return f"{self.id} -- -- {self.block} -- {self.title_color} -- {self.subtitle_color} -- {self.paragraph_color} -- {self.title_font} -- {self.subtitle_font} -- {self.paragraph_font} -- {self.title_size} -- {self.subtitle_size} -- {self.paragraph_size} -- {self.bootstrap_class1} -- {self.bootstrap_class2} -- {self.bootstrap_class3}"
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
