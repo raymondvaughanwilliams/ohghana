@@ -413,12 +413,15 @@
         <!-- ====== About Start ====== -->
         <section id="about" class="ud-about">
           <div class="container">
+            {% for blocks in block%}
+            {% if blocks.id == 2 and blocks.status =='active' %}
             <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
               <div class="ud-about-content-wrapper">
                 <div class="ud-about-content">
                   <span class="tag">About Us</span>
-                  
-                  <h2 style='position: relative;'>
+                  {% for appearances in appearance %}
+{%if appearances.id ==2  %}
+                  <h2 style='position: relative; color:{{appearances.title_color}};  font-size:40;' >
                     <div class="dropdown">
                       <button  style="font-size:24px; position: absolute;top: 5px; right:-30px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Settings
@@ -429,7 +432,6 @@
                        <button data-toggle="modal" data-target="#editaboutblock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
                       </div>
                     </div>
-                    <button data-toggle="modal" data-target="#editaboutsubtitle" style="font-size:24px; position: absolute;top: 5px; right:-30px;  "><i class="fa fa-edit"></i></button>
                     <div class="modal fade" id="editaboutsubtitle" tabindex="-1" role="dialog" aria-labelledby="editaboutsubtitleCenterTitle" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -470,7 +472,7 @@
                   <p style='position: relative;'>
                     
                   </p>
-                  <p style='position: relative;'>
+                  <p style='position: relative; color:{{appearances.subtitle_color}};  font-size:40;' class='{{appearances.bootstrap_class1}}'>
                     {{about.atext}}
 
                   </p>
@@ -478,11 +480,15 @@
 
                 </div>
               </div>
+              {% endif %}
+              {% endfor %}
               <div class="ud-about-image">
                 <img src="{{ about.about_image}}" />
 
               </div>
             </div>
+
+          
           </div>
 
 
@@ -494,6 +500,24 @@
 
 
         </section>
+        {% elif blocks.id == 2 and blocks.status =='inactive' %}
+        <div>
+          {{blocks.name}} is inactive . Activate it below
+          <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='2',next=url_for('core.editui'))}}" >
+            <div class="form-group">
+              {{ blockform.name.label(class="form-control-label") }}
+              {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+            </div>
+            <div class="form-group">
+              {{ blockform.status.label(class="form-control-label") }}
+              {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+            </div>
+            <div class="form-group">
+              {{ appearanceform.submit(class="btn btn-outline-info") }}
+            </div>
+          </form>
+          {% endif %}
+          {% endfor %}
         <!-- ====== About End ====== -->
 
         <!-- ====== Pricing Start ====== -->
@@ -633,6 +657,9 @@
   <section id="faq" class="ud-pricing">
     
     <div class="container">
+
+      {% for blocks in block%}
+{% if blocks.id == 3 and blocks.status =='active' %}
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title text-center mx-auto">
@@ -640,7 +667,9 @@
 
               FAQs
             </span>
-            <h2 style='position: relative;'>
+            {% for appearances in appearance %}
+            {%if appearances.id ==3  %}
+            <h2 style='position: relative; color:{{appearances.subtitle_color}};  font-size:40;' class=''>
               <div class="dropdown">
                 <button  style="font-size:24px; position: absolute;top: 5px; right:-180px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Settings
@@ -685,7 +714,7 @@
               </div>
 
               {{about.faq_subtitle}}</h2>
-            <p style='position: relative;'>
+            <p style='position: relative; color:{{appearances.paragraph_color}};  font-size:{{appearances.paragraph_size}}; '>
               
 
               {{about.faq_paragraph}}
@@ -694,7 +723,8 @@
         </div>
       </div>
 
-
+{%endif %}
+{% endfor %}
 
     
 
@@ -793,6 +823,25 @@
         </div>
       </div>
     </div>
+
+    {% elif blocks.id == 3 and blocks.status =='inactive' %}
+    <div>
+      {{blocks.name}} is inactive . Activate it below
+      <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='3',next=url_for('core.editui'))}}" >
+        <div class="form-group">
+          {{ blockform.name.label(class="form-control-label") }}
+          {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+        </div>
+        <div class="form-group">
+          {{ blockform.status.label(class="form-control-label") }}
+          {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+        </div>
+        <div class="form-group">
+          {{ appearanceform.submit(class="btn btn-outline-info") }}
+        </div>
+      </form>
+      {% endif %}
+      {% endfor %}
     </div>
   </section>
   <!-- ====== FAQ End ====== -->
@@ -800,10 +849,15 @@
   <!-- ====== Testimonials Start ====== -->
   <section id="testimonials" class="ud-testimonials">
     <div class="container">
+
+      {% for blocks in block%}
+{% if blocks.id == 4 and blocks.status =='active' %}
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title mx-auto text-center">
-            <span style='position: relative;'>
+            {% for appearances in appearance %}
+            {%if appearances.id ==4  %}
+            <span style='position: relative; color:{{appearances.title_color}};  font-size:{{appearances.title_size}}; '>
               <div class="dropdown">
                 <button  style="font-size:24px; position: absolute;top: 5px; right:300px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Settings
@@ -850,17 +904,19 @@
 
 
               {{about.testimonial_title}}</span>
-            <h2 style='position: relative;'>
+            <h2 style='position: relative; color:{{appearances.subtitle_color}};  font-size:{{appearances.subtitle_size}}; '>
 
 
               {{about.testimonial_subtitle}}</h2>
-              <h4 style='position: relative;'>
+              <h4 style='position: relative; color:{{appearances.paragraph_color}};  font-size:{{appearances.paragraph_size}}; ''>
 
 
                 {{about.testimonial_paragraph}}</h2>
           </div>
         </div>
       </div>
+      {%endif%}
+      {%endfor%}
 
       <div class="row">
 
@@ -979,15 +1035,38 @@
     </div>
     </div>
   </section>
+  {% elif blocks.id == 4 and blocks.status =='inactive' %}
+  <div>
+    {{blocks.name}} is inactive . Activate it below
+    <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='4',next=url_for('core.editui'))}}" >
+      <div class="form-group">
+        {{ blockform.name.label(class="form-control-label") }}
+        {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+      </div>
+      <div class="form-group">
+        {{ blockform.status.label(class="form-control-label") }}
+        {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+      </div>
+      <div class="form-group">
+        {{ appearanceform.submit(class="btn btn-outline-info") }}
+      </div>
+    </form>
+    {% endif %}
+    {% endfor %}
   <!-- ====== Testimonials End ====== -->
 
   <!-- ====== Team Start ====== -->
   <section id="team" class="ud-team">
     <div class="container">
+
+      {% for blocks in block%}
+{% if blocks.id == 5 and blocks.status =='active' %}
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title mx-auto text-center">
-            <span style='position: relative;'>
+            {% for appearances in appearance %}
+            {%if appearances.id ==5  %}
+            <span style='position: relative; color:{{appearances.title_color}};  font-size:{{appearances.title_size}}; '>
               <div class="dropdown">
                 <button  style="font-size:24px; position: absolute;top: 5px; right:300px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Settings
@@ -1031,11 +1110,11 @@
                 </div>
               </div>
               {{about.team_title}}</span>
-            <h2 style='position: relative;'>
+            <h2 style='position: relative; color:{{appearances.subtitle_color}};  font-size:{{appearances.subtitle_size}}; '>
 
 
               {{about.team_subtitle}}</h2>
-            <p style='position: relative;'>
+            <p style='position: relative; color:{{appearances.paragraph_color}};  font-size:{{appearances.paragraph_size}}; '>
 
 
               {{about.team_paragraph}}
@@ -1043,8 +1122,9 @@
           </div>
         </div>
       </div>
-
-      <div class="row">
+{%endif%}
+{% endfor %}
+<div class="row">
 
 
         {% for teammate in team%}
@@ -1183,17 +1263,40 @@
     </div>
 
   </section>
+
+  {% elif blocks.id == 5 and blocks.status =='inactive' %}
+  <div>
+    {{blocks.name}} is inactive . Activate it below
+    <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='5',next=url_for('core.editui'))}}" >
+      <div class="form-group">
+        {{ blockform.name.label(class="form-control-label") }}
+        {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+      </div>
+      <div class="form-group">
+        {{ blockform.status.label(class="form-control-label") }}
+        {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+      </div>
+      <div class="form-group">
+        {{ appearanceform.submit(class="btn btn-outline-info") }}
+      </div>
+    </form>
+    {% endif %}
+    {% endfor %}
   <!-- ====== Team End ====== -->
 
   <!-- ====== Contact Start ====== -->
   <section id="contact" class="ud-contact">
     <div class="container">
+      {% for blocks in block%}
+      {% if blocks.id == 6 and blocks.status =='active' %}
       <div class="row align-items-center">
         <div class="col-xl-8 col-lg-7">
           <div class="ud-contact-content-wrapper">
             <div class="ud-contact-title">
               <span>CONTACT US</span>
-              <h2 style='position: relative;'>
+              {% for appearances in appearance %}
+              {%if appearances.id ==6  %}
+              <h2 style='position: relative; color:{{appearances.subtitle_color}};  font-size:{{appearances.subtitle_size}}; '>
                 <div class="dropdown">
                   <button  style="font-size:24px; position: absolute;top: 5px; right:300px;  " class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Settings
@@ -1204,6 +1307,7 @@
                    <button data-toggle="modal" data-target="#editbottomaboutblock"  class="col-md-12"  ><i class="fas fa-cog"></i>Block Configs</button>
                   </div>
                 </div>
+               
                <!---- <button data-toggle="modal" data-target="#bottomabouts" style="font-size:24px; position: absolute;top: 5px; right:450px;  "><i class="fa fa-edit"></i></button>-->
           
                 <div class="modal fade" id="bottomabouts" tabindex="-1" role="dialog" aria-labelledby="bottomabouts" aria-hidden="true">
@@ -1243,6 +1347,8 @@
                 {{ about.contact_subtitle }}
               </h2>
             </div>
+            {% endif %}
+            {% endfor %}
             <div class="ud-contact-info-wrapper">
               <div class="ud-single-info">
                 <div class="ud-info-icon">
@@ -1271,6 +1377,27 @@
             </div>
           </div>
         </div>
+
+
+      </div>
+      {% elif blocks.id == 6 and blocks.status =='inactive' %}
+      <div>
+        {{blocks.name}} is inactive . Activate it below
+        <form  class="form-group" method="POST" action="{{ url_for('blocks.update_block', block_id='6',next=url_for('core.editui'))}}" >
+          <div class="form-group">
+            {{ blockform.name.label(class="form-control-label") }}
+            {{ blockform.name(class="form-control form-control-lg " ,value=blocks.name) }}
+          </div>
+          <div class="form-group">
+            {{ blockform.status.label(class="form-control-label") }}
+            {{ blockform.status(class="form-control form-control-lg " ,value=blocks.status) }}
+          </div>
+          <div class="form-group">
+            {{ appearanceform.submit(class="btn btn-outline-info") }}
+          </div>
+        </form>
+        {% endif %}
+        {% endfor %}
         <div class="col-xl-4 col-lg-5">
           <div class="ud-contact-form-wrapper wow fadeInUp" data-wow-delay=".2s">
             <h3 class="ud-contact-form-title">Send us a Message</h3>
@@ -1300,15 +1427,14 @@
           </div>
         </div>
       </div>
-    </div>
+   
 
 
 
 
 
 
-
-    <div class='media'>
+    <!----<div class='media'>
       <div class='media-left'>
         <div class='media-object'>
           <div class='padding-right'>
@@ -1328,7 +1454,7 @@
       <div class='media-body'>
         <div id='console-event'></div>
       </div>
-    </div>
+    </div> -->
 
 
 
