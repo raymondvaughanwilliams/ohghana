@@ -218,7 +218,7 @@
 
 
         {% for blocks in block%}
-{% if blocks.status =='active'%}
+{% if blocks.status =='active' and blocks.id==1%}
         <div class="row">
           <div class="col-lg-12">
             <div class="ud-section-title">
@@ -262,6 +262,8 @@
     <!-- ====== Features End ====== -->
 
     <!-- ====== About Start ====== -->
+    {% for blocks in block%}
+    {% if blocks.status =='active' and blocks.id==2%}
     <section id="about" class="ud-about">
       <div class="container">
         <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
@@ -271,7 +273,7 @@
               <h2>{{about.about_subtitle}}</h2>
               
               <p>
-                {{about.text}}
+                {{about.atext}}
               </p>
 
              
@@ -285,9 +287,12 @@
         </div>
       </div>
     </section>
+    {% endif %}
+    {% endfor %}
     <!-- ====== About End ====== -->
 
     <!-- ====== Pricing Start ====== -->
+
     <section id="pricing" class="ud-pricing">
       <div class="container">
         <div class="row">
@@ -347,6 +352,8 @@
     <!-- ====== Pricing End ====== -->
 
     <!-- ====== FAQ Start ====== -->
+    {% for blocks in block%}
+    {% if blocks.status =='active' and blocks.id==3%}
     <section id="faq" class="ud-faq">
       <div class="shape">
         <img src="assets/images/faq/shape.svg" alt="shape" />
@@ -396,9 +403,13 @@
         </div>
       </div>
     </section>
+    {% endif %}
+    {% endfor %}
     <!-- ====== FAQ End ====== -->
 
     <!-- ====== Testimonials Start ====== -->
+    {% for blocks in block%}
+    {% if blocks.status =='active' and blocks.id==4%}
     <section id="testimonials" class="ud-testimonials">
       <div class="container">
         <div class="row">
@@ -459,9 +470,13 @@
         </div>
       </div>
     </section>
+    {% endif %}
+    {% endfor %}
     <!-- ====== Testimonials End ====== -->
 
     <!-- ====== Team Start ====== -->
+    {% for blocks in block%}
+    {% if blocks.status =='active' and blocks.id==5%}
     <section id="team" class="ud-team">
       <div class="container">
         <div class="row">
@@ -535,6 +550,8 @@
         </div>
       </div>
     </section>
+    {% endif %}
+    {% endfor %}
     <!-- ====== Team End ====== -->
 
     <!-- ====== Contact Start ====== -->
