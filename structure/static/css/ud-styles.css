@@ -1662,14 +1662,28 @@ p {
 
 /* ====== Login CSS ====== */
 .ud-login {
-  padding-top: 80px;
+  padding-top: 100px;
   padding-bottom: 80px;
+  padding-left: 1000px;
+  /* background-image:url("https://images.pexels.com/photos/1191710/pexels-photo-1191710.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"); */
+}
+
+.ud-bodyp {
+  background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
 }
 
 .ud-login-wrapper {
   max-width: 500px;
   margin: auto;
   background: var(--white);
+  box-align: right;
   text-align: center;
   padding: 60px;
   -webkit-box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.05);
@@ -1764,6 +1778,7 @@ p {
 .ud-socials-connect ul li a.google:hover {
   background: #c53b29;
 }
+
 
 .forget-pass {
   font-size: 16px;
@@ -1879,6 +1894,9 @@ p {
   left: 0;
   bottom: 0;
 }
+
+
+
 
 /* ====== Blog Details CSS ====== */
 .ud-blog-details {

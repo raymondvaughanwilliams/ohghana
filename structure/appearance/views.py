@@ -2,7 +2,7 @@ from flask import render_template,url_for,flash, redirect,request,Blueprint
 from flask_login import current_user,login_required
 from structure import db
 from structure.models import WebFeature,Appearance
-from structure.appearance.forms import AppearanceForm
+from structure.appearance.forms import AppearanceForm,AppearanceForm1
 
 appearances = Blueprint('appearances',__name__)
 
@@ -41,6 +41,8 @@ def update_appearance(appearance_id):
     appearance = Appearance.query.get_or_404(appearance_id)
 
     form = AppearanceForm(obj=appearance)
+
+     
     if request.method =='POST':
         appearance.title_color = form.title_color.data
         appearance.subtitle_color = form.subtitle_color.data
@@ -83,16 +85,16 @@ def update_appearance(appearance_id):
 
 
 
-@appearances.route("/appearances", methods=['GET', 'POST'])
-@login_required
-def allappearances():
+# @appearances.route("/appearances", methods=['GET', 'POST'])
+# @login_required
+# def allappearances():
 
-    appearance = Appearance.query.all()
+#     appearance = Appearance.query.all()
 
-    if appearance:
-        question = appearance.question
-        answer = appearance.answer
-        return render_template('base2.html', question=question, answer=answer,appearance=appearance)
+#     if appearance:
+#         question = appearance.question
+#         answer = appearance.answer
+#         return render_template('base2.html', question=question, answer=answer,appearance=appearance)
 
    
 @appearances.route("/<int:appearance_id>/delete_appearance", methods=['POST','GET'])
