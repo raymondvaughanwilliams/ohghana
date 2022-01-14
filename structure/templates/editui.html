@@ -612,7 +612,7 @@
               </div>
 
               {% endfor %}
-<div class="row g-0 align-items-center justify-content-center">
+<div class="col-sm-6 g-0 align-items-left justify-content-left">
               <button data-toggle="modal" data-target="#addaprice" > <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
               <div class="modal fade" id="addaprice" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -648,6 +648,7 @@
                 </div> 
 </div>
             </div>
+          </div>
           </div>
       </div>
   </section>
@@ -744,7 +745,7 @@
               </button>
 
                 <h2 style='position: relative;'>
-                  <button data-toggle="modal" data-target="#faq{{faqs.id}}" style="font-size:24px; position: absolute;top: -100px; right:-30px;  "><i class="fa fa-edit"></i></button>
+                  <button data-toggle="modal" data-target="#faq{{faqs.id}}" style="font-size:24px; position: absolute;top: -100px; right:160px;  "><i class="fa fa-edit"></i></button>
                   
                   <div class="modal fade" id="faq{{faqs.id}}" tabindex="-1" role="dialog" aria-labelledby="editfaqModalTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -791,7 +792,8 @@
 
 
 
-          <button data-toggle="modal" data-target="#addanfaq" class=" row-sm-1"> <i class="fa fa-plus-circle" style="font-size:48px"></i></button>
+          <button data-toggle="modal" data-target="#addanfaq" class=" col-sm-1 row-sm-1" > <i class="fa fa-plus-circle"  style="font-size:48px" ></i></button>
+          
           <div class="modal fade" id="addanfaq" tabindex="-1" role="dialog" aria-labelledby="edittestimonial" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -1398,7 +1400,7 @@
         </form>
         {% endif %}
         {% endfor %}
-        <div class="col-xl-4 col-lg-5">
+       <!---- <div class="col-xl-4 col-lg-5">
           <div class="ud-contact-form-wrapper wow fadeInUp" data-wow-delay=".2s">
             <h3 class="ud-contact-form-title">Send us a Message</h3>
             <form class="ud-contact-form">
@@ -1426,7 +1428,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div>-->
    
 
 
