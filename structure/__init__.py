@@ -5,7 +5,6 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from sqlalchemy import MetaData
 from flask_mail import Mail, Message
-from flask_marshmallow import Marshmallow 
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 
@@ -47,7 +46,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'users.login'
 
-ma = Marshmallow(app)
 
 
 
