@@ -25,7 +25,7 @@ import urllib.request, json
 
 core = Blueprint('core',__name__)
 
-@core.route('/')
+@core.route('/admin')
 @login_required
 def index():
     '''

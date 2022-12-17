@@ -30,7 +30,7 @@ web = Blueprint('web',__name__)
 
 
 
-@web.route('/home',methods=['GET', 'POST'])
+@web.route('/',methods=['GET', 'POST'])
 def home():
     aboutform = AboutForm()
     newsletterform = NewsletterForm()
