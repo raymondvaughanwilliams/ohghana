@@ -1,6 +1,6 @@
 #models.py
 from unicodedata import name
-from structure import db,login_manager,app,login_manager,ma
+from structure import db,login_manager,app,login_manager
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin,LoginManager
 from datetime import datetime
@@ -104,14 +104,6 @@ class WebFeature(db.Model):
     def __repr__(self):
         return f"Post ID: --- {self.title}---{self.wtext}--{self.date}"
 
-
-class WebFeatureSchema(ma.Schema):
-    class Meta:
-        
-        fields = ('title','wtext','date')
-    
-webfeature_schema = WebFeatureSchema()
-webfeatures_schema = WebFeatureSchema(many=True)
 
 
 

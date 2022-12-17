@@ -1,5 +1,5 @@
 from flask import render_template,request,Blueprint,session,redirect,url_for,jsonify
-from structure.models import User,About,Price,Journal,WebFeatureSchema,Appointment
+from structure.models import User,About,Price,Journal,Appointment
 # from structure.team.views import team
 # from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist
 from structure.users.forms import UpdateUserForm

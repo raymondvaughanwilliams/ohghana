@@ -1,5 +1,5 @@
 from flask import render_template,request,Blueprint,session,redirect,url_for,jsonify
-from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal,WebFeatureSchema
+from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal
 # from structure.team.views import team
 from structure.web_features.forms import WebFeatureForm
 from structure.team.forms import UpdateTeamForm
