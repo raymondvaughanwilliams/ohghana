@@ -45,7 +45,7 @@ def update(web_feature_id):
     form = WebFeatureForm()
     if request.method =='POST':
         web_feature.title = form.title.data
-        web_feature.wtext = form.text.data
+        web_feature.wtext = form.text.data 
         db.session.commit()
         flash('Post Updated')
         return redirect(request.args.get('next') or request.referrer )

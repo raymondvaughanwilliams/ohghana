@@ -1,0 +1,35 @@
+{% extends "mainbase.html" %}
+{% block content %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css2/sign-up.css') }}">
+
+  <body>
+
+      <div class="already-have-an-account-log-i">
+        <span>Already have an account?</span
+        ><span class="log-in-span"> Log In</span>
+      </div>
+      
+      ><span class="by-signing-up-you-agree-to-ou"
+        ><p class="by-signing-up-you-agree-to-ou1">
+          <span>By Signing up, you agree to our </span
+          ><span class="log-in-span">Terms of Service </span>
+        </p>
+        <p class="and-acknowledge-that-you-have">
+          <span>and acknowledge that you have read our </span
+          ><span class="log-in-span">Privacy Policy</span>
+        </p></span
+      ><img class="line-icon" alt="" src="public/line.svg" />
+      <h3 class="information-h3">Information</h3>
+      <div class="rectangle-div"></div>
+      <form class="group-form" id="form" style="font-size:24px;">
+        
+        {{ form.hidden_tag() }}
+        {{ form.name.label(class="form-control-label") }} {{ form.name(class="form-control form-control-lg ") }}<br>
+        {{ form.email.label(class="form-control-label") }} {{ form.email(class="form-control form-control-lg ") }}<br>
+        {{ form.username.label }} {{ form.username(class="form-control form-control-lg ") }}<br>
+        {{ form.password.label }} {{ form.password(class="form-control form-control-lg ") }}<br>
+        {{ form.pass_confirm.label }} {{ form.pass_confirm(class="form-control form-control-lg ") }}<br>
+        {{ form.submit(class="button btn-primary ") }}
+      </form>
+    </div>
+{% endblock %}

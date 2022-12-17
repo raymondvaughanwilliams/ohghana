@@ -1,8 +1,16 @@
 #models.py
-from structure import db,login_manager,app
+from unicodedata import name
+from structure import db,login_manager,app,login_manager,ma
 from werkzeug.security import generate_password_hash,check_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin,LoginManager
 from datetime import datetime
+
+# class UserTherapySession(db.Model):
+#     __tablename__ = 'usertherapysessions'
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     user = db.relationship("User", foreign_keys=user_id)
+#     booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
 
 
 class User(db.Model,UserMixin):
@@ -13,13 +21,54 @@ class User(db.Model,UserMixin):
     profile_image = db.Column(db.String(64),nullable=False,default='default_profile.png')
     email = db.Column(db.String(64),unique=True,index=True)
     username = db.Column(db.String(64),unique=True,index=True)
+    name = db.Column(db.String(64),nullable=True)
+    last_name = db.Column(db.String(64),nullable=True)
     password_hash = db.Column(db.String(128))
+    rem_sessions = db.Column(db.Integer(),nullable=True)
+    rem_chatweeks = db.Column(db.Integer(),nullable=True)
+    plan_id = db.Column(db.Integer,db.ForeignKey('prices.id'),nullable=True)
+    plan= db.relationship('Price',backref='users',lazy=True)
+    number = db.Column(db.String(128))
+    location = db.Column(db.String(128))
+    role = db.Column(db.String,nullable=True)
+    pref_medium = db.Column(db.String(128))
+    pref_therapistgender = db.Column(db.String(128))
+    pref_help = db.Column(db.String())
+    payment_confirmed = db.Column(db.String(5),default="no",nullable=True)
+    rec_transaction_id = db.Column(db.String(15),nullable=True)
+    specialty = db.Column(db.String)
+    location = db.Column(db.String)
+    email = db.Column(db.String)
+    phone_number = db.Column(db.String)
+    biography = db.Column(db.String)
+    qualifications = db.Column(db.String)
+    years_of_experience = db.Column(db.Integer)
+    license_number = db.Column(db.String)
+    insurance_provider = db.Column(db.String)
+    platforms = db.Column(db.String)
+    baseprice = db.Column(db.Integer)
+    therapist_id = db.Column(db.Integer,db.ForeignKey('webfeatures.id'),nullable=True)
+    therapist= db.relationship('WebFeature',backref='users',lazy=True)
+    # rec_payment_id = db.Column(db.Integer,db.ForeignKey('payments.id'),nullable=True)
+    # payments = db.relationship('Payment',backref='users',lazy=True)
 
 
-    def __init__(self,email,username,password):
+    # roles = db.relationship('Roles', secondary='user_roles')
+
+
+    def __init__(self,email,username,password,name,role,last_name,number):
         self.email = email
         self.username = username
+        self.name = name
         self.password_hash = generate_password_hash(password)
+        self.role = role
+        # self.rem_chatweeks = rem_chatweeks
+        # self.rem_sessions=rem_sessions
+        # self.pref_medium = pref_medium
+        # self.pref_help = pref_help
+        # self.pref_therapistgender = pref_therapistgender
+        self.last_name = last_name
+        self.number = number
 
     def check_password(self,password):
         return check_password_hash(self.password_hash,password)
@@ -28,22 +77,79 @@ class User(db.Model,UserMixin):
         return f"Username {self.username}"
 
 
+
+
 class WebFeature(db.Model):
+    __tablename__ = "webfeatures"
 
 
     id = db.Column(db.Integer,primary_key=True)
     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
     title = db.Column(db.String(140),nullable=False)
     wtext = db.Column(db.Text,nullable=False)
+    price = db.Column(db.Float,nullable=True)
+    type = db.Column(db.String(100),nullable=True)
+    email = db.Column(db.String(40),nullable=True)
+    city = db.Column(db.String(50),nullable=True)
+    phone = db.Column(db.String(50),nullable=True)
 
 
-    def __init__(self,title,wtext):
+
+    def __init__(self,title,wtext,date):
         self.title = title
         self.wtext = wtext
+        self.date = date
+     
 
     def __repr__(self):
-        return f"Post ID: {self.id} -- Date: {self.date} --- {self.title}---{self.text}"
+        return f"Post ID: --- {self.title}---{self.wtext}--{self.date}"
 
+
+class WebFeatureSchema(ma.Schema):
+    class Meta:
+        
+        fields = ('title','wtext','date')
+    
+webfeature_schema = WebFeatureSchema()
+webfeatures_schema = WebFeatureSchema(many=True)
+
+
+
+# class Therapist(db.Model):
+#     __tablename__ = 'therapists'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String)
+#     specialty = db.Column(db.String)
+#     location = db.Column(db.String)
+#     email = db.Column(db.String)
+#     phone_number = db.Column(db.String)
+#     biography = db.Column(db.String)
+#     qualifications = db.Column(db.String)
+#     years_of_experience = db.Column(db.Integer)
+#     license_number = db.Column(db.String)
+#     insurance_provider = db.Column(db.String)
+
+
+
+# class TherapistDetails(db.Model):
+#     __tablename__ = 'therapistdetails'
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     specialty = db.Column(db.String)
+#     location = db.Column(db.String)
+#     email = db.Column(db.String)
+#     phone_number = db.Column(db.String)
+#     biography = db.Column(db.String)
+#     qualifications = db.Column(db.String)
+#     years_of_experience = db.Column(db.Integer)
+#     license_number = db.Column(db.String)
+#     insurance_provider = db.Column(db.String)
+#     platforms = db.Column(db.String)
+#     user_id = db.Column(db.Integer,db.ForeignKey('user.id'),nullable=True)
+#     user= db.relationship('User',backref='users',lazy=True)
+    
+    
 
 
 
@@ -107,17 +213,22 @@ class About(db.Model):
 
 
 class Price(db.Model):
+    __tablename__ = "prices"
 
 
     id = db.Column(db.Integer,primary_key=True)
     title = db.Column(db.String(140),nullable=False)
     amount = db.Column(db.Text,nullable=False)
     features = db.Column(db.Text(64),nullable=False,default='default_profile.png')
+    numsessions = db.Column(db.Integer,nullable=True)
+    numchatweeks = db.Column(db.Integer,nullable=True)
 
-    def __init__(self,title,amount,features):
+    def __init__(self,title,amount,features,numsessions,numchatweeks):
         self.title = title
         self.amount = amount
         self.features = features 
+        self.numsessions = numsessions
+        self.numchatweeks = numchatweeks
 
     def __repr__(self):
         return f"Post ID: {self.id} -- {self.title}"
@@ -258,6 +369,121 @@ class Appearance(db.Model):
 
     def __repr__(self):
         return f"{self.id} -- -- {self.block} -- {self.title_color} -- {self.subtitle_color} -- {self.paragraph_color} -- {self.title_font} -- {self.subtitle_font} -- {self.paragraph_font} -- {self.title_size} -- {self.subtitle_size} -- {self.paragraph_size} -- {self.bootstrap_class1} -- {self.bootstrap_class2} -- {self.bootstrap_class3}"
+
+
+class Book(db.Model):
+    __tablename__ = 'bookings'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String,nullable=True)
+    email = db.Column(db.String,nullable=True)
+    date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
+    phone = db.Column(db.String,nullable=True)
+    location = db.Column(db.String,nullable=True)
+    therapist_id = db.Column(db.Integer,db.ForeignKey('webfeatures.id'),nullable=True)
+    message = db.Column(db.String,nullable=True)
+    webfeatures= db.relationship('WebFeature',backref='bookings',lazy=True)
+    time =  db.Column(db.Time, nullable=False, default=datetime.utcnow)
+    users = db.relationship('User',backref='bookings',lazy=True)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
+
+    def __init__(self,name,email,date,phone,location,therapist_id,time,user_id,message):
+        # self.id = id
+        self.name = name
+        self.email = email
+        self.date = date
+        self.phone = phone
+        self.location = location
+        self.therapist_id = therapist_id
+        # self.webfeatures = webfeatures
+        self.time = time
+        # self.users = users
+        self.user_id = user_id
+        self.message = message
+
+    def __repr__(self):
+        return f"{self.id}--{self.name}"
+
+
+# class Roles(db.Model):
+#     id = db.Column(db.Integer(), primary_key=True)
+#     name = db.Column(db.String(50), nullable=False, unique=True)  # for @roles_accepted()
+
+#     def __repr__(self):
+#         return self.name
+
+
+# # Define the UserRoles association model
+# class UserRole(db.Model):
+#     __tablename__ = 'user_roles'
+#     id = db.Column(db.Integer(), primary_key=True)
+#     user_id = db.Column(db.Integer(), db.ForeignKey('user.id', ondelete='CASCADE'))
+#     role_id = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
+
+
+# # user_manager = LoginManager(app, db, User)
+# login_manager = LoginManager(app, db, User)
+
+
+class Journal(db.Model):
+    __tablename__ = 'journals'
+    id = db.Column(db.Integer,primary_key=True)
+    title = db.Column(db.String,nullable=True)
+    date = db.Column(db.Date,nullable=True,default=datetime.utcnow)
+    text = db.Column(db.String)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
+    users = db.relationship('User',backref='journals',lazy=True)
+
+
+
+class Payment(db.Model):
+    __tablename__ = 'payments'
+    id = db.Column(db.Integer,primary_key=True)
+    amount = db.Column(db.Integer,nullable=True)
+    date = db.Column(db.Date,nullable=True,default=datetime.utcnow)
+    tx_ref = db.Column(db.String)
+    transaction_id = db.Column(db.String)
+    plan_id = db.Column(db.Integer,db.ForeignKey('prices.id'),nullable=True)
+    plans = db.relationship('Price',backref='payments',lazy=True)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
+    users = db.relationship('User',backref='payments',lazy=True)
+    status = db.Column(db.String,nullable=True,default="Failed")
+
+
+
+
+class Appointment(db.Model):
+    __tablename__ = 'appointments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    therapist_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    date = db.Column(db.Date)
+    time =  db.Column(db.Time)
+    platform = db.Column(db.String(50))
+    therapist_confirmation = db.Column(db.String(10),nullable=True)
+    user_confirmation = db.Column(db.String(10),nullable=True)
+    user = db.relationship("User", foreign_keys=[user_id])
+    therapist = db.relationship("User", foreign_keys=[therapist_id])
+    user_notes= db.Column(db.String(250))
+    therapist_notes= db.Column(db.String(250))
+    
+    
+class NewsletterContacts(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String,nullable=True)
+    phone=db.Column(db.String(20))
+    email=db.Column(db.String(50))
+    
+    
+class Newsletter(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    recepients = db.Column(db.String(255),nullable=True)
+    message = db.Column(db.String(255),nullable=True)
+    date = db.Column(db.Date,default=datetime.now())
+    
+
+
+
 
 
 @login_manager.user_loader

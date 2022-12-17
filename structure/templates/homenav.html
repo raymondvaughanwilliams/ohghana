@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title></title>
+    <meta name="description" content="" />
+
+    <link rel="stylesheet" href="./index.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/animate.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/lineicons.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/ud-styles.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css2/homepage.css') }}">
+  
+  </head>
+  <body>
+    <div class="home-page-div">
+      <div class="rectangle-div"></div>
+      <div class="frame-div">
+        <div class="frame-div1">
+          <img
+            class="phbrain-fill-icon"
+            alt=""
+             src="{{ url_for('static',filename='public/phbrainfill1.svg') }}"
+          /><b class="no-name-b">NO NAME</b>
+        </div>
+        <div class="frame-div2">
+          <div class="home-div"><a style="color: black" href= "{{ url_for('core.hmsui') }}">Home<a></div>
+          <div class="no-name-b"><a style="color: black"  href= "{{ url_for('core.hmsui') }}">About</a></div>
+          <div class="no-name-b"><a style="color: black" href= "{{ url_for('core.services') }}">Services<a></div>
+          <div class="no-name-b">Our Therapists</div>
+          <div class="no-name-b"><a style="color: black" href= "{{ url_for('core.faqs') }}">FAQs<a></div>
+          <div class="no-name-b"><a style="color: black" href= "{{ url_for('core.contact') }}">Contact<a></div>
+        </div>
+        <button class="frame-button">
+          <div class="login-div">Login</div>
+          <button class="frame-button1">
+            <div class="get-started-div">Get Started</div>
+          </button>
+        </button>
+        </div>
+      {% block content %}
+
+      {% endblock %}
+    </body>
+    
+
+  <!----  <script>  
+        getpaidSetup({
+        PBFPubKey: "FLWPUBK-494096f95c029c1ad05b4ef92e7e6397-X",
+        customer_email: "raymondvaughanwilliams@gmail.com",
+        custom_title: "OGTECH",
+        amount: 500,
+        customer_phone: "233546744623",
+        payment_method: "both",
+        txref: "rave-123456",
+        onclose: function() {},
+        callback: function(response) {
+          var flw_ref = response.tx.flwRef;
+          console.log("This is the response returned after a charge", response);
+          if (
+            response.tx.chargeResponseCode == "00" ||
+            response.tx.chargeResponseCode == "0"
+          ) {
+            // redirect to a success page
+            console.log('Payment Successful')
+          } else {
+            // redirect to a failure page
+            console.log('Error! Issue with Payment')
+          }
+        }
+      });
+    </script>  -->
+
+
+    <html>
+  <script type="text/javascript" src="https://ravesandbox.flutterwave.com/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+</html>
+    </html>
+        

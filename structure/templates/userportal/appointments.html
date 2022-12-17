@@ -1,0 +1,46 @@
+{% extends "userportal/base.html" %}
+{% block content %}
+<section id="content-types">
+	<div class="row">
+		<div class="col-12 mt-3 mb-1">
+			<h4 class="text-uppercase">Appointments</h4>
+		
+		</div>
+	</div>
+	<div class="row match-height">
+		<div class="col-xl-6 col-md-6 col-sm-12">
+			<div class="card">
+				<div class="card-content">
+					<div class="card-body">
+						<h4 class="card-title">Scheduled Appointments</h4> 
+                        <p class="card-text">Remaining sessions with {{therapist.name}}:{{user.rem_sessions}} </p>
+                        {%if user.rem_sessions >0%}
+                        <a href=" {{url_for('userportal.addappointment') }}" ><button   style="color:white;background-color:green" class="btn btn-primary">Schedule Appointment</button></a>
+
+                        <a href=" {{url_for('userportal.book',tid=therapist.id) }}"> <button style="color:white;background-color:green"class="btn btn-primary" >Buy more</button></a>
+                        {%else %}
+                        <p> No more sessions available with {{therapist.name}} </p>
+                       <a href=" {{url_for('userportal.book',tid=therapist.id) }}"> <button style="color:white;background-color:green" class="btn btn-primary" >Buy more</button></a>
+                        {%endif %}
+					</div>
+					<ul class="list-group list-group-flush">
+                        {%for appointment in appointments%}
+						<li class="list-group-item">
+							{{appointment.date.strftime("%m %b %Y")}} <span style="float: right;"> <a href="{{url_for('userportal.editappointment',id=appointment.id)}}">Reschedule</a></span>
+						</li>
+                        {% endfor %}
+						
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+    </section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

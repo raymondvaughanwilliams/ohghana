@@ -1,8 +1,10 @@
-from flask import render_template,url_for,flash, redirect,request,Blueprint
+import re
+from flask import render_template,url_for,flash, redirect,request,Blueprint,session
 from flask_login import current_user,login_required
 from structure import db
-from structure.models import Price
+from structure.models import Price, User ,Payment
 from structure.pricing.forms import PriceForm
+import random
 
 pricings = Blueprint('pricings',__name__)
 
@@ -28,12 +30,15 @@ def create_post():
 
 # int: makes sure that the price_id gets passed as in integer
 # instead of a string so we can look it up later.
-@pricings.route('/<int:price_id>')
-def price(price_id):
+@pricings.route('/plan/<int:plan_id>')
+def plan(plan_id):
     # grab the requested blog post by id number or return 404
-    price = Price.query.get_or_404(price_id)
-    return render_template('price.html',title=price.title,
-                            amount=price.amount,features=price.features,price=price
+    user = User.query.filter_by(email=session['email']).first()
+    rem_sessions = user.rem_sessions
+    rem_chatweeks = user.rem_chatweeks
+    price = Price.query.get_or_404(plan_id)
+    return render_template('plan.html',title=price.title,
+                            amount=price.amount,features=price.features,price=price,rem_sessions=rem_sessions,rem_chatweeks=rem_chatweeks
     )
 
 @pricings.route("/<int:price_id>/update_pricing", methods=['GET', 'POST'])
@@ -63,20 +68,20 @@ def update_pricing(price_id):
 
 
 
-@pricings.route("/pricings", methods=['GET', 'POST'])
+@pricings.route("/pricings/<int:id>", methods=['GET', 'POST'])
 @login_required
-def allprices():
+def allprices(id):
 
     pricing = Price.query.all()
-
-    if pricing:
-        title = pricing.title
-        amount = pricing.amount
-        features = pricing.features
-        services=[]
-        service= pricing.features.split(',')
-        services.append(service)
-        return render_template('base2.html',pricing=pricing,title=title,amount=amount,services=services)
+    tid = id
+    # if pricing:
+    #     title = pricing.title
+    #     amount = pricing.amount
+    #     features = pricing.features
+    #     services=[]
+    #     service= pricing.features.split(',')
+    #     services.append(service)
+    return render_template('pricing-page.html',pricing=pricing,tid=tid)
 
    
 
@@ -88,3 +93,128 @@ def delete_post(price_id):
     db.session.commit()
     flash('Post has been deleted')
     return redirect(url_for('core.index'))
+
+
+
+
+@pricings.route("/buyplan/<int:id>/<int:tid>")
+@login_required
+def buyplan(id,tid):
+    price = Price.query.get_or_404(id)
+    userdemail = session['email']
+    user =  User.query.filter_by(email=userdemail).first()
+    name = user.name
+    number = user.number
+    # random_num = randint(1,1000)
+    tx_ref = user.email[0:6]+ str(random.randint(1,1000))
+    tid = tid
+    return render_template('buyplan.html',price=price,useremail=userdemail,tx_reff=tx_ref,name=name,number=number,tid=tid)
+
+
+@pricings.route("/confirmplan/<int:id>")
+@login_required
+def confirmplan(id):
+    price = Price.query.get_or_404(id)
+    loggeduser = session['email']
+    print("ogged:")
+    print(loggeduser)
+    user = User.query.filter_by(email=loggeduser).first()
+            # user = User.query.filter_by(email=form.email.data).first()
+
+    print(user)
+    user.plan_id = id
+    user.rem_sessions = price.numsessions
+    user.rem_chatweeks = price.numchatweeks
+    db.session.commit()
+
+    return redirect(url_for('core.index'))
+
+
+
+
+@pricings.route("/paymentdetails/<int:id>")
+@login_required
+def paymentdetails(id):
+    price = Price.query.get_or_404(id)
+    loggeduser = session['email']
+    print("ogged:")
+    print(loggeduser)
+    user = User.query.filter_by(email=loggeduser).first()
+            # user = User.query.filter_by(email=form.email.data).first()
+
+    print(user)
+    user.plan_id = id
+    user.rem_sessions = price.numsessions
+    user.rem_chatweeks = price.numchatweeks
+    db.session.commit()
+
+    return render_template('payment-details-drop-down.html')
+
+
+
+@pricings.route("/confirmravepayment")
+@login_required
+def confirmravepayment():
+    user = User.query.filter_by(email=session['email']).first()
+    uid = user.id
+    
+    if request.args.get('status') == "successful":
+        transaction_id = request.args.get('transaction_id')
+        # user = User.query.filter_by(email=session['email']).first()
+        status = request.args.get('status')
+        tx_ref = request.args.get('tx_ref')
+        amount = request.args.get('amount')
+        tid = request.args.get('tid')
+        print(tid)
+        amount_dict = amount.split(' ')
+        price = amount_dict[0]
+        plan = Price.query.filter_by(amount=amount).first()
+
+        user.rec_transaction_id = transaction_id
+        user.plan_id = plan.id
+        user.therapist_id = tid
+
+
+
+        print(plan.title)
+        print(amount_dict)
+        print(amount)
+        payment = Payment(transaction_id=transaction_id,
+                             tx_ref=tx_ref,
+                             user_id =uid,status=status,amount=price,plan_id = plan.id
+                             )
+        db.session.add(payment)
+        db.session.commit()
+
+        flash("Pricing Created")
+        return redirect(url_for('pricings.paymentconfirmation'))
+
+
+
+
+    #     if request.status == "successful":
+    #         print("payment successful")
+    #     else:
+    #         print("payment rejected")
+    # print(request.url)
+    # status = request.args.get('status')
+    # print(username)
+
+    # user = User.query.filter_by(email=loggeduser).first()
+    #         # user = User.query.filter_by(email=form.email.data).first()
+
+    # print(user)
+    # user.rem_sessions = price.numsessions
+    # user.rem_chatweeks = price.numchatweeks
+    # db.session.commit()
+
+    return redirect(url_for('core.index'))
+
+
+
+
+@pricings.route("/paymentconfirmati/")
+@login_required
+def paymentconfirmati():
+
+    return render_template('plan-succesful.html')

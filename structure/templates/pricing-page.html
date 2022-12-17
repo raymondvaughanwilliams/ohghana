@@ -1,0 +1,74 @@
+{% extends "mainbase.html" %}
+{% block content %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css2/pricing-page.css') }}">
+
+  <body>
+    <div class="pricing-page-div1">
+      <b class="find-a-plan-thats-right-for-yo6"
+        ><span>Find A </span
+        ><span class="plan-thats-right6">Plan Thats Right</span
+        ><span> For You</span></b
+      >
+      <div class="line-div6"></div>
+      <b class="cancel-anytime-change-your-th6"
+        >Cancel anytime. Change your therapist anytime..</b
+      >
+      <div class="desktop-1">
+        <div class="frame-div54">
+     
+
+        <div class="row">
+          <div class="plan-div9">
+        {% for price in pricing %}
+       
+          <div class="frame-div55">
+        <div class="col-lg-4 col-md-6 col-sm-10">
+          <div
+            class="ud-single-pricing first-item wow fadeInUp"
+            data-wow-delay=".15s"
+          >
+            <div class="ud-pricing-header">
+              <h3 class="explore-b">{{price.title}}</h3>
+              <h4 class="ghc000-b">{{price.amount}}</h4>
+              
+            </div>
+  
+  
+  
+  
+            <div class="ud-pricing-body">
+              <ul>
+  {% set list1 = price.features.split(',') %}
+  <br>
+  {% for item in list1 %}
+                <li>{{ item }}</li>
+        {% endfor %}
+  
+              </ul>
+            </div>
+            <div class="ud-pricing-footer">
+              <a href="{{ url_for('pricings.buyplan', id=price.id, tid=tid) }}" class="ud-main-btn ud-border-btn">
+                Purchase Now
+
+              </a>
+           
+            </div>
+          </div>
+        </div>
+  
+        {% endfor %}
+      </div>
+      <div class="sessions-do-not-expire-and-hav6">
+        Sessions do not expire and have lifetime validity. Once bought you can
+        schedule it at your convenience. You can contact us via email if you
+        couldn’t find the plan you are looking for and we will help you out.
+        <script type="text/javascript" src="https://ravesandbox.flutterwave.com/flwv3-pug/getpaidx/api/flwpbf-inline.js"> make payment
+        </script>
+
+      </div>
+    </div>
+    
+  </body>
+</html>
+
+{% endblock %}

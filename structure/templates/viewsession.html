@@ -1,0 +1,102 @@
+{% extends "usersidenav.html" %}
+{% block content %}
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Hero Start ====== -->
+
+   
+    <div id="about_us" class="about-us container-fluid offset-top" >
+        <div class="container">
+            <div class="session-title row">
+                 <h2>About Session</h2>
+                 <p>There are many variations of passages of Lorem Ipsum available Lorem Ipsum available but the majority</p>
+                 </div>
+                 <div class="heading-line"></div>
+                 <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                      <h5 class="card-title">Therapist: {{session.webfeatures.title}}</h5>
+                      <p class="card-text">Date:{{session.date}}</p>
+                      <p class="card-text">Time:{{session.time}}</p>
+                      <button data-toggle="modal" data-target="#editabouttitleModal" class=' btn btn-primary btn-sm btn-icon'>Reschedule</button>
+                  
+                                  <div class="modal fade" id="editabouttitleModal" tabindex="-1" role="dialog" aria-labelledby="editabouttitleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form  class="form-group" method="POST"  enctype=multipart/form-data  action="{{ url_for('core.update_session', id=session.id,next=url_for('core.viewtherapysession', id=session.id))}}">
+                                            <div class="form-group">
+                                              {{ updateform.date.label(class="form-control-label") }}
+                                              {{ updateform.date(class="form-control form-control-lg " ,value=updateform.date) }}
+                                            </div>
+                                            <div class="form-group">
+                                              {{ updateform.time.label(class="form-control-label") }}
+                                              {{ updateform.time(class="form-control form-control-lg " ,value=updateform.time) }}
+                                            </div>
+                                            <div class="form-group">
+                                              {{ updateform.submit(class="button",id="submitButton") }}
+                                            </div>
+                                          </form>
+                                        </div> 
+                                      </div>
+                                    </div>
+                                  </div>
+                    </div>
+                  </div>
+                    <h2></h2>
+               
+                       
+                     </div>
+                     
+                     
+                </div>
+                 
+                 
+               
+             </div>
+        </div>    
+         
+     </div>
+     </div>
+     </div>
+
+  
+
+  
+    <!-- ====== Team End ====== -->
+
+   
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+          <link  type="application/javascript" href="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+  <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,117 @@
+
+
+{% extends "mainbase.html" %}
+{% block content %}
+    <!-- ====== Hero Start ====== -->
+
+
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css2/plan-review.css') }}">
+    
+
+      <div class="plan-review-div1">
+
+    
+    
+    <div id="about_us" class="card-fluid">
+        <div class="card-fluid">
+            <div class="session-title row ">
+                 <h2 class="text-center">Find a plan thats right for you</h2>
+                 <div class="heading-line"></div>
+                 <p class="text-center">There are many variations of passages of Lorem Ipsum available Lorem Ipsum available but the majority</p>
+                 <p class="text-center">Current Plan: 
+
+                  {% if price %}
+                  {{price.title}}
+                  {%else %}
+                  None 
+                 {% endif %}
+
+                 </p>
+
+             </div>
+            
+              
+                     
+                     
+                </div>
+                 
+              
+        </div>    
+         
+
+
+
+
+
+
+     </div>
+     </div>
+     </div>
+     <div class="group-div20">
+      <div class="rectangle-div1"></div>
+      <div class="plan-summary-div">Plan Summary</div>
+      <img class="evaclose-fill-icon" alt="" src="public/evaclosefill.svg" />
+      <div class="group-div21">
+        <div class="jill-adams-div">{{name}}</div>
+        <div class="jilladamsgmailcom-div">{{useremail}}</div>
+        <div class="div1">{{number}}</div>
+        <div class="mind-your-mind">{{price.title}}</div>
+        <div class="ghs-600-div">{{price.amount}}</div>
+        <div class="mobile-money-div">Card/Mobile money</div>
+        <div class="name-div">Name</div>
+        <div class="email-div">Email</div>
+        <div class="phone-div">Phone</div>
+        <div class="plan-name-div">
+          <p class="plan">Plan</p>
+          <p class="name-p">Name</p>
+        </div>
+        <div class="total-div">Total</div>
+        <div class="pay-with-div">
+          <p class="plan">Pay</p>
+          <p class="name-p">with</p>
+        </div>
+      </div>
+      <div class="button-div"><div class="click-here-div1">Back</div></div>
+      <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+
+        <input type="hidden" name="public_key" value="FLWPUBK_TEST-SANDBOXDEMOKEY-X" />
+        <input type="hidden" name="customer[email]" value="{{useremail}}" />
+        <input type="hidden" name="customer[name]" value="{{name}}" />
+        <input type="hidden" name="tx_ref" value="{{tx_reff}}" />
+        <input type="hidden" name="amount" value={{price.amount}} />
+        <input type="hidden" name="payment_options" value="card, ussd, mobilemoney" />
+        <input type="hidden" name="currency" value="NGN" />
+        <input type="hidden" name="customer[phone]" value="233551660436" />
+        <input type="hidden" name="meta[token]" value="54" />
+        <input type="hidden" name="redirect_url" value="http://localhost:5000/confirmravepayment?amount={{price.amount}}&tid={{tid}}" />
+      <!----  <a ><button class="btn btn-primary offset-5"><i class="fas fa-download"></i> Book</button></a>-->
+      <div class="button-div1"><div class="click-here-div1"><button>Pay</button></div></div>
+      </form>
+    </div>
+  </div>
+  
+  
+    <!-- ====== Team End ====== -->
+
+   
+
+    <!-- ====== Back To Top Start ====== -->
+   
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // ==== for menu scroll
+  
+  </body>
+</html>
+{% endblock %}

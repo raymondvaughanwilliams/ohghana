@@ -1,0 +1,79 @@
+{% extends "usersidenavtest.html" %}
+{% block content %}
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Hero Start ====== -->
+
+   
+        <div class="container rounded bg-white mt-5 mb-5">
+
+            <div class="card-body rounded ">
+            <div class="session-title row">
+                 <h2>Journal</h2>           
+                 <p>Let your emotions go free.Write your thoughts</p>
+                 </div>    
+                      <div class="col text-center">
+                       <a href = "{{url_for('core.journal_add')}}">  <button  class=" btn btn-primary btn-sm btn-icon">Create New Journal</button>
+                      </div>
+                            
+                    </div>
+                  </div>
+                     </div>  
+                </div>
+             </div>
+        </div>    
+         
+        {% for journal in journals%}
+    
+        <div class="col-lg-5 offset-2">
+            <div class="card  p-3">
+                <div class=" ">
+                  <h5 class=" font-weight-bolder mb-4 pt-2">{{journal.text}}</h5>
+                  </div>
+                  {{journal.date}}
+
+                  <div class="button-group offset-9">
+                      <a  href="{{ url_for('core.journal_edit',id=journal.id) }}"> <button class=' button-group-item btn-primary btn-sm btn-icon '>e</button></a>
+                      <a  href="{{ url_for('core.delete_journal',id=journal.id) }}"> <button class=' button-group-item btn-primary btn-sm btn-icon'>d</button></a>
+                  </div>
+
+                
+                </div>
+              </div>
+            </div>
+        <br>
+  {% endfor %}
+
+  
+    <!-- ====== Team End ====== -->
+
+   
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+          <link  type="application/javascript" href="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+  <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    </body>
+</html>
+{% endblock %}

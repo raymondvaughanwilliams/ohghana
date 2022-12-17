@@ -1,0 +1,180 @@
+<!-- =========
+
+	Template Name: Play
+	Author: UIdeck
+	Author URI: https://uideck.com/
+	Support: https://uideck.com/support/
+	Version: 1.1
+
+========== -->
+
+
+    <!-- ====== Header End ====== -->
+    {% extends "mainnav.html" %}
+    {% block content %}
+   
+
+
+
+
+
+
+    <section id="text-alignments" style="margin-bottom:100px">
+        <div class="row" style="margin-bottom:50px";>
+            <div class="col-12 mt-3 mb-1 text-center">
+                <h4 class="text-uppercase ">HOW IT WORKS</h4>
+                <p style="padding-top:25px";>The most simple & convenient way to access talk therapy - anytime, anywhere, any device.</p>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-4 col-md-12" >
+                <div class="card text-center" style="height:400px;width:400px;margin-left:100px;">
+                    <div class="card-body">
+                        <i class="fa fa-calendar"  style="font-size:40px;color: green;"></i>
+                          <p class="card-text" style="padding-top:50px;"><b>Choose a Therapist</b></p>
+                        <p class="card-text"  style="padding-top:30px;">Go through our catalog of Therapists to choose and book a therapist.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card text-center" style="height:400px;width:500px;">
+                    <div class="card-body">
+                        <i class="fa fa-female"  style="font-size:40px;color: green;"></i>
+                        <p class="card-text"  style="padding-top:50px;"><b>Schedule an Appointment</b></p>
+                        <p class="card-text" style="padding-top:30px;">Schedule an appointment with therapist. Therapist will confirm the date and time or choose a new date and time for you to confirm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card text-center" style="height:400px;width:400px;">
+                    <div class="card-body">
+                        <i class="fa fa-calendar-check-o"  style="font-size:40px;color: green;"></i>
+                        <p class="card-text" style="padding-top:50px;"><b>Join Session</b></p>
+                        <p class="card-text" style="padding-top:30px;">Either have an in person session, a phone call or a video call</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class=" text-center" style="margin-bottom: 100px;" >
+        <a  href="{{ url_for('users.register') }}"><button class="btn btn-primary text-center"  style="color: white;background-color:#0F9B93;border-color:#0F9B93">Get Started </button></a>
+        </div>
+     
+    <!-- ====== Features End ====== -->
+
+    
+    <!-- ====== Pricing Start ====== -->
+  
+    
+
+
+   
+    <!-- ====== Pricing End ====== -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+  
+
+  
+
+
+
+
+
+
+
+
+ <!-- ====== Pricing Start ====== -->
+
+
+<!-- ====== Pricing End ====== -->
+
+      <!-- ====== FAQ End ====== -->
+
+    <!-- ====== Team Start ====== -->
+   
+
+
+
+
+
+
+  
+    <!-- ====== Team End ====== -->
+
+    
+    <!-- ====== Contact End ====== -->
+
+    
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // ==== for menu scroll
+      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+
+      pageLink.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector(elem.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            offsetTop: 1 - 60,
+          });
+        });
+      });
+
+      // section menu active
+      function onScroll(event) {
+        const sections = document.querySelectorAll(".ud-menu-scroll");
+        const scrollPos =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+
+        for (let i = 0; i < sections.length; i++) {
+          const currLink = sections[i];
+          const val = currLink.getAttribute("href");
+          const refElement = document.querySelector(val);
+          const scrollTopMinus = scrollPos + 73;
+          if (
+            refElement.offsetTop <= scrollTopMinus &&
+            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+          ) {
+            document
+              .querySelector(".ud-menu-scroll")
+              .classList.remove("active");
+            currLink.classList.add("active");
+          } else {
+            currLink.classList.remove("active");
+          }
+        }
+      }
+
+      window.document.addEventListener("scroll", onScroll);
+    </script>
+  </body>
+</html>
+{% endblock
+  %}

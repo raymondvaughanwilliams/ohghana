@@ -1,0 +1,139 @@
+{% extends "mainnav.html" %}
+{% block content %}
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/bootstrap.min.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/bootstrap-select.min.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/bootstrap-slider.min.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/jquery.scrolling-tabs.min.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/bootstrap-checkbox.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/flexslider.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/featherlight.min.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/font-awesome.min.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/bootstrap.offcanvas.min.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/core.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/style.css') }}">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='webassets/css/responsive.css') }}">
+
+
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	
+		<section class="section-page-header">
+			<div class="container">
+				<h1 class="entry-title">Review Order</h1>
+			</div>
+		</section>
+	
+		<section class="section-page-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-info" role="alert">
+							<p><i class="fa fa-check" aria-hidden="true"></i> Check your order review below and click Checkout to continue.</p>
+						</div>
+					</div>
+					
+					<div id="primary" class="col-md-6">
+						<div class="section-order-details-event-info">
+						
+							<div class="seat-details">
+								<h3> Order Information</h3>
+								<div class="seat-details-info">
+									<table class="table seat-row">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Email</th>
+												<th>Phone</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>{{user.name}}</td>
+												<td>{{user.email}}</td>
+												<td>{{user.phone_number}}</td>
+											</tr>
+										</tbody>
+									</table>	
+									<table class="table number-tickets">
+										<thead>
+											<tr>
+												<th>Therapist Name</th>
+												
+                                                <th> Sessions</th>
+                                                <th>Total Price</th>
+                                              
+											
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>{{therapist.name}}</td>
+												
+                                              <td> <form method="POST">
+                                                {{ form.hidden_tag() }}
+
+                                                 {{form.session}}
+                                               
+                                          {{form.submit}}</td></form>
+                                                
+                                                <td>{{total}}</td>
+											</tr>
+										</tbody>
+									</table>
+                                    
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div id="secondary" class="col-md-6">
+						<div class="section-order-review-pricing">
+							
+							
+                            <div class="delivery-method">
+                                <h3></h3>
+                                <div class="delivery-info">
+                                    <span>Sandbox Credentials</span>
+                                    <p>Card Number: 4187 4274 1556 4246</p><br >
+                                    <p>Expiry Date: 09/32</p><br >
+                                    <p>CVV: 111 </p><br>
+                                </div>
+                            </div>
+                    
+                            <div class="section-order-details-event-action">
+                                <div class="row">
+                                    <div class="col-sm-offset-5 col-sm-7 col-lg-offset-6 col-lg-6">
+        
+                                        <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+        
+                                            <input type="hidden" name="public_key" value="FLWPUBK_TEST-SANDBOXDEMOKEY-X" />
+                                            <input type="hidden" name="customer[email]" value={{user.email}} />
+                                            <input type="hidden" name="customer[name]" value={{user.username}} />
+                                            <input type="hidden" name="tx_ref" value="{{tx_reff}}" />
+                                            <input type="hidden" name="amount" value={{therapist.baseprice}} />
+                                            <input type="hidden" name="payment_options" value="card, ussd, mobilemoney" />
+                                            <input type="hidden" name="currency" value="NGN" />
+                                            <input type="hidden" name="customer[phone]" value="{{user.phone_number}}" />
+                                            <input type="hidden" name="meta[token]" value="54" />
+                                            <input type="hidden" name="redirect_url"  value="http://localhost:5000/confirmpayment?amount={{total}}&tid={{tid}}&sessions={{sessions}}" />
+                                          <!----  <a ><button class="btn btn-primary offset-5"><i class="fas fa-download"></i> Book</button></a>-->
+                                          <a class="primary-link" href="#"><button>Proceed Checkout</button></a>
+                                          </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>	
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+        </div>
+        </div>
+{% endblock %}

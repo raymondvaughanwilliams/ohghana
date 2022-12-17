@@ -1,0 +1,157 @@
+<!{% extends "mainbase.html" %}
+{% block content %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css2/f-a-qs.css') }}">
+
+    
+  <body>
+    <div class="faqs-div1">
+    
+      <div class="header-section-div">
+        <div class="container-div">
+          <div class="container-div1">
+            <div class="text-div">
+              <div class="text-div1">
+                <b class="heading-b"
+                  ><span>ASK </span><span class="us-span">US</span
+                  ><span> ANYTHING</span></b
+                >
+              </div>
+              <div class="supporting-text-div">
+                Have any questions? We're here to assist you.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="faq-section-div">
+        <div class="container-div2">
+          <div class="content-div">
+            <div class="text-div2">
+              <img class="icon" alt=""             src="{{ url_for('static',filename='public/icon.svg') }}"       
+              />
+              <div class="text-div3">
+                <div class="text-div4">How do I book an appointment?</div>
+                <div class="supporting-text-div1">
+                  You can book an appoinment by signing up and choosing a
+                  therapist of your choice. The therapist will get in touch
+                  within 24 to 48 hours to schedule sessions with you.
+                </div>
+              </div>
+            </div>
+            <div class="text-div2">
+              <img class="icon" alt=""  src="{{ url_for('static',filename='public/icon.svg') }}"  />
+              <div class="text-and-supporting-text">
+                <div class="text-div6">
+                  What is the minimum slot for therapy?
+                </div>
+                <div class="supporting-text-div2">
+                  Our minimum time slot for a ssession is 40-50 minutes.A client
+                  may need 8 to 12 sessions with a considerable length of 40
+                  minutes to achieve a healing point.
+                </div>
+              </div>
+            </div>
+            <div class="text-div2">
+              <img class="icon" alt=""  src="{{ url_for('static',filename='public/icon.svg') }}"  />
+              <div class="text-div3">
+                <div class="text-div4">Will my info be kept confidential?</div>
+                <div class="supporting-text-div3">
+                  Yes, confidentiality willbe maintained ne the no name team. A
+                  consent form will also be signed by the client before starting
+                  a session.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-div">
+            <div class="text-div2">
+              <img class="icon" alt=""  src="{{ url_for('static',filename='public/icon2.svg') }}"  />
+              <div class="text-div3">
+                <div class="text-div4">How do I cancel a session ?</div>
+                <div class="supporting-text-div3">
+                  Please email us @noname.com to cancel your first appointment.
+                  After your first session, you will work directly with your
+                  therapist to schedule and manage future appointments.
+                  Cancelling a session comes at a fee.
+                </div>
+              </div>
+            </div>
+            <div class="text-div2">
+              <img class="icon" alt=""  src="{{ url_for('static',filename='public/icon3.svg') }}"  />
+              <div class="text-div3">
+                <div class="text-div4">How do i met with my therapist?</div>
+                <div class="supporting-text-div3">
+                  All your therapist conduct sessions through telehealth via
+                  zoom. You will receive an email with a link to your session 24
+                  hours before the scheduled appointment.
+                </div>
+              </div>
+            </div>
+            <div class="text-div2">
+              <img class="icon" alt=""  src="{{ url_for('static',filename='public/icon4.svg') }}"  />
+              <div class="text-div3">
+                <div class="text-div4">
+                  Does therepy help recover from depression?
+                </div>
+                <div class="supporting-text-div3">
+                  Yes, therapy helps in recovering from depression. Regular
+                  sessions with a therapist can reduce the symptoms of
+                  depression and mentally strengthen the person to fight the
+                  symptons.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-div3">
+          <div class="content-div2">
+            <div class="text-div19">
+              <div class="text-div20">Still have questions?</div>
+              <div class="text-div21">
+                Can’t find the answer you’re looking for? Please chat to our
+                friendly team.
+              </div>
+            </div>
+            <button class="button">
+              <div class="text-div22">Get in touch</div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="group-div3">
+        <div class="frame-div13">
+          <img
+            class="phbrain-fill-icon2"
+            alt=""
+            src="{{ url_for('static',filename='public/phbrainfill.svg') }}" 
+          /><button class="no-name-button">NO NAME</button>
+        </div>
+        <img class="rectangle-icon1" alt=""  src="{{ url_for('static',filename='public/rectangle-41.svg') }}" /><img
+          class="group-icon1"
+          alt=""
+          src="public/group-651.svg"
+        />
+        <div class="legal-div1">Legal</div>
+        <div class="disclaimer-div1">Disclaimer</div>
+        <div class="privacy-policy-div1">Privacy Policy</div>
+        <div class="terms-of-service1">Terms Of Service</div>
+        <div class="group-div4">
+          <div class="quick-links-div1">Quick Links</div>
+          <div class="for-corporates-div2">For Corporates</div>
+          <div class="for-therapists-div1">For Therapists</div>
+          <div class="contact-div3">Contact</div>
+          <div class="about-us-div1">About Us</div>
+        </div>
+        <div class="copyright-all-rights-reserved1">
+          CopyRight All Rights Reserved
+        </div>
+        <div class="frame-div14">
+          <img
+            class="phbrain-fill-icon2"
+            alt=""
+            src="public/phbrainfill4.svg"
+          /><b class="pricing-div">NO NAME</b>
+        </div>
+      </div>
+    </div>
+  {%endblock%}

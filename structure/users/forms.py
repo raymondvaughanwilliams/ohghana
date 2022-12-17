@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField,SelectField
 from wtforms.validators import DataRequired, Email, EqualTo
 from wtforms import ValidationError
 from flask_wtf.file import FileField,FileAllowed
@@ -15,9 +15,13 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])
     username = StringField('UserName',validators=[DataRequired()])
+    name = StringField('Name',validators=[DataRequired()])
+    last_name = StringField('Last Name',validators=[DataRequired()])
+    number = StringField('Number',validators=[DataRequired()])
+    role = SelectField('User Type',validators=[DataRequired()],choices=[('user', 'user'), ('therapist','therapist')])
     password = PasswordField('Password',validators=[DataRequired(),EqualTo('pass_confirm',message='Passwords must match!')])
     pass_confirm = PasswordField('Confirm Password',validators=[DataRequired()])
-    submit = SubmitField('Register!')
+    submit = SubmitField('Sign Up!')
 
     def check_email(self,field):
         if User.query.filter_by(email=field.data).first():
@@ -31,8 +35,16 @@ class RegistrationForm(FlaskForm):
 class UpdateUserForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(),Email()])
     username = StringField('Username', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    plan = StringField('Plan', validators=[DataRequired()])
+    number = StringField('Number', validators=[DataRequired()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
-    submit = SubmitField('Update')
+    location = StringField('Location', validators=[DataRequired()])
+    pref_help = StringField('What are you seeking help for?')
+    pref_medium = StringField('What is your preferred medium for the session? eg whatsapp, zoom etc')
+    pref_gender = StringField('Do you have a preferred gender for the session?')
+    submit = SubmitField('Update Details!')
 
     def check_email(self, field):
         # Check if not None for that user email!

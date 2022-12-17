@@ -1,0 +1,157 @@
+<!-- =========
+
+	Template Name: Play
+	Author: UIdeck
+	Author URI: https://uideck.com/
+	Support: https://uideck.com/support/
+	Version: 1.1
+
+========== -->
+
+
+    <!-- ====== Header End ====== -->
+    {% extends "mainnav.html" %}
+    {% block content %}
+   
+
+
+
+<h2 class="text-center" style="padding-top:50px;padding-bottom:20px">CONTACT US</h2>
+
+
+<div class="col-xl-12 col-md-12 text-center">
+    <div class="card col-lg-6"  style="margin-left:auto;margin-right:auto;">
+        <div class="card-content">
+            <div class="card-body">
+                <h4 class="card-title col-md-3" style="border-bottom: 5px solid #0F9B93;">Get In Touch</h4>
+            </div>
+            <div class="card-body">
+                <form class="form"  method="post" action="/user/contact-us">
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-body" style="padding-left: 150px;padding-right: 150px;;">
+                        <div class="form-group" style="margin-bottom:20px">
+                            <label for="donationinput1 " class="sr-only"> Name</label>
+                            {{ form.name(class="form-control",placeholder="Name") }}
+                        </div>
+                        
+                        <div class="form-group"  style="margin-bottom:20px">
+                            <label for="donationinput3" class="sr-only">E-mail</label>
+                            {{ form.email(class="form-control",placeholder="Email") }}
+                        </div>
+
+                        <div class="form-group"  style="margin-bottom:20px">
+                            <label for="donationinput4" class="sr-only">Message</label>
+                            {{ form.text(class="form-control",placeholder="Message") }}
+                        </div>
+                        {{form.hidden}}
+                   <div class="form-actions center"  style="margin-bottom:20px">
+                        {{ form.submit(value="Send",class="btn btn-primary text-center",style="color: white;background-color:#0F9B93;border-color:#FFF9B9;") }}
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+     
+    <!-- ====== Features End ====== -->
+
+    
+    <!-- ====== Pricing Start ====== -->
+<div class="row">
+    <div class="col-lg-4 col-md-12" >
+        <div class=" text-center" style="height:400px;width:400px;margin-left:100px;">
+            <div class="body">
+                  <p class="card-text" style="padding-top:120px;color:#0F9B93"><b>E-Mail Us</b></p>
+                <p class="card-text"  style="padding-top:30px;">noname@noname.com</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class=" text-center" style="height:400px;width:500px;">
+            <div class="body">
+                <p class="card-text"   style="padding-top:120px;color:#0F9B93"><b>Call Us</b></p>
+                <p class="card-text" style="padding-top:30px;">233551660436.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+        <div class=" text-center" style="height:400px;width:400px;">
+            <div class="body">
+                <p class="card-text" style="padding-top:120px;color:#0F9B93"><b>Follow Us</b></p>
+                <p class="card-text" style="padding-top:30px;">Decide on the number of sessions you would like to opt for.</p>
+            </div>
+        </div>
+    </div>
+
+
+   
+    <!-- ====== Pricing End ====== -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+  
+
+  
+
+
+
+
+
+
+
+
+ <!-- ====== Pricing Start ====== -->
+
+
+<!-- ====== Pricing End ====== -->
+
+      <!-- ====== FAQ End ====== -->
+
+    <!-- ====== Team Start ====== -->
+   
+
+
+
+
+
+
+  
+    <!-- ====== Team End ====== -->
+
+    
+    <!-- ====== Contact End ====== -->
+
+    
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+  </body>
+</html>
+{% endblock
+  %}

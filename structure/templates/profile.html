@@ -1,0 +1,68 @@
+{% extends "usersidenavtest.html" %}
+{% block content %}
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Hero Start ====== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-3 offset-2">
+        <h4 class="text-right">PERSONAL INFORMATION</h4>
+    </div>
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                <span class="font-weight-bold">Current plan : {{userinfo.webfeatures.title}}</span>
+                <span class="text-black-50">Sessions remaining: {{userinfo.rem_sessions}}</span>
+                <span class="text-black-50">Chatweeks remaining: {{userinfo.rem_chatweeks}}</span>
+                <span> </span></div>
+        </div>
+        <div class="col-md-8 ">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">INFORMATION</h4>
+                </div>
+             <!---- <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                </div>-->
+                <form action="{{ url_for('users.account') }}" method="post" enctype="multipart/form-data">
+                    <div class="row mt-3 offset-2">
+                    <div class="col-md-12">
+                        {{ form.username.label(class="labels") }}
+                        {{form.username(class='form-control' ,value = userinfo.username) }}</div>
+                    <div class="col-md-12"> {{ form.email.label(class="labels") }}
+                        {{form.email(class='form-control' ,value = userinfo.email) }}</div>
+                    <div class="col-md-12"> {{ form.name.label(class="labels") }}
+                        {{form.name(class='form-control' ,value = userinfo.name) }}</div>
+                    <div class="col-md-12"> {{ form.number.label(class="labels") }}
+                        {{form.number(class='form-control' ,value = userinfo.number) }}</div>
+                        <div class="col-md-12"> {{ form.location.label(class="labels") }}
+                            {{form.location(class='form-control' ,value = userinfo.location) }}</div>
+                            <div class="col text-center">
+                                {{form.submit(class='btn btn-primary' ) }}</div>
+                </div>
+<br><br> 
+<br><br> 
+                <div class="col-md-3 ">
+                    <h5 class="font-weight-bolder">PREFERENCES</h5>
+                    </div>
+                    <div class="row mt-3 offset-2">
+
+                    <div class="col-md-12"> {{ form.pref_medium.label(class="labels") }}
+                        {{form.pref_medium(class='form-control' ,value = userinfo.pref_medium) }}</div>
+                        <div class="col-md-12"> {{ form.pref_help.label(class="labels") }}
+                            {{form.pref_help(class='form-control' ,value = userinfo.pref_help) }}</div>
+                            <div class="col-md-12"> {{ form.pref_gender.label(class="labels") }}
+                                {{form.pref_gender(class='form-control' ,value = userinfo.pref_therapistgender) }}</div>
+                                <div class="col text-center">
+                                {{form.submit(class='btn btn-primary' ) }}</div>
+            
+            </form>
+            </div>
+        
+</div>
+</div>
+</div>
+
+{% endblock %}

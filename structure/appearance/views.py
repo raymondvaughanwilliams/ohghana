@@ -2,7 +2,7 @@ from flask import render_template,url_for,flash, redirect,request,Blueprint
 from flask_login import current_user,login_required
 from structure import db
 from structure.models import WebFeature,Appearance
-from structure.appearance.forms import AppearanceForm,AppearanceForm1
+from structure.appearance.forms import AppearanceForm
 
 appearances = Blueprint('appearances',__name__)
 
@@ -64,6 +64,7 @@ def update_appearance(appearance_id):
     # Pass back the old blog post information so they can start again with
     # the old text and title.
     elif request.method == 'GET':
+        form.title_color.default = str(appearance.title_color)
         form.title_color.data = appearance.title_color
         form.subtitle_color.data = appearance.subtitle_color
         form.paragraph_color.data = appearance.paragraph_color
@@ -78,8 +79,8 @@ def update_appearance(appearance_id):
         form.bootstrap_class3.data = appearance.bootstrap_class3
 
 
-    return render_template('create_appearance.html',
-                           form=form,appearance=appearance)
+    return render_template('editui.html',
+                           appform=form,appearance=appearance)
 
 
 

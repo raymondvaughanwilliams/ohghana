@@ -1,0 +1,58 @@
+{% extends "mainbase.html" %}
+{% block content %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css2/plan-succesful.css') }}">
+
+<body>
+  <div class="plan-succesful-div">
+    <b class="find-a-plan-thats-right-for-yo"
+      ><span>Find A </span
+      ><span class="plan-thats-right">Plan Thats Right</span
+      ><span> For You</span></b
+    >
+    <div class="line-div"></div>
+    <div class="cancel-anytime-change-your-th">
+      Cancel anytime. Change your therapist anytime..
+    </div>
+    <div class="sessions-do-not-expire-and-hav">
+      Sessions do not expire and have lifetime validity. Once bought you can
+      schedule it at your convenience. You can contact us via email if you
+      couldn’t find the plan you are looking for and we will help you out.
+    </div>
+  
+ 
+    <div class="rectangle-div"></div>
+    <img class="vector-icon" alt=""  src="{{ url_for('static',filename='public/vector.svg') }}" /><img
+      class="vector-icon1"
+      alt=""
+      src="{{ url_for('static',filename='public/vector1.svg') }}"
+    />
+    <div class="your-payment-was-successful-we">
+      <p class="your-payment-was">Your payment was successful</p>
+      <p class="we-have-sent">we have sent you a receipt in your mail.</p>
+    </div>
+    <div class="click-here-div">go to Our Therapists</div>
+    <img class="ellipse-icon" alt="" src="{{ url_for('static',filename='public/ellipse-66.svg') }}" /><button
+      class="button"
+    >
+      <div class="click-here-div1">go to Our Therapists</div>
+    </button>
+  </div>
+</body>
+      <div class="group-div13">
+        <div class="frame-div19">
+          <img
+            class="phbrain-fill-icon4"
+            alt=""
+              src="{{ url_for('static',filename='public/phbrainfill5.svg') }}"
+          /><b class="no-name-b4">NO NAME</b>
+        </div>
+        <img class="rectangle-icon2" alt=""               src="{{ url_for('static',filename='public/rectangle-42.svg') }}"
+         /><img
+          class="group-icon3"
+          alt=""
+                  src="{{ url_for('static',filename='public/group-652.svg') }}"
+
+        />
+        <div class="legal-div2">Legal</div>
+
+        {% endblock %}

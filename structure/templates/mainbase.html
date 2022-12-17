@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title></title>
+    <meta name="description" content="" />
+
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+
+
+    
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/animate.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/lineicons.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/ud-styles.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css2/base.css') }}">
+  
+  </head>
+  <body>
+    <div class="footbase-div">
+      <div class="footframe-div10" id="legal"></div>
+      <header class="footframe-header" id="nav">
+        <div class="footframe-div13">
+          <div class="footframe-div14" id="brand">
+            <img
+              class="footphbrain-fill-icon2"
+              alt=""
+              src="{{ url_for('static',filename='public/phbrainfill1.svg') }}"
+              /><b class="footno-name-b2">NO NAME</b>
+          </div>
+          <header class="footframe-header1" id="nav-items">
+           <a href= "{{ url_for('core.hmsui') }}"> <button class="foothome-button" >Home</button></a>
+           <a href= "{{ url_for('core.hmsui') }}"> <button class="foothome-button" >About</button></a>
+           <a href= "{{ url_for('core.hmsui') }}"> <button class="foothome-button" >Pricing</button></a>
+           <a href= "{{ url_for('core.hmsui') }}"> <button class="foothome-button" >Our Therapists</button></a>
+           <a href= "{{ url_for('core.faqs') }}"> <button class="foothome-button" >FAQs</button></a>
+           <a href= "{{ url_for('core.contact') }}"> <button class="foothome-button" >Contact</button></a>
+          </header>
+          <button class="footframe-button3">
+            <a href= "{{ url_for('users.login') }}">  <button class="footlogin-button">Login</button></a>
+            <button class="footframe-button4">
+              <a href= "{{ url_for('users.register') }}">   <button class="footget-started-button">Get Started</button></a>
+            </button>
+          </button>
+        </div>
+      </header>
+      {% block content %}
+
+      {% endblock %}
+  </body>
+</html>

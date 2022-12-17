@@ -1,0 +1,627 @@
+<!-- =========
+
+	Template Name: Play
+	Author: UIdeck
+	Author URI: https://uideck.com/
+	Support: https://uideck.com/support/
+	Version: 1.1
+
+========== -->
+
+
+    <!-- ====== Header End ====== -->
+    {% extends "mainnav.html" %}
+    {% block content %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- ====== Hero Start ====== -->
+    <section class="ud-hero" id="home" style="background-image: url('https://images.pexels.com/photos/5699475/pexels-photo-5699475.jpeg'); background-size: 100%;margin-top: -80px;margin-bottom: -80px; height: 600px;">
+      <div class="container">
+        <div class="row" style="margin-top: -100px;">
+          <div class="col-lg-12" style=" padding-left:-100px;">
+            <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s" style="float:left; padding-left:-50px;">
+              <h1 class="ud-hero-title">
+                {{ about.title }}
+              </h1>
+              <p class="ud-hero-desc">
+{{about.subtitle}}            </p>
+              <ul class="ud-hero-buttons">
+               <!----<li>
+                  <a href="https://links.uideck.com/play-bootstrap-download" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
+                    Download Now
+                  </a>
+                </li>-->
+                <li>
+                  <a href="https://github.com/uideck/play-bootstrap" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-link-btn">
+                    Learn More <i class="lni lni-arrow-right"></i>
+                  </a>
+                  <a href="https://github.com/uideck/play-bootstrap" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-link-btn">
+                    Join Waitlist <i class="lni lni-arrow-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Hero End ====== -->
+
+<br>
+<br>
+<br>
+<section class="col-lg-12" style="margin-top: 50px;">
+  <div class="row">
+    <div class="col-lg-12 offset-3">
+      <div class="ud-section-title">
+        <h2 >Get help online from licensed experts</h2>
+       
+      </div>
+    </div>
+  </div>
+
+
+
+  
+
+
+
+  <!--<div class="col-lg-12 offset-3 gap-6">
+      <button type="button" class="btn btn-outline-primary">Primary</button>
+<button type="button" class="btn btn-outline-secondary">Secondary</button>
+<button type="button" class="btn btn-outline-success">Success</button>
+<button type="button" class="btn btn-outline-danger">Danger</button>
+<button type="button" class="btn btn-outline-warning">Warning</button>
+<button type="button" class="btn btn-outline-info">Info</button>
+<button type="button" class="btn btn-outline-dark">Dark</button>
+<button type="button" class="btn btn-outline-warning">Warning</button>
+<button type="button" class="btn btn-outline-info">Info</button>
+<button type="button" class="btn btn-outline-dark">Dark</button>
+    <br>
+      <button type="button" class="btn btn-outline-primary">Primary</button>
+  <button type="button" class="btn btn-outline-secondary">Secondary</button>
+  <button type="button" class="btn btn-outline-success">Success</button>
+  <button type="button" class="btn btn-outline-danger">Danger</button>
+  <button type="button" class="btn btn-outline-warning">Warning</button>
+  <button type="button" class="btn btn-outline-info">Info</button>
+  <button type="button" class="btn btn-outline-dark">Dark</button>
+  <button type="button" class="btn btn-outline-warning">Warning</button>
+<button type="button" class="btn btn-outline-info">Info</button>
+<button type="button" class="btn btn-outline-dark">Dark</button>
+</section>
+</div>-->
+
+
+
+    <!-- ====== Features Start ====== -->
+    <section id="features" class="ud-features">
+      <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% for blocks in block%}
+{% if blocks.status =='active' and blocks.id==1%}
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-section-title">
+              <span></span>
+              <h2>{{about.feature_subtitle}}</h2>
+              <p>
+           
+              </p>
+            </div>
+          </div>
+        </div>
+<div class="row">
+
+        {% for therapist in therapistobj %}
+
+
+
+
+          <div class="col-xl-3 col-lg-3 col-sm-6">
+            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
+            <!---  <div class="ud-feature-icon">
+                <i class="lni lni-gift"></i>
+              </div>-->
+              <div class="ud-feature-content">
+                <div class="ud-blog-image">
+                  <a href="blog-details.html">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/tray-7621e.appspot.com/o/tray-7621e-default-rtdb%2Ftray%2Frocket-white.png.jpg?alt=media&token=777d3ad9-135d-4cb1-87c6-04f0b16086d2" alt="blog" />
+                  </a>
+                </div>
+                <h2><a class="ud-feature-title" href="  {{ url_for('web.viewtherapist', id=therapist.id) }}">{{ therapist.name }}</a></h2>
+                <p class="ud-feature-desc">
+                 {{ therapist.biography[:100] }}...
+                </p>
+                <a href="{{ url_for('web.viewtherapist',id=therapist.id) }}" class="btn btn-primary">Book</a>
+              </div>
+            </div>
+          </div>
+  
+
+   {% endfor %}
+
+
+   {% endif %}
+    {% endfor %}
+     
+    <!-- ====== Features End ====== -->
+
+    <!-- ====== About Start ====== -->
+    {% for blocks in block%}
+    {% if blocks.status =='active' and blocks.id==2%}
+    <section id="about" class="ud-about">
+      <div class="container">
+        <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
+          <div class="ud-about-content-wrapper">
+            <div class="ud-about-content">
+              <span class="tag">About Us</span>
+              <h2>{{about.about_subtitle}}</h2>
+              
+              <p>
+                {{about.atext}}
+              </p>
+
+             
+              <a href="javascript:void(0)" class="ud-main-btn">Learn More</a>
+            </div>
+          </div>
+          <div class="ud-about-image">
+            <img  src="{{ url_for('static',filename='images/about/about-image.svg') }}" />
+           
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+    {% endfor %}
+    <!-- ====== About End ====== -->
+
+    <!-- ====== Pricing Start ====== -->
+  
+    
+<section class="section" style="margin-top:50px;">
+  <div class="text-center">
+    <h2 class=""> Get Help At Home </h2>
+    <p>abc</p>
+      </div>
+<div class="img">
+  <img src="/static/images/athome.png" alt="nak">
+  </div>
+  <div class="row col-lg-12 text-center">
+    <div class="col-lg-4">
+      In Person Sessions
+      </div>
+      <div class="col-lg-4">
+        Audio Sessions
+        </div>
+        <div class="col-lg-4">
+          Video Sessions
+          </div>
+    </div>
+
+  </section>
+
+    <section class="section-newsletter" >
+			<div class="container">
+				<div class="section-content">
+					<h2>Join Our Waitlist</h2>
+					<p>We will notify you when we go live<br> euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+					<div class="newsletter-form clearfix">
+						<form method="POST" enctype="multipart/form-data" action="">
+					
+						<input type="email" name = "email" placeholder="Your Email Address">
+						<input type="submit" value="Join Waitlist" />
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+    <!-- ====== Pricing End ====== -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+  
+
+    <!-- ====== Testimonials Start ====== -->
+    {% for blocks in block%}
+    {% if blocks.status =='active' and blocks.id==4%}
+    <section id="testimonials" class="ud-testimonials">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-section-title mx-auto text-center">
+              <span></span>
+              <h2>{{about.testimonial_subtitle}}</h2>
+              <p>
+                {{about.testimonial_paragraph}}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          {% for testimonials in testimonial %}
+          <div class="col-lg-4 col-md-6">
+            <div
+              class="ud-single-testimonial wow fadeInUp  shadow-lg"
+              data-wow-delay=".1s"
+            >
+   
+            <div class="ud-testimonial-ratings">
+   
+              </div>
+              <div class="ud-testimonial-content">
+                <p>
+                  {{testimonials.text}}
+                </p>
+              </div>
+              <div class="ud-testimonial-info">
+          <!----      <div class="ud-testimonial-image">
+                  <img
+                    src="assets/images/testimonials/author-01.png"
+                    alt="author"
+                  />
+                </div>-->
+                <div class="ud-testimonial-meta">
+                  <h4>{{testimonials.name}}</h4>
+                  <p>{{testimonials.company}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+
+
+          
+              </div>
+          </div>
+
+    </section>
+    {% endif %}
+    {% endfor %}
+    <!-- ====== Testimonials End ====== -->
+
+
+<section class="col-md-12" style="height: 355px;background-color: black; "> 
+    <div class="header"> 
+          <h2 class="text-center" style="padding-bottom:5%;color:white;">How it <span style="color:green;">works</span></h2>  
+      </div>
+      <div style="padding-left:10%;" class="">
+    <div class="row col-lg-12" style="padding-bottom: 100px;">
+          <div class="col-lg-6">
+           <p style="color: white;">  <i class="fa fa-female"  style="font-size:24px;color: green;" ></i> Choose and Book a Therapist of your choice</p>
+          </div>  
+
+      <div class="col-lg-6">
+        <p  style="color: white;">  <i class="fa fa-calendar"  style="font-size:24px;color: green;"></i> Schedule a session with Therapist</p>
+      </div>  
+     </div>
+
+
+    <div class="row col-lg-12">
+      <div class="col-lg-6">
+        <p  style="color: white;">  <i class="fa fa-calendar" style="font-size:24px;color: green;"></i> Confirm date and time with Therapist </p>
+        </div>  
+      
+        <div class="col-lg-6">
+          <p  style="color: white;">  <i class="fa fa-calendar-check-o" style="font-size:24px;color: green;"></i> Join session </p>
+        </div>  
+      </div>
+      </div>
+</section>
+
+
+
+
+
+
+
+ <!-- ====== Pricing Start ====== -->
+
+ <section id="pricing" class="ud-pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-section-title mx-auto text-center">
+          <span></span>
+          <h2>Our Pricing Plans</h2>
+          <p>
+
+          
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row g-0 align-items-center justify-content-center">
+              {% for price in pricing %}
+
+      <div class="col-lg-4 col-md-6 col-sm-10">
+        <div
+          class="ud-single-pricing first-item wow fadeInUp"
+          data-wow-delay=".15s"
+        >
+          <div class="ud-pricing-header">
+            <h3></h3>
+            <h4>{{price.amount}}</h4>
+          </div>
+
+
+
+
+          <div class="ud-pricing-body">
+            <ul>
+{% set list1 = price.features.split(',') %}
+<br>
+{% for item in list1 %}
+              <li>{{ item }}</li>
+      {% endfor %}
+
+            </ul>
+          </div>
+          <div class="ud-pricing-footer">
+            <a href="" class="ud-main-btn ud-border-btn">
+              Purchase Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+      
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ====== Pricing End ====== -->
+
+      <!-- ====== FAQ Start ====== -->
+      {% for blocks in block%}
+      {% if blocks.status =='active' and blocks.id==3%}
+      <section id="faq" class="ud-faq">
+       
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="ud-section-title text-center mx-auto">
+                <span></span>
+                <h2>{{about.faq_subtitle}}</h2>
+                <p>
+                  {{about.faq_paragraph}}
+                </p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+  
+              {% for faqs in faq %}
+              <div class="col-lg-6">
+  
+              <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
+                <div class="accordion">
+                  <button
+                    class="ud-faq-btn collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{faqs.id}}"
+                  >
+                    <span class="icon flex-shrink-0">
+                      <i class="lni lni-chevron-down"></i>
+                    </span>
+                    <span>{{faqs.question}}</span>
+                  </button>
+                  <div id="collapse{{faqs.id}}" class="accordion-collapse collapse">
+                    <div class="ud-faq-body">
+                     {{faqs.answer}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {% endfor %}
+             
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% endif %}
+      {% endfor %}
+      <!-- ====== FAQ End ====== -->
+
+    <!-- ====== Team Start ====== -->
+   
+
+
+
+
+
+
+  
+    <!-- ====== Team End ====== -->
+
+    <!-- ====== Contact Start ====== -->
+    <section id="contact" class="ud-contact">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-xl-8 col-lg-7">
+            <div class="ud-contact-content-wrapper">
+              <div class="ud-contact-title">
+                <span>CONTACT US</span>
+                <h2>
+                  {{ about.contact_subtitle }}
+                </h2>
+              </div>
+              <div class="ud-contact-info-wrapper">
+                <div class="ud-single-info">
+                  <div class="ud-info-icon">
+                    <i class="lni lni-map-marker"></i>
+                  </div>
+                  <div class="ud-info-meta">
+                    <h5>Our Location</h5>
+                    <p>{{ about.location }}</p>
+                  </div>
+                </div>
+                <div class="ud-single-info">
+                  <div class="ud-info-icon">
+                    <i class="lni lni-envelope"></i>
+                  </div>
+                  <div class="ud-info-meta">
+                    <h5>How Can We Help?</h5>
+                    <p>{{about.email}}</p>
+                    <p>contact@yourdomain.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-5">
+            <div
+              class="ud-contact-form-wrapper wow fadeInUp"
+              data-wow-delay=".2s"
+            >
+              <h3 class="ud-contact-form-title">Send us a Message</h3>
+              <form class="ud-contact-form">
+                <div class="ud-form-group">
+                  <label for="fullName">Full Name*</label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Adam Gelius"
+                  />
+                </div>
+                <div class="ud-form-group">
+                  <label for="email">Email*</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="example@yourmail.com"
+                  />
+                </div>
+                <div class="ud-form-group">
+                  <label for="phone">Phone*</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="{{about.number}}"
+                  />
+                </div>
+                <div class="ud-form-group">
+                  <label for="message">Message*</label>
+                  <textarea
+                    name="message"
+                    rows="1"
+                    placeholder="type your message here"
+                  ></textarea>
+                </div>
+                <div class="ud-form-group mb-0">
+                  <button type="submit" class="ud-main-btn">
+                    Send Message
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Contact End ====== -->
+
+    
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // ==== for menu scroll
+      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+
+      pageLink.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector(elem.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            offsetTop: 1 - 60,
+          });
+        });
+      });
+
+      // section menu active
+      function onScroll(event) {
+        const sections = document.querySelectorAll(".ud-menu-scroll");
+        const scrollPos =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+
+        for (let i = 0; i < sections.length; i++) {
+          const currLink = sections[i];
+          const val = currLink.getAttribute("href");
+          const refElement = document.querySelector(val);
+          const scrollTopMinus = scrollPos + 73;
+          if (
+            refElement.offsetTop <= scrollTopMinus &&
+            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+          ) {
+            document
+              .querySelector(".ud-menu-scroll")
+              .classList.remove("active");
+            currLink.classList.add("active");
+          } else {
+            currLink.classList.remove("active");
+          }
+        }
+      }
+
+      window.document.addEventListener("scroll", onScroll);
+    </script>
+  </body>
+</html>
+{% endblock
+  %}
