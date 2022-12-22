@@ -71,6 +71,7 @@ from structure.block.views import blocks
 from structure.appearance.views import appearances
 from structure.web.views import web
 from structure.userportal.views import userportal
+from structure.therapistportal.views import therapistportal
 
 app.register_blueprint(core)
 app.register_blueprint(users)
@@ -85,3 +86,7 @@ app.register_blueprint(blocks)
 app.register_blueprint(appearances)
 app.register_blueprint(web)
 app.register_blueprint(userportal)
+app.register_blueprint(therapistportal)
+
+
+

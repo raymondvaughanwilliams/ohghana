@@ -1,0 +1,231 @@
+{% extends "userportal/base.html" %}
+{% block content %}
+<section id="card-headings">
+	<div class="row">
+		<div class="col-12 mt-3 mb-1">
+			<h4 class="text-uppercase">Dashboard</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-sm-12">
+			<div class="card text-left" style="background-image: url('/static/images/lightbulb.png');background-size: 100%;height: 200px;">
+
+				<div class=" card-body" > 
+                    <div class="col-sm-6">
+					<h5 class="card-title" style="font-size:1.7rem;color:white">Welcome to No Name</h5>
+					<p class="card-text" style="font-size:18px;color:white"><b>{{user.name}}</b></p>
+</div>
+                  
+                </div>
+				
+			
+
+           
+        </div>
+		</div>
+		<div class="col-md-4 col-sm-12">
+			<div class="card" style="padding-top:30px:">
+				<h2 class="text-center" style="color:green">Available Sessions</h2>
+				<div class="card-content">
+					<div class="card-body text-left">
+                        {% if user.rem_sessions > 0 %}
+              <p>Therapist:<b> {{therapist.name}}</b></p>
+              <p> Sessions Remaining :<span> {{user.rem_sessions}} </span></p>
+              {%else%}
+              <p> No Available Sessions</p>
+              {% endif%}
+					</div>
+
+                
+
+				</div>
+            </div>
+
+              
+
+
+			</div>
+		</div>
+	</div>
+
+</section>
+<!--/ eCommerce statistic -->
+
+<!-- Statistics -->
+<div class="row match-height">
+    <div class="col-xl-6 col-lg-12">
+            <div class="card text-center">
+                <div class="card-header" style="background-color:#4CAF50">
+                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Upcoming Appointments</h4>
+                    <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-v font-medium-3"></i>
+                    </a>
+                   
+                </div>
+                <div class="card-content" style="background-color:#4CAF50">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {% for appointment in upcomingappointments%}
+                                <li class="list-group-item col-md-12">
+                                    <a href="{{url_for('userportal.journaldetails',id = appointment.id)}}" class="col-md-2" style="float:left;">{{appointment.user.name}} </a>
+                                    <span class="col-md-3" style="float:left"> {{appointment.user.last_name}}</span>
+                                <span class="col-md-3" style="float:left">	{{appointment.date.strftime("%m %b %Y")}} </span>
+                                   <span class="col-md-3" style="float:left"> {{appointment.time}}</span>
+                                </li>
+                                {% endfor %}
+                                
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+    <div class="col-xl-6 col-lg-12">
+        <div class="card text-center">
+            <div class="card-header">
+                <h4 class="card-title" id="heading-multiple-thumbnails" style="color:green;">Confirm or Reschedule Appointments</h4>
+                <a class="heading-elements-toggle">
+                    <i class="la la-ellipsis-v font-medium-3"></i>
+                </a>
+               
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for appointment in confirmappointments%}
+                        <li class="list-group-item col-md-12">
+                            <a href="{{url_for('userportal.journaldetails',id = appointment.id)}}" class="col-md-2" style="float:left;">{{appointment.user.name}} </a>
+                            <span class="col-md-2" style="float:left"> {{appointment.user.last_name}}</span>
+                        <span class="col-md-3" style="float:left">	{{appointment.date.strftime("%m %b %Y")}} </span>
+                           <span class="col-md-2" style="float:left"> {{appointment.time}}</span>
+                           <span class="col-md-2" style="float:left"> <button data-toggle="modal" data-target="#confirmModal">Co</button> <a href="{{url_for('therapistportal.editappointment', appointment_id=appointment.id)}}"><button>Re</button></a><span>
+                        </li>
+
+
+                        <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="confirmModalLabel">Sign Up for early access</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form class="form"  method="post" action="{{url_for('therapistportal.confirmappointment',appointment_id=appointment.id) }}">
+                                    <div class="form-body" >
+                            {{ form.hidden_tag() }}
+                      
+                                       
+                                    <div class="form-group text-center">
+                            {{ form.submit(class="btn btn-outline-info",value="Confirm") }}
+                                    </div>
+                                </form>
+                                        </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                        
+                    </ul>
+                                       
+
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+
+
+<div class="row match-height">
+    <div class="col-xl-6 col-lg-12">
+            <div class="card text-center">
+                <div class="card-header" style="background-color:#4CAF50">
+                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Rescheduled Appointments</h4>
+                    <span>Awaiting Confirmation</span>
+                    <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-v font-medium-3"></i>
+                    </a>
+                   
+                </div>
+                <div class="card-content" style="background-color:#4CAF50">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {% for appointment in rescheduledappointments%}
+                                <li class="list-group-item col-md-12">
+                                    <a href="{{url_for('userportal.journaldetails',id = appointment.id)}}" class="col-md-2" style="float:left;">{{appointment.user.name}} </a>
+                                    <span class="col-md-3" style="float:left"> {{appointment.user.last_name}}</span>
+                                <span class="col-md-3" style="float:left">	{{appointment.date.strftime("%m %b %Y")}} </span>
+                                   <span class="col-md-3" style="float:left"> {{appointment.time}}</span>
+                                </li>
+                                {% endfor %}
+                                
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+            
+        </div>
+    </div>
+</div>
+<!--/ Statistics -->
+        </div>
+      </div>
+    </div>
+
+<!--Confirm Modal-->
+ 
+
+
+
+
+    <div class="modal fade" id="rescheduleModal" tabindex="-1" role="dialog" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="rescheduleModalLabel">Reschedule Appointment</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="form"  method="post">
+                <div class="form-body" >
+        {{ form.hidden_tag() }}
+  
+                    <div class="form-group" style="margin-bottom:15px;">
+                      {{ form.date(class="form-control",placeholder="Phone") }}
+                    </div>
+                    <div class="form-group" style="margin-bottom:15px;">
+          {{ form.time(class="form-control",placeholder="Email") }}
+                    </div>
+                    <div class="form-group" style="margin-bottom:15px;">
+                      {{ form.therapist_notes(class="form-control",placeholder="Email") }}
+                                </div>
+                </div>
+                <div class="form-group text-center">
+        {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    <!-- ////////////////////////////////////////////////////////////////////////////-->

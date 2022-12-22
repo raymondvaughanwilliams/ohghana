@@ -1,0 +1,63 @@
+{% extends "userportal/base.html" %}
+{% block content %}
+<section id="card-headings">
+	<div class="row">
+		<div class="col-12 mt-3 mb-1">
+			<h4 class="text-uppercase">Dashboard</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-sm-12">
+			<div class="card ">
+
+				<div class="card-body text-left">
+					<form class="form"  method="post">
+                    <div class="form-body" style="padding-left: 150px;padding-right: 150px;">
+						{{ form.hidden_tag() }}
+                            <div class="row col-md-12" >
+                        <div class="form-group col-md-4">
+							{{ form.date.label(class="form-control-label") }}
+							{{ form.date(class="form-control") }}
+                        </div>
+
+                        <div class="form-group col-md-4">
+							{{ form.time.label(class="form-control-label") }}
+							{{ form.time(class="form-control") }}
+                        </div>
+                        </div>
+                        <div class="form-group">
+							{{ form.platform.label(class="form-control-label") }}
+							{{ form.platform(class="form-control") }}
+                        </div>
+                        <div class="form-group">
+							{{ form.therapist_notes.label(class="form-control-label") }}
+							{{ form.therapist_notes(class="form-control") }}
+                        </div>
+                    
+                    </div>
+                    <div class="form-group text-center">
+						{{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                </form></div>
+				
+			</div>
+		</div>
+		
+	</div>
+
+
+	
+
+
+</section>
+<!--/ eCommerce statistic -->
+
+<!-- Statistics -->
+
+<!--/ Statistics -->
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    <!-- ////////////////////////////////////////////////////////////////////////////-->

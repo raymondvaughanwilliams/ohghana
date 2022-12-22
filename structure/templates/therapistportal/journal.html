@@ -13,7 +13,7 @@
 
 				<div class="card-body">
 					<h5 class="card-title">Let your emotions go free</h5>
-                    <a href="{{ url_for('therapistportal.addtjournal')}}" class="btn btn-primary">Add to Journal</a>
+                    <a href="{{ url_for('userportal.addujournal')}}" class="btn btn-primary">Add to Journal</a>
 				</div>
 				
 			</div>
@@ -32,7 +32,7 @@
 					<ul class="list-group list-group-flush">
                         {% for journal in journals%}
 						<li class="list-group-item">
-						<a href="{{url_for('therapistportal.journaldetails',id = journal.id)}}">	{{journal.title}} </a>
+						<a href="{{url_for('userportal.journaldetails',id = journal.id)}}">	{{journal.title}} </a>
                            <span style="float: right;"> {{journal.date.strftime("%m %b %Y")}}</span>
 						</li>
                         {% endfor %}
