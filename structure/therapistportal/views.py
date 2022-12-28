@@ -1,8 +1,8 @@
 from flask import render_template,request,Blueprint,session,redirect,url_for,jsonify
-from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal ,Payment,NewsletterContacts,Appointment
+from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal ,Payment,NewsletterContacts,Appointment,Thread,Post
 # from structure.team.views import team
 from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist ,NewsletterForm
-from structure.userportal.forms import ContactForm,AppointmentForm
+from structure.userportal.forms import ContactForm,AppointmentForm,NewThreadForm
 from sqlalchemy.orm import load_only
 from flask_login import login_required
 from structure.appearance.forms import AppearanceForm
@@ -138,7 +138,7 @@ def addtjournal():
         db.session.add(journal)
         db.session.commit()
         print("Journal Created")  
-        return redirect(url_for('userportal.tjournal'))  
+        return redirect(url_for('therapistportal.tjournal'))  
     return render_template('therapistportal/addjournal.html',form=form,journals=journals)
 
 
@@ -208,3 +208,76 @@ def tprofile():
         db.session.commit()
         
     return render_template('therapistportal/profile.html',form=form)
+
+
+
+@therapistportal.route('/therapistportal/thread/<int:thread_id>',methods=['POST','GET'])
+def view_thread(thread_id):
+    thread = Thread.query.get(thread_id)
+    threads = Thread.query.all()
+    mainpost = Post.query.filter(Post.thread_id==thread_id,Post.main=='yes').first()
+    print('thread')
+    print(thread)
+    posts = thread.posts
+    postlength = len(posts)
+    print(postlength)
+    threadform = NewThreadForm()
+    user = User.query.filter_by(id=session['id']).first()
+    
+    if request.method == 'POST':
+        # Create a new post and add it to the database
+        
+        post = Post(content=request.form['content'], user_id=session['id'], thread_id=thread.id,main="no")
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('therapistportal.view_thread', thread_id=thread.id))
+
+    return render_template('therapistportal/thread.html',threads=threads, thread=thread, posts=posts,threadform=threadform,user=user,mainpost=mainpost,postlength=postlength)
+
+
+
+# @therapistportal.route('/thread/new', methods=['GET', 'POST'])
+# def new_thread():
+#     if request.method == 'POST':
+#         # Create a new thread and add it to the database
+#         user = User.query.filter_by(id=session['id']).first()
+#         thread = Thread(title=request.form['title'], user=user)
+#         db.session.add(thread)
+#         db.session.commit()
+#         return redirect(url_for('view_thread', thread_id=thread.id))
+        
+#     else:
+#         # Render the form for creating a new thread
+#         return render_template('new_thread.html')
+
+@therapistportal.route('/thread/<int:thread_id>/reply', methods=['GET', 'POST'])
+def reply(thread_id):
+    thread = Thread.query.get(thread_id)
+    if request.method == 'POST':
+        # Create a new post and add it to the database
+        user = User.query.filter_by(id=session['id']).first()
+        post = Post(content=request.form['content'], user=user, thread=thread)
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('therapistportal.view_thread', thread_id=thread.id))
+
+    else:
+        # Render the form for creating a reply
+        return render_template('reply.html', thread=thread)
+
+
+@therapistportal.route('/user/discussionforum',methods=['GET', 'POST'])
+def discussionforum():
+    threads = Thread.query.all()
+    threadform = NewThreadForm()
+    if request.method == 'POST':
+        thread = Thread(title=threadform.title.data,user_id=session['id'],anonymous=threadform.anonymous.data)
+        db.session.add(thread)
+        db.session.commit()
+        print("t")
+        thread_id = thread.id
+        content = threadform.content.data
+        post = Post(content=content,thread_id=thread_id,user_id=session['id'],main='yes')
+        db.session.add(post)
+        db.session.commit()
+    return render_template('therapistportal/discussionforum.html', threads=threads,threadform=threadform)

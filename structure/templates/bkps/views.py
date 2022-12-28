@@ -10,8 +10,8 @@ from structure.models import Appearance,Book
 from flask_mail import Mail, Message
 from structure import mail,db,app
 from structure.users.picture_handler import add_profile_pic
-from datetime import datetime,timedelta,date
-import urllib.request, json 
+from datetime import datetime,timedelta
+import urllib.request, json
 import random
 
 
@@ -338,30 +338,22 @@ def view_thread(thread_id):
     thread = Thread.query.get(thread_id)
     threads = Thread.query.all()
     mainpost = Post.query.filter(Post.thread_id==thread_id,Post.main=='yes').first()
+    print('thread')
+    print(thread)
     posts = thread.posts
     postlength = len(posts)
+    print(postlength)
     threadform = NewThreadForm()
     user = User.query.filter_by(id=session['id']).first()
     
     if request.method == 'POST':
-        print("in")
         # Create a new post and add it to the database
         
         post = Post(content=request.form['formcontent'], user_id=session['id'], thread_id=thread.id,main="no")
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('userportal.view_thread', thread_id=thread.id))
-        # for post in posts:
-        #     if isinstance(post.date, date):
-        #         post.date = post.date.isoformat()
-        #         print('jhss')
-        # return json.dumps([post.__dict__ for post in posts])       
-        # return jsonify([post.__dict__ for post in posts])
-        # post_list={}
-        # for  post in posts:
-        #     post_dict= post.__dict__
-            
-        # return post_list
+        return redirect(url_for('userportal.view_thread', thread_id=thread.id,posts=posts))
+        # return jsonify({'posts':posts})
 
     return render_template('userportal/thread.html',threads=threads, thread=thread, posts=posts,threadform=threadform,user=user,mainpost=mainpost,postlength=postlength)
 

@@ -1,0 +1,122 @@
+<!-- Use the Bootstrap navbar component to display the site title and navigation links -->
+{% extends "userportal/base.html" %}
+{% block content %}
+
+
+
+<div class="row match-height">
+    <div class="col-xl-4 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                  <div class="row col-md-12" style="margin-bottom: 10px;">
+                    <span class="col-md-6">Discussions </span> <button class="btn btn-outline-info col-md-6">New</button>
+                  </div>
+                    <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-v font-medium-3"></i>
+                    </a>
+                  
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                      
+                        {% for thread in threads %}
+                   
+                        <div class="row col-md-12" style="margin-bottom: 10px;">
+                              <div class="col-md-6"><a href="{{ url_for('userportal.view_thread',thread_id=thread.id)}}">{{thread.title }}</a></div>
+                              <div class="col-md-6" style="float: right">{{thread.user.name}}</div>
+                     
+                       </div>
+                 
+                        {% endfor %}
+                   
+                    </div>
+                </div>
+                </div>
+        </div>
+    
+    <div class="col-xl-8 col-lg-8">
+        <div class="card">
+            <div class="card-content"  style="background-color:#4CAF50;">
+                <div class="card-body" >
+                    <h4 class="card-title">Create a new Discussion</h4>
+                </div>
+                <div class="card-body">
+					<form class="form"  method="post">
+                    <div class="form-body" style="padding-left: 50px;padding-right: 50px;">
+						{{ threadform.hidden_tag() }}
+                        <div class="form-group col-md-12" style="color:white;">
+							{{ threadform.title.label(class="form-control-label" ,style="color:white;") }}
+							{{ threadform.title(class="form-control") }}
+                        </div>
+
+                        <div class="form-group col-md-12">
+							{{ threadform.content.label(class="form-control-label",style="color:white;") }}
+							{{ threadform.content(class="form-control") }}
+                        </div>
+                      
+                    
+                    </div>
+                    <div class="form-group text-center">
+						{{ threadform.submit(class="btn btn-outline-info",style="color:white;background-color: black;") }}
+                    </div>
+                </form></div>
+              
+        </div>
+    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Discussion Forum</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">New Thread</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Use the Bootstrap container and row components to create a grid layout -->
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Loop over the threads and display a card for each one -->
+      {% for thread in threads %}
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ thread.title }}</h5>
+            <p class="card-text">by {{ thread.user.username }}</p>
+            <a href="{{ url_for('userportal.view_thread', thread_id=thread.id) }}" class="btn btn-primary">View Thread</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  {% endblock %}

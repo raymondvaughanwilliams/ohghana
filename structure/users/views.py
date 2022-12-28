@@ -107,7 +107,7 @@ def login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('userportal.userdash')
+                next = url_for('therapistportal.therapistdash')
 
             return redirect(next)
     return render_template('web/login.html', form=form)

@@ -475,7 +475,25 @@ class Newsletter(db.Model):
     
 
 
+class Thread(db.Model):
+    __tablename__ = 'threads'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user = db.relationship('User', backref=db.backref('threads', lazy=True))
+    anonymous = db.Column(db.Boolean, default=False)
+    date = db.Column(db.Date,default=datetime.now())
 
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user = db.relationship('User', backref=db.backref('posts', lazy=True))
+    thread_id = db.Column(db.Integer, db.ForeignKey('threads.id'), nullable=False)
+    thread = db.relationship('Thread', backref=db.backref('posts', lazy=True))
+    main = db.Column(db.String(5),nullable=True)
+    date = db.Column(db.Date,default=datetime.now())
 
 
 @login_manager.user_loader

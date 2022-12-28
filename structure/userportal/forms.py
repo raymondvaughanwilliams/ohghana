@@ -72,3 +72,8 @@ class FeedbackForm(Form):
     
     
     
+class NewThreadForm(Form):
+    title = StringField('Title', validators=[DataRequired()])
+    content = TextAreaField('Post', validators=[DataRequired()])
+    anonymous = BooleanField('Anonymous', default=False)
+    submit = SubmitField('Submit')
