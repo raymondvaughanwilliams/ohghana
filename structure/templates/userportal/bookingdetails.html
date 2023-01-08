@@ -138,7 +138,37 @@
             </div>
             </div>
         </div>
-        </section>
-        </div>
-        </div>
+     
+		<button class="primary-link" style="margin-right: auto;margin-left: auto;" onclick="makePayment()">Pay</button>
+	</section>
+</div>
+</div>
+
+<script>
+    function makePayment() {
+      FlutterwaveCheckout({
+        public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
+        tx_ref: "{{ tx_reffs }}",
+        amount: {{ total }},
+        currency: "NGN",
+        payment_options: "card, banktransfer, ussd",
+        redirect_url: "http://127.0.0.1:5000/confirmpayment?amount={{total}}&tid={{tid}}&sessions={{sessions}}",
+        meta: {
+          consumer_id: 23,
+          consumer_mac: "92a3-912ba-1192a",
+        },
+        customer: {
+          email: "{{ user.email }}",
+          phone_number: "08102909304",
+          name: "{{ user.username }}",
+        },
+        customizations: {
+          title: "Jill Therapy",
+          description: "Payment for sessions",
+          logo: "https://freepngimg.com/thumb/numbers/5-2-3-number-png.png",
+        },
+      });
+    }
+  </script>
+
 {% endblock %}

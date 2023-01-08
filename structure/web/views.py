@@ -167,7 +167,7 @@ def confirmpayment():
 
         user.rec_transaction_id = transaction_id
         user.therapist_id = tid
-        user.rem_sessions = sessions
+        user.rem_sessions = user.rem_sessions+ int(sessions)
 
 
 

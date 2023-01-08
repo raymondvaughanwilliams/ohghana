@@ -139,7 +139,7 @@ def addtjournal():
         db.session.commit()
         print("Journal Created")  
         return redirect(url_for('therapistportal.tjournal'))  
-    return render_template('therapistportal/addjournal.html',form=form,journals=journals)
+    return render_template('userportal/addjournal.html',form=form,journals=journals)
 
 
 

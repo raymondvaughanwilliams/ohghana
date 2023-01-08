@@ -212,114 +212,34 @@
         </div>
         </div>
 
-		<footer id="colophon" class="site-footer">
-			<div class="top-footer">
-				<div class="container">
-					<div class="row">
-						
-						<div class="col-md-8">
-							<a href="#"><img src="images/logo.png" alt="logo"></a>
-						</div>
-						<div class="col-md-4">
-						
-						<p>&copy; 2016 MYTICKET.COM. ALL RIGHTS RESEVED</p>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-			<div class="main-footer">
-				<div class="container">
-					<div class="row">
-					  <div class="footer-1 col-md-9">
-						<div class="about clearfix">
-							<h3>About</h3>
-							<ul>
-								<li><a href="#">Our Company</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Advertising</a></li>
-								<li><a href="#">Press Room</a></li>
-								<li><a href="#">Trademarks</a></li>
-								<li><a href="#">Terms of Service</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						  </div>
-						  
-						  <div class="support clearfix">
-							<h3>Support and Contact</h3>
-							<ul>
-								<li><a href="#">Customer Support Contacts</a></li>
-								<li><a href="#">Feedback</a></li>
-								<li><a href="#">Help</a></li>
-								<li><a href="#">Sitemap</a></li>
-							</ul>
-						  </div>
-						  
-						  <div class="social clearfix">
-							<h3>Stay Connected</h3>
-							<ul>
-								<li class="facebook">
-									<a href="#">
-										<i class="fa fa-facebook" aria-hidden="true"></i>
-										Facebook
-									</a>
-								</li>
-								<li class="twitter">
-									<a href="#">
-										<i class="fa fa-twitter" aria-hidden="true"></i>
-										Twitter
-									</a>
-								</li>
-								<li class="linkedin">
-									<a href="#">
-										<i class="fa fa-linkedin-square" aria-hidden="true"></i>
-										LinkedIn
-									</a>
-								</li>
-								<li class="google">
-									<a href="#">
-										<i class="fa fa-google-plus-square" aria-hidden="true"></i>
-										Google+
-									</a>
-								</li>
-								<li class="rss">
-									<a href="#">
-										<i class="fa fa-rss-square" aria-hidden="true"></i>
-										RSS
-									</a>
-								</li>
-							</ul>
-						  </div>
-						</div>
+		<button class="primary-link" style="margin-right: auto;margin-left: auto;" onclick="makePayment()">Pay</button>
 
-					  <div class="footer-2 col-md-3">
-						 <div class="footer-dashboard">
-							<h3>MyTicket Dashboard</h3>
-							<ul>
-								<li><a href="#">Professional</a></li>
-								<li><a href="#">Subscriber Login</a></li>
-							</ul>
-						  </div>
-					  </div>
 
-					</div>
-				</div>
-			</div>
-		</footer><!-- #colophon -->
-
-		<script src="js/jquery-3.2.0.min.js"></script>
-		<script src="js/bootstrap-slider.min.js"></script>
-		<script src="js/bootstrap-select.min.js"></script>
-		<script src="js/jquery.scrolling-tabs.min.js"></script>
-		<script src="js/jquery.countdown.min.js"></script>
-		<script src="js/jquery.flexslider-min.js"></script>
-		<script src="js/jquery.imagemapster.min.js"></script>
-		<script src="js/tooltip.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/featherlight.min.js"></script>
-		<script src="js/featherlight.gallery.min.js"></script>
-		<script src="js/bootstrap.offcanvas.min.js"></script>
-		<script src="js/main.js"></script>
-		
+		<script>
+			function makePayment() {
+			  FlutterwaveCheckout({
+				public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
+				tx_ref: "{{ tx_reffs }}",
+				amount: {{ total }},
+				currency: "NGN",
+				payment_options: "card, banktransfer, ussd",
+				redirect_url: "http://127.0.0.1:5000/confirmpayment?amount={{total}}&tid={{tid}}&sessions={{sessions}}",
+				meta: {
+				  consumer_id: 23,
+				  consumer_mac: "92a3-912ba-1192a",
+				},
+				customer: {
+				  email: "{{ user.email }}",
+				  phone_number: "08102909304",
+				  name: "{{ user.username }}",
+				},
+				customizations: {
+				  title: "Jill Therapy",
+				  description: "Payment for sessions",
+				  logo: "https://freepngimg.com/thumb/numbers/5-2-3-number-png.png",
+				},
+			  });
+			}
+		  </script>
 	</body>
 </html>
