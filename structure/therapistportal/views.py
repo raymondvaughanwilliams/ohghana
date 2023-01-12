@@ -2,7 +2,7 @@ from flask import render_template,request,Blueprint,session,redirect,url_for,jso
 from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal ,Payment,NewsletterContacts,Appointment,Thread,Post
 # from structure.team.views import team
 from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist ,NewsletterForm
-from structure.userportal.forms import ContactForm,AppointmentForm,NewThreadForm
+from structure.userportal.forms import ContactForm,AppointmentForm,NewThreadForm,NotesForm
 from sqlalchemy.orm import load_only
 from flask_login import login_required
 from structure.appearance.forms import AppearanceForm
@@ -11,14 +11,45 @@ from structure.users.forms import LoginForm, UpdateTherapistForm
 from structure.appearance.views import appearance
 from structure.models import Appearance,Book
 from flask_mail import Mail, Message
-from structure import mail,db,app
+from structure import mail,db,app,scheduler
 from datetime import datetime,timedelta
 import urllib.request, json
 import random
+import string
 from structure.users.picture_handler import add_profile_pic
 
 
 therapistportal = Blueprint('therapistportal',__name__)
+
+
+
+
+
+# def create_meeting_link_task(appointment_id):
+#     # Get the appointment details
+#     appointment = Appointment.query.filter_by(id=appointment_id)
+#     start_time = datetime.strptime(appointment.date + " " + appointment.time, "%Y-%m-%d %H:%M:%S")
+#     start_time = start_time - datetime.timedelta(minutes=15)
+#     end_time = start_time + datetime.timedelta(hours=1)
+
+#     # Generate a random room name
+#     room_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+
+#     # Create the meeting link with start time and end time
+#     meeting_link = f"https://meet.jit.si/{room_name}?start={start_time.strftime('%s')}&end={end_time.strftime('%s')}"
+#     print("meeting link")
+#     print(meeting_link)
+#     appointment.therapist_confirmation = "yes"
+#     appointment.meeting_link = meeting_link
+#     db.session.commit()
+#     return render_template("userportal/jitsi_template.html", meeting_link=meeting_link)
+#     # Send the meeting link to the attendees via email or messaging service
+#     # send_invite(meeting_link, appointment.attendees)
+
+
+
+
+
 
 @therapistportal.route('/therapist/dashboard')
 def therapistdash():
@@ -30,6 +61,8 @@ def therapistdash():
         # upcomingappointments = Appointment.query.filter(Appointment.date > datetime.now()).filter(Appointment.therapist_id == user.id).all()
         upcomingappointments = Appointment.query.filter(Appointment.date > datetime.now()).filter(Appointment.therapist_id == user.id).filter(Appointment.therapist_confirmation == "yes").filter(Appointment.user_confirmation == "yes").all()
         confirmappointments = Appointment.query.filter(Appointment.date > datetime.now()).filter(Appointment.therapist_id == user.id).filter(Appointment.therapist_confirmation == "no").filter(Appointment.user_confirmation == "yes").all()
+        print('confirmappointments')
+        print(confirmappointments)
         rescheduledappointments = Appointment.query.filter(Appointment.date > datetime.now()).filter(Appointment.therapist_id == user.id).filter(Appointment.therapist_confirmation == "yes").filter(Appointment.user_confirmation == "no").all()
         print(upcomingappointments)
         about = About.query.get(1)
@@ -75,10 +108,34 @@ def therapistdash():
 def confirmappointment(appointment_id):
     appointment = Appointment.query.filter_by(id=appointment_id).first()
     if request.method == "POST":
+        # appointment.therapist_confirmation = "yes"
+        start_time = datetime.strptime(str(appointment.date) + " " + str(appointment.time), "%Y-%m-%d %H:%M:%S")
+        start_time = start_time - timedelta(minutes=15)
+        end_time = start_time + timedelta(hours=1)
+        rand_id=''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+        # Generate a random room name
+        room_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+
+        # Create the meeting link with start time and end time
+        meeting_link = f"https://meet.jit.si/{room_name}?start={start_time.strftime('%s')}&end={end_time.strftime('%s')}"
+        print("meeting link")
+        print(meeting_link)
+        
         appointment.therapist_confirmation = "yes"
+        appointment.meeting_link = meeting_link
+        # scheduler.add_job(func=create_meeting_link_task, trigger='date', run_date=start_time, args=[appointment_id],id=rand_id)
+        # scheduler.start()
         db.session.commit()
         return redirect(url_for('therapistportal.therapistdash'))
+
         
+@therapistportal.route("/room/<int:appointment_id>")
+def appointment_room(appointment_id):
+    appointment = Appointment.query.filter_by(id=appointment_id).first()
+    # Generate a random room name
+    form = NotesForm()
+    room_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+    return render_template("userportal/jitsi_template.html",meeting_link=appointment.meeting_link ,form=form)
 
 @therapistportal.route("/editappointment/<int:appointment_id>",methods=["POST","GET"])
 @login_required

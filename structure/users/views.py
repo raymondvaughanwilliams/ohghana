@@ -1,7 +1,7 @@
 # users/views.py
 from flask import render_template,url_for,flash,redirect,request,Blueprint,session
 from flask_login import login_user, current_user, logout_user, login_required
-from structure import db
+from structure import db,scheduler
 from structure.models import User, WebFeature
 from structure.users.forms import RegistrationForm,LoginForm,UpdateUserForm
 from structure.users.picture_handler import add_profile_pic

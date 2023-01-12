@@ -25,7 +25,7 @@
         </div>
 		</div>
 		<div class="col-md-4 col-sm-12">
-			<div class="card" style="padding-top:30px:">
+			<div class="card" style="padding-top:30px;">
 				<h2 class="text-center" style="color:green">Available Sessions</h2>
 				<div class="card-content">
 					<div class="card-body text-left">
@@ -71,9 +71,10 @@
                                 {% for appointment in upcomingappointments%}
                                 <li class="list-group-item col-md-12">
                                     <a href="{{url_for('userportal.journaldetails',id = appointment.id)}}" class="col-md-2" style="float:left;">{{appointment.user.name}} </a>
-                                    <span class="col-md-3" style="float:left"> {{appointment.user.last_name}}</span>
-                                <span class="col-md-3" style="float:left">	{{appointment.date.strftime("%m %b %Y")}} </span>
-                                   <span class="col-md-3" style="float:left"> {{appointment.time}}</span>
+                                    <span class="col-md-2" style="float:left"> {{appointment.user.last_name}}</span>
+                                <span class="col-md-2" style="float:left">	{{appointment.date.strftime("%m %b %Y")}} </span>
+                                   <span class="col-md-2" style="float:left"> {{appointment.time}}</span>
+                                  <a href="{{url_for('therapistportal.appointment_room',appointment_id=appointment.id)}}" target="_blank"  class="btn btn-primary col-md-3" style="float:left;" > Meeting Room</a>
                                 </li>
                                 {% endfor %}
                                 

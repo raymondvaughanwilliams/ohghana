@@ -19,6 +19,12 @@ class BookingForm(FlaskForm):
     submit = SubmitField('BOOK THERAPIST')
 
 
+class NotesForm(FlaskForm):
+    text = TextAreaField('Text')
+    submit = SubmitField('Add Note')
+
+
+
 class UpdateSessionForm(FlaskForm):
     date = DateField('Choose Date', [validators.DataRequired()], format='%Y-%m-%d')
     time = TimeField('Time',[validators.DataRequired()])

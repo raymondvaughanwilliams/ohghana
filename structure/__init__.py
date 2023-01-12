@@ -7,11 +7,14 @@ from sqlalchemy import MetaData
 from flask_mail import Mail, Message
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
+from flask_apscheduler import APScheduler
 
 
 app = Flask(__name__)
 load_dotenv()
 
+
+scheduler = APScheduler()
 
 app.config['SECRET_KEY'] = 'asecretkey'
 ############################

@@ -8,12 +8,12 @@ from sqlalchemy.orm import load_only
 from flask_login import login_required
 from structure.models import Appearance,Book
 from flask_mail import Mail, Message
-from structure import mail,db,app
+from structure import mail,db,app,scheduler
 from structure.users.picture_handler import add_profile_pic
 from datetime import datetime,timedelta,date
 import urllib.request, json 
 import random
-
+import string
 
 userportal = Blueprint('userportal',__name__)
 
@@ -412,3 +412,45 @@ def discussionforum():
         db.session.add(post)
         db.session.commit()
     return render_template('userportal/discussionforum.html', threads=threads,threadform=threadform)
+
+
+@userportal.route("/create_meeting")
+def create_meeting():
+    # Generate a random room name
+    room_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+    return render_template("userportal/jitsi_template.html", room_name=room_name)
+
+
+
+
+def create_meeting_link_task(appointment_id):
+    # Get the appointment details
+    appointment = Appointment.query.filter_by(id=appointment_id)
+    start_time = datetime.datetime.strptime(appointment.date + " " + appointment.time, "%Y-%m-%d %H:%M:%S")
+    start_time = start_time - datetime.timedelta(minutes=15)
+    end_time = start_time + datetime.timedelta(hours=1)
+
+    # Generate a random room name
+    room_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+
+    # Create the meeting link with start time and end time
+    meeting_link = f"https://meet.jit.si/{room_name}?start={start_time.strftime('%s')}&end={end_time.strftime('%s')}"
+    print("meeting link")
+    print(meeting_link)
+    appointment.therapist_confirmation = "yes"
+    appointment.meeting_link = meeting_link
+    db.session.commit()
+    # Send the meeting link to the attendees via email or messaging service
+    # send_invite(meeting_link, appointment.attendees)
+
+@app.route('/schedule_meeting/<appointment_id>')
+def schedule_meeting(appointment_id):
+    appointment = Appointment.query.filter_by(id=appointment_id)
+    start_time = datetime.datetime.strptime(appointment.date + " " + appointment.time, "%Y-%m-%d %H:%M:%S")
+    start_time = start_time - datetime.timedelta(minutes=15)
+
+    # Schedule the task to run 15 minutes before the appointment date and time
+    scheduler.add_job(func=create_meeting_link_task, trigger='date', run_date=start_time, args=[appointment_id])
+    scheduler.start()
+    return jsonify({"message": "Meeting link scheduled"})
+

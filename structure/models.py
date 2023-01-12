@@ -458,6 +458,7 @@ class Appointment(db.Model):
     therapist = db.relationship("User", foreign_keys=[therapist_id])
     user_notes= db.Column(db.String(250))
     therapist_notes= db.Column(db.String(250))
+    meeting_link = db.Column(db.String(250))
     
     
 class NewsletterContacts(db.Model):
