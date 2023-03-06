@@ -1,10 +1,12 @@
 # users/views.py
 from flask import render_template,url_for,flash,redirect,request,Blueprint,session
 from flask_login import login_user, current_user, logout_user, login_required
-from structure import db,scheduler
+from structure import db,photos
 from structure.models import User, WebFeature
 from structure.users.forms import RegistrationForm,LoginForm,UpdateUserForm
 from structure.users.picture_handler import add_profile_pic
+import secrets
+import requests
 
 users = Blueprint('users',__name__)
 
@@ -12,8 +14,9 @@ users = Blueprint('users',__name__)
 @users.route('/register',methods=['GET','POST'])
 def register():
     form = RegistrationForm()
-
-    if form.validate_on_submit():
+    print("hghgj")
+    # if form.validate_on_submit():
+    if request.method == 'POST':
         print("df")
         user = User(email=form.email.data,
                     name=form.name.data,
@@ -24,11 +27,51 @@ def register():
 
         db.session.add(user)
         db.session.commit()
-        flash('Thanks for registration!')
-        return redirect(url_for('users.login'))
+        flash('Thanks for registering!')
+        if form.role.data == 'user':
+            return redirect(url_for('users.login'))
+        else:
+            return redirect(url_for('users.vendorregister',id=user.id))
+            
 
     return render_template('web/register.html',form=form)
 
+
+
+@users.route('/vendorregister/<int:id>',methods=['GET','POST'])
+def vendorregister(id):
+    form = RegistrationForm()
+    user = User.query.filter_by(id=id).first()
+
+    # if form.validate_on_submit():
+    if request.method == 'POST':
+        print("df")
+        print(request.files.get('certificate'))
+        if request.files.get('certificate'):
+            print(form.certificate.data)
+        # if form.certificate.data is not None:
+
+            image = photos.save(request.files['certificate'], name=secrets.token_hex(10) + ".")
+            image= "static/images/certificates/"+image
+        else:
+            image = "static/images/noimage.JPG"  
+        user.business_name  = form.company.data
+        user.biography = form.bio.data
+        user.parts = form.parts.data
+        user.cars = form.cars.data
+        user.certificate = image
+        user.status = "unverifieed"
+        user.location  = form.location.data
+        user.returnable = form.returnable.data
+        user.return_period = form.returnperiod.data
+        db.session.add(user)
+        db.session.commit()
+        flash('Thanks for registering!')
+        return redirect(url_for('users.login'))
+
+            
+
+    return render_template('web/vendorregister.html',form=form)
 
 
 
@@ -72,7 +115,7 @@ def login():
 
             return redirect(next)
 
-        if user.check_password(form.password.data) and user is not None and user.role == 'user':
+        if user.check_password(form.password.data) and user is not None :
             #Log in the user
 
             login_user(user)
@@ -87,9 +130,11 @@ def login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('userportal.userdash')
+                next = url_for('core.inp_home')
+            
 
             return redirect(next)
+
 
 
         if user.check_password(form.password.data) and user is not None and user.role == 'therapist':
@@ -120,7 +165,7 @@ def logout():
     session.pop('name',None)
     session.pop('role',None)
 
-    return redirect(url_for("core.index"))
+    return redirect(url_for("core.inp_home"))
 
 
 # account (update UserForm)

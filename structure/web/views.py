@@ -1,5 +1,5 @@
 from flask import render_template,request,Blueprint,session,redirect,url_for,jsonify
-from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal ,Payment,NewsletterContacts
+from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal ,Payment,NewsletterContacts,Delivery,Destination
 # from structure.team.views import team
 from structure.web_features.forms import WebFeatureForm
 from structure.team.forms import UpdateTeamForm
@@ -10,7 +10,7 @@ from structure.pricing.forms import PriceForm
 from structure.testimonial.forms import TestimonialForm
 from structure.about.forms import AboutForm
 from structure.block.forms import BlockForm
-from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist ,NewsletterForm
+from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist ,NewsletterForm,FilterForm
 from structure.userportal.forms import ContactForm
 from sqlalchemy.orm import load_only
 from flask_login import login_required
@@ -24,6 +24,8 @@ from structure import mail,db,app
 from datetime import datetime,timedelta
 import urllib.request, json
 import random
+from sqlalchemy import  and_, or_ ,desc ,asc 
+
 
 
 web = Blueprint('web',__name__)
@@ -269,3 +271,116 @@ def contact_us():
 
             
     return render_template('web/contactus.html',form=form)
+
+
+
+
+
+
+
+
+
+
+
+@web.route('/home',methods=['GET', 'POST'])
+def web_home():
+    aboutform = AboutForm()
+    newsletterform = NewsletterForm()
+    filterform = FilterForm()
+    destinations = Destination.query.all()
+    page = request.args.get('page', 1, type=int)
+    web_features = WebFeature.query.order_by(WebFeature.date.desc()).paginate(page=page, per_page=10)
+    # alltherapists = Therapist.query.all()
+    therapists = WebFeature.query.order_by(WebFeature.date.desc()).all()
+    about = About.query.get(1)
+    price = Price.query.all()
+    faq = Faq.query.all()
+    testimonial = Testimonial.query.all()
+    team= Team.query.all()
+    serv = Price.features
+    Blockform= BlockForm()
+    team= Team.query.all()
+    block= Block.query.all()
+    Appearanceform = AppearanceForm()
+    appearance=Appearance.query.all()
+    # print(web_features.items)
+    webfeatureform = WebFeatureForm()
+    priceform = PriceForm()
+    faqform = FaqForm()
+    testimonialform = TestimonialForm()
+    deliveries = Delivery.query.filter_by(delivery_status="pending").all()
+    
+    
+    therapistobj = User.query.filter_by(role="therapist").all()
+    
+    if request.method == "POST":
+        name = newsletterform.name.data
+        phone = newsletterform.phone.data
+        email = newsletterform.email.data
+        contact = NewsletterContacts(name = name, phone = phone, email = email)
+        db.session.add(contact)
+        db.session.commit()
+    # teammateform = Team()
+    # services=[]
+    # service= serv.split(',')
+    # services.append(service)
+    return render_template('website/index.html',deliveries =deliveries, about=about,pricing=price,faq=faq,Blockform=Blockform,block=block,aboutform=aboutform,newsletterform=newsletterform,testimonials=testimonial,destinations=destinations,filterform=filterform)
+
+
+@web.route('/packages',methods=['GET', 'POST'])
+def packages():
+    filterform = FilterForm()
+    packages = Delivery.query.filter_by(delivery_status="pending")
+    destinations = Destination.query.all()
+    user =User.query.filter_by(id=session['id'])
+    if request.method == "POST":
+        # Get the filter values from the form
+        location = filterform.location.data
+        destination = filterform.destination.data
+        date_min = filterform.start_date.data
+        date_max = filterform.end_date.data
+        # Build the SQLAlchemy filter conditions
+        conditions = []
+        if location:
+            # Build a list of conditions that match the location field
+            # using the LIKE operator and the % wildcard
+            location_conditions = [
+                Delivery.sender_location_id.like(f"%{location}%"),
+                Delivery.sender_location_id.like(f"{location}%"),
+                Delivery.sender_location_id.like(f"%{location}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*location_conditions))
+        if destination:
+            # Build a list of conditions that match the destination field
+            # using the LIKE operator and the % wildcard
+            destination_conditions = [
+                Delivery.destination_id.like(f"%{destination}%"),
+                Delivery.destination_id.like(f"{destination}%"),
+                Delivery.destination_id.like(f"%{destination}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the destination variations
+            conditions.append(or_(*destination_conditions))
+        if date_min and date_max:
+            # Filter for Deliverys with dates within the specified range
+            print(Delivery.start_date)
+            print(date_min)
+            conditions.append(and_(Delivery.start_date >= date_min, Delivery.end_date <= date_max))
+        conditions.append(Delivery.delivery_status == "pending")
+        print(conditions[0])
+        # elif date_min:
+        #     # Filter for Deliverys with dates greater than or equal to the specified minimum
+        #     conditions.append(Delivery.start_date >= date_min)
+        # elif date_max:
+        #     # Filter for Deliverys with dates less than or equal to the specified maximum
+        #     conditions.append(Delivery.end_date <= date_max)
+
+        # Filter the Deliverys based on the conditions
+        packages = Delivery.query.filter(and_(*conditions)).all()
+        print(packages)
+        print('packages')
+        return render_template("website/packages.html", packages=packages,user=user,filterform=filterform,destinations=destinations)
+
+    return render_template('website/packages.html',packages=packages,filterform=filterform,destinations=destinations)

@@ -1,0 +1,245 @@
+{% extends "agentportal/base.html" %}
+{% block content %}
+<section id="card-headings">
+	<div class="row">
+		<div class="col-12 mt-3 mb-1">
+			<h4 class="text-uppercase">Dashboard</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-8 col-sm-12">
+			<div class="card text-left" style="background-image: url('/static/images/lightbulb.png');background-size: 100%;height: 200px;">
+
+				<div class=" card-body" > 
+                    <div class="col-sm-6">
+					<h5 class="card-title" style="font-size:1.7rem;color:white">Welcome to I need Parts</h5>
+					<p class="card-text" style="font-size:18px;color:white"><b>{{user.name}}</b></p>
+					<p class="card-text" style="font-size:18px;color:white"><b>{{user.location.city}}</b> agent</p>
+</div>
+                  
+                </div>
+				
+			
+
+           
+        </div>
+		</div>
+
+		</div>
+	</div>
+
+</section>
+<!--/ eCommerce statistic -->
+
+<!-- Statistics -->
+<div class="row match-height">
+    <div class="col-xl-12 col-lg-12">
+            <div class="card text-center">
+                <div class="card-header" style="background-color:#4CAF50">
+                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Unclaimed Packages</h4>
+                    <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-v font-medium-3"></i>
+                    </a>
+                   
+                </div>
+                <div class="card-content" style="background-color:#4CAF50">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {% for delivery in deliveries%}
+                                <li class="list-group-item col-md-12">
+                                    <a href="{{url_for('therapistportal.update_package',package_id=delivery.id)}}"class="col-md-2" style="float:left;">{{delivery.parts.name}} </a>
+                                    <span class="col-md-2" style="float:left"> {{delivery.parts.car_make}}</span>
+                                <span class="col-md-2" style="float:left">	{{delivery.parts.car_model}}</span>
+                                <span class="col-md-2" style="float:left">	{{delivery.parts.description}} </span>
+                                  <a href="" target="_blank"  class="btn btn-primary col-md-3" style="float:left;" >Edit </a>
+                                </li>
+                                {% endfor %}
+                                
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+    <div class="col-xl-12 col-lg-12">
+        <div class="card text-center">
+            <div class="card-header">
+                <h4 class="card-title" id="heading-multiple-thumbnails" style="color:green;">Claimed Deliveries</h4>
+                <a class="heading-elements-toggle">
+                    <i class="la la-ellipsis-v font-medium-3"></i>
+                </a>
+               
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Part</th>
+                                    <th>Description</th>
+                                    <th>Car</th>
+                                    <th>Arrival Date</th>
+                                    <th>Vendor</th>
+                                    <th>Vendor Number</th>
+                                    <th>HJK</th>
+                                    <th>Requester Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for delivery in deliveries %}
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td><a href="{{url_for('therapistportal.update_package',package_id=delivery.id)}}">{{delivery.parts.name}}</a></td>
+                                    <td>{{delivery.parts.description}}</td>
+                                    <td>{{delivery.parts.car_make}} {{delivery.parts.car_model}}</td>
+                                  
+                                    <td>{{delivery.parts.car_model}}</td>
+                                    <td>{{delivery.vendors.name}}</td>
+                                    <td>{{delivery.vendors.number}}</td>
+                                    <td>{{delivery.parts.user.name}}</td>
+                                    <td>{{delivery.parts.user.number}}</td>
+                                </tr>
+                                {% endfor %}
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                                       
+
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+
+
+<div class="row match-height">
+
+
+
+
+    <div class="col-xl-6 col-lg-12">
+        <div class="card text-center">
+            <div class="card-header">
+                <h4 class="card-title" id="heading-multiple-thumbnails" style="color:green;">Confirmed Deliveries</h4>
+                <a class="heading-elements-toggle">
+                    <i class="la la-ellipsis-v font-medium-3"></i>
+                </a>
+               
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <ul class="list-group ">
+                        {% for delivery in confirmeddeliveries %}
+                        <li class="list-group-item col-md-12">
+                            <a href="{{url_for('therapistportal.update_package',package_id=delivery.id)}}" class="col-md-2" style="float:left;">{{delivery.item_description}}</a>
+                            <span class="col-md-2" style="float:left"> {{delivery.destination.city}}</span>
+                        <span class="col-md-3" style="float:left">	{{delivery.start_date.strftime("%m %b %Y")}} </span>
+                        <span class="col-md-3" style="float:left">	{{delivery.end_date.strftime("%m %b %Y")}} </span>
+                           <span class="col-md-2" style="float:left"> <button data-toggle="modal" data-target="#confirmModal">Co</button> <a href=""><button>Re</button></a><span>
+                        </li>
+
+
+             
+                        {% endfor %}
+                        
+                    </ul>
+                                       
+
+                </div>
+            </div>
+        </div>
+</div>
+    <div class="col-xl-6 col-lg-12">
+            <div class="card text-center">
+                <div class="card-header" style="background-color:#4CAF50">
+                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Delivered Packages</h4>
+                    <span>Awaiting Confirmation</span>
+                    <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-v font-medium-3"></i>
+                    </a>
+                   
+                </div>
+                <div class="card-content" style="background-color:#4CAF50">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                {% for delivery in completeddeliveries%}
+                                <li class="list-group-item col-md-12">
+                                    <a class="col-md-3" style="float:left" href="{{url_for('therapistportal.update_package',package_id=delivery.id)}}"> {{delivery.item_description}}</a >
+
+                                    <span class="col-md-2" style="float:left;">{{delivery.destination.city}} </span>
+                                <span class="col-md-3" style="float:left">	{{delivery.start_date.strftime("%m %b %Y")}} </span>
+                                   <span class="col-md-3" style="float:left"> {{delivery.end_date}}</span>
+                                </li>
+                                {% endfor %}
+                                
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+            
+        </div>
+    </div>
+</div>
+<!--/ Statistics -->
+        </div>
+      </div>
+    </div>
+
+<!--Confirm Modal-->
+ 
+
+
+
+
+    <div class="modal fade" id="rescheduleModal" tabindex="-1" role="dialog" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="rescheduleModalLabel">Reschedule Appointment</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="form"  method="post">
+                <div class="form-body" >
+        {{ form.hidden_tag() }}
+  
+                    <div class="form-group" style="margin-bottom:15px;">
+                      {{ form.date(class="form-control",placeholder="Phone") }}
+                    </div>
+                    <div class="form-group" style="margin-bottom:15px;">
+          {{ form.time(class="form-control",placeholder="Email") }}
+                    </div>
+                    <div class="form-group" style="margin-bottom:15px;">
+                      {{ form.therapist_notes(class="form-control",placeholder="Email") }}
+                                </div>
+                </div>
+                <div class="form-group text-center">
+        {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
+                    </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    <!-- ////////////////////////////////////////////////////////////////////////////-->

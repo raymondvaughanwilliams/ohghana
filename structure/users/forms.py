@@ -16,11 +16,20 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])
     username = StringField('UserName',validators=[DataRequired()])
     name = StringField('Name',validators=[DataRequired()])
-    last_name = StringField('Last Name',validators=[DataRequired()])
+    last_name = StringField('Last Name')
     number = StringField('Number',validators=[DataRequired()])
-    role = SelectField('User Type',validators=[DataRequired()],choices=[('user', 'user'), ('therapist','therapist')])
+    role = SelectField('Sign Up as a:',validators=[DataRequired()],choices=[('user', 'user'), ('vendor','vendor')])
     password = PasswordField('Password',validators=[DataRequired(),EqualTo('pass_confirm',message='Passwords must match!')])
     pass_confirm = PasswordField('Confirm Password',validators=[DataRequired()])
+    bio = StringField('Bio')
+    company = StringField('Company Name')
+    parts = TextAreaField('Parts you sell')
+    cars  = TextAreaField('Names of cars whose parts you deal in')
+    certificate = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    location = StringField('Location')
+    returnable = SelectField('Returnable',validators=[DataRequired()],choices=[('yes', 'Yes'), ('no', 'No')])
+    returnperiod = SelectField('Return Period for all parts(Warranty)',validators=[DataRequired()],choices=[('one', 'One day'), ('two', 'Two days'), ('three', 'Three days'), ('five', 'Five days'),('seven','One Week'),('fourteen','Two weeeks'),('thirty','One Month'),('ninety','3 months')])
+    
     submit = SubmitField('Sign Up!')
 
     def check_email(self,field):
@@ -59,7 +68,7 @@ class UpdateUserForm(FlaskForm):
 
 
 
-class UpdateTherapistForm(FlaskForm):
+class UpdateAgentForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(),Email()])
     username = StringField('Username', validators=[DataRequired()])
     name = StringField('Name', validators=[DataRequired()])

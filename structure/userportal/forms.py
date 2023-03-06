@@ -76,7 +76,7 @@ class FeedbackForm(Form):
     hidden = HiddenField('Hidden',default="contact" )
     submit = SubmitField('Submit')
     
-    
+
     
 class NewThreadForm(Form):
     title = StringField('Title', validators=[DataRequired()])

@@ -1,5 +1,5 @@
 from flask import render_template,request,Blueprint,session,redirect,url_for,jsonify
-from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal
+from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal,Delivery ,Destination,LaundryRequest,PartRequest,Bid,Review
 # from structure.team.views import team
 from structure.web_features.forms import WebFeatureForm
 from structure.team.forms import UpdateTeamForm
@@ -9,7 +9,7 @@ from structure.pricing.forms import PriceForm
 from structure.testimonial.forms import TestimonialForm
 from structure.about.forms import AboutForm
 from structure.block.forms import BlockForm
-from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist
+from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist ,DeliveryForm,RequestForm,BidForm,AcceptBidForm,ReviewForm
 from sqlalchemy.orm import load_only
 from flask_login import login_required
 from structure.appearance.forms import AppearanceForm
@@ -18,9 +18,11 @@ from structure.users.forms import LoginForm
 from structure.appearance.views import appearance
 from structure.models import Appearance,Book
 from flask_mail import Mail, Message
-from structure import mail,db
+from structure import mail,db,photos
 from datetime import datetime,timedelta
 import urllib.request, json
+import secrets
+
 
 
 core = Blueprint('core',__name__)
@@ -620,3 +622,296 @@ def howitworks():
 @core.route('/faqs')
 def faqs():
     return render_template('f-a-qs.html')
+
+
+
+
+# from flask import render_template
+
+@core.route("/mypackages", methods=["GET"])
+def mypackages():
+    deliveries = Delivery.query.filter((Delivery.sender_id==session['id']) |( Delivery.traveler_id==session['id'])).all()
+    print ("deliveries")
+    print(deliveries)
+    user = User.query.filter_by(id=session['id']).first()
+    print(user)
+
+    return render_template("portal/mydeliveries.html", deliveries=deliveries,user=user)
+
+
+
+
+
+
+@core.route("/packages/new", methods=["GET", "POST"])
+def new_package():
+    form = DeliveryForm()
+    destinations  = Destination.query.all()
+    if request.method == "POST":
+        # destination = Destination.query.filter_by(name=request.form["destination"]).first()
+        # if not destination:
+        #     return render_template("create_delivery.html", error="destination not found")
+        print("dates")
+        print(form.start_date.data)
+        print(form.end_date.data)
+        delivery = Delivery(sender_id=session['id'], destination_id=form.destination.data, sender_location_id=form.location.data,item_name=form.item_name.data,item_description= form.item_description.data,item_weight=form.item_weight.data, item_dimension=form.item_dimension.data,note=form.note.data,start_date=form.start_date.data,end_date=form.end_date.data)
+        db.session.add(delivery)
+        db.session.commit()
+        return redirect(url_for("web.web_home"))
+    return render_template("portal/new_delivery.html",form=form,destinations=destinations)
+
+@core.route("/packages/<int:delivery_id>/update", methods=["GET", "POST"])
+def update_package(delivery_id):
+    form = DeliveryForm()
+    destinations = Destination.query.all()
+    delivery = Delivery.query.get(delivery_id)
+    if not delivery:
+        return render_template("error.html", message="Delivery not found"), 404
+    if request.method == "POST":
+        delivery.destination_id = form.destination.data
+        delivery.sender_location_id = form.location.data
+        delivery.item_name = form.item_name.data
+        delivery.item_name = form.item_name.data
+        delivery.item_description = form.item_description.data
+        delivery.item_weight = form.item_weight.data
+        delivery.note = form.note.data
+        delivery.start_date = form.start_date.data
+        delivery.end_date = form.end_date.data
+        
+        db.session.commit()
+        return redirect(url_for("core.mypackages"))
+    elif request.method == 'GET':
+        form.destination.data = delivery.destination.name
+        form.location.data = delivery.sender_location.name
+        form.item_description.data = delivery.item_description
+        form.item_name.data = delivery.item_name
+        form.item_weight.data = delivery.item_weight
+        form.item_dimension.data = delivery.item_dimension
+        form.note.data = delivery.note
+        form.start_date.data = delivery.start_date
+        form.end_date.data = delivery.end_date
+    return render_template("portal/updatedelivery.html", delivery=delivery,form=form,destinations=destinations)
+
+
+
+
+@core.route("/<int:delivery_id>/deliver", methods=["GET", "POST"])
+def deliver(delivery_id):
+    form = DeliveryForm()
+    destinations = Destination.query.all()
+    delivery = Delivery.query.get(delivery_id)
+    if not delivery:
+        return render_template("error.html", message="Delivery not found"), 404
+    if request.method == "POST":
+        if request.files.get('ticket'):
+            image1 = photos.save(request.files['ticket'], name=secrets.token_hex(10) + ".")
+            image1= "static/images/tickets/"+image1
+        else:
+            image1 = "static/images/noimage.JPG"    
+        delivery.traveler_id = session["id"]
+        delivery.arrival_date = form.arrival_date.data
+        delivery.ticket = image1
+        delivery.delivery_status = "claimed"
+        delivery.traveller_note  = form.traveller_note.data
+  
+        db.session.commit()
+        return redirect(url_for("core.mypackages"))
+    elif request.method == 'GET':
+        form.destination.data = delivery.destination.name
+        form.location.data = delivery.sender_location.name
+        form.item_description.data = delivery.item_description
+        form.item_name.data = delivery.item_name
+        form.item_weight.data = delivery.item_weight
+        form.item_dimension.data = delivery.item_dimension
+        form.note.data = delivery.note
+        form.start_date.data = delivery.start_date
+        form.end_date.data = delivery.end_date
+        
+    return render_template("portal/deliver.html", delivery=delivery,form=form,destinations=destinations)
+
+
+
+
+# @delivery_bp.route("/deliveries/int:delivery_id/confirm", methods=["GET", "POST"])
+# def confirm_delivery(delivery_id):
+# delivery = Delivery.query.get(delivery_id)
+# if not delivery:
+# return render_template("error.html", message="Delivery not found"), 404
+# if request.method == "POST":
+# if request.form.get("agent_id") != delivery.agent_id:
+# return render_template("error.html", message="Unauthorized"), 401
+# delivery.delivery_status = "delivered"
+# db.session.commit()
+# return redirect(url_for("delivery.deliveries"))
+# return render_template("confirm_delivery.html", delivery=delivery)
+
+@core.route('/h',methods=['GET', 'POST'])
+def inp_home():
+    aboutform = AboutForm()
+
+    destinations = Destination.query.all()
+    page = request.args.get('page', 1, type=int)
+
+    about = About.query.get(1)
+    price = Price.query.all()
+    faq = Faq.query.all()
+    testimonial = Testimonial.query.all()
+
+    Blockform= BlockForm()
+    block= Block.query.all()
+
+    partrequests = PartRequest.query.filter_by(status="requested").all()
+    print(partrequests)
+    
+    
+    therapistobj = User.query.filter_by(role="therapist").all()
+    
+    # if request.method == "POST":
+    #     name = newsletterform.name.data
+    #     phone = newsletterform.phone.data
+    #     email = newsletterform.email.data
+    #     contact = NewsletterContacts(name = name, phone = phone, email = email)
+    #     db.session.add(contact)
+    #     db.session.commit()
+    # teammateform = Team()
+    # services=[]
+    # service= serv.split(',')
+    # services.append(service)
+    return render_template('website/index.html',partrequests =partrequests, about=about,pricing=price,faq=faq,Blockform=Blockform,block=block,form=aboutform,testimonials=testimonial,destinations=destinations)
+
+
+@core.route("/request/newpart", methods=["GET", "POST"])
+def new_request():
+    form = RequestForm()
+    items  = PartRequest.query.all()
+    if request.method == "POST":
+        # destination = Destination.query.filter_by(name=request.form["destination"]).first()
+        # if not destination:
+        #     return render_template("create_PartRequest.html", error="destination not found")
+  
+        partrequest = PartRequest(user_id=session['id'], name=form.name.data, description=form.description.data,model_year=form.model_year.data,status= "requested",car_make=form.car_make.data, car_model=form.car_model.data,quantity=form.quantity.data,note=form.note.data)
+        db.session.add(partrequest)
+        db.session.commit()
+        return redirect(url_for("core.new_request"))
+    return render_template("portal/newrequest.html",form=form,items=items)
+
+
+
+@core.route("/<int:part_id>/bid", methods=["GET", "POST"])
+def bid(part_id):
+    form = BidForm()
+    destinations = Destination.query.all()
+    partrequest = PartRequest.query.get(part_id)
+    if not partrequest:
+        return render_template("error.html", message="Delivery not found"), 404
+    if request.method == "POST":
+        if request.files.get('image'):
+            image1 = photos.save(request.files['image'], name=secrets.token_hex(10) + ".")
+            image1= "static/images/tickets/"+image1
+        else:
+            image1 = "static/images/noimage.JPG"   
+        print("bidding") 
+        bid= Bid(part_id=part_id, vendor_id=session['id'],quantity=form.quantity.data,price=form.price.data,status="bid")
+        db.session.add(bid)
+        db.session.commit()
+        return redirect(url_for("core.inp_home"))
+
+        
+    return render_template("portal/bid.html", partrequest=partrequest,form=form,destinations=destinations)
+
+
+@core.route("/myrequests", methods=["GET"])
+def myrequests():
+    partrequests = PartRequest.query.filter((PartRequest.user_id==session['id'])).all()
+    print ("deliveries")
+    print(partrequests)
+    user = User.query.filter_by(id=session['id']).first()
+    print(user)
+
+    return render_template("portal/mypartrequests.html", partrequests=partrequests,user=user)
+
+
+
+@core.route("/bids/<int:part_id>", methods=["GET"])
+def bids(part_id):
+    bids = Bid.query.filter_by(part_id=part_id).all()
+    print ("deliveries")
+    print(bids)
+    user = User.query.filter_by(id=session['id']).first()
+    print(user)
+
+    return render_template("portal/bids.html", bids=bids,user=user)
+
+
+@core.route("/viewbid/<int:bid_id>", methods=["POST",'GET'])
+def viewbid(bid_id):
+    form = AcceptBidForm()
+    bid = Bid.query.filter_by(id=bid_id).first()
+    bids = Bid.query.filter_by(part_id=bid.part_id).all()
+    print(bid)
+    partrequest = PartRequest.query.filter_by(id=bid.part_id).first()
+    user = User.query.filter_by(id=session['id']).first()
+    if bid.status == 'standard':
+        bidaccepted = True
+    else:
+        bidaccepted = False
+    message = False
+    if bid.status == 'accepted':
+        bidaccepted = True
+    else:
+        bidaccepted = False
+    print(user)
+    if request.method == "POST":
+        bid.status = form.status.data
+        bid.delivery = form.delivery.data
+        partrequest.set_status="claimed"
+        db.session.commit()
+        for ubid in bids:
+            if bid.status=="accepted" and ubid.id != bid.id  :
+                ubid.status = "denied"
+                db.session.commit()
+        if form.delivery.data  == 'standard':
+            message=  True
+        else:
+            message= False
+    
+
+                
+
+    return render_template("portal/viewbid.html", bids=bid,user=user,partrequest=partrequest,form=form,bidaccepted=bidaccepted,message=message)
+
+
+@core.route("/vendor/<int:vendor_id>", methods=["GET","POST"])
+def vendor(vendor_id):
+    form = ReviewForm()
+    vendor = User.query.filter_by(id=vendor_id).first()
+
+    user = User.query.filter_by(id=session['id']).first()
+    print(user)
+    parts = vendor.parts.split(",")
+    print(parts)
+    vendorparts = []
+    for item in parts:
+        vendorparts.append(item)
+    print(vendorparts)
+    cars = vendor.cars.split(",")
+    print(cars)
+    vendorcars = []
+    for car in cars:
+        vendorcars.append(car)
+    print(vendorcars)
+    bids = Bid.query.filter_by(vendor_id=vendor_id).all()
+    successfulsales =  len(Bid.query.filter_by(vendor_id=vendor_id,status='delivered').all())
+    allsales = len(Bid.query.filter_by(vendor_id=vendor_id).all())
+    sales = Bid.query.filter_by(vendor_id=vendor_id).all()
+    reviews = Review.query.filter_by(vendor_id=vendor_id).all()
+    
+    
+    if request.method == 'POST':
+        review = Review(user_id = user.id , text = form.text.data,date=datetime.now(),vendor_id=vendor_id)
+        db.session.add(review)
+        db.session.commit()
+    
+        
+
+    return render_template("portal/vendor.html", vendor=vendor,user=user,vendorparts=vendorparts,vendorcars=vendorcars,bids=bids,allsales =allsales ,successfulsales=successfulsales,reviews=reviews,form=form)

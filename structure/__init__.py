@@ -8,6 +8,7 @@ from flask_mail import Mail, Message
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 from flask_apscheduler import APScheduler
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 
 
 app = Flask(__name__)
@@ -41,6 +42,26 @@ with app.app_context():
     else:
         migrate.init_app(app, db, render_as_batch=True)
 
+
+
+
+
+
+
+
+
+app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/images/certificates')
+photos = UploadSet('photos', IMAGES)
+configure_uploads(app, photos)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+# patch_request_class(app)
+
+
+app.config.update(
+    UPLOAD_PATH = os.path.join(basedir, 'static')
+)
+
+#########################
 #########################
 # LOGIN CONFIGS
 login_manager = LoginManager()

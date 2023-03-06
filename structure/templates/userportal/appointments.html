@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<div class="row match-height">
-		<div class="col-xl-6 col-md-6 col-sm-12">
+		<div class="col-xl-6 col-md-6 col-sm-12"> 
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body">
@@ -26,7 +26,8 @@
 					<ul class="list-group list-group-flush">
                         {%for appointment in appointments%}
 						<li class="list-group-item">
-							{{appointment.date.strftime("%m %b %Y")}} <span style="float: right;"> <a href="{{url_for('userportal.editappointment',id=appointment.id)}}">Reschedule</a></span>
+							<span class="col-md-6">{{appointment.date.strftime("%m %b %Y")}}</span> <span style="float: right;"> <a href="{{url_for('userportal.editappointment',id=appointment.id)}}">Reschedule</a> </span><span>  <a href="{{url_for('userportal.appointment_room',appointment_id=appointment.id)}}" target="_blank"  class="btn btn-primary col-md-4"  > Meeting Room</a>
+							</span>
 						</li>
                         {% endfor %}
 						

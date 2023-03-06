@@ -1,0 +1,316 @@
+<!-- =========
+
+	Template Name: Play
+	Author: UIdeck
+	Author URI: https://uideck.com/
+	Support: https://uideck.com/support/
+	Version: 1.1
+
+========== -->
+
+
+    <!-- ====== Header End ====== -->
+    {% extends "mainnav.html" %}
+    {% block content %}
+    <!-- ====== Hero Start ====== -->
+   
+    <!-- ====== Hero End ====== -->
+    
+
+
+
+
+
+
+
+
+<div class="container-fluid col-lg-7" >
+    <section id="testimonials" class="ud-testimonials">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-section-title mx-auto text-center">
+              <span></span>
+              <h2>My Packages</h2>
+  
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          {% for delivery in deliveries %}
+          <div class="card col-lg-9 col-md-12" >
+            <div
+              class="ud-single-testimonial wow fadeInUp  "
+              data-wow-delay=".2s" style="  box-shadow: 0px 0px 0px 0px #ebeffd;margin:auto 10px;"
+            >
+            <div class="row">
+            <div class="col-lg-8">
+   
+              <div class="ud-testimonial-content">
+                <span>
+                    <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>     {{delivery.sender_location.name}}  <i class="fa fa-plane"  style="margin-right:9px;margin-left:9px;" aria-hidden="true"></i>  {{delivery.destination.name}}
+                </span>
+              </div>
+              <div class="ud-testimonial-info">
+                    <!----      <div class="ud-testimonial-image">
+                            <img
+                                src="assets/images/testimonials/author-01.png"
+                                alt="author"
+                            />
+                            </div>-->
+                <div class="ud-testimonial-meta">
+               <span style="display:inline-block">  <i class="fa fa-suitcase" aria-hidden="true" style="margin-right:9px;"></i>   <span style="">{{delivery.item_description}}</span> </span>
+                  <p><i class="fa fa-calendar" aria-hidden="true" style="margin-right:9px;"></i><i  style="margin-right:9px;">{{delivery.start_date}}</i >to <i style="margin-left:9px;">  {{delivery.end_date}}</i></p> 
+           
+                <span style="display:inline-block">  <i class="fa fa-star" aria-hidden="true" style="margin-right:9px;"></i>   {{delivery.delivery_status}} </span>
+            </div>
+        </div>
+        </div>
+     
+            <div class="col-lg-3">  
+              <div class="row" style="margin: auto auto;position: relative;top: 50%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);width: max-content;">
+                <div class="row" style="margin-bottom: 25px;">
+                    {% if delivery.sender_id == user.id%}
+                    <a style="width:45px;margin-right: 30px;" href="{{url_for('core.update_package',delivery_id=delivery.id)}}"> <button class="btn btn-primary "  style="color: olivedrab;background-color:white;border-color:olivedrab;">Edit </button></a>
+                    {% else %}
+                    <a style="width:45px;margin-right: 30px;" href="{{url_for('core.update_package',delivery_id=delivery.id)}}"> <button class="btn btn-primary "  style="color: olivedrab;background-color:white;border-color:olivedrab;">Unclaim </button></a>
+                    <a style="width:45px;margin-right: 30px;" href="{{url_for('core.update_package',delivery_id=delivery.id)}}"> <button class="btn btn-primary "  style="color: olivedrab;background-color:white;border-color:olivedrab;">Edit </button></a>
+                    {% endif %}
+                </div>
+                <div class="ud-testimonial-content">
+                  <span>
+                      <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>     {{delivery.sender_location.city}}  <i class="fa fa-plane"  style="margin-right:9px;margin-left:9px;" aria-hidden="true"></i>  {{delivery.destination.city}}
+                  </span><br>
+                  <span>
+                    {% if delivery.sender_id == user.id%}
+                    <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>   Sending
+                    {% else %}
+                    <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>   Delivering
+                    {% endif %}
+                    </span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+    </div>
+        
+
+          {% endfor %}
+
+          <div class="card col-lg-3">
+            hjadknl
+        </div>
+          
+              </div>
+           
+    
+
+    </section>
+    
+    <!-- ====== Testimonials End ====== -->
+
+
+
+
+
+
+    <!-- ====== Features Start ====== -->
+    <section id="features" class="ud-features">
+      <div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% for blocks in block%}
+{% if blocks.status =='active' and blocks.id==1%}
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-section-title">
+              <span></span>
+              <h2>{{about.feature_subtitle}}</h2>
+              <p>
+           
+              </p>
+            </div>
+          </div>
+        </div>
+<div class="row">
+
+        {% for therapist in therapistobj %}
+
+
+
+
+          <div class="col-xl-3 col-lg-3 col-sm-6">
+            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
+            <!---  <div class="ud-feature-icon">
+                <i class="lni lni-gift"></i>
+              </div>-->
+              <div class="ud-feature-content">
+                <div class="ud-blog-image">
+                  <a href="blog-details.html">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/tray-7621e.appspot.com/o/tray-7621e-default-rtdb%2Ftray%2Frocket-white.png.jpg?alt=media&token=777d3ad9-135d-4cb1-87c6-04f0b16086d2" alt="blog" />
+                  </a>
+                </div>
+                <h2><a class="ud-feature-title" href="  {{ url_for('web.viewtherapist', id=therapist.id) }}" style="color: olivedrab;">{{ therapist.name }}</a></h2>
+                <p class="ud-feature-desc">
+                 {{ therapist.biography[:100] }}...
+                </p>
+                <div class="text-center" style="margin-right: auto;margin-left: auto;">
+                <a href="{{ url_for('web.viewtherapist',id=therapist.id) }}" class="btn btn-primary" style="background-color: olivedrab;">Book</a>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        
+
+   {% endfor %}
+   <div class=" text-center" style="margin-bottom: 100px;" >
+   <a  href="  {{ url_for('web.alltherapists') }}"> <button class="btn btn-primary text-center"  style="color: olivedrab;background-color:white;border-color:olivedrab">View all Therapists </button></a>
+    </div>
+
+
+   {% endif %}
+    {% endfor %}
+     
+    <!-- ====== Features End ====== -->
+
+    
+    <!-- ====== Pricing Start ====== -->
+  
+    
+
+
+   
+    <!-- ====== Pricing End ====== -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="container">
+  
+
+  
+
+
+
+
+
+
+
+
+ <!-- ====== Pricing Start ====== -->
+
+
+<!-- ====== Pricing End ====== -->
+
+      <!-- ====== FAQ End ====== -->
+
+    <!-- ====== Team Start ====== -->
+   
+
+
+
+
+
+
+  
+    <!-- ====== Team End ====== -->
+
+    
+    <!-- ====== Contact End ====== -->
+
+    
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // ==== for menu scroll
+      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+
+      pageLink.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector(elem.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            offsetTop: 1 - 60,
+          });
+        });
+      });
+
+      // section menu active
+      function onScroll(event) {
+        const sections = document.querySelectorAll(".ud-menu-scroll");
+        const scrollPos =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+
+        for (let i = 0; i < sections.length; i++) {
+          const currLink = sections[i];
+          const val = currLink.getAttribute("href");
+          const refElement = document.querySelector(val);
+          const scrollTopMinus = scrollPos + 73;
+          if (
+            refElement.offsetTop <= scrollTopMinus &&
+            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+          ) {
+            document
+              .querySelector(".ud-menu-scroll")
+              .classList.remove("active");
+            currLink.classList.add("active");
+          } else {
+            currLink.classList.remove("active");
+          }
+        }
+      }
+
+      window.document.addEventListener("scroll", onScroll);
+    </script>
+  </body>
+</html>
+{% endblock
+  %}

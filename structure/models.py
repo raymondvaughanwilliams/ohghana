@@ -24,31 +24,18 @@ class User(db.Model,UserMixin):
     name = db.Column(db.String(64),nullable=True)
     last_name = db.Column(db.String(64),nullable=True)
     password_hash = db.Column(db.String(128))
-    rem_sessions = db.Column(db.Integer(),nullable=True)
-    rem_chatweeks = db.Column(db.Integer(),nullable=True)
-    plan_id = db.Column(db.Integer,db.ForeignKey('prices.id'),nullable=True)
-    plan= db.relationship('Price',backref='users',lazy=True)
     number = db.Column(db.String(128))
     location = db.Column(db.String(128))
     role = db.Column(db.String,nullable=True)
-    pref_medium = db.Column(db.String(128))
-    pref_therapistgender = db.Column(db.String(128))
-    pref_help = db.Column(db.String())
-    payment_confirmed = db.Column(db.String(5),default="no",nullable=True)
-    rec_transaction_id = db.Column(db.String(15),nullable=True)
-    specialty = db.Column(db.String)
-    location = db.Column(db.String)
-    email = db.Column(db.String)
     phone_number = db.Column(db.String)
     biography = db.Column(db.String)
-    qualifications = db.Column(db.String)
-    years_of_experience = db.Column(db.Integer)
-    license_number = db.Column(db.String)
-    insurance_provider = db.Column(db.String)
-    platforms = db.Column(db.String)
-    baseprice = db.Column(db.Integer)
-    therapist_id = db.Column(db.Integer,db.ForeignKey('webfeatures.id'),nullable=True)
-    therapist= db.relationship('WebFeature',backref='users',lazy=True)
+    status=db.Column(db.String,default="unverified")
+    business_name = db.Column(db.String)
+    certificate = db.Column(db.String)
+    parts = db.Column(db.String(250))
+    cars = db.Column(db.String(250))
+    returnable  = db.Column(db.String(250),default="no")
+    return_period = db.Column(db.String(250),default="none")
     # rec_payment_id = db.Column(db.Integer,db.ForeignKey('payments.id'),nullable=True)
     # payments = db.relationship('Payment',backref='users',lazy=True)
 
@@ -495,6 +482,146 @@ class Post(db.Model):
     thread = db.relationship('Thread', backref=db.backref('posts', lazy=True))
     main = db.Column(db.String(5),nullable=True)
     date = db.Column(db.Date,default=datetime.now())
+
+
+
+class Note(db.Model):
+    __tablename__ = 'notes'
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user = db.relationship("User", foreign_keys=[user_id])
+    therapist_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    therapist = db.relationship("User", foreign_keys=[therapist_id])
+    appointment_id = db.Column(db.Integer, db.ForeignKey('appointments.id'))
+    appointment = db.relationship("Appointment", foreign_keys=[appointment_id])
+    
+    
+    
+    
+    
+class Delivery(db.Model):
+    __tablename__ = 'deliveries'
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    sender = db.relationship("User", foreign_keys=[sender_id])
+    destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
+    destination = db.relationship("Destination", foreign_keys=[destination_id])
+    traveler_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    traveler = db.relationship("User", foreign_keys=[traveler_id])
+    agent_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    agent = db.relationship("User", foreign_keys=[agent_id])
+    delivery_status = db.Column(db.String(120), default="pending")
+    item_name = db.Column(db.String(120))
+    item_description = db.Column(db.String(120))
+    item_weight = db.Column(db.Float)
+    item_dimension = db.Column(db.String(120))
+    amount = db.Column(db.Float)
+    sender_location_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
+    sender_location = db.relationship("Destination", foreign_keys=[sender_location_id])
+    note = db.Column(db.String(255))
+    traveller_note =db.Column(db.String(255))
+    start_date = db.Column(db.Date)
+    end_date = db.Column(db.Date)
+    arrival_date = db.Column(db.Date)
+    ticket = db.Column(db.String(255))
+
+
+
+    def __init__(self, sender_id, destination_id, item_name, item_description, item_weight, item_dimension,sender_location_id,note,start_date,end_date):
+        self.sender_id = sender_id
+        self.destination_id = destination_id
+        self.item_name = item_name
+        self.item_description = item_description
+        self.item_weight = item_weight
+        self.item_dimension = item_dimension
+        self.sender_location_id = sender_location_id
+        self.note = note
+        self.start_date = start_date
+        self.end_date = end_date
+
+
+class Destination(db.Model):
+    __tablename__ = 'destinations'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+    country = db.Column(db.String(80))
+    city = db.Column(db.String(80))
+    agent_ids =db.Column(db.JSON,nullable=True)
+    airport_name = db.Column(db.String(120))
+    
+    def __init__(self, name, country, city, agent_ids, airport_name):
+        self.name = name
+        self.country = country
+        self.city = city
+        self.agent_ids = agent_ids
+        self.airport_name = airport_name
+
+
+
+class LaundryRequest(db.Model):
+    __tablename__ = 'laundryrequests'
+
+    id = db.Column(db.Integer, primary_key=True)
+    pickup_time = db.Column(db.DateTime, nullable=False)
+    status = db.Column(db.String(80))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship("User", foreign_keys=[user_id])
+    hostel =  db.Column(db.String(80))
+    floor   = db.Column(db.String(80))
+    room_number = db.Column(db.String(80))
+    location = db.Column(db.String(80))
+    price = db.Column(db.String(80))
+    uid = db.Column(db.String(80))
+    note = db.Column(db.String(80))
+
+
+
+class PartRequest(db.Model):
+    __tablename__ = "partrequests"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    description = db.Column(db.String(512), nullable=False)
+    model_year = db.Column(db.Integer, nullable=False)
+    car_make = db.Column(db.String(128), nullable=False)
+    car_model = db.Column(db.String(128), nullable=False)
+    note = db.Column(db.String(128), nullable=True)
+    quantity = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship("User", foreign_keys=[user_id])
+    status = db.Column(db.String(16), nullable=False)
+
+
+    def __repr__(self):
+        return f'<Part {self.name}>'
+
+class Bid(db.Model):
+    __tablename__ = 'bids'
+    id = db.Column(db.Integer, primary_key=True)
+    part_id = db.Column(db.Integer, db.ForeignKey('partrequests.id'), nullable=False)
+    parts = db.relationship("PartRequest", foreign_keys=[part_id])
+    vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    vendors  = db.relationship("User", foreign_keys=[vendor_id])
+    price = db.Column(db.Float, nullable=False)
+    quantity = db.Column(db.Integer, nullable=True)
+    status = db.Column(db.String(16), nullable=False)
+    delivery = db.Column(db.String(16), nullable=True)
+    note = db.Column(db.String(255), nullable=True)
+
+    def __repr__(self):
+        return f'<Bid {self.id}>'
+
+
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship("User", foreign_keys=[user_id])
+    text = db.Column(db.String(255), nullable=True)
+    date = db.Column(db.Date)
+    vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    vendors  = db.relationship("User", foreign_keys=[vendor_id])
+    
+
 
 
 @login_manager.user_loader

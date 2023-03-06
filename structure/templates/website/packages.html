@@ -1,0 +1,316 @@
+<!-- =========
+
+	Template Name: Play
+	Author: UIdeck
+	Author URI: https://uideck.com/
+	Support: https://uideck.com/support/
+	Version: 1.1
+
+========== -->
+
+
+    <!-- ====== Header End ====== -->
+    {% extends "mainnav.html" %}
+    {% block content %}
+    <!-- ====== Hero Start ====== -->
+    
+
+
+
+<section id="testimonials" class="ud-testimonials">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-section-title mx-auto text-center">
+          <span></span>
+          <h2 style="color:olivedrab"> Packages</h2>
+          <p>
+           Claim and deliver packages 
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+
+
+
+
+      
+          </div>
+          <div class=" row  ">
+            <form method="post">
+             <div class="row col-lg-9">
+             
+              <!---- <div class="col-lg-4">
+               
+                <div class="form-outline">
+                  <input id="search-input" type="search" id="form1" class="form-control" />
+                </div>
+                <button id="search-button" type="button" class="btn btn-primary">
+                  <i class="fa fa-search"></i>
+                </button>
+
+              </div>-->
+
+              <div class="col-md-3">
+                <label for="donationinput1 "> From:</label>
+
+                <div class="dropdown">
+         
+                    <select class="form-control btn btn-secondary dropdown-toggle" id="location" name="location" required>
+                        <option value=""><span>Choose Location<i class="fa fa-arrow" aria-hidden="true"></i> </span></option>
+                    {% for destination in destinations %}
+                    <option  value="{{destination.id}}"><span>{{destination.city}}</i> </span></option>
+                    {% endfor %}
+                    </select>
+                </div>
+                
+                </div>
+
+                
+
+                <div class="col-md-3">
+                    <label for="donationinput1 "> To:</label>
+
+                    <div class="dropdown">
+             
+                        <select class="form-control btn btn-secondary dropdown-toggle" id="location" name="destination" required>
+                            <option value=""><span>Choose Destination<i class="fa fa-arrow" aria-hidden="true"></i> </span></option>
+                        {% for destination in destinations %}
+                        <option  value="{{destination.id}}"><span>{{destination.city}}</i> </span></option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    
+                    </div>
+
+
+                    <div class="row col-lg-4" style="margin-bottom:20px">
+                        <label for="donationinput1 "> Date Range:</label>
+                        <div class="col-lg-6" >
+                            {{filterform.start_date(class="form-control",placeholder="Date") }}
+                        </div>
+                        <div class="col-lg-6" style="margin-bottom:20px">
+                            {{ filterform.end_date(class="form-control",placeholder="Date") }}
+                        </div>
+                        </div>
+                        <div class="col-lg-1"  style="margin-bottom:20px;margin-top:20px; ">
+                            {{ filterform.submit(value="Filter",class="btn btn-primary ",style="color: white;background-color:olivedrab;border-color:#FFF9B9;") }}
+                        </div>
+           
+            </div>
+        </form>
+            {% for package in packages %}
+            <div class="card col-lg-5 col-md-12" >
+              <div
+                class="ud-single-testimonial wow fadeInUp  "
+                data-wow-delay=".2s" style="  box-shadow: 0px 0px 0px 0px #ebeffd;margin:auto 10px;"
+              >
+              <div class="row">
+              <div class="col-lg-8">
+     
+                <div class="ud-testimonial-content">
+                  <span>
+                      <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>     {{package.sender_location.name}}  <i class="fa fa-plane"  style="margin-right:9px;margin-left:9px;" aria-hidden="true"></i>  {{package.destination.name}}
+                  </span>
+                </div>
+                <div class="ud-testimonial-info">
+                      <!----      <div class="ud-testimonial-image">
+                              <img
+                                  src="assets/images/testimonials/author-01.png"
+                                  alt="author"
+                              />
+                              </div>-->
+                  <div class="ud-testimonial-meta">
+                 <span style="display:inline-block">  <i class="fa fa-suitcase" aria-hidden="true" style="margin-right:9px;"></i>   <span style="">{{package.item_description}}</span> </span>
+                    <p><i class="fa fa-calendar" aria-hidden="true" style="margin-right:9px;"></i><i  style="margin-right:9px;">{{package.start_date}}</i >to <i style="margin-left:9px;">  {{package.end_date}}</i></p> 
+             
+                  <span style="display:inline-block;color:oivedrab;">  <i class="fa fa-star" aria-hidden="true" style="margin-right:9px;"></i>   {{package.delivery_status}} </span>
+              </div>
+          </div>
+          </div>
+       
+              <div class="col-lg-3">  
+                <div class="row" style="margin: auto auto;position: relative;top: 50%;left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);width: max-content;">
+                  <div class="row" style="margin-bottom: 25px;">
+                      <a style="width:45px;margin-right: 30px;"  data-toggle="modal" data-target="#viewpackage{{package.id}}" target="_blank" data-desc="{{package.item_description}}"> <button class="btn btn-primary "  style="color: olivedrab;background-color:white;border-color:olivedrab;">View </button></a>
+                      <a style="width:45px;" href="  {{ url_for('core.deliver',delivery_id=package.id) }}"> <button class="btn btn-primary "  style="color: olivedrab;background-color:white;border-color:olivedrab;">Claim </button></a>
+                  </div>
+                  <div class="ud-testimonial-content">
+                    <span>
+                        <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>     {{package.sender_location.city}}  <i class="fa fa-plane"  style="margin-right:9px;margin-left:9px;" aria-hidden="true"></i>  {{package.destination.city}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+      </div>
+          
+
+
+
+
+<div class="modal fade" id="viewpackage{{package.id}}" tabindex="-1" role="dialog" aria-labelledby="viewpackageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 50%;width: 600px;float: right;height: 700px;max-height: 80%;">
+      <div class="modal-content">
+        <div class="modal-header">
+
+            <div class="ud-testimonial-content" style="margin-left:20%">
+                <span>
+                    <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>     {{package.sender_location.name}}  <i class="fa fa-plane"  style="margin-right:9px;margin-left:9px;" aria-hidden="true"></i>  {{package.destination.name}}
+                </span>
+              </div>
+          <div class="ud-testimonial-content" style="margin-right:18%">
+            <span>
+                <i class="fa fa-globe" aria-hidden="true" style="margin-right:9px;"></i>     {{package.sender_location.city}}  <i class="fa fa-plane"  style="margin-right:9px;margin-left:9px;" aria-hidden="true"></i>  {{package.destination.city}}
+            </span>
+          </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="ud-testimonial-meta">
+                <span style="font-size: 20px;font-weight: 600;line-height: 50px;color: var(--body-color);margin: 0px;font-family: poppins;">  <i class="fa fa-suitcase" aria-hidden="true" style="margin-right:9px;"></i>   <span style="">{{package.item_description}}</span> </span>
+                   <p style="font-size: 20px;font-weight: 600;line-height: 50px;color: var(--body-color);margin: 0px;font-family: poppins;"><i class="fa fa-calendar" aria-hidden="true" style="margin-right:9px;"></i><i  style="margin-right:9px;color: var(--body-color);">{{package.start_date}}</i >to <i style="margin-left:9px;color: var(--body-color);">  {{package.end_date}}</i></p> 
+                   <p style="font-size: 20px;font-weight: 600;line-height: 50px;color: var(--body-color);margin: 0px;font-family: poppins;"><i class="fa fa-calendar" aria-hidden="true" style="margin-right:9px;"></i><i  style="margin-right:9px;">{{package.item_weight}}</i ></p> 
+                   <p style="font-size: 20px;font-weight: 600;line-height: 50px;color: var(--body-color);margin: 0px;font-family: poppins;"><i class="fa fa-calendar" aria-hidden="true" style="margin-right:9px;"></i><i  style="margin-right:9px;">{{package.note}}</i></p> 
+
+                   {% if package.delivery_status == 'pending' %}
+            <span style="display:inline-block">  <i class="fa fa-star" aria-hidden="true" style="margin-right:9px;"></i>   Unclaimed </span>
+
+            {%else %}
+                 <span style="display:inline-block">  <i class="fa fa-star" aria-hidden="true" style="margin-right:9px;"></i>   {{package.delivery_status}} </span>
+                 {%endif%}
+             </div>
+             <a style="margin:40px 40%" href="  {{ url_for('core.deliver',delivery_id=package.id) }}"> <button class="btn btn-primary "  style="color: olivedrab;background-color:white;border-color:olivedrab;">Claim </button></a>
+                </div>
+                <div class="modal-footer">
+<img src="https://images.pexels.com/photos/2026324/pexels-photo-2026324.jpeg?auto=compress&cs=tinysrgb&w=1600" class="img-fluid"/>
+
+                    </div>
+
+      </div>
+    </div>
+  </div>
+  
+            {% endfor %}
+  
+           <!---<div class="card col-lg-3">
+              No Idea what to put here
+          </div>-->
+            
+                </div></div>
+             
+
+</section>
+
+<!-- ====== Testimonials End ====== -->
+
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- ====== Team End ====== -->
+
+    
+    <!-- ====== Contact End ====== -->
+
+    
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}">
+
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // ==== for menu scroll
+      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+
+      pageLink.forEach((elem) => {
+        elem.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector(elem.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            offsetTop: 1 - 60,
+          });
+        });
+      });
+
+      // section menu active
+      function onScroll(event) {
+        const sections = document.querySelectorAll(".ud-menu-scroll");
+        const scrollPos =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+
+        for (let i = 0; i < sections.length; i++) {
+          const currLink = sections[i];
+          const val = currLink.getAttribute("href");
+          const refElement = document.querySelector(val);
+          const scrollTopMinus = scrollPos + 73;
+          if (
+            refElement.offsetTop <= scrollTopMinus &&
+            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+          ) {
+            document
+              .querySelector(".ud-menu-scroll")
+              .classList.remove("active");
+            currLink.classList.add("active");
+          } else {
+            currLink.classList.remove("active");
+          }
+        }
+      }
+
+      window.document.addEventListener("scroll", onScroll);
+    </script>
+
+
+    <script>
+        $('#viewpackage').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var recipient = button.data('desc');
+            console.log("dahjssk");
+            // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body p').val(recipient)
+          })
+    </script>
+  </body>
+</html>
+{% endblock
+  %}
