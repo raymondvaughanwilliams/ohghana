@@ -1,7 +1,7 @@
 from flask import render_template,url_for,flash, redirect,request,Blueprint
 from flask_login import current_user,login_required
 from structure import db
-from structure.models import WebFeature,About
+from structure.models import About
 from structure.about.forms import UpdateAboutForm,AboutForm
 from structure.about.picturehandler import update_about_pic
 

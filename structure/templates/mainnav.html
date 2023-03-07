@@ -69,7 +69,12 @@
               </a>   
               <a class="nav-link" href="{{ url_for('core.myrequests') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
                 Requested Parts
-              </a>      
+              </a>
+              {%if session['role']=='vendor'%}
+              <a class="nav-link" href="{{ url_for('core.mybids') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
+                My Bids
+              </a>     
+              {%endif%}
               {% if current_user.is_authenticated %}
                           <a class="nav-link" href="{{ url_for('users.logout') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
                 Logout

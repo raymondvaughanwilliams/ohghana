@@ -1,24 +1,9 @@
 from flask import render_template,request,Blueprint,session,redirect,url_for,jsonify
-from structure.models import User,About,Price, WebFeature,Faq,Testimonial,Team,Appearance,Block,Journal ,Payment,NewsletterContacts,Delivery,Destination
-# from structure.team.views import team
-from structure.web_features.forms import WebFeatureForm
-from structure.team.forms import UpdateTeamForm
-from structure.userportal.forms import SessionForm
-from structure.about.forms import UpdateAboutForm
-from structure.faq.forms import FaqForm
-from structure.pricing.forms import PriceForm
-from structure.testimonial.forms import TestimonialForm
-from structure.about.forms import AboutForm
-from structure.block.forms import BlockForm
-from structure.core.forms import BookingForm,UpdateSessionForm ,JournalForm,Addtherapist ,NewsletterForm,FilterForm
-from structure.userportal.forms import ContactForm
+from structure.models import User,About,Faq,Testimonial
+
+from structure.core.forms import NewsletterForm,FilterForm
 from sqlalchemy.orm import load_only
 from flask_login import login_required
-from structure.appearance.forms import AppearanceForm
-from structure.block.forms import BlockForm
-from structure.users.forms import LoginForm
-from structure.appearance.views import appearance
-from structure.models import Appearance,Book
 from flask_mail import Mail, Message
 from structure import mail,db,app
 from datetime import datetime,timedelta

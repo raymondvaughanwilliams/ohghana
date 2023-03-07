@@ -84,32 +84,18 @@ mail = Mail(app)
 
 from structure.core.views import core
 from structure.users.views import users
-from structure.web_features.views import web_features
 from structure.error_pages.handlers import error_pages
 from structure.about.views import abouts
-from structure.pricing.views import pricings 
 from structure.faq.views import faqs
-from structure.testimonial.views import testimonials
-from structure.team.views import teams
-from structure.block.views import blocks
-from structure.appearance.views import appearances
 from structure.web.views import web
-from structure.userportal.views import userportal
 from structure.therapistportal.views import therapistportal
 
 app.register_blueprint(core)
 app.register_blueprint(users)
-app.register_blueprint(web_features)
 app.register_blueprint(error_pages)
 app.register_blueprint(abouts)
-app.register_blueprint(pricings)
 app.register_blueprint(faqs)
-app.register_blueprint(testimonials)
-app.register_blueprint(teams)
-app.register_blueprint(blocks)
-app.register_blueprint(appearances)
 app.register_blueprint(web)
-app.register_blueprint(userportal)
 app.register_blueprint(therapistportal)
 
 

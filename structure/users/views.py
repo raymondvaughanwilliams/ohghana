@@ -1,8 +1,8 @@
 # users/views.py
 from flask import render_template,url_for,flash,redirect,request,Blueprint,session
 from flask_login import login_user, current_user, logout_user, login_required
-from structure import db,photos
-from structure.models import User, WebFeature
+from structure import db,photos 
+from structure.models import User
 from structure.users.forms import RegistrationForm,LoginForm,UpdateUserForm
 from structure.users.picture_handler import add_profile_pic
 import secrets
@@ -203,16 +203,6 @@ def account():
 
     profile_image = url_for('static', filename='profile_pics/' + current_user.profile_image)
     return render_template('userportal/profile.html', profile_image=profile_image, form=form,userinfo=userinfo)
-
-@users.route("/<username>")
-def user_posts(username):
-    page = request.args.get('page',1,type=int)
-    user = User.query.filter_by(username=username).first_or_404()
-    web_features = WebFeature.query.filter_by(author=user).order_by(WebFeature.date.desc()).paginate(page=page,per_page=5)
-    return render_template('user_web_features.html',web_features=web_features,user=user)
-
-
-
 
 
 

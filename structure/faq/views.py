@@ -1,7 +1,7 @@
 from flask import render_template,url_for,flash, redirect,request,Blueprint
 from flask_login import current_user,login_required
 from structure import db
-from structure.models import WebFeature,Faq
+from structure.models import Faq
 from structure.faq.forms import FaqForm
 
 faqs = Blueprint('faqs',__name__)

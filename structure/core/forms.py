@@ -5,7 +5,6 @@ from flask_wtf.file import FileField,FileRequired,FileAllowed
 from wtforms.validators import DataRequired, Email, EqualTo ,Length
 from wtforms import ValidationError
 from wtforms_components import TimeField
-from structure.models import Destination
 
 
 
@@ -46,12 +45,11 @@ class NewsletterForm(Form):
     submit = SubmitField('Join Newsletter')
     
     
-destinations = Destination.query.all()
 
     
 class DeliveryForm(FlaskForm):
-    destination = SelectField("Destination", validators=[DataRequired()], choices=[(destination.id, destination.name) for destination in destinations])
-    location = SelectField("Location", validators=[DataRequired()], choices=[(destination.id, destination.name) for destination in destinations])
+    # destination = SelectField("Destination", validators=[DataRequired()], choices=[(destination.id, destination.name) for destination in destinations])
+    # location = SelectField("Location", validators=[DataRequired()], choices=[(destination.id, destination.name) for destination in destinations])
     status = SelectField("Status", validators=[DataRequired()], choices=[("undelivered","Not Delivered"),('delivered','Delivered')])
     start_date = DateField('Choose Start Date', [validators.DataRequired()] )
     end_date = DateField('Choose End Date', [validators.DataRequired()])
@@ -71,8 +69,8 @@ class DeliveryForm(FlaskForm):
     
     
 class FilterForm(FlaskForm):
-    destination = SelectField("Destination", choices=[(destination.id, destination.name) for destination in destinations])
-    location = SelectField("Location", choices=[(destination.id, destination.name) for destination in destinations])
+    # destination = SelectField("Destination", choices=[(destination.id, destination.name) for destination in destinations])
+    # location = SelectField("Location", choices=[(destination.id, destination.name) for destination in destinations])
     start_date = DateField('Choose Start Date' )
     end_date = DateField('Choose End Date')
     arrival_date = DateField('Arrival Date')
