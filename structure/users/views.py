@@ -130,31 +130,14 @@ def login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('core.inp_home')
+                next = url_for('core.agent_dashboard')
             
 
             return redirect(next)
 
 
 
-        if user.check_password(form.password.data) and user is not None and user.role == 'therapist':
-            #Log in the user
 
-            login_user(user)
-            flash('Logged in successfully.')
-
-
-
-            # If a user was trying to visit a page that requires a login
-            # flask saves that URL as 'next'.
-            next = request.args.get('next')
-
-            # So let's now check if that next exists, otherwise we'll go to
-            # the welcome page.
-            if next == None or not next[0]=='/':
-                next = url_for('therapistportal.therapistdash')
-
-            return redirect(next)
     return render_template('login.html', form=form)
 
 # logout
