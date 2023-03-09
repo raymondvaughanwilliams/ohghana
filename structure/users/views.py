@@ -34,7 +34,7 @@ def register():
             return redirect(url_for('users.vendorregister',id=user.id))
             
 
-    return render_template('web/register.html',form=form)
+    return render_template('register.html',form=form)
 
 
 
@@ -75,7 +75,7 @@ def vendorregister(id):
 
 
 
-@users.route('/login', methods=['GET', 'POST'])
+@users.route('/', methods=['GET', 'POST'])
 def login():
 
     form = LoginForm()
@@ -155,7 +155,7 @@ def login():
                 next = url_for('therapistportal.therapistdash')
 
             return redirect(next)
-    return render_template('web/login.html', form=form)
+    return render_template('login.html', form=form)
 
 # logout
 @users.route("/logout")
@@ -165,7 +165,7 @@ def logout():
     session.pop('name',None)
     session.pop('role',None)
 
-    return redirect(url_for("core.inp_home"))
+    return redirect(url_for("users.login"))
 
 
 # account (update UserForm)
