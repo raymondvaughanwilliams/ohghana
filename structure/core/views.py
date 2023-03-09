@@ -152,7 +152,7 @@ def addfarmer():
         farmer = Farmer( first_name=form.first_name.data,last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data)
         db.session.add(farmer)
         db.session.commit()
-        return redirect(url_for("core.addfarmer"))
+        return redirect(url_for("core.farmers"))
     return render_template("agentportal/addfarmer.html",form=form,items=items)
 
 @core.route("/farmers", methods=["GET","POST"])
@@ -326,7 +326,7 @@ def addplan():
   
   
 @core.route('/api/checknumber',methods=['GET','POST'])
-@require_api_key
+# @require_api_key
 def checknumber():
      
     # print(request.args.get('number'))
