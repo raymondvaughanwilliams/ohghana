@@ -7,7 +7,7 @@ from sqlalchemy import MetaData
 from flask_mail import Mail, Message
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
-from flask_apscheduler import APScheduler
+# from flask_apscheduler import APScheduler
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from os import environ
 # from flask_jwt_extended import JWTManager
@@ -18,7 +18,7 @@ app = Flask(__name__)
 load_dotenv()
 
 
-scheduler = APScheduler()
+# scheduler = APScheduler()
 
 app.config['SECRET_KEY'] = 'asecretkey'
 ############################
