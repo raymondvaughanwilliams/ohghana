@@ -25,61 +25,28 @@
 
          </div>-->
 
-         <div class="col-md-3">
-           <label for="donationinput1 "> From:</label>
 
-           <div class="dropdown">
-    
-               <select class="form-control btn btn-secondary dropdown-toggle" id="location" name="location" required>
-                   <option value=""><span>Choose Location<i class="fa fa-arrow" aria-hidden="true"></i> </span></option>
-               {% for destination in destinations %}
-               <option  value="{{destination.id}}"><span>{{destination.city}}</i> </span></option>
-               {% endfor %}
-               </select>
-           </div>
-           
-           </div>
-
-           
-
-           <div class="col-md-3">
-               <label for="donationinput1 "> To:</label>
-
-               <div class="dropdown">
-        
-                   <select class="form-control btn btn-secondary dropdown-toggle" id="location" name="destination" required>
-                       <option value=""><span>Choose Destination<i class="fa fa-arrow" aria-hidden="true"></i> </span></option>
-                   {% for destination in destinations %}
-                   <option value="{{destination.id}}"><span>{{destination.city}}</i> </span></option>
-                   {% endfor %}
-                   </select>
-               </div>
-               
-               </div>
 
 
                <div class="row col-lg-3" style="margin-bottom:-20px;display:block">
                 <label for="donationinput1 "> Date Range:</label>
                    <div class="form-group col-lg-12" >
-                       {{filterform.start_date(class="form-control",placeholder="Date") }}
+                       {{filterform.first_name(class="form-control",placeholder="Date") }}
                    </div>
                    <div class="col-lg-12" style="margin-bottom:20px">
-                       {{ filterform.end_date(class="form-control",placeholder="Date") }}
+                       {{ filterform.last_name(class="form-control",placeholder="Date") }}
                    </div>
                    </div>
                    <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
                     <label for="donationinput1 "> Status:</label>
-                    {{ filterform.status(value="Filter",class="form-control btn btn-secondary dropdown-toggle ") }}
+                    {{ filterform.number(value="Filter",class="form-control btn btn-secondary dropdown-toggle ") }}
                 </div>
              
                 <div class="col-lg-3"  style="margin-bottom:20px;margin-top:20px; ">
                     <label for="donationinput1 "> Sender Email:</label>
-                    {{ filterform.sender(class="form-control btn btn-secondary dropdown-toggle ") }}
+                    {{ filterform.location(class="form-control btn btn-secondary dropdown-toggle ") }}
                 </div>
-                <div class="col-lg-3"  style="margin-bottom:20px;margin-top:20px; ">
-                    <label for="donationinput1 "> Traveler Email:</label>
-                    {{ filterform.traveller(class="form-control btn btn-secondary dropdown-toggle ") }}
-                </div>
+                
                    <div class="col-lg-2"  style="margin-bottom:20px;margin-top:50px; ">
                        {{ filterform.submit(value="Filter",class="btn btn-primary ",style="color: white;background-color:#0F9B93;border-color:#FFF9B9;") }}
                    </div>

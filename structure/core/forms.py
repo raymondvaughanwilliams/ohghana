@@ -71,18 +71,13 @@ class DeliveryForm(FlaskForm):
 class FilterForm(FlaskForm):
     # destination = SelectField("Destination", choices=[(destination.id, destination.name) for destination in destinations])
     # location = SelectField("Location", choices=[(destination.id, destination.name) for destination in destinations])
-    start_date = DateField('Choose Start Date' )
-    end_date = DateField('Choose End Date')
-    arrival_date = DateField('Arrival Date')
-    item_name = StringField("Item Name", validators=[Length(min=3, max=120)])
-    item_description = StringField("Item Name", validators=[Length(min=3, max=120)])
-    sender = StringField("Sender Email", validators=[Length(min=3, max=120)])
-    traveller = StringField("Traveler Email", validators=[Length(min=3, max=120)])
-    item_weight = FloatField("Item Weight")
-    status = SelectField("Status",choices=[('all','All'),('completed','Delivered'),('claimed','Claimed'),('pending','Unclaimed')])
-    amount = FloatField("Amount")
-
-    submit = SubmitField('Submit')
+    first_name = StringField('First Name')
+    last_name = StringField('Last Name')
+    number = StringField('Premium Amount')
+    premium_amount = StringField('Premium Amount')
+    premium_amount = StringField('Premium Amount')
+    location = StringField('Location')
+    submit = SubmitField('Submit') 
     
     
 class ContactForm(Form):
@@ -91,7 +86,17 @@ class ContactForm(Form):
     text = StringField('Text', validators=[DataRequired()])
     hidden = HiddenField('Hidden',default="contact" )
     submit = SubmitField('Submit')
-    
+   
+   
+class FarmerForm(Form):
+    first_name = StringField('First Name')
+    last_name = StringField('Last Name')
+    number = StringField('Premium Amount')
+    premium_amount = StringField('Premium Amount')
+    premium_amount = StringField('Premium Amount')
+    location = StringField('Location')
+    uploadfile = FileField('Upload', validators=[FileRequired(), FileAllowed(['csv'])])
+    submit = SubmitField('Submit') 
     
     
 class RequestForm(Form):

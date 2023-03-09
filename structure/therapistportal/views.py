@@ -1,5 +1,5 @@
 from flask import render_template,request,Blueprint,session,redirect,url_for,jsonify
-from structure.models import User,About,Bid,PartRequest
+from structure.models import User,About,Bid,PartRequest,Farmer,EcomRequest
 # from structure.team.views import team
 from structure.core.forms import DeliveryForm, FilterForm,ContactForm,AcceptBidForm
 
@@ -72,11 +72,13 @@ def tprofile():
 
 
 
-@therapistportal.route('/agent/dashboard')
+@therapistportal.route('/agent/dash')
 def agent_dashboard():
     user = User.query.filter_by(id=session['id']).first()
     about = About.query.get(1)
-
+    
+    farmers = Farmer.query.all()
+    
     form = FilterForm()
     if session['role'] == 'agent':
 
@@ -87,12 +89,12 @@ def agent_dashboard():
         name = user.name
         # print(op)
 
-        return render_template('agentportal/dashboard.html',form=form, user=user,about=about,name=name,deliveries=deliveries)
+        return render_template('agentportal/dashboard.html',form=form, user=user,about=about,name=name,deliveries=deliveries,farmers=farmers)
  
         
     # return render_template('agentportal/dashboard.html',form=form, user=user,about=about,name=user.name,pendingdeliveries=pendingdeliveries,confirmeddeliveries=confirmeddeliveries,completeddeliveries=completeddeliveries,claimeddeliveries=claimeddeliveries)
  
- 
+
  
 @therapistportal.route("/deliveries/<int:package_id>", methods=["GET", "POST"])
 def update_package(package_id):
@@ -289,3 +291,39 @@ def contactus():
             
 
     return render_template('agentportal/contact.html',form=form)
+
+
+
+
+@therapistportal.route('/api2/checknumber',methods=['GET','POST'])
+# @jwt_required()
+def checknumber():
+     
+    # print(request.args.get('number'))
+
+    # number = requests.json['number'] 
+    number = request.args.get('number')
+ 
+    farmer = Farmer.query.filter_by(number=number).first()
+    if farmer is not None:
+        
+        ecomrequest =  EcomRequest(number=number,country=farmer.country,farmer_id=farmer.id,cash_code=farmer.cash_code)
+        db.session.add(ecomrequest)
+        db.session.commit()
+
+        payload = {"firstName":farmer.first_name,
+        "lastName":farmer.last_name,
+        "premium_amount":farmer.premium_amount,
+        "location":farmer.location
+        }
+        context = {"status" :True,
+    "message" : " Farmer found",
+        "data" : payload
+        }
+        return jsonify(context)
+    else:
+        context = {"status" :False,
+        "message":"Farmer not found",
+        "error": "null"}
+        return jsonify(context)
+    

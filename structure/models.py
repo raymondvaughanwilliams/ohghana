@@ -254,327 +254,6 @@ class Testimonial(db.Model):
 
 
 
-# class Team(db.Model):
-#     __tablename__ = 'teams'
-
-#     id = db.Column(db.Integer,primary_key=True)
-#     name = db.Column(db.String,nullable=True)
-#     position = db.Column(db.String,nullable=True)
-#     faceboook = db.Column(db.String(140),nullable=True)
-#     instagram = db.Column(db.Integer,nullable=True)
-#     twitter = db.Column(db.Integer,nullable=True)
-#     picture = db.Column(db.String(64),nullable=True)
-
-
-#     def __init__(self,name,position,faceboook,instagram,twitter,picture):
-#         self.name = name
-#         self.position = position
-#         self.faceboook = faceboook
-#         self.instagram = instagram
-#         self.twitter = twitter
-#         self.picture = picture
-
-#     def __repr__(self):
-#         return f"{self.name} -- {self.position} -- {self.faceboook} -- {self.instagram} -- {self.twitter}-- {self.picture}"
-
-
-
-
-
-
-
-
-# class Block(db.Model):
-#     __tablename__ = 'blocks'
-
-#     id = db.Column(db.Integer,primary_key=True)
-#     name = db.Column(db.String,nullable=True)
-#     status = db.Column(db.String,nullable=True,default='active')
-#     block_type = db.Column(db.String,nullable=True,default='na')
-#     appearances= db.relationship('Appearance',backref='block',lazy=True)
-#     appearance_id = db.Column(db.Integer,db.ForeignKey('appearances.id'),nullable=True)
-
-
-#     def __init__(self,name,status,block_type):
-#         self.name = name
-#         self.status = status
-#         self.block_type = block_type
-
-#     def __repr__(self):
-#         return f"{self.name} -- {self.status} -- {self.block_type}"
-
-
-
-
-#create table appearance with relationship to blocks
-# class Appearance(db.Model):
-#     __tablename__ = 'appearances'
-
-#     id = db.Column(db.Integer,primary_key=True)
-#     # block_id = db.Column(db.Integer,db.ForeignKey('blocks.id'),nullable=False)
-#     # block = db.relationship('Block',backref=db.backref('appearance',lazy=True))
-#     title_color = db.Column(db.String(64),nullable=True)
-#     subtitle_color = db.Column(db.String(64),nullable=True)
-#     paragraph_color = db.Column(db.String(64),nullable=True)
-#     title_font = db.Column(db.String(64),nullable=True)
-#     subtitle_font = db.Column(db.String(64),nullable=True)
-#     paragraph_font = db.Column(db.String(64),nullable=True)
-#     title_size = db.Column(db.Integer,nullable=True)
-#     subtitle_size = db.Column(db.Integer,nullable=True)
-#     paragraph_size = db.Column(db.Integer,nullable=True)
-#     bootstrap_class1 = db.Column(db.String(64),nullable=True,default = 'col-md-4')
-#     bootstrap_class2 = db.Column(db.String(64),nullable=True,default = 'col-md-8')
-#     bootstrap_class3 = db.Column(db.String(64),nullable=True,default = 'col-md-12')
-    
-
-#     def __init__(self,id,block_id,block,title_color,subtitle_color,paragraph_color,title_font,subtitle_font,paragraph_font,title_size,subtitle_size,paragraph_size,bootstrap_class1,bootstrap_class2,bootstrap_class3):
-#         self.id = id
-#         self.block_id = block_id
-#         self.block = block
-#         self.title_color = title_color
-#         self.subtitle_color = subtitle_color
-#         self.paragraph_color = paragraph_color
-#         self.title_font = title_font
-#         self.subtitle_font = subtitle_font
-#         self.paragraph_font = paragraph_font
-#         self.title_size = title_size
-#         self.subtitle_size = subtitle_size
-#         self.paragraph_size = paragraph_size
-#         self.bootstrap_class1 = bootstrap_class1
-#         self.bootstrap_class2 = bootstrap_class2
-#         self.bootstrap_class3 = bootstrap_class3
-
-
-
-#     def __repr__(self):
-#         return f"{self.id} -- -- {self.block} -- {self.title_color} -- {self.subtitle_color} -- {self.paragraph_color} -- {self.title_font} -- {self.subtitle_font} -- {self.paragraph_font} -- {self.title_size} -- {self.subtitle_size} -- {self.paragraph_size} -- {self.bootstrap_class1} -- {self.bootstrap_class2} -- {self.bootstrap_class3}"
-
-
-# class Book(db.Model):
-#     __tablename__ = 'bookings'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String,nullable=True)
-#     email = db.Column(db.String,nullable=True)
-#     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
-#     phone = db.Column(db.String,nullable=True)
-#     location = db.Column(db.String,nullable=True)
-#     therapist_id = db.Column(db.Integer,db.ForeignKey('webfeatures.id'),nullable=True)
-#     message = db.Column(db.String,nullable=True)
-#     webfeatures= db.relationship('WebFeature',backref='bookings',lazy=True)
-#     time =  db.Column(db.Time, nullable=False, default=datetime.utcnow)
-#     users = db.relationship('User',backref='bookings',lazy=True)
-#     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
-
-#     def __init__(self,name,email,date,phone,location,therapist_id,time,user_id,message):
-#         # self.id = id
-#         self.name = name
-#         self.email = email
-#         self.date = date
-#         self.phone = phone
-#         self.location = location
-#         self.therapist_id = therapist_id
-#         # self.webfeatures = webfeatures
-#         self.time = time
-#         # self.users = users
-#         self.user_id = user_id
-#         self.message = message
-
-#     def __repr__(self):
-#         return f"{self.id}--{self.name}"
-
-
-# class Roles(db.Model):
-#     id = db.Column(db.Integer(), primary_key=True)
-#     name = db.Column(db.String(50), nullable=False, unique=True)  # for @roles_accepted()
-
-#     def __repr__(self):
-#         return self.name
-
-
-# # Define the UserRoles association model
-# class UserRole(db.Model):
-#     __tablename__ = 'user_roles'
-#     id = db.Column(db.Integer(), primary_key=True)
-#     user_id = db.Column(db.Integer(), db.ForeignKey('user.id', ondelete='CASCADE'))
-#     role_id = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
-
-
-# # user_manager = LoginManager(app, db, User)
-# login_manager = LoginManager(app, db, User)
-
-
-# class Journal(db.Model):
-#     __tablename__ = 'journals'
-#     id = db.Column(db.Integer,primary_key=True)
-#     title = db.Column(db.String,nullable=True)
-#     date = db.Column(db.Date,nullable=True,default=datetime.utcnow)
-#     text = db.Column(db.String)
-#     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
-#     users = db.relationship('User',backref='journals',lazy=True)
-
-
-
-# class Payment(db.Model):
-#     __tablename__ = 'payments'
-#     id = db.Column(db.Integer,primary_key=True)
-#     amount = db.Column(db.Integer,nullable=True)
-#     date = db.Column(db.Date,nullable=True,default=datetime.utcnow)
-#     tx_ref = db.Column(db.String)
-#     transaction_id = db.Column(db.String)
-#     plan_id = db.Column(db.Integer,db.ForeignKey('prices.id'),nullable=True)
-#     plans = db.relationship('Price',backref='payments',lazy=True)
-#     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable=True)
-#     users = db.relationship('User',backref='payments',lazy=True)
-#     status = db.Column(db.String,nullable=True,default="Failed")
-
-
-
-
-# class Appointment(db.Model):
-#     __tablename__ = 'appointments'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     therapist_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     date = db.Column(db.Date)
-#     time =  db.Column(db.Time)
-#     platform = db.Column(db.String(50))
-#     therapist_confirmation = db.Column(db.String(10),nullable=True)
-#     user_confirmation = db.Column(db.String(10),nullable=True)
-#     user = db.relationship("User", foreign_keys=[user_id])
-#     therapist = db.relationship("User", foreign_keys=[therapist_id])
-#     user_notes= db.Column(db.String(250))
-#     therapist_notes= db.Column(db.String(250))
-#     meeting_link = db.Column(db.String(250))
-    
-    
-# class NewsletterContacts(db.Model):
-#     id=db.Column(db.Integer,primary_key=True)
-#     name=db.Column(db.String,nullable=True)
-#     phone=db.Column(db.String(20))
-#     email=db.Column(db.String(50))
-    
-    
-# class Newsletter(db.Model):
-#     id=db.Column(db.Integer,primary_key=True)
-#     recepients = db.Column(db.String(255),nullable=True)
-#     message = db.Column(db.String(255),nullable=True)
-#     date = db.Column(db.Date,default=datetime.now())
-    
-
-
-# class Thread(db.Model):
-#     __tablename__ = 'threads'
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String(80), nullable=False)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-#     user = db.relationship('User', backref=db.backref('threads', lazy=True))
-#     anonymous = db.Column(db.Boolean, default=False)
-#     date = db.Column(db.Date,default=datetime.now())
-
-# class Post(db.Model):
-#     __tablename__ = 'posts'
-#     id = db.Column(db.Integer, primary_key=True)
-#     content = db.Column(db.Text, nullable=False)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-#     user = db.relationship('User', backref=db.backref('posts', lazy=True))
-#     thread_id = db.Column(db.Integer, db.ForeignKey('threads.id'), nullable=False)
-#     thread = db.relationship('Thread', backref=db.backref('posts', lazy=True))
-#     main = db.Column(db.String(5),nullable=True)
-#     date = db.Column(db.Date,default=datetime.now())
-
-
-
-# class Note(db.Model):
-#     __tablename__ = 'notes'
-#     id = db.Column(db.Integer, primary_key=True)
-#     text = db.Column(db.Text, nullable=False)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-#     user = db.relationship("User", foreign_keys=[user_id])
-#     therapist_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     therapist = db.relationship("User", foreign_keys=[therapist_id])
-#     appointment_id = db.Column(db.Integer, db.ForeignKey('appointments.id'))
-#     appointment = db.relationship("Appointment", foreign_keys=[appointment_id])
-    
-    
-    
-    
-    
-# class Delivery(db.Model):
-#     __tablename__ = 'deliveries'
-#     id = db.Column(db.Integer, primary_key=True)
-#     sender_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     sender = db.relationship("User", foreign_keys=[sender_id])
-#     destination_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
-#     destination = db.relationship("Destination", foreign_keys=[destination_id])
-#     traveler_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     traveler = db.relationship("User", foreign_keys=[traveler_id])
-#     agent_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     agent = db.relationship("User", foreign_keys=[agent_id])
-#     delivery_status = db.Column(db.String(120), default="pending")
-#     item_name = db.Column(db.String(120))
-#     item_description = db.Column(db.String(120))
-#     item_weight = db.Column(db.Float)
-#     item_dimension = db.Column(db.String(120))
-#     amount = db.Column(db.Float)
-#     sender_location_id = db.Column(db.Integer, db.ForeignKey('destinations.id'))
-#     sender_location = db.relationship("Destination", foreign_keys=[sender_location_id])
-#     note = db.Column(db.String(255))
-#     traveller_note =db.Column(db.String(255))
-#     start_date = db.Column(db.Date)
-#     end_date = db.Column(db.Date)
-#     arrival_date = db.Column(db.Date)
-#     ticket = db.Column(db.String(255))
-
-
-
-#     def __init__(self, sender_id, destination_id, item_name, item_description, item_weight, item_dimension,sender_location_id,note,start_date,end_date):
-#         self.sender_id = sender_id
-#         self.destination_id = destination_id
-#         self.item_name = item_name
-#         self.item_description = item_description
-#         self.item_weight = item_weight
-#         self.item_dimension = item_dimension
-#         self.sender_location_id = sender_location_id
-#         self.note = note
-#         self.start_date = start_date
-#         self.end_date = end_date
-
-
-# class Destination(db.Model):
-#     __tablename__ = 'destinations'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(80))
-#     country = db.Column(db.String(80))
-#     city = db.Column(db.String(80))
-#     agent_ids =db.Column(db.JSON,nullable=True)
-#     airport_name = db.Column(db.String(120))
-    
-#     def __init__(self, name, country, city, agent_ids, airport_name):
-#         self.name = name
-#         self.country = country
-#         self.city = city
-#         self.agent_ids = agent_ids
-#         self.airport_name = airport_name
-
-
-
-# class LaundryRequest(db.Model):
-#     __tablename__ = 'laundryrequests'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     pickup_time = db.Column(db.DateTime, nullable=False)
-#     status = db.Column(db.String(80))
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     user = db.relationship("User", foreign_keys=[user_id])
-#     hostel =  db.Column(db.String(80))
-#     floor   = db.Column(db.String(80))
-#     room_number = db.Column(db.String(80))
-#     location = db.Column(db.String(80))
-#     price = db.Column(db.String(80))
-#     uid = db.Column(db.String(80))
-#     note = db.Column(db.String(80))
-
 
 
 class PartRequest(db.Model):
@@ -621,6 +300,39 @@ class Review(db.Model):
     vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     vendors  = db.relationship("User", foreign_keys=[vendor_id])
     
+
+
+class Farmer(db.Model):
+    __tablename__ = "farmers"
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(255))
+    last_name = db.Column(db.String(255))
+    number = db.Column(db.Integer())
+    premium_amount = db.Column(db.Integer())
+    location = db.Column(db.String(255))
+    country = db.Column(db.String(255))
+    cashcode = db.Column(db.String(255))
+    date_added = db.Column(db.Date,default=datetime.now)
+    last_modified = db.Column(db.Date,default=datetime.now)
+    language = db.Column(db.String(255))
+    society = db.Column(db.String(255))
+    farmercode = db.Column(db.String(255))
+    cooperative = db.Column(db.String(255))
+    
+    
+class EcomRequest(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    date = db.Column(db.Date,default=datetime.now)
+    number = db.Column(db.Integer())
+    cashcode = db.Column(db.String())
+    farmer_id = db.Column(db.Integer, db.ForeignKey('farmers.id'), nullable=True)
+    farmers  = db.relationship("Farmer", foreign_keys=[farmer_id])
+    country = db.Column(db.String(255), nullable=True)
+  
+   
+    
+ 
+
 
 
 

@@ -9,8 +9,11 @@ from flask_mail import Mail, Message
 from dotenv import load_dotenv
 from flask_apscheduler import APScheduler
 from flask_uploads import UploadSet, configure_uploads, IMAGES
-
-
+from os import environ
+# from flask_jwt_extended import JWTManager
+from datetime import timedelta
+import jwt
+import datetime
 app = Flask(__name__)
 load_dotenv()
 
@@ -45,7 +48,9 @@ with app.app_context():
 
 
 
-
+# app.config["JWT_SECRET_KEY"] = "super-secret"
+# app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=12)
+# jwt = JWTManager(app)
 
 
 
@@ -69,6 +74,15 @@ login_manager = LoginManager()
 
 login_manager.init_app(app)
 login_manager.login_view = 'users.login'
+
+
+
+
+exp_time = datetime.datetime.utcnow() + timedelta(days=365 * 10) # Expires in 10 years
+
+# Encode the token using the user's credentials
+# token = jwt.encode({'username': 'apikey', 'exp': exp_time}, app.config['SECRET_KEY'], algorithm='HS256')
+# print(token)
 
 
 
