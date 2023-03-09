@@ -8,7 +8,7 @@ from flask_login import login_required
 
 from structure.users.forms import LoginForm, UpdateAgentForm
 from flask_mail import Mail, Message
-from structure import mail,db,app,scheduler
+from structure import mail,db,app
 from datetime import datetime,timedelta
 import urllib.request, json
 import random
