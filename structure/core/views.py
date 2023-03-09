@@ -378,7 +378,7 @@ def checknumber():
         res = response.text.split("|")
         print(res)
 
-        payload = {"firstName":farmer.first_name,
+        payload = {"True":True,"firstName":farmer.first_name,
         "lastName":farmer.last_name,
         "premium_amount":farmer.premium_amount,
         "location":farmer.location
