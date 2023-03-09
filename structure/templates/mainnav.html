@@ -53,42 +53,14 @@
 
          <!-- Navbar -->
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#" style="color: #e72b34;"> I Need Parts</a>
+          <a class="navbar-brand" href="#" style="color: #e72b34;"> Ecom </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         
           <div class="collapse navbar-collapse " style="margin-left: 50%;" id="navbarSupportedContent">
           
-            <div class="form-inline my-2 my-lg-0 ">
-              <a class="nav-link" href="{{ url_for('core.inp_home') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
-                Home
-              </a> 
-              <a class="nav-link" href="{{ url_for('core.new_request') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
-                Request Part
-              </a>   
-              <a class="nav-link" href="{{ url_for('core.myrequests') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
-                Requested Parts
-              </a>
-              {%if session['role']=='vendor'%}
-              <a class="nav-link" href="{{ url_for('core.mybids') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
-                My Bids
-              </a>     
-              {%endif%}
-              {% if current_user.is_authenticated %}
-                          <a class="nav-link" href="{{ url_for('users.logout') }}" id="navbarDropdown" role="button" style="color: #e72b34;" >
-                Logout
-              </a>        
-              {% else %}
-              <a class="nav-link" href="{{ url_for('users.login') }}" id="navbarDropdown" role="button" style="color: #e72b34;">
-                Login
-              </a>   
-              <a class="nav-link " href="{{ url_for('users.register') }}" id="navbarDropdown" role="button" style="color: #e72b34;">
-                Sign Up
-              </a>   
-              {% endif %}
-        
-             </div>
+    
           </div>
         </nav>
 
