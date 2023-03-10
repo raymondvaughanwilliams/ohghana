@@ -333,6 +333,9 @@ def checknumber():
 
     # number = requests.json['number'] 
     number = request.args.get('number')
+    number = number.strip()
+    print("Checking for number:")
+    print(number)
  
     farmer = Farmer.query.filter_by(number=number).first()
     if farmer is not None:
