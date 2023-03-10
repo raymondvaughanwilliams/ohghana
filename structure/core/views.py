@@ -26,7 +26,7 @@ def require_api_key(view_function):
         if request.headers.get('Authorization') == API_KEY:
             return view_function(*args, **kwargs)
         else:
-            return jsonify({'error': 'Invalid API key'}), 401
+            return jsonify({'error': 'Invalid API key','status':False}), 401
     return decorated_function
 
 
@@ -326,7 +326,7 @@ def addplan():
   
   
 @core.route('/api/checknumber',methods=['GET','POST'])
-@require_api_key
+# @require_api_key
 def checknumber():
      
     # print(request.args.get('number'))
