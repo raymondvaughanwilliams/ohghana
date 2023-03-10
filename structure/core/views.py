@@ -326,7 +326,7 @@ def addplan():
   
   
 @core.route('/api/checknumber',methods=['GET','POST'])
-# @require_api_key
+@require_api_key
 def checknumber():
      
     # print(request.args.get('number'))
