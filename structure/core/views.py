@@ -325,6 +325,35 @@ def addplan():
   
   
   
+@core.route('/api/senddemosms',methods=['GET','POST'])
+# @require_api_key
+def senddemosms():
+     
+    # print(request.args.get('number'))
+
+    # number = requests.json['number'] 
+    number = request.args.get('number') 
+  
+    url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
+    # apiKey = 
+    rpassword = environ.get('ROUTESMS_PASS')
+    data = {
+        'username': 'dlp-testacc',
+        'password': rpassword,
+        'type':'0',
+        'dlr':'1',
+        'destination':number,
+        'source':'test',
+        'message':message
+    }
+    response = requests.post(url, data)
+
+    # response_data = response.json()
+    # print("response_data")
+    res = response.text.split("|")
+    print(res)
+  
+  
 @core.route('/api/checknumber',methods=['GET','POST'])
 # @require_api_key
 def checknumber():
