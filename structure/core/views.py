@@ -332,7 +332,9 @@ def senddemosms():
     # print(request.args.get('number'))
 
     # number = requests.json['number'] 
-    number = request.args.get('number') 
+    number = request.args.get('number')
+    print("number")
+    print(number)
   
     url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
     # apiKey = 
@@ -352,6 +354,17 @@ def senddemosms():
     # print("response_data")
     res = response.text.split("|")
     print(res)
+    print(res)
+
+    payload = {"True":True,
+               "res":res
+    }
+    context = {"status" :True,
+"message" : " Message triggered",
+    "data" : payload
+    }
+    return jsonify(context)
+
   
   
 @core.route('/api/checknumber',methods=['GET','POST'])
