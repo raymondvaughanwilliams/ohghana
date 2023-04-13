@@ -334,7 +334,7 @@ def senddemosms():
     # number = requests.json['number'] 
     number = request.args.get('number')
     print("number")
-    print(number)
+    print(number[1:])
   
     url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
     # apiKey = 
@@ -344,7 +344,7 @@ def senddemosms():
         'password': rpassword,
         'type':'0',
         'dlr':'1',
-        'destination':number,
+        'destination':number[1:],
         'source':'test',
         'message':'Welcome to Delaphone’s Cloud Answering Service, partner with us to optimize your customer experience'
     }
