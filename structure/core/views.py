@@ -344,7 +344,7 @@ def senddemosms():
         'dlr':'1',
         'destination':number,
         'source':'test',
-        'message':message
+        'message':'Welcome to Delaphone’s Cloud Answering Service, partner with us to optimize your customer experience'
     }
     response = requests.post(url, data)
 
