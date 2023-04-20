@@ -432,10 +432,10 @@ def checknumber():
     "message" : " Farmer found",
         "data" : payload
         }
-        return jsonify(context)
+        return jsonify(context),200
     else:
         context = {"status" :False,
         "message":"Farmer not found",
         "error": "null"}
-        return jsonify(context)
+        return jsonify(context),404
     
