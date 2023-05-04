@@ -75,8 +75,12 @@ class FilterForm(FlaskForm):
     last_name = StringField('Last Name')
     number = StringField('Premium Amount')
     premium_amount = StringField('Premium Amount')
-    premium_amount = StringField('Premium Amount')
     location = StringField('Location')
+    language = StringField('Language')
+    country = StringField('Country')
+    society = StringField('Society')
+    cooperative = StringField('Cooperative')
+    ordernumber = StringField('Order Number')
     submit = SubmitField('Submit') 
     
     
@@ -95,6 +99,10 @@ class FarmerForm(Form):
     premium_amount = StringField('Premium Amount')
     premium_amount = StringField('Premium Amount')
     location = StringField('Location')
+    language = StringField('Language')
+    country = StringField('Country')
+    cooperative = StringField('Cooperative')
+    ordernumber = StringField('Order Number')
     uploadfile = FileField('Upload', validators=[FileRequired(), FileAllowed(['csv'])])
     submit = SubmitField('Submit') 
     

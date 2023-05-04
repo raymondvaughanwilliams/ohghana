@@ -149,7 +149,7 @@ def addfarmer():
         # if not destination:
         #     return render_template("create_PartRequest.html", error="destination not found")
   
-        farmer = Farmer( first_name=form.first_name.data,last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data)
+        farmer = Farmer( first_name=form.first_name.data,last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data,language=form.language.data,country=form.country.data,cooperative=form.cooperative.data,ordernumber=form.ordernumber.data)
         db.session.add(farmer)
         db.session.commit()
         return redirect(url_for("core.farmers"))
@@ -168,13 +168,31 @@ def farmers():
         last_name= form.last_name.data
         location = form.location.data
         number = form.number.data
+        cooperative = form.cooperative.data
+        language = form.language.data
+        country = form.country.data
+        society = form.society.data
 
         # Build the SQLAlchemy filter conditions
         conditions = []
         if first_name:
-            conditions.append(Farmer.first_name == first_name)
+            first_name_conditions = [
+                Farmer.first_name.like(f"%{first_name}%"),
+                Farmer.first_name.like(f"{first_name}%"),
+                Farmer.first_name.like(f"%{first_name}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*first_name_conditions))
         if last_name:
-            conditions.append(Farmer.last_name == last_name)
+            last_name_conditions = [
+                Farmer.last_name.like(f"%{last_name}%"),
+                Farmer.last_name.like(f"{last_name}%"),
+                Farmer.last_name.like(f"%{last_name}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*last_name_conditions))
         if number:
             # Build a list of conditions that match the location field
             # using the LIKE operator and the % wildcard
@@ -197,19 +215,34 @@ def farmers():
             # Use the OR operator to combine the conditions into a single
             # condition that matches any of the destination variations
             conditions.append(or_(*location_conditions))
-        # if status and status != "all":
-        #     conditions.append(Delivery.delivery_status == status)
-        # if date_min and date_max:
-        #     # Filter for Deliverys with dates within the specified range
-        #     conditions.append(and_(Delivery.start_date >= date_min, Delivery.end_date <= date_max))
-        # elif date_min:
-        #     # Filter for Deliverys with dates greater than or equal to the specified minimum
-        #     conditions.append(Delivery.start_date >= date_min)
-        # elif date_max:
-        #     # Filter for Deliverys with dates less than or equal to the specified maximum
-        #     conditions.append(Delivery.end_date <= date_max)
+        if cooperative:
+            cooperative_conditions = [
+                Farmer.cooperative.like(f"%{cooperative}%"),
+                Farmer.cooperative.like(f"{cooperative}%"),
+                Farmer.cooperative.like(f"%{cooperative}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*cooperative_conditions))
+        if society:
+            society_conditions = [
+                Farmer.society.like(f"%{society}%"),
+                Farmer.society.like(f"{society}%"),
+                Farmer.society.like(f"%{society}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*society_conditions))
+        if country:
+            country_conditions = [
+                Farmer.country.like(f"%{country}%"),
+                Farmer.country.like(f"{country}%"),
+                Farmer.country.like(f"%{country}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*country_conditions))
 
-        # Filter the Deliverys based on the conditions
         print(conditions[0])
         farmers = Farmer.query.filter(and_(*conditions)).all()
     # user = User.query.filter_by(id=session['id']).first()
@@ -416,12 +449,15 @@ def checknumber():
             'source':'test',
             'message':message
         }
-        response = requests.post(url, data)
 
-        # response_data = response.json()
-        # print("response_data")
-        res = response.text.split("|")
-        print(res)
+        # --------------------------------
+        #  response = requests.post(url, data)
+
+        # # response_data = response.json()
+        # # print("response_data")
+        # res = response.text.split("|")
+        # print(res)
+        
 
         payload = {"True":True,"firstName":farmer.first_name,
         "lastName":farmer.last_name,

@@ -318,6 +318,7 @@ class Farmer(db.Model):
     society = db.Column(db.String(255))
     farmercode = db.Column(db.String(255))
     cooperative = db.Column(db.String(255))
+    ordernumber = db.Column(db.String(255))
     
     
 class EcomRequest(db.Model):
