@@ -16,7 +16,6 @@
 					<h5 class="card-title" style="font-size:1.7rem;color:white">Welcome {{user.name}}</h5>
 		<div class="row col-lg-9">
             <a class="btn btn-primary col-lg-12" style="background:white;margin-bottom:20px;color:#4CAF50;" href="{{url_for('core.farmers')}}" >Go to farmers</a>
-            <a class="btn btn-primary col-lg-12"   href="{{url_for('core.farmers')}}" style="background:white;margin-bottom:20px;color:#4CAF50;">Go to claims</a>
 
         </div>
 </div>
@@ -59,9 +58,9 @@
                     <ul class="list-group ">
                         {% for farmer in farmers %}
                         <li class="list-group-item col-md-12">
-                            <a href="{{url_for('core.farmer',id=farmer.id)}}" class="col-md-4" style="float:left;">{{farmer.first_name}}</a>
+                            <a href="{{url_for('core.farmer',id=farmer.id)}}" class="col-md-4" style="float:left;">{{farmer.cooperative}}</a>
                             <span class="col-md-4" style="float:left"> {{farmer.last_name}}</span>
-                        <span class="col-md-4" style="float:left">	{{farmer.location}} </span>
+                        <span class="col-md-4" style="float:left">	{{farmer.society}} </span>
                         </li>
 
 
@@ -99,7 +98,6 @@
                                 {% endfor %}
                                 
                             </ul>
-                            <a class="btn btn-primary" href="{{url_for('core.farmers')}}" style="color:white">All Requests</a>
 
                         </div>
                     </div>

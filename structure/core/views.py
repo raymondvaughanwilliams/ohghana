@@ -180,7 +180,7 @@ def addfarmer():
         # if not destination:
         #     return render_template("create_PartRequest.html", error="destination not found")
   
-        farmer = Farmer( first_name=form.first_name.data,last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data,language=form.language.data,country=form.country.data,cooperative=form.cooperative.data,ordernumber=form.ordernumber.data)
+        farmer = Farmer( first_name="NA",last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data,language=form.language.data,country=form.country.data,cooperative=form.cooperative.data,ordernumber=form.ordernumber.data)
         db.session.add(farmer)
         db.session.commit()
         return redirect(url_for("core.farmers"))
