@@ -46,8 +46,9 @@ def agent_dashboard():
     user = User.query.filter_by(id=session['id']).first()
     about = About.query.get(1)
     
-    farmers = Farmer.query.all()
-    ecomrequests  = EcomRequest.query.all()
+    farmers = Farmer.query.order_by(desc(Farmer.id)).all()
+    # ecomrequests  = EcomRequest.query.all()
+    ecomrequests = EcomRequest.query.order_by(desc(EcomRequest.id)).all()
     
     form = FilterForm()
     if session['role'] == 'agent':
@@ -74,10 +75,6 @@ def claims():
     form = FilterForm()
 
 
-    deliveries = Bid.query.filter_by(delivery='needpartsdelivery',status='accepted').all()
-    print(deliveries)
-
-
     name = user.name
     
     
@@ -86,15 +83,34 @@ def claims():
         first_name = form.first_name.data
         print (first_name)
         last_name= form.last_name.data
+        
         location = form.location.data
         number = form.number.data
+        cooperative = form.cooperative.data
+        language = form.language.data
+        country = form.country.data
+        society = form.society.data
 
         # Build the SQLAlchemy filter conditions
         conditions = []
         if first_name:
-            conditions.append(EcomRequest.farmers.first_name == first_name)
+            first_name_conditions = [
+                EcomRequest.farmers.first_name.like(f"%{first_name}%"),
+                EcomRequest.farmers.first_name.like(f"{first_name}%"),
+                EcomRequest.farmers.first_name.like(f"%{first_name}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*first_name_conditions))
         if last_name:
-            conditions.append(EcomRequest.farmers.last_name == last_name)
+            last_name_conditions = [
+                EcomRequest.farmers.last_name.like(f"%{last_name}%"),
+                EcomRequest.farmers.last_name.like(f"{last_name}%"),
+                EcomRequest.farmers.last_name.like(f"%{last_name}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*last_name_conditions))
         if number:
             # Build a list of conditions that match the location field
             # using the LIKE operator and the % wildcard
@@ -110,26 +126,41 @@ def claims():
             # Build a list of conditions that match the destination field
             # using the LIKE operator and the % wildcard
             location_conditions = [
-                EcomRequest.farmers.location.like(f"%{location}%"),
-                EcomRequest.farmers.like(f"{location}%"),
-                EcomRequest.farmers.like(f"%{location}"),
+                EcomRequest.location.like(f"%{location}%"),
+                EcomRequest.location.like(f"{location}%"),
+                EcomRequest.location.like(f"%{location}"),
             ]
             # Use the OR operator to combine the conditions into a single
             # condition that matches any of the destination variations
             conditions.append(or_(*location_conditions))
-        # if status and status != "all":
-        #     conditions.append(Delivery.delivery_status == status)
-        # if date_min and date_max:
-        #     # Filter for Deliverys with dates within the specified range
-        #     conditions.append(and_(Delivery.start_date >= date_min, Delivery.end_date <= date_max))
-        # elif date_min:
-        #     # Filter for Deliverys with dates greater than or equal to the specified minimum
-        #     conditions.append(Delivery.start_date >= date_min)
-        # elif date_max:
-        #     # Filter for Deliverys with dates less than or equal to the specified maximum
-        #     conditions.append(Delivery.end_date <= date_max)
+        if cooperative:
+            cooperative_conditions = [
+                EcomRequest.cooperative.like(f"%{cooperative}%"),
+                EcomRequest.cooperative.like(f"{cooperative}%"),
+                EcomRequest.cooperative.like(f"%{cooperative}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*cooperative_conditions))
+        if society:
+            society_conditions = [
+                EcomRequest.society.like(f"%{society}%"),
+                EcomRequest.society.like(f"{society}%"),
+                EcomRequest.society.like(f"%{society}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*society_conditions))
+        if country:
+            country_conditions = [
+                EcomRequest.country.like(f"%{country}%"),
+                EcomRequest.country.like(f"{country}%"),
+                EcomRequest.country.like(f"%{country}"),
+            ]
+            # Use the OR operator to combine the conditions into a single
+            # condition that matches any of the location variations
+            conditions.append(or_(*country_conditions))
 
-        # Filter the Deliverys based on the conditions
         print(conditions[0])
         ecomrequests = EcomRequest.query.filter(and_(*conditions)).all()
         print(ecomrequests)
@@ -158,10 +189,14 @@ def addfarmer():
 @core.route("/farmers", methods=["GET","POST"])
 def farmers():
     form =  FilterForm()
-    farmers = Farmer.query.all()
+    page = request.args.get('page', 1, type=int)
+    farmers = Farmer.query.paginate(page, 10, False)
+    
     print ("deliveries")
     print(farmers)
+    search="no"
     if request.method == "POST":
+        search="yes"
         # Get the filter values from the form
         first_name = form.first_name.data
         print (first_name)
@@ -243,11 +278,14 @@ def farmers():
             # condition that matches any of the location variations
             conditions.append(or_(*country_conditions))
 
-        print(conditions[0])
+        # print(conditions[0])
+        # else:
+            
         farmers = Farmer.query.filter(and_(*conditions)).all()
+        print(farmers)
     # user = User.query.filter_by(id=session['id']).first()
 
-    return render_template("agentportal/farmers.html", farmers=farmers,form=form,filterform=form)
+    return render_template("agentportal/farmers.html", farmers=farmers,form=form,filterform=form,page=page,search=search)
 
 
 @core.route("/farmer/<int:id>", methods=["POST",'GET'])
@@ -265,6 +303,11 @@ def farmer(id):
         farmer.number = form.number.data
         farmer.premium_amount = form.premium_amount.data
         farmer.location = form.location.data
+        farmer.country = form.country.data
+        farmer.language = form.language.data
+        farmer.society = form.society.data
+        farmer.cooperative = form.cooperative.data
+        farmer.ordernumber = form.ordernumber.data
         # bid.status = 'bid'
         
         db.session.commit()
@@ -278,6 +321,11 @@ def farmer(id):
         form.number.data = farmer.number
         form.premium_amount.data = farmer.premium_amount
         form.location.data = farmer.location
+        form.language.data = farmer.language
+        form.society.data = farmer.society
+        form.country.data = farmer.country
+        form.cooperative.data = farmer.cooperative
+        form.ordernumber.data = farmer.ordernumber
       
         
     return render_template("agentportal/farmer.html",farmer=farmer, form=form)
@@ -299,24 +347,27 @@ def uploadfarmer():
             print(uploaded_file.filename)
             filepath = os.path.join(current_app.root_path, uploaded_file.filename)
             uploaded_file.save(filepath)
-            with open(filepath, encoding='utf-8-sig') as file:
+            with open(filepath,encoding='ISO-8859-1') as file:
                 csv_file = csv.reader(file)
                 print(csv_file)
                 line_count= 0
                 for row in csv_file:
                     line_count += 1
-                    print(line_count)
                     try:
-                        farmers_save = Farmer(first_name=row[0],last_name=row[1],number=row[2],location=row[3],premium_amount=row[4])
+                        print("saving")
+                        # farmers_save = Farmer(first_name=row[0],last_name=row[1],number=row[2])
+                        farmers_save = Farmer(ordernumber=row[0],cooperative=row[1],farmercode=row[2],last_name=row[3],society=row[4],number=row[5],premium_amount=row[6],language=row[7],cashcode=row[8],country=row[9],first_name="NA")
                         db.session.add(farmers_save)
                         db.session.commit()
+                        print("saved")
+
                     except Exception as e:
                         # Add the line number to the error message
                         error_message = f"Error on line {line_count}: {str(e)}"
                         # Handle the error appropriately
                         message = error_message
+                        print(message)
                     
-                    print(row)
                     
                     
                     # data.append(row)
@@ -451,12 +502,12 @@ def checknumber():
         }
 
         # --------------------------------
-        #  response = requests.post(url, data)
+        response = requests.post(url, data)
 
-        # # response_data = response.json()
-        # # print("response_data")
-        # res = response.text.split("|")
-        # print(res)
+        # response_data = response.json()
+        # print("response_data")
+        res = response.text.split("|")
+        print(res)
         
 
         payload = {"True":True,"firstName":farmer.first_name,

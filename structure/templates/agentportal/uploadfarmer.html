@@ -11,7 +11,7 @@
 
     <div class="container  card-body shadow-lg rounded bg-white mt-5 mb-5">
 
-      <div class="session-title row">
+      <div class="session-title row ml-2">
             <div class="session-title row">
                  <h2>Upload Rates</h2><br>
                
@@ -19,13 +19,13 @@
                             
 
                     </div>
-                    <form class="form-group" method="POST" enctype="multipart/form-data">
+                    <br>
+                    <form class="form-group mt-5" method="POST" enctype="multipart/form-data">
                       {{ form.hidden_tag() }}
                  
                     
              
                           <div class="form-group">
-                              {{ form.uploadfile.label(class="form-control-label") }}
                               {{ form.uploadfile(class="form-control form-control-lg") }}
                               </div>
                        
@@ -46,9 +46,8 @@
 
 
        
-        </div>
   <br>
-  
+  <p style="margin-top: 300px;"></p>
 
   
     <!-- ====== Team End ====== -->

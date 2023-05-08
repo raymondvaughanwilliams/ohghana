@@ -103,6 +103,7 @@ class FarmerForm(Form):
     country = StringField('Country')
     cooperative = StringField('Cooperative')
     ordernumber = StringField('Order Number')
+    society = StringField('Society')
     uploadfile = FileField('Upload', validators=[FileRequired(), FileAllowed(['csv'])])
     submit = SubmitField('Submit') 
     

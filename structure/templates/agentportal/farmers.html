@@ -35,7 +35,7 @@
                 {{ filterform.last_name(class="form-control btn btn-secondary dropdown-toggle ") }}
             </div>
             <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> Number:</label>
+                <label for="donationinput1 ">Phone Number:</label>
                 {{ filterform.number(class="form-control btn btn-secondary dropdown-toggle ") }}
             </div>
          
@@ -58,6 +58,10 @@
                 <label for="donationinput1 "> Language:</label>
                 {{ filterform.language(class="form-control btn btn-secondary dropdown-toggle ") }}
             </div>
+            <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
+                <label for="donationinput1 "> Cooperative:</label>
+                {{ filterform.cooperative(class="form-control btn btn-secondary dropdown-toggle ") }}
+            </div>
             <div class="col-lg-2"  style="margin-bottom:20px;margin-top:50px; ">
                 {{ filterform.submit(value="Filter",class="btn btn-primary ",style="color: white;background-color:#0F9B93;border-color:#FFF9B9;") }}
             </div>
@@ -74,7 +78,7 @@
                                         <th>Cooperative</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
-                                        <th>Number</th>
+                                        <th>Phone Number</th>
                                         <th>Premium Amount</th>
                                         <th>Location</th>
                                         <th>Country</th>
@@ -84,10 +88,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for farmer in farmers %}
+                                    {%if search =="no"%}
+                                    {% for farmer in farmers.items %}
+                                   
                                     <tr>
-                                        <td><a >Order Number</a></td>
-                                        <td><a >{{farmer.Cooperative}}</a></td>
+                                        <td><a >{{farmer.ordernumber}}</a></td>
+                                        <td><a >{{farmer.cooperative}}</a></td>
                                         <td><a href="{{url_for('core.farmer',id=farmer.id)}}">{{farmer.first_name}}</a></td>
                                         <td>{{farmer.last_name}}</td>
                                         <td>{{farmer.number}}</td>
@@ -99,6 +105,24 @@
                                         <td>{{farmer.language}}</td>
                                     </tr>
                                     {% endfor %}
+                                    {%else%}
+                                    {% for farmer in farmers %}
+                                   
+                                    <tr>
+                                        <td><a >{{farmer.ordernumber}}</a></td>
+                                        <td><a >{{farmer.cooperative}}</a></td>
+                                        <td><a href="{{url_for('core.farmer',id=farmer.id)}}">{{farmer.first_name}}</a></td>
+                                        <td>{{farmer.last_name}}</td>
+                                        <td>{{farmer.number}}</td>
+                                      
+                                        <td>{{farmer.premium_amount}}</td>
+                                        <td>{{farmer.location}}</td>
+                                        <td>{{farmer.country}}</td>
+                                        <td>{{farmer.society}}</td>
+                                        <td>{{farmer.language}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                    {%endif%}
                                     
                                 </tbody>
                             </table>
@@ -106,6 +130,42 @@
                         
                     </div>
                 </div>
+                {% if search =="no" %}
+                <div class="text-right">
+                    <a href="{{ url_for('core.farmers', page=farmers.prev_num) }}"
+                       class="btn btn-outline-dark 
+                       {% if farmers.page == 1 %}disabled{% endif %}">
+                        &laquo;
+                    </a><!-- Loop through the number of pages to display a link for each-->
+                    {% for page_num in farmers.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}{% if page_num %}
+                  <!-- Check for the active page and set the link to "Active"-->
+                            {% if farmers.page == page_num %}
+                            <a href="{{ url_for('core.farmers', page=page_num) }}"
+                               class="btn btn-dark">
+                                {{ page_num }}
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('core.farmers', page=page_num) }}"
+                               class="btn btn-outline-dark">
+                                {{ page_num }}
+                            </a>
+                            {% endif %}
+                        {% else %}
+                            ...
+                        {% endif %}
+                    {% endfor %}    <a href="{{ url_for('core.farmers', page=farmers.next_num) }}"
+                       class="btn btn-outline-dark 
+                       {% if farmers.page == farmers.pages %}disabled{% endif %}">
+                        &raquo;
+                    </a>
+                  </div>
+                  <p class="text-right mt-3">
+                   Showing page {{ farmers.page }} of {{ farmers.pages }}
+                  </p>
+                              </div>
+                             
+                                          {%endif%}
+              
             </div>
 				
 			
