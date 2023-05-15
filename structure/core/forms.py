@@ -104,6 +104,7 @@ class FarmerForm(Form):
     cooperative = StringField('Cooperative')
     ordernumber = StringField('Order Number')
     society = StringField('Society')
+    cashcode = StringField('Cashcode')
     uploadfile = FileField('Upload', validators=[FileRequired(), FileAllowed(['csv'])])
     submit = SubmitField('Submit') 
     

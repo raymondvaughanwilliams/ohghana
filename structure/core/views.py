@@ -42,9 +42,11 @@ def base():
 
 
 @core.route('/agent/dashboard')
+@login_required
 def agent_dashboard():
     user = User.query.filter_by(id=session['id']).first()
     about = About.query.get(1)
+    name="ecom"
     
     farmers = Farmer.query.order_by(desc(Farmer.id)).all()
     # ecomrequests  = EcomRequest.query.all()
@@ -53,18 +55,17 @@ def agent_dashboard():
     form = FilterForm()
     if session['role'] == 'agent':
 
-        deliveries = Bid.query.filter_by(delivery='needpartsdelivery',status='accepted').all()
-        print(deliveries)
 
 
         name = user.name
         # print(op)
 
-    return render_template('agentportal/dashboard.html',form=form, user=user,about=about,name=name,deliveries=deliveries,farmers=farmers,ecomrequests=ecomrequests)
+    return render_template('agentportal/dashboard.html',form=form, user=user,about=about,name=name,farmers=farmers,ecomrequests=ecomrequests)
 
 
 
 @core.route('/claims', methods=['GET', 'POST'])
+@login_required
 def claims():
     user = User.query.filter_by(id=session['id']).first()
     about = About.query.get(1)
@@ -172,6 +173,7 @@ def claims():
 
 
 @core.route("/addfarmer", methods=["GET", "POST"])
+@login_required
 def addfarmer():
     form = FarmerForm()
     items  = Farmer.query.all()
@@ -180,13 +182,14 @@ def addfarmer():
         # if not destination:
         #     return render_template("create_PartRequest.html", error="destination not found")
   
-        farmer = Farmer( first_name="NA",last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data,language=form.language.data,country=form.country.data,cooperative=form.cooperative.data,ordernumber=form.ordernumber.data)
+        farmer = Farmer( first_name="NA",last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data,language=form.language.data,country=form.country.data,cooperative=form.cooperative.data,ordernumber=form.ordernumber.data,cashcode=form.cashcode.data)
         db.session.add(farmer)
         db.session.commit()
         return redirect(url_for("core.farmers"))
     return render_template("agentportal/addfarmer.html",form=form,items=items)
 
 @core.route("/farmers", methods=["GET","POST"])
+@login_required
 def farmers():
     form =  FilterForm()
     page = request.args.get('page', 1, type=int)
@@ -289,6 +292,7 @@ def farmers():
 
 
 @core.route("/farmer/<int:id>", methods=["POST",'GET'])
+@login_required
 def farmer(id):
     form = FarmerForm()
     farmer = Farmer.query.filter_by(id=id).first()
@@ -308,6 +312,7 @@ def farmer(id):
         farmer.society = form.society.data
         farmer.cooperative = form.cooperative.data
         farmer.ordernumber = form.ordernumber.data
+        farmer.cashcode = form.cashcode.data
         # bid.status = 'bid'
         
         db.session.commit()
@@ -326,12 +331,14 @@ def farmer(id):
         form.country.data = farmer.country
         form.cooperative.data = farmer.cooperative
         form.ordernumber.data = farmer.ordernumber
+        form.cashcode.data = farmer.cashcode
       
         
     return render_template("agentportal/farmer.html",farmer=farmer, form=form)
 
 
 @core.route('/uploadfarmer',methods=['GET', 'POST'])
+@login_required
 def uploadfarmer():
     form = FarmerForm()
     user = User.query.filter_by(email=session['email']).first()
@@ -382,6 +389,21 @@ def uploadfarmer():
         #     db.session.add(farmers_save)
         #     db.session.commit()
     return render_template('agentportal/uploadfarmer.html',form=form,user=user)
+
+
+
+@core.route("/delete_farmer/<int:farmer_id>", methods=['POST','GET'])
+@login_required
+def delete_farmer(farmer_id):
+    farmer = Farmer.query.get_or_404(farmer_id)
+    db.session.delete(farmer)
+    db.session.commit()
+    return redirect(url_for('core.farmers'))
+
+
+
+
+
 
 
 @core.route('/api/addfarmer',methods=['GET','POST'])
@@ -473,7 +495,7 @@ def checknumber():
         # endPoint = 'https://api.mnotify.com/api/sms/quick'
         # # apiKey = 
         if farmer.country == "Ghana":
-            message = "Hi " + farmer.last_name  +" , your 2022/2023 premium is GHS" + str(farmer.premium_amount) + " and be paid on " +number +". Your cash code is "+ str(farmer.cashcode) +".  Reach out to ECOM on 0800189189 for more enquires."
+            message = "Hello " + farmer.last_name  +" . Your 2022/2023 premium is GHS" + str(farmer.premium_amount) + ". Your cash code is "+ str(farmer.cashcode) +".  Thank you."
         else:
             message ="Salut " + farmer.last_name +", votre prime pour 2022/2023 est GHS" + str(farmer.premium_amount) + " et soyez payé sur " +number +". Votre code de caisse est "+ " "+ str(farmer.cashcode)+" Contactez ECOM au 0800189189 pour demande plus."
         # print("message")
