@@ -104,9 +104,9 @@
                                         <td>{{farmer.language}}</td>
                                         <td>{{farmer.location}}</td>
                                         <td>
-                                        <button class="fa fa-trash" type="button"  data-target="#deleteModal" data-toggle="modal"></button>
+                                        <button class="fa fa-trash" type="button"  data-target="#deleteModal{{farmer.id}}" data-toggle="modal"></button>
                                         </td>
-                                        <div class="modal fade" id="deleteModal">
+                                        <div class="modal fade" id="deleteModal{{farmer.id}}">
                                             <div class="modal-dialog">
                                              <div class="modal-content">
                                               <div class="modal-header">
