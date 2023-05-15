@@ -473,9 +473,9 @@ def checknumber():
         # endPoint = 'https://api.mnotify.com/api/sms/quick'
         # # apiKey = 
         if farmer.country == "Ghana":
-            message = "Hi " + farmer.last_name  +" , your 2022/2023 premium is GHS" + str(farmer.premium_amount) + " and be paid on " +number +". Your cash code is XXXX.  Reach out to ECOM on 0800189189 for more enquires."
+            message = "Hi " + farmer.last_name  +" , your 2022/2023 premium is GHS" + str(farmer.premium_amount) + " and be paid on " +number +". Your cash code is "+ str(farmer.cashcode) +".  Reach out to ECOM on 0800189189 for more enquires."
         else:
-            message ="Salut " + farmer.last_name +", votre prime pour 2022/2023 est GHS" + str(farmer.premium_amount) + " et soyez payé sur " +number +". Votre code de caisse est "+ " "+ str(farmer.premium_amount)+" Contactez ECOM au 0800189189 pour demande plus."
+            message ="Salut " + farmer.last_name +", votre prime pour 2022/2023 est GHS" + str(farmer.premium_amount) + " et soyez payé sur " +number +". Votre code de caisse est "+ " "+ str(farmer.cashcode)+" Contactez ECOM au 0800189189 pour demande plus."
         # print("message")
         # print(message)
         # data = {
