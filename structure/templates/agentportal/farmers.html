@@ -1,73 +1,84 @@
 {% extends "agentportal/base.html" %}
 {% block content %}
+
 <section id="card-headings">
-	<div class="row">
-		<div class="col-12 mt-3 mb-1">
-			<h4 class="text-uppercase">Farmers</h4>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Farmers</h4>
+        </div>
+    </div>
 
-	<div class="row">
-		<div class="col-md-12 col-sm-12 col-lg-12">
-			<div class="card text-left" style="background-image: url('/static/images/lightbulb.png');background-size: 100%;">
-<div  class="card-header">
-    <form  method="post" >
-        <div class="row col-lg-12">
-        
-         <!---- <div class="col-lg-4">
-          
-           <div class="form-outline">
-             <input id="search-input" type="search" id="form1" class="form-control" />
-           </div>
-           <button id="search-button" type="button" class="btn btn-primary">
-             <i class="fa fa-search"></i>
-           </button>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="card text-left"
+                 style="background-image: url('/static/images/lightbulb.png');background-size: 100%;">
+                <div class="card-header">
+                    <form method="post">
+                        <div class="row col-lg-12">
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 "> First Name:</label>
+                                {{ filterform.first_name(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 "> Last Name:</label>
+                                {{ filterform.last_name(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 ">Phone Number:</label>
+                                {{ filterform.number(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
 
-         </div>-->
+                            <div class="col-lg-3" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 "> Location:</label>
+                                {{ filterform.location(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
+                            <hr>
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 "> Country:</label>
+                                {{ filterform.country(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 "> Society:</label>
+                                {{ filterform.society(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 "> Language:</label>
+                                {{ filterform.language(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
+                                <label for="donationinput1 "> Cooperative:</label>
+                                {{ filterform.cooperative(class="form-control btn btn-secondary dropdown-toggle ") }}
+                            </div>
+                            <div class="col-lg-2" style="margin-bottom:20px;margin-top:50px; ">
+                                {{ filterform.submit(value="Filter",class="btn btn-primary ",style="color:
+                                white;background-color:#0F9B93;border-color:#FFF9B9;") }}
+                            </div>
+                        </div>
+                    </form>
 
-        
-               <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> First Name:</label>
-                {{ filterform.first_name(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-            <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> Last Name:</label>
-                {{ filterform.last_name(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-            <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 ">Phone Number:</label>
-                {{ filterform.number(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-         
-            <div class="col-lg-3"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> Location:</label>
-                {{ filterform.location(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-            
-              
-               <hr>
-               <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> Country:</label>
-                {{ filterform.country(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-            <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> Society:</label>
-                {{ filterform.society(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-            <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> Language:</label>
-                {{ filterform.language(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-            <div class="col-lg-2"  style="margin-bottom:20px;margin-top:20px; ">
-                <label for="donationinput1 "> Cooperative:</label>
-                {{ filterform.cooperative(class="form-control btn btn-secondary dropdown-toggle ") }}
-            </div>
-            <div class="col-lg-2"  style="margin-bottom:20px;margin-top:50px; ">
-                {{ filterform.submit(value="Filter",class="btn btn-primary ",style="color: white;background-color:#0F9B93;border-color:#FFF9B9;") }}
-            </div>
-       </div>
-   </form>
-</div>
+                    <!-- Action Buttons -->
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-sm-2 mr-1">
+                            <!-- Add farmer modal trigger -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#add-farmer-modal">
+                                <i class="fa fa-plus"></i>
+                                Add New Farmer
+                            </button>
+                        </div>
+
+                        <div class="col-sm-2 mr-1">
+                            <!-- Add farmer modal trigger -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#bulk-sms-modal">
+                                <i class="fa fa-comments"></i>
+                                Send Bulk SMS
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="card-body" style="background-color: white;">
                     <div class="card-content">
                         <div class="table-responsive">
@@ -159,14 +170,14 @@
                                             </div>
                                            </div>
 
-                                    </tr>
-                                    {% endfor %}
-                                    {%endif%}
-                                    
+                                </tr>
+                                {% endfor %}
+                                {%endif%}
+
                                 </tbody>
                             </table>
                         </div>
-                        
+
                     </div>
                 </div>
                 {% if search =="no" %}
@@ -176,54 +187,293 @@
                        {% if farmers.page == 1 %}disabled{% endif %}">
                         &laquo;
                     </a><!-- Loop through the number of pages to display a link for each-->
-                    {% for page_num in farmers.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}{% if page_num %}
-                  <!-- Check for the active page and set the link to "Active"-->
-                            {% if farmers.page == page_num %}
-                            <a href="{{ url_for('core.farmers', page=page_num) }}"
-                               class="btn btn-dark">
-                                {{ page_num }}
-                            </a>
-                            {% else %}
-                            <a href="{{ url_for('core.farmers', page=page_num) }}"
-                               class="btn btn-outline-dark">
-                                {{ page_num }}
-                            </a>
-                            {% endif %}
-                        {% else %}
-                            ...
-                        {% endif %}
-                    {% endfor %}    <a href="{{ url_for('core.farmers', page=farmers.next_num) }}"
-                       class="btn btn-outline-dark 
-                       {% if farmers.page == farmers.pages %}disabled{% endif %}">
-                        &raquo;
+                    {% for page_num in farmers.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2)
+                    %}{% if page_num %}
+                    <!-- Check for the active page and set the link to "Active"-->
+                    {% if farmers.page == page_num %}
+                    <a href="{{ url_for('core.farmers', page=page_num) }}"
+                       class="btn btn-dark">
+                        {{ page_num }}
                     </a>
-                  </div>
-                  <p class="text-right mt-3">
-                   Showing page {{ farmers.page }} of {{ farmers.pages }}
-                  </p>
-                              </div>
-                             
-                                          {%endif%}
-              
+                    {% else %}
+                    <a href="{{ url_for('core.farmers', page=page_num) }}"
+                       class="btn btn-outline-dark">
+                        {{ page_num }}
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    ...
+                    {% endif %}
+                    {% endfor %} <a href="{{ url_for('core.farmers', page=farmers.next_num) }}"
+                                    class="btn btn-outline-dark
+                       {% if farmers.page == farmers.pages %}disabled{% endif %}">
+                    &raquo;
+                </a>
+                </div>
+                <p class="text-right mt-3">
+                    Showing page {{ farmers.page }} of {{ farmers.pages }}
+                </p>
             </div>
-				
-			
 
-           
+            {%endif%}
+
         </div>
+
+    </div>
+
+    <!-- Add farmer modal -->
+    <div class="modal fade" id="add-farmer-modal" tabindex="-1" role="dialog" aria-labelledby="Add farmer modal"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-plus"></i> Add New Farmer</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form" id="add-farmer-form" method="post" action="/addfarmer">
+                        {{ form.hidden_tag() }}
+                        <div class="form-body">
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                <label for="donationinput4" class="sr-only">Note</label>
+                                {{ form.cooperative(class="form-control",placeholder="Cooperative") }}
+                            </div>
+
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                <label for="donationinput4" class="sr-only">Weight</label>
+                                {{ form.last_name(class="form-control",placeholder="Farmer Name") }}
+                            </div>
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                {{ form.number(class="form-control",placeholder="Phone Number") }}
+                            </div>
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                {{ form.premium_amount(class="form-control",placeholder="Premium Amount") }}
+                            </div>
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                {{ form.location(class="form-control",placeholder="Location") }}
+                            </div>
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                {{ form.language(class="form-control",placeholder="Language") }}
+                            </div>
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                {{ form.country(class="form-control",placeholder="Country") }}
+                            </div>
+
+                            <div class="form-group" style="margin-bottom:20px">
+                                {{ form.ordernumber(class="form-control",placeholder="ordernumber") }}
+                            </div>
+                            <!--                            <div class="form-actions center" style="margin-bottom:20px">-->
+                            <!--                                {{ form.submit(value="Send",class="btn btn-primary text-center",style="color:-->
+                            <!--                                white;background-color:#0F9B93;border-color:#FFF9B9;") }}-->
+                            <!--                            </div>-->
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="reset" form="add-farmer-form" class="btn btn-secondary" data-dismiss="modal">Close
+                    </button>
+                    <button type="button" form="add-farmer-form" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
         </div>
     </div>
-	
+
+
+    <!-- Bulk SMS Modal -->
+    <div class="modal fade" id="bulk-sms-modal" tabindex="-1" role="dialog" aria-labelledby="Bulk SMS modal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="Bulk SMS modal"><i class="fa fa-comments"></i> Send Bulk SMS</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- Recipient Details -->
+                        <div class="col-4">
+                            <h4>Select recipients</h4>
+                            <hr>
+
+                            <form action="" id="define-recipients-form">
+                                <div class="form-group">
+                                    <label for="sms-recipient-group">Group recipients by</label>
+                                    <select class="form-control form-control-sm" name="recipient-group"
+                                            id="sms-recipient-group">
+                                        <option value="">-- Select --</option>
+                                        <option value="cooperative">Cooperative</option>
+                                        <option value="society">Society</option>
+                                        <option value="country">Country</option>
+                                        <option value="language">Language</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" id="sms-recipient-cooperative-holder" hidden>
+                                    <label for="sms-recipient-cooperative">Select cooperative</label>
+                                    <select class="form-control form-control-sm" name="language"
+                                            id="sms-recipient-cooperative">
+                                        <option value="">-- Select --</option>
+                                        <option value="capo">CAPO</option>
+                                        <option value="bano">BANO</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" id="sms-recipient-society-holder" hidden>
+                                    <label for="sms-recipient-society">Select society</label>
+                                    <select class="form-control form-control-sm" name="cooperative"
+                                            id="sms-recipient-society">
+                                        <option value="">-- Select --</option>
+                                        <option value="gbawe">Gbawe</option>
+                                        <option value="kumasi">Kumasi</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" id="sms-recipient-country-holder" hidden>
+                                    <label for="sms-recipient-country">Select country</label>
+                                    <select class="form-control form-control-sm" name="country"
+                                            id="sms-recipient-country">
+                                        <option value="">-- Select --</option>
+                                        <option value="ghana">Ghana</option>
+                                        <option value="civ">CIV</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" id="sms-recipient-language-holder" hidden>
+                                    <label for="sms-recipient-language">Select language</label>
+                                    <select class="form-control form-control-sm" name="language"
+                                            id="sms-recipient-language">
+                                        <option value="">-- Select --</option>
+                                        <option value="ghana">English</option>
+                                        <option value="civ">Twi</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Message Details -->
+                        <div class="col-8">
+                            <h4>Draft Message</h4>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col">
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary variable" style="cursor: pointer">Name</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary variable" style="cursor: pointer">Phone</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary variable" style="cursor: pointer">Location</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <br>
+
+                            <form action="">
+                                <div class="form-group">
+
+                                    <label for="sms-variables">Insert variables</label>
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <select name="" id="sms-variables" class="form-control form-control-sm">
+                                                <option value="">Select</option>
+                                                <option value="name">Name</option>
+                                                <option value="phone">Phone</option>
+                                                <option value="location">Location</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-2">
+                                            <button class="btn btn-outline-teal" title="Insert current variable"
+                                                    id="insert-variable-btn">
+                                                <i class="fa fa-arrow-down"></i>
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message-body">Message Body</label>
+                                    <textarea class="form-control form-control-sm" id="message-body" rows="5"
+                                              cols="20"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!--                    <form class="form" id="bulk-sms-form" method="post" action="/addfarmer">-->
+                    <!--                        {{ form.hidden_tag() }}-->
+                    <!--                        <div class="form-body">-->
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                <label for="donationinput4" class="sr-only">Note</label>-->
+                    <!--                                {{ form.cooperative(class="form-control",placeholder="Cooperative") }}-->
+                    <!--                            </div>-->
+
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                <label for="donationinput4" class="sr-only">Weight</label>-->
+                    <!--                                {{ form.last_name(class="form-control",placeholder="Farmer Name") }}-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                {{ form.number(class="form-control",placeholder="Phone Number") }}-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                {{ form.premium_amount(class="form-control",placeholder="Premium Amount") }}-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                {{ form.location(class="form-control",placeholder="Location") }}-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                {{ form.language(class="form-control",placeholder="Language") }}-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                {{ form.country(class="form-control",placeholder="Country") }}-->
+                    <!--                            </div>-->
+
+                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
+                    <!--                                {{ form.ordernumber(class="form-control",placeholder="ordernumber") }}-->
+                    <!--                            </div>-->
+                    <!--                            &lt;!&ndash;                            <div class="form-actions center" style="margin-bottom:20px">&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                                {{ form.submit(value="Send",class="btn btn-primary text-center",style="color:&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                                white;background-color:#0F9B93;border-color:#FFF9B9;") }}&ndash;&gt;-->
+                    <!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+                    <!--                        </div>-->
+                    <!--                    </form>-->
+                </div>
+
+                <div class="modal-footer">
+                    <button type="reset" form="add-farmer-form" class="btn btn-secondary" data-dismiss="modal">Close
+                    </button>
+                    <button type="button" form="add-farmer-form" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </section>
 <!--/ eCommerce statistic -->
 <!-- Modal -->
 
 
-
-
-
-
-    {% endblock %}
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
-    
+<script src="{{ url_for('static', filename='js/farmers/bulk_sms.js') }}"></script>
+{% endblock %}
+<!-- ////////////////////////////////////////////////////////////////////////////-->
