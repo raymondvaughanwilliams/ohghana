@@ -13,21 +13,23 @@ import secrets
 import requests
 import csv
 import os
-from sqlalchemy import  and_, or_ ,desc ,asc 
+import json
 from os import environ
 import csv
 from io import StringIO
 
-core = Blueprint('core',__name__)
+core = Blueprint('core', __name__)
 
 API_KEY = os.environ.get('API_KEY')
+
 
 def require_api_key(view_function):
     def decorated_function(*args, **kwargs):
         if request.headers.get('Authorization') == API_KEY:
             return view_function(*args, **kwargs)
         else:
-            return jsonify({'error': 'Invalid API key','status':False}), 401
+            return jsonify({'error': 'Invalid API key', 'status': False}), 401
+
     return decorated_function
 
 def generate_csv_content(duplicates):
@@ -44,8 +46,7 @@ def base():
     contact page. Any page that doesn't really sync with one of the models.
     '''
     about = About.query.all()
-    return render_template('base.html',about=about)
-
+    return render_template('base.html', about=about)
 
 
 @core.route('/agent/dashboard')
@@ -61,10 +62,9 @@ def agent_dashboard():
     farmers = Farmer.query.order_by(desc(Farmer.id)).all()
     # ecomrequests  = EcomRequest.query.all()
     ecomrequests = EcomRequest.query.order_by(desc(EcomRequest.id)).all()
-    
+
     form = FilterForm()
     if session['role'] == 'agent':
-
 
 
         name = user.name
@@ -79,22 +79,19 @@ def agent_dashboard():
 def claims():
     user = User.query.filter_by(id=session['id']).first()
     about = About.query.get(1)
-    
 
-    ecomrequests  = EcomRequest.query.all()
-    
+    ecomrequests = EcomRequest.query.all()
+
     form = FilterForm()
 
-
     name = user.name
-    
-    
+
     if request.method == "POST":
         # Get the filter values from the form
         first_name = form.first_name.data
-        print (first_name)
-        last_name= form.last_name.data
-        
+        print(first_name)
+        last_name = form.last_name.data
+
         location = form.location.data
         number = form.number.data
         cooperative = form.cooperative.data
@@ -175,18 +172,17 @@ def claims():
         print(conditions[0])
         ecomrequests = EcomRequest.query.filter(and_(*conditions)).all()
         print(ecomrequests)
-    
+
     # print(op)
 
-    return render_template('agentportal/claims.html',form=form,ecomrequests=ecomrequests,filterform=form)
-
+    return render_template('agentportal/claims.html', form=form, ecomrequests=ecomrequests, filterform=form)
 
 
 @core.route("/addfarmer", methods=["GET", "POST"])
 @login_required
 def addfarmer():
     form = FarmerForm()
-    items  = Farmer.query.all()
+    items = Farmer.query.all()
     if request.method == "POST":
         check_farmer = Farmer.query.filter_by(number=form.number.data).first()
         if check_farmer:
@@ -203,7 +199,7 @@ def addfarmer():
 @core.route("/farmers", methods=["GET","POST"])
 @login_required
 def farmers():
-    form =  FilterForm()
+    form = FilterForm()
     page = request.args.get('page', 1, type=int)
     farmers = Farmer.query.paginate(page, 10, False)
     session.pop('msg',None)
@@ -212,11 +208,11 @@ def farmers():
   
     search="no"
     if request.method == "POST":
-        search="yes"
+        search = "yes"
         # Get the filter values from the form
         first_name = form.first_name.data
-        print (first_name)
-        last_name= form.last_name.data
+        print(first_name)
+        last_name = form.last_name.data
         location = form.location.data
         number = form.number.data
         cooperative = form.cooperative.data
@@ -296,12 +292,53 @@ def farmers():
 
         # print(conditions[0])
         # else:
-            
+
         farmers = Farmer.query.filter(and_(*conditions)).all()
         print(farmers)
     # user = User.query.filter_by(id=session['id']).first()
 
-    return render_template("agentportal/farmers.html", farmers=farmers,form=form,filterform=form,page=page,search=search)
+    return render_template(
+        "agentportal/farmers.html",
+        farmers=farmers, form=form, filterform=form, page=page,
+        search=search
+    )
+
+
+
+@core.route("/farmersapi", methods=["GET","POST"])
+def farmersapi():
+
+    farmers = Farmer.query.all()
+    farmer_data =[]
+    if farmers:
+        for farmer in farmers:
+            payload = {"True":True,
+                "lastName":farmer.last_name,
+                "premium_amount":farmer.premium_amount,
+                "location":farmer.location,
+                "number":farmer.number,
+                "language":farmer.language,
+                "country":farmer.country,
+                "cashcode":farmer.cashcode,
+                "cooperative":farmer.cooperative,
+                "society":farmer.society,
+                "ordernumber":farmer.ordernumber,
+                }
+            farmer_data.append(farmer)
+
+        context = {"status" :True,
+        "message" : " Farmers found",
+            "data" : payload
+            }
+        return jsonify(context),200
+    else:
+        context = {"status" :False,
+        "message":"No farmers",
+        "error": "null"}
+        return jsonify(context),404
+
+
+
 
 
 
@@ -348,9 +385,6 @@ def farmer(id):
     farmer = Farmer.query.filter_by(id=id).first()
     farmers = Farmer.query.all()
 
-
-    
-
     if request.method == "POST":
         farmer.first_name = form.first_name.data
         farmer.last_name = form.last_name.data
@@ -362,12 +396,11 @@ def farmer(id):
         farmer.cooperative = form.cooperative.data
         farmer.cashcode = form.cashcode.data
         # bid.status = 'bid'
-        
+
         db.session.commit()
-        
-    
+
         return redirect(url_for("core.farmers"))
-    
+
     elif request.method == 'GET':
         form.first_name.data = farmer.first_name
         form.last_name.data = farmer.last_name
@@ -400,12 +433,12 @@ def uploadfarmer():
     if form.validate_on_submit():
         if form.uploadfile.data:
 
-            uploaded_file = request.files['uploadfile'] 
+            uploaded_file = request.files['uploadfile']
             print("file")
             print(uploaded_file.filename)
             filepath = os.path.join(current_app.root_path, uploaded_file.filename)
             uploaded_file.save(filepath)
-            with open(filepath,encoding='ISO-8859-1') as file:
+            with open(filepath, encoding='ISO-8859-1') as file:
                 csv_file = csv.reader(file)
                 upload_data = []
                 tdata = []
@@ -512,48 +545,46 @@ def delete_farmer(farmer_id):
 def addplan():
     farmer = Farmer.query.all()
 
-    first_name = request.json['first_name'] 
-    last_name = request.json['last_name'] 
-    premium_amount = request.json['premium_amount'] 
+    first_name = request.json['first_name']
+    last_name = request.json['last_name']
+    premium_amount = request.json['premium_amount']
     location = request.json['location']
     number = request.json['number']
 
     plan = Farmer(first_name=first_name,
-                            premium_amount=premium_amount,
-                            last_name=last_name,number=number,location=location
-                            )
+                  premium_amount=premium_amount,
+                  last_name=last_name, number=number, location=location
+                  )
     db.session.add(farmer)
     db.session.commit()
     status = 1
     if status == 1:
-        return jsonify(first_name,last_name,premium_amount,"success")
+        return jsonify(first_name, last_name, premium_amount, "success")
     else:
         return jsonify("Failed")
-  
-  
-  
-@core.route('/api/senddemosms',methods=['GET','POST'])
+
+
+@core.route('/api/senddemosms', methods=['GET', 'POST'])
 # @require_api_key
 def senddemosms():
-     
     # print(request.args.get('number'))
 
     # number = requests.json['number'] 
     number = request.args.get('number')
     print("number")
     print(number[1:])
-  
+
     url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
     # apiKey = 
     rpassword = environ.get('ROUTESMS_PASS')
     data = {
         'username': 'dlp-testacc',
         'password': rpassword,
-        'type':'0',
-        'dlr':'1',
-        'destination':number[1:],
-        'source':'test',
-        'message':'Welcome to Delaphone’s Cloud Answering Service, partner with us to optimize your customer experience'
+        'type': '0',
+        'dlr': '1',
+        'destination': number[1:],
+        'source': 'test',
+        'message': 'Welcome to Delaphone’s Cloud Answering Service, partner with us to optimize your customer experience'
     }
     response = requests.post(url, data)
 
@@ -563,21 +594,19 @@ def senddemosms():
     print(res)
     print(res)
 
-    payload = {"True":True,
-               "res":res
-    }
-    context = {"status" :True,
-"message" : " Message triggered",
-    "data" : payload
-    }
+    payload = {"True": True,
+               "res": res
+               }
+    context = {"status": True,
+               "message": " Message triggered",
+               "data": payload
+               }
     return jsonify(context)
 
-  
-  
-@core.route('/api/checknumber',methods=['GET','POST'])
+
+@core.route('/api/checknumber', methods=['GET', 'POST'])
 # @require_api_key
 def checknumber():
-     
     # print(request.args.get('number'))
 
     # number = requests.json['number'] 
@@ -585,14 +614,14 @@ def checknumber():
     number = number.strip()
     print("Checking for number:")
     print(number)
- 
+
     farmer = Farmer.query.filter_by(number=number).first()
     if farmer is not None:
-        
-        ecomrequest =  EcomRequest(number=number,country=farmer.country,farmer_id=farmer.id,cashcode=farmer.cashcode)
+
+        ecomrequest = EcomRequest(number=number, country=farmer.country, farmer_id=farmer.id, cashcode=farmer.cashcode)
         db.session.add(ecomrequest)
         db.session.commit()
-        
+
         # endPoint = 'https://api.mnotify.com/api/sms/quick'
         # # apiKey = 
         if farmer.country == "Ghana":
@@ -620,11 +649,11 @@ def checknumber():
         data = {
             'username': 'dlp-testacc',
             'password': rpassword,
-            'type':'0',
-            'dlr':'1',
-            'destination':number,
-            'source':'test',
-            'message':message
+            'type': '0',
+            'dlr': '1',
+            'destination': number,
+            'source': 'test',
+            'message': message
         }
 
         # --------------------------------
@@ -634,18 +663,17 @@ def checknumber():
         # print("response_data")
         res = response.text.split("|")
         print(res)
-        
 
-        payload = {"True":True,"firstName":farmer.first_name,
-        "lastName":farmer.last_name,
-        "premium_amount":farmer.premium_amount,
-        "location":farmer.location
-        }
-        context = {"status" :True,
-    "message" : " Farmer found",
-        "data" : payload
-        }
-        return jsonify(context),200
+        payload = {"True": True, "firstName": farmer.first_name,
+                   "lastName": farmer.last_name,
+                   "premium_amount": farmer.premium_amount,
+                   "location": farmer.location
+                   }
+        context = {"status": True,
+                   "message": " Farmer found",
+                   "data": payload
+                   }
+        return jsonify(context), 200
     else:
         context = {"status" :False,
         "message":"Farmer not found",

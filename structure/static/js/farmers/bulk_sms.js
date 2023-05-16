@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", function (e) {
+    // Build a set of values for use in the bulk sms form
+    let cooperatives = new Set();
+    let cooperativesInTable = document.querySelectorAll("#farmers-table > tbody > tr > td:nth-child(2)");
+    cooperativesInTable.forEach((element, index) => {
+        cooperatives.add(element.innerText);
+    });
+
+    cooperatives.forEach((value) => {
+        console.log(value);
+    });
+
+
     let smsRecipientGroupType = document.getElementById("sms-recipient-group");
     let smsRecipientCooperativeHolder = document.getElementById("sms-recipient-cooperative-holder");
     let smsRecipientCooperative = document.getElementById("sms-recipient-cooperative");
@@ -14,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     smsRecipientGroupType.addEventListener("change", function (e) {
         switch (this.value.toLowerCase().trim()) {
+            case "all":
+                break;
             case "cooperative":
                 smsRecipientCooperative.required = true;
                 smsRecipientCooperativeHolder.hidden = false;
@@ -76,32 +90,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
-    let variableSelector = document.getElementById("sms-variables");
-    let variables = document.getElementsByClassName("variable");
+
+    let templateVariables = document.getElementsByClassName("template-variable");
     let messageTemplate = document.getElementById("message-body");
-    let insertVariableBtn = document.getElementById("insert-variable-btn");
 
-    variableSelector.addEventListener("change", function (e) {
-        if (this.value.trim() === "") {
-            return;
-        }
-        messageTemplate.value = messageTemplate.value + `{${this.value}}`;
-        messageTemplate.focus();
-    });
-
-    insertVariableBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        if (variableSelector.value.trim() === "") {
-            return;
-        }
-        messageTemplate.value = messageTemplate.value + `{${variableSelector.value.trim()}}`;
-        messageTemplate.focus();
-    });
-
-    for (let i = 0; i < variables.length; i++) {
-        variables[i].addEventListener("click", function(e) {
-           messageTemplate.value = messageTemplate.value + `{${this.textContent.toLowerCase().trim()}}`;
-           messageTemplate.focus();
+    for (let i = 0; i < templateVariables.length; i++) {
+        templateVariables[i].addEventListener("click", function (e) {
+            messageTemplate.value = messageTemplate.value + `{${this.textContent.toLowerCase().trim()}}`;
+            messageTemplate.focus();
         });
     }
 });
