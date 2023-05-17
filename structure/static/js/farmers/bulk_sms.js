@@ -5,27 +5,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let smsRecipientCountryHolder = document.getElementById("sms-recipient-country-holder");
     let smsRecipientLanguageHolder = document.getElementById("sms-recipient-language-holder");
 
-
-    function toggleRecipientGroup(groups, groupName) {
-        Object.values(groups).map((value) => {
+    function toggleRecipientGroup(groupHolders, groupName) {
+        Object.values(groupHolders).map((value) => {
             value.hidden = true
         });
 
-        if (!(groupName in groups) || groupName === 'all') {
+        if (!(groupName in groupHolders) || groupName === 'all') {
             return
         }
-        groups[groupName].hidden = false;
+        groupHolders[groupName].hidden = false;
     }
 
-    let recipientGroups = {
+    let recipientGroupHolders = {
         cooperative: smsRecipientCooperativeHolder,
         society: smsRecipientSocietyHolder,
         country: smsRecipientCountryHolder,
         language: smsRecipientLanguageHolder,
     }
-
     smsRecipientGroupType.addEventListener("change", function (e) {
-        toggleRecipientGroup(recipientGroups, this.value.trim().toLowerCase())
+        toggleRecipientGroup(recipientGroupHolders, this.value.trim().toLowerCase())
     });
 
 
@@ -39,19 +37,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 
 
-    function populateGroupValues(groupName, holder, columnNumber) {
+    function populateGroupValues(dataSrc, attribute, holder) {
         let uniqueValues = new Set();
-        let valuesFromTableColumn = document.querySelectorAll(`#farmers-table > tbody > tr > td:nth-child(${columnNumber})`);
-        valuesFromTableColumn.forEach((element, index) => {
-            uniqueValues.add(element.innerText.trim().toUpperCase());
-        });
+        for (let i = 0; i < dataSrc.length; i++) {
+            if (dataSrc[i][attribute] === null) {
+                continue;
+            }
+            uniqueValues.add(dataSrc[i][attribute].toUpperCase());
+        }
 
         holder.innerHTML = null;
-        holder.innerHTML = `<label>Select ${groupName.toLowerCase()}</label>`;
+        holder.innerHTML = `<label>Select ${attribute.toLowerCase()}</label>`;
         uniqueValues.forEach((value) => {
+            if (value.trim() === "") {
+                value = "No value";
+            }
             holder.innerHTML += `
         <div class="form-check">
-             <input class="form-check-input" type="checkbox" value="${value}" id="${value}">
+             <input class="form-check-input" type="checkbox" value="${value}" id="${value}" ${value.toLowerCase() === 'no value'? 'disabled': ''}>
                  <label class="form-check-label" for="${value}">
                      ${value}
                  </label>
@@ -60,8 +63,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
         });
     }
 
-    populateGroupValues("cooperatives", smsRecipientCooperativeHolder, 2)
-    populateGroupValues("societies", smsRecipientSocietyHolder, 8)
-    populateGroupValues("countries", smsRecipientCountryHolder, 7)
-    populateGroupValues("languages", smsRecipientLanguageHolder, 9)
+    let dataSrc = sessionStorage.getItem("allFarmers");
+    if (dataSrc === null) {
+        console.log("Fetching all farmers from session storage returned null");
+        alert("Bulk sms might not work properly");
+    } else {
+        dataSrc = JSON.parse(dataSrc);
+        populateGroupValues(dataSrc, "cooperative", smsRecipientCooperativeHolder)
+        populateGroupValues(dataSrc, "society", smsRecipientSocietyHolder)
+        populateGroupValues(dataSrc, "country", smsRecipientCountryHolder)
+        populateGroupValues(dataSrc, "language", smsRecipientLanguageHolder)
+    }
+
+
+    let bulkSmsForm = document.forms["bulk-sms-form"];
+    bulkSmsForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let recipientGroup = this.recipientGroup.value.trim();
+        console.log(recipientGroup);
+    });
 });

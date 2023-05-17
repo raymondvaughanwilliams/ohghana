@@ -13,10 +13,7 @@ import secrets
 import requests
 import csv
 import os
-from sqlalchemy import and_, or_, desc, asc
 from os import environ
-import csv
-from io import StringIO
 
 core = Blueprint('core', __name__)
 
@@ -195,6 +192,26 @@ def addfarmer():
     return render_template("agentportal/addfarmer.html",form=form,items=items)
 
 
+def farmer_to_dict(item):
+    return {
+        'id': item.id,
+        'first_name': item.first_name,
+        'last_name': item.last_name,
+        'number': item.number,
+        'premium_amount': item.premium_amount,
+        'location': item.location,
+        'country': item.country,
+        'cashcode': item.cashcode,
+        'date_added': item.date_added,
+        'last_modified': item.last_modified,
+        'language': item.language,
+        'society': item.society,
+        'farmercode': item.farmercode,
+        'cooperative': item.cooperative,
+        'ordernumber': item.ordernumber
+    }
+
+
 @core.route("/farmers", methods=["GET", "POST"])
 @login_required
 def farmers():
@@ -300,81 +317,7 @@ def farmers():
                            search=search)
 
 
-
-@core.route("/farmersapi", methods=["GET","POST"])
-def farmersapi():
-
-    farmers = Farmer.query.all()
-    farmer_data =[]
-    if farmers:
-        for farmer in farmers:
-            payload = {"True":True,
-                "lastName":farmer.last_name,
-                "premium_amount":farmer.premium_amount,
-                "location":farmer.location,
-                "number":farmer.number,
-                "language":farmer.language,
-                "country":farmer.country,
-                "cashcode":farmer.cashcode,
-                "cooperative":farmer.cooperative,
-                "society":farmer.society,
-                "ordernumber":farmer.ordernumber,
-                }
-            farmer_data.append(farmer)
-
-        context = {"status" :True,
-        "message" : " Farmers found",
-            "data" : payload
-            }
-        return jsonify(context),200
-    else:
-        context = {"status" :False,
-        "message":"No farmers",
-        "error": "null"}
-        return jsonify(context),404
-
-
-
-
-
-
-@core.route("/farmersapi", methods=["GET","POST"])
-def farmersapi():
-
-    farmers = Farmer.query.all()
-    farmer_data =[]
-    if farmers:
-        for farmer in farmers:
-            payload = {"True":True,
-                "lastName":farmer.last_name,
-                "premium_amount":farmer.premium_amount,
-                "location":farmer.location,
-                "number":farmer.number,
-                "language":farmer.language,
-                "country":farmer.country,
-                "cashcode":farmer.cashcode,
-                "cooperative":farmer.cooperative,
-                "society":farmer.society,
-                "ordernumber":farmer.ordernumber,
-                }
-            farmer_data.append(farmer)
-
-        context = {"status" :True,
-        "message" : " Farmers found",
-            "data" : payload
-            }
-        return jsonify(context),200
-    else:
-        context = {"status" :False,
-        "message":"No farmers",
-        "error": "null"}
-        return jsonify(context),404
-
-
-
-
-
-@core.route("/farmer/<int:id>", methods=["POST",'GET'])
+@core.route("/farmer/<int:id>", methods=["POST", 'GET'])
 @login_required
 def farmer(id):
     form = FarmerForm()
