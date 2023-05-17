@@ -61,15 +61,6 @@
                         <div class="col-sm-2 mr-1">
                             <!-- Add farmer modal trigger -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#add-farmer-modal">
-                                <i class="fa fa-plus"></i>
-                                Add New Farmer
-                            </button>
-                        </div>
-
-                        <div class="col-sm-2 mr-1">
-                            <!-- Add farmer modal trigger -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#bulk-sms-modal">
                                 <i class="fa fa-comments"></i>
                                 Send Bulk SMS
@@ -221,75 +212,6 @@
 
     </div>
 
-    <!-- Add farmer modal -->
-    <div class="modal fade" id="add-farmer-modal" tabindex="-1" role="dialog" aria-labelledby="Add farmer modal"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-plus"></i> Add New Farmer</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <form class="form" id="add-farmer-form" method="post" action="/addfarmer">
-                        {{ form.hidden_tag() }}
-                        <div class="form-body">
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                <label for="donationinput4" class="sr-only">Note</label>
-                                {{ form.cooperative(class="form-control",placeholder="Cooperative") }}
-                            </div>
-
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                <label for="donationinput4" class="sr-only">Weight</label>
-                                {{ form.last_name(class="form-control",placeholder="Farmer Name") }}
-                            </div>
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                {{ form.number(class="form-control",placeholder="Phone Number") }}
-                            </div>
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                {{ form.premium_amount(class="form-control",placeholder="Premium Amount") }}
-                            </div>
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                {{ form.location(class="form-control",placeholder="Location") }}
-                            </div>
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                {{ form.language(class="form-control",placeholder="Language") }}
-                            </div>
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                {{ form.country(class="form-control",placeholder="Country") }}
-                            </div>
-
-                            <div class="form-group" style="margin-bottom:20px">
-                                {{ form.ordernumber(class="form-control",placeholder="ordernumber") }}
-                            </div>
-                            <!--                            <div class="form-actions center" style="margin-bottom:20px">-->
-                            <!--                                {{ form.submit(value="Send",class="btn btn-primary text-center",style="color:-->
-                            <!--                                white;background-color:#0F9B93;border-color:#FFF9B9;") }}-->
-                            <!--                            </div>-->
-                        </div>
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="reset" form="add-farmer-form" class="btn btn-secondary" data-dismiss="modal">Close
-                    </button>
-                    <button type="button" form="add-farmer-form" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!-- Bulk SMS Modal -->
     <div class="modal fade" id="bulk-sms-modal" tabindex="-1" role="dialog" aria-labelledby="Bulk SMS modal"
          aria-hidden="true">
@@ -373,41 +295,25 @@
                             <div class="row">
                                 <div class="col"><p>Click to insert variable</p></div>
                                 <div class="col d-flex justify-content-between">
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable" style="cursor: pointer">Name</span>
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable" style="cursor: pointer">Phone</span>
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable" style="cursor: pointer">Cooperative</span>
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable" style="cursor: pointer">Premium_Amount</span>
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable" style="cursor: pointer">Country</span>
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable" style="cursor: pointer">Society</span>
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable" style="cursor: pointer">Language</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
+                                          style="cursor: pointer">Name</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
+                                          style="cursor: pointer">Phone</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
+                                          style="cursor: pointer">Cooperative</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
+                                          style="cursor: pointer">Premium_Amount</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
+                                          style="cursor: pointer">Country</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
+                                          style="cursor: pointer">Society</span>
+                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
+                                          style="cursor: pointer">Language</span>
                                 </div>
                             </div>
-<!--                            <hr>-->
                             <br>
 
                             <form action="">
-<!--                                <div class="form-group">-->
-<!--                                    <label for="sms-variables">Insert variables</label>-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-10">-->
-<!--                                            <select name="" id="sms-variables" class="form-control form-control-sm">-->
-<!--                                                <option value="">Select</option>-->
-<!--                                                <option value="name">Name</option>-->
-<!--                                                <option value="phone">Phone</option>-->
-<!--                                                <option value="location">Location</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-
-<!--                                        <div class="col-2">-->
-<!--                                            <button class="btn btn-outline-teal" title="Insert current variable"-->
-<!--                                                    id="insert-variable-btn">-->
-<!--                                                <i class="fa fa-arrow-down"></i>-->
-<!--                                            </button>-->
-
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
                                 <div class="form-group">
                                     <label for="message-body">Message Body</label>
                                     <textarea class="form-control form-control-sm" id="message-body" rows="5"
@@ -416,51 +322,6 @@
                             </form>
                         </div>
                     </div>
-
-                    <!--                    <form class="form" id="bulk-sms-form" method="post" action="/addfarmer">-->
-                    <!--                        {{ form.hidden_tag() }}-->
-                    <!--                        <div class="form-body">-->
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                <label for="donationinput4" class="sr-only">Note</label>-->
-                    <!--                                {{ form.cooperative(class="form-control",placeholder="Cooperative") }}-->
-                    <!--                            </div>-->
-
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                <label for="donationinput4" class="sr-only">Weight</label>-->
-                    <!--                                {{ form.last_name(class="form-control",placeholder="Farmer Name") }}-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                {{ form.number(class="form-control",placeholder="Phone Number") }}-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                {{ form.premium_amount(class="form-control",placeholder="Premium Amount") }}-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                {{ form.location(class="form-control",placeholder="Location") }}-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                {{ form.language(class="form-control",placeholder="Language") }}-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                {{ form.country(class="form-control",placeholder="Country") }}-->
-                    <!--                            </div>-->
-
-                    <!--                            <div class="form-group" style="margin-bottom:20px">-->
-                    <!--                                {{ form.ordernumber(class="form-control",placeholder="ordernumber") }}-->
-                    <!--                            </div>-->
-                    <!--                            &lt;!&ndash;                            <div class="form-actions center" style="margin-bottom:20px">&ndash;&gt;-->
-                    <!--                            &lt;!&ndash;                                {{ form.submit(value="Send",class="btn btn-primary text-center",style="color:&ndash;&gt;-->
-                    <!--                            &lt;!&ndash;                                white;background-color:#0F9B93;border-color:#FFF9B9;") }}&ndash;&gt;-->
-                    <!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
-                    <!--                        </div>-->
-                    <!--                    </form>-->
                 </div>
 
                 <div class="modal-footer">
