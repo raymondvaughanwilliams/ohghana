@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             }
             holder.innerHTML += `
         <div class="form-check">
-             <input class="form-check-input" type="checkbox" value="${value}" id="${value}" ${value.toLowerCase() === 'no value'? 'disabled': ''}>
+             <input class="form-check-input" type="checkbox" name="selected-${attribute}" value="${value}" id="${value}" ${value.toLowerCase() === 'no value' ? 'disabled' : ''}>
                  <label class="form-check-label" for="${value}">
                      ${value}
                  </label>
@@ -77,9 +77,69 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
     let bulkSmsForm = document.forms["bulk-sms-form"];
+    bulkSmsForm.addEventListener("reset", function (e) {
+        toggleRecipientGroup(recipientGroupHolders, "");
+        formFeedback.innerHTML = null;
+    });
+
+    let formFeedback = document.getElementById("bulk-sms-form-feedback");
     bulkSmsForm.addEventListener("submit", function (e) {
         e.preventDefault();
+        formFeedback.innerHTML = null;
+
+        // Contains the options selected for the recipient group
+        let selectedGroupOptions = [];
+
         let recipientGroup = this.recipientGroup.value.trim();
-        console.log(recipientGroup);
+        if (recipientGroup === "") {
+            formFeedback.innerHTML = `<p class="alert alert-danger p-1"><i class="fa fa-exclamation-triangle"></i> Please select the recipient target group</p>`;
+            return;
+        }
+
+        if (recipientGroup !== "all") {
+            let checkBoxes = document.querySelectorAll(`input[name="selected-${recipientGroup}"]:checked`);
+            checkBoxes.forEach((option) => {
+                selectedGroupOptions.push(option.value);
+            });
+
+            if (selectedGroupOptions.length === 0) {
+                formFeedback.innerHTML = `
+                <p class="alert alert-danger p-1">
+                <i class="fa fa-exclamation-triangle"></i> 
+                You did not select any of the ${recipientGroup.toUpperCase()} options. Select at least one (1)
+                </p>`;
+                return;
+            }
+        }
+
+        let messageBody = this.messageBody.value.trim();
+        if (messageBody.length === 0 || messageBody === "") {
+            formFeedback.innerHTML = `<p class="alert alert-danger p-1"><i class="fa fa-exclamation-triangle"></i> No message body supplied. Message body cannot be empty</p>`;
+            return;
+        }
+
+        let templateStringRegex = /{([^}]+)}/g;
+        let matches = messageBody.matchAll(templateStringRegex);
+        let resultObject = {};
+        for (const match of matches) {
+            const extractedString = match[1];
+            resultObject[extractedString] = true;
+        }
+
+
+        let payload = {
+            recipientGroup,
+            selectedGroupOptions,
+            messageBody,
+            templateStrings: Object.keys(resultObject),
+        }
+
+        formFeedback.innerHTML = `<p class="alert alert-info p-1"><i class="fa fa-check-circle"></i> Great! The SMS will be delivered to the recipients</p>`;
+
+        setTimeout(() => {
+            bulkSmsForm.reset();
+        }, 3000)
+
+        console.log(payload);
     });
 });

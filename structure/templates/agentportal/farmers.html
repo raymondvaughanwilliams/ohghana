@@ -233,7 +233,7 @@
                                     <hr>
                                     <div class="form-group">
                                         <label for="sms-recipient-group">Group recipients by</label>
-                                        <select class="form-control form-control-sm" name="recipientGroup"
+                                        <select required class="form-control form-control-sm" name="recipientGroup"
                                                 id="sms-recipient-group">
                                             <option value="">-- Select --</option>
                                             <option value="all">All</option>
@@ -278,7 +278,8 @@
 
                                     <div class="form-group">
                                         <label for="message-body">Message Body</label>
-                                        <textarea class="form-control form-control-sm" id="message-body" rows="8"
+                                        <textarea required class="form-control form-control-sm" id="message-body"
+                                                  name="messageBody" rows="8"
                                                   cols="20"></textarea>
                                     </div>
                                 </div>
@@ -286,10 +287,16 @@
                         </form>
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="reset" form="bulk-sms-form" class="btn btn-secondary" data-dismiss="modal">Close
-                        </button>
-                        <button type="submit" form="bulk-sms-form" class="btn btn-primary">Send</button>
+                    <div class="modal-footer flex-column">
+                        <div>
+                            <button type="reset" form="bulk-sms-form" class="btn btn-sm btn-danger">Reset</button>
+                            <button type="reset" form="bulk-sms-form" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" form="bulk-sms-form" class="btn btn-sm btn-primary">Send</button>
+                        </div>
+
+                        <br>
+
+                        <div id="bulk-sms-form-feedback"></div>
                     </div>
                 </div>
             </div>

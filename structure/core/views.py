@@ -20,6 +20,27 @@ core = Blueprint('core', __name__)
 API_KEY = os.environ.get('API_KEY')
 
 
+def farmer_to_dict(farmer):
+    """ Converts a farmer model to a dictionary """
+    return {
+        'id': farmer.id,
+        'first_name': farmer.first_name,
+        'last_name': farmer.last_name,
+        'number': farmer.number,
+        'premium_amount': farmer.premium_amount,
+        'location': farmer.location,
+        'country': farmer.country,
+        'cashcode': farmer.cashcode,
+        'date_added': farmer.date_added,
+        'last_modified': farmer.last_modified,
+        'language': farmer.language,
+        'society': farmer.society,
+        'farmercode': farmer.farmercode,
+        'cooperative': farmer.cooperative,
+        'ordernumber': farmer.ordernumber
+    }
+
+
 def require_api_key(view_function):
     def decorated_function(*args, **kwargs):
         if request.headers.get('Authorization') == API_KEY:
@@ -221,8 +242,7 @@ def farmers():
     session.pop('msg',None)
     # session.pop('uploaded',None)
     # session.pop('duplicates',None)
-  
-    search="no"
+      search="no"
     if request.method == "POST":
         search = "yes"
         # Get the filter values from the form
