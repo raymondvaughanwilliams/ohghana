@@ -92,7 +92,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         let recipientGroup = this.recipientGroup.value.trim();
         if (recipientGroup === "") {
-            formFeedback.innerHTML = `<p class="alert alert-danger p-1"><i class="fa fa-exclamation-triangle"></i> Please select the recipient target group</p>`;
+            formFeedback.innerHTML = `
+                <p class="alert alert-danger p-1">
+                   <i class="fa fa-exclamation-triangle"></i> 
+                   Please select the recipient target group
+                </p>`;
             return;
         }
 
@@ -114,7 +118,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         let messageBody = this.messageBody.value.trim();
         if (messageBody.length === 0 || messageBody === "") {
-            formFeedback.innerHTML = `<p class="alert alert-danger p-1"><i class="fa fa-exclamation-triangle"></i> No message body supplied. Message body cannot be empty</p>`;
+            formFeedback.innerHTML = `
+                <p class="alert alert-danger p-1">
+                <i class="fa fa-exclamation-triangle"></i> 
+                No message body supplied. Message body cannot be empty
+                </p>`;
             return;
         }
 
@@ -134,7 +142,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
             templateStrings: Object.keys(resultObject),
         }
 
-        formFeedback.innerHTML = `<p class="alert alert-info p-1"><i class="fa fa-check-circle"></i> Great! The SMS will be delivered to the recipients</p>`;
+        formFeedback.innerHTML = `
+            <p class="alert alert-info p-1">
+            <i class="fa fa-check-circle"></i> 
+            Great! The SMS will be delivered to the recipients
+            </p>`;
 
         setTimeout(() => {
             bulkSmsForm.reset();
