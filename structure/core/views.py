@@ -13,7 +13,7 @@ import secrets
 import requests
 import csv
 import os
-import json
+from sqlalchemy import and_, or_, desc, asc
 from os import environ
 import csv
 from io import StringIO
@@ -65,13 +65,11 @@ def agent_dashboard():
 
     form = FilterForm()
     if session['role'] == 'agent':
-
-
         name = user.name
         # print(op)
 
-    return render_template('agentportal/dashboard.html',form=form, user=user,about=about,name=name,farmers=farmers,ecomrequests=ecomrequests)
-
+    return render_template('agentportal/dashboard.html', form=form, user=user, about=about, name=name, farmers=farmers,
+                           ecomrequests=ecomrequests)
 
 
 @core.route('/claims', methods=['GET', 'POST'])
@@ -196,7 +194,8 @@ def addfarmer():
             return redirect(url_for("core.farmers"))
     return render_template("agentportal/addfarmer.html",form=form,items=items)
 
-@core.route("/farmers", methods=["GET","POST"])
+
+@core.route("/farmers", methods=["GET", "POST"])
 @login_required
 def farmers():
     form = FilterForm()
@@ -297,11 +296,8 @@ def farmers():
         print(farmers)
     # user = User.query.filter_by(id=session['id']).first()
 
-    return render_template(
-        "agentportal/farmers.html",
-        farmers=farmers, form=form, filterform=form, page=page,
-        search=search
-    )
+    return render_template("agentportal/farmers.html", farmers=farmers, form=form, filterform=form, page=page,
+                           search=search)
 
 
 
@@ -411,9 +407,9 @@ def farmer(id):
         form.country.data = farmer.country
         form.cooperative.data = farmer.cooperative
         form.cashcode.data = farmer.cashcode
-      
-        
-    return render_template("agentportal/farmer.html",farmer=farmer, form=form)
+
+    return render_template("agentportal/farmer.html", farmer=farmer, form=form)
+
 
 
 
@@ -525,8 +521,7 @@ def uploadsummarydetails():
     return render_template('agentportal/uploadsummarydetails.html',len_added=len(uploaded),uploaded=uploaded,len_duplicates=len(duplicates),duplicates=duplicates)
 
 
-
-@core.route("/delete_farmer/<int:farmer_id>", methods=['POST','GET'])
+@core.route("/delete_farmer/<int:farmer_id>", methods=['POST', 'GET'])
 @login_required
 def delete_farmer(farmer_id):
     farmer = Farmer.query.get_or_404(farmer_id)
@@ -535,12 +530,7 @@ def delete_farmer(farmer_id):
     return redirect(url_for('core.farmers'))
 
 
-
-
-
-
-
-@core.route('/api/addfarmer',methods=['GET','POST'])
+@core.route('/api/addfarmer', methods=['GET', 'POST'])
 # @jwt_required()
 def addplan():
     farmer = Farmer.query.all()
@@ -569,13 +559,13 @@ def addplan():
 def senddemosms():
     # print(request.args.get('number'))
 
-    # number = requests.json['number'] 
+    # number = requests.json['number']
     number = request.args.get('number')
     print("number")
     print(number[1:])
 
     url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
-    # apiKey = 
+    # apiKey =
     rpassword = environ.get('ROUTESMS_PASS')
     data = {
         'username': 'dlp-testacc',
@@ -609,7 +599,7 @@ def senddemosms():
 def checknumber():
     # print(request.args.get('number'))
 
-    # number = requests.json['number'] 
+    # number = requests.json['number']
     number = request.args.get('number')
     number = number.strip()
     print("Checking for number:")
@@ -623,9 +613,10 @@ def checknumber():
         db.session.commit()
 
         # endPoint = 'https://api.mnotify.com/api/sms/quick'
-        # # apiKey = 
+        # # apiKey =
         if farmer.country == "Ghana":
-            message = "Hello " + farmer.last_name  +" . Your 2022/2023 premium is GHS" + str(farmer.premium_amount) + ". Your cash code is "+ str(farmer.cashcode) +".  Thank you,ECOM."
+            message = "Hello " + farmer.last_name + " . Your 2022/2023 premium is GHS" + str(
+                farmer.premium_amount) + ". Your cash code is " + str(farmer.cashcode) + ".  Thank you,ECOM."
         else:
             message ="Bonjour " + farmer.last_name +" votre prime 2022/2023 est CFA" + str(farmer.premium_amount) + ". Votre code de caisse est "+ " "+ str(farmer.cashcode)+". Merci, Zamacom."
         # print("message")
@@ -644,7 +635,7 @@ def checknumber():
         # print("response_data")
         # print(response_data)
         url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
-        # apiKey = 
+        # apiKey =
         rpassword = environ.get('ROUTESMS_PASS')
         data = {
             'username': 'dlp-testacc',
