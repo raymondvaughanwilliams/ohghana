@@ -1,0 +1,35 @@
+name: Deploy to production
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_SERVER_HOST }}
+          username: ${{ secrets.PROD_SERVER_USER }}
+          key: ${{ secrets.PROD_SERVER_PRIVATE_SSH_KEY }}
+          port: ${{ secrets.PROD_SERVER_SSH_PORT }}
+          debug: true
+          script: |
+            cd ${{ secrets.PROD_APP_PATH }}
+            git checkout main
+            git pull
+            python3.8 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements.txt
+
+      - name: Restart app
+        run: |
+          curl --basic \
+          --request POST \
+          --user "${ALWAYSDATA_API_TOKEN} account=${ALWAYSDATA_ACCOUNT_NAME}:" \
+          --url https://api.alwaysdata.com/v1/${ALWAYSDATA_SITE_ID}/773559/restart/
+
+
+        
