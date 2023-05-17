@@ -26,7 +26,7 @@ jobs:
             pip install -r requirements.txt
 
       - name: Restart app
-        run: curl --basic --request POST --user "${ALWAYSDATA_API_TOKEN} account=${ALWAYSDATA_ACCOUNT_NAME}:" --url https://api.alwaysdata.com/v1/site/${ALWAYSDATA_SITE_ID}/restart/
+        run: curl --basic --request POST --user "${{ secrets.ALWAYSDATA_API_TOKEN }} account=${{ secrets.ALWAYSDATA_ACCOUNT_NAME }}:" --url https://api.alwaysdata.com/v1/site/${{ secrets.ALWAYSDATA_SITE_ID }}/restart/
 
 
         
