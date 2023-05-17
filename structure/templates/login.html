@@ -13,7 +13,11 @@
                   <div class="col-lg-7 mb-5 mb-lg-0" style="margin-top: 70px;">
       
                     <h2 class="mb-5">LOG IN <br> </h2>
-      
+                    {% if session['loginmsg'] %}
+                    <div class="alert alert-primary" role="alert">
+                        {{session['loginmsg']}}
+                      </div>
+                    {% endif %}
                     <form class="border-right pr-5 mb-5" method="post" id="contactForm" name="contactForm" method="post" >
                       {{form.hidden_tag()}}
                     

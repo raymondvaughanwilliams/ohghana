@@ -1,4 +1,4 @@
-from flask import render_template,Blueprint,session,redirect,url_for,jsonify,current_app,request
+from flask import render_template,Blueprint,session,redirect,url_for,jsonify,current_app,request,send_file
 from structure.models import User,About,Faq,Testimonial,PartRequest,Bid,Review,Farmer,EcomRequest
 # from structure.team.views import team
 
@@ -15,7 +15,8 @@ import csv
 import os
 from sqlalchemy import  and_, or_ ,desc ,asc 
 from os import environ
-
+import csv
+from io import StringIO
 
 core = Blueprint('core',__name__)
 
@@ -29,6 +30,12 @@ def require_api_key(view_function):
             return jsonify({'error': 'Invalid API key','status':False}), 401
     return decorated_function
 
+def generate_csv_content(duplicates):
+    output = StringIO()
+    csv_writer = csv.writer(output)
+    csv_writer.writerow(['Cooperative', 'Farmer Code', 'Last Name', 'Society', 'Number', 'Premium Amount', 'Language', 'Cash Code', 'Country'])
+    csv_writer.writerows(duplicates)
+    return output.getvalue()
 
 @core.route('/base')
 def base():
@@ -44,9 +51,12 @@ def base():
 @core.route('/agent/dashboard')
 @login_required
 def agent_dashboard():
+    # session.pop('uploaded',None)
+    # session.pop('duplicates',None)
     user = User.query.filter_by(id=session['id']).first()
     about = About.query.get(1)
     name="ecom"
+    session.pop('msg',None)
     
     farmers = Farmer.query.order_by(desc(Farmer.id)).all()
     # ecomrequests  = EcomRequest.query.all()
@@ -178,14 +188,16 @@ def addfarmer():
     form = FarmerForm()
     items  = Farmer.query.all()
     if request.method == "POST":
-        # destination = Destination.query.filter_by(name=request.form["destination"]).first()
-        # if not destination:
-        #     return render_template("create_PartRequest.html", error="destination not found")
-  
-        farmer = Farmer( first_name="NA",last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location=form.location.data,language=form.language.data,country=form.country.data,cooperative=form.cooperative.data,ordernumber=form.ordernumber.data,cashcode=form.cashcode.data)
-        db.session.add(farmer)
-        db.session.commit()
-        return redirect(url_for("core.farmers"))
+        check_farmer = Farmer.query.filter_by(number=form.number.data).first()
+        if check_farmer:
+            session['msg'] = "Farmer already exists"
+            return redirect(url_for("core.addfarmer"))
+        else:
+
+            farmer = Farmer( first_name="NA",last_name=form.last_name.data, number=form.number.data,premium_amount=form.premium_amount.data,location="NA",language=form.language.data,country=form.country.data,cooperative=form.cooperative.data,ordernumber="NA",cashcode=form.cashcode.data,society=form.society.data)
+            db.session.add(farmer)
+            db.session.commit()
+            return redirect(url_for("core.farmers"))
     return render_template("agentportal/addfarmer.html",form=form,items=items)
 
 @core.route("/farmers", methods=["GET","POST"])
@@ -194,9 +206,10 @@ def farmers():
     form =  FilterForm()
     page = request.args.get('page', 1, type=int)
     farmers = Farmer.query.paginate(page, 10, False)
-    
-    print ("deliveries")
-    print(farmers)
+    session.pop('msg',None)
+    # session.pop('uploaded',None)
+    # session.pop('duplicates',None)
+  
     search="no"
     if request.method == "POST":
         search="yes"
@@ -291,6 +304,43 @@ def farmers():
     return render_template("agentportal/farmers.html", farmers=farmers,form=form,filterform=form,page=page,search=search)
 
 
+
+@core.route("/farmersapi", methods=["GET","POST"])
+def farmersapi():
+
+    farmers = Farmer.query.all()
+    farmer_data =[]
+    if farmers:
+        for farmer in farmers:
+            payload = {"True":True,
+                "lastName":farmer.last_name,
+                "premium_amount":farmer.premium_amount,
+                "location":farmer.location,
+                "number":farmer.number,
+                "language":farmer.language,
+                "country":farmer.country,
+                "cashcode":farmer.cashcode,
+                "cooperative":farmer.cooperative,
+                "society":farmer.society,
+                "ordernumber":farmer.ordernumber,
+                }
+            farmer_data.append(farmer)
+
+        context = {"status" :True,
+        "message" : " Farmers found",
+            "data" : payload
+            }
+        return jsonify(context),200
+    else:
+        context = {"status" :False,
+        "message":"No farmers",
+        "error": "null"}
+        return jsonify(context),404
+
+
+
+
+
 @core.route("/farmer/<int:id>", methods=["POST",'GET'])
 @login_required
 def farmer(id):
@@ -306,12 +356,10 @@ def farmer(id):
         farmer.last_name = form.last_name.data
         farmer.number = form.number.data
         farmer.premium_amount = form.premium_amount.data
-        farmer.location = form.location.data
         farmer.country = form.country.data
         farmer.language = form.language.data
         farmer.society = form.society.data
         farmer.cooperative = form.cooperative.data
-        farmer.ordernumber = form.ordernumber.data
         farmer.cashcode = form.cashcode.data
         # bid.status = 'bid'
         
@@ -325,16 +373,18 @@ def farmer(id):
         form.last_name.data = farmer.last_name
         form.number.data = farmer.number
         form.premium_amount.data = farmer.premium_amount
-        form.location.data = farmer.location
         form.language.data = farmer.language
         form.society.data = farmer.society
         form.country.data = farmer.country
         form.cooperative.data = farmer.cooperative
-        form.ordernumber.data = farmer.ordernumber
         form.cashcode.data = farmer.cashcode
       
         
     return render_template("agentportal/farmer.html",farmer=farmer, form=form)
+
+
+
+
 
 
 @core.route('/uploadfarmer',methods=['GET', 'POST'])
@@ -343,10 +393,11 @@ def uploadfarmer():
     form = FarmerForm()
     user = User.query.filter_by(email=session['email']).first()
     user_id = user.id
+    session.pop('msg',None)
     
     data= []
 
-    if request.method == 'POST':
+    if form.validate_on_submit():
         if form.uploadfile.data:
 
             uploaded_file = request.files['uploadfile'] 
@@ -356,39 +407,89 @@ def uploadfarmer():
             uploaded_file.save(filepath)
             with open(filepath,encoding='ISO-8859-1') as file:
                 csv_file = csv.reader(file)
+                upload_data = []
+                tdata = []
                 print(csv_file)
+                next(csv_file)
                 line_count= 0
                 for row in csv_file:
-                    line_count += 1
-                    try:
-                        print("saving")
-                        # farmers_save = Farmer(first_name=row[0],last_name=row[1],number=row[2])
-                        farmers_save = Farmer(ordernumber=row[0],cooperative=row[1],farmercode=row[2],last_name=row[3],society=row[4],number=row[5],premium_amount=row[6],language=row[7],cashcode=row[8],country=row[9],first_name="NA")
-                        db.session.add(farmers_save)
-                        db.session.commit()
-                        print("saved")
+                    upload_data.append(row)
+                #     line_count += 1
+                #     try:
+                #         print("saving")
+                #         # farmers_save = Farmer(first_name=row[0],last_name=row[1],number=row[2])
+                #         farmers_save = Farmer(cooperative=row[0],farmercode=row[1],last_name=row[2],society=row[3],number=row[4],premium_amount=row[7],language=row[8],cashcode=row[9],country=row[10],first_name="NA",location="NA")
+                #         print("saved")
+                #         tdata.append(row) 
 
-                    except Exception as e:
-                        # Add the line number to the error message
-                        error_message = f"Error on line {line_count}: {str(e)}"
-                        # Handle the error appropriately
-                        message = error_message
-                        print(message)
+                #     except Exception as e:
+                #         # Add the line number to the error message
+                #         error_message = f"Error on line {line_count}: {str(e)}"
+                #         # Handle the error appropriately
+                #         message = error_message
+                #         print(message)
+
+                session['csv_data'] = upload_data
                     
-                    
-                    
-                    # data.append(row)
-                    # farmers_save = Farmer(first_name=row[0],last_name=row[1],number=row[2],location=row[3],premium_amount=row[4])
-                    # db.session.add(farmers_save)
-                    # db.session.commit()
-                    # print("data")
-                    # print(data)
-                return  redirect(url_for('core.farmers'))
+                print(upload_data)
+                return  redirect(url_for('core.uploadsummary'))
         # else:
         #     farmers_save = Farmer(code=form.code.data,cost=form.cost.data,country=form.country.data,route=form.route.data)
         #     db.session.add(farmers_save)
         #     db.session.commit()
-    return render_template('agentportal/uploadfarmer.html',form=form,user=user)
+    return render_template('agentportal/uploadfarmer.html',form=form,user=user,data=data)
+
+@core.route('/uploadsummary', methods=['GET','POST'])
+def uploadsummary():
+    form = FarmerForm()
+    data = session['csv_data']
+    print('...')
+    print(data)
+    if request.method=='POST':
+        uploaded = []
+        duplicates=[]
+        print('saving')
+        line_count = 0
+        print("len")
+        print(len(data))
+        for i in range(0, len(data)):
+            print("in range")
+            print("saving")
+            farmer = Farmer.query.filter_by(number =data[i][4]).first()
+            
+
+            if farmer:
+                print("duplicate found")
+                duplicates.append(data[i])
+            else:
+                try:
+            # farmers_save = Farmer(first_name=row[0],last_name=row[1],number=row[2])
+                    farmers_save = Farmer(cooperative=data[i][0],farmercode=data[i][1],last_name=data[i][2],society=data[i][3],number=data[i][4],premium_amount=data[i][5],language=data[i][6],cashcode=data[i][7],country=data[i][8],first_name="NA",location="NA")
+                    db.session.add(farmers_save)
+                    db.session.commit()
+                    uploaded.append(data[i])
+                    print("saved")
+            
+
+                except Exception as e:
+                    # Add the line number to the error message
+                    error_message = f"Error on line {line_count}: {str(e)}"
+                    # Handle the error appropriately
+                    message = error_message
+                    print(message)
+                    session.pop('csv_data',None)
+        session['uploaded_farmers'] = uploaded
+        session['duplicates'] = duplicates
+        return redirect(url_for('core.uploadsummarydetails'))
+
+    return render_template('agentportal/uploadsummary.html',len_added=len(data),data=data,form=form)
+
+@core.route('/uploadsummarydetails', methods=['GET','POST'])
+def uploadsummarydetails():
+    print(session)
+    duplicates = session['duplicates']
+    uploaded = session['uploaded_farmers']
+    return render_template('agentportal/uploadsummarydetails.html',len_added=len(uploaded),uploaded=uploaded,len_duplicates=len(duplicates),duplicates=duplicates)
 
 
 
@@ -497,7 +598,7 @@ def checknumber():
         if farmer.country == "Ghana":
             message = "Hello " + farmer.last_name  +" . Your 2022/2023 premium is GHS" + str(farmer.premium_amount) + ". Your cash code is "+ str(farmer.cashcode) +".  Thank you,ECOM."
         else:
-            message ="Salut " + farmer.last_name +", votre prime pour 2022/2023 est GHS" + str(farmer.premium_amount) + " et soyez payé sur " +number +". Votre code de caisse est "+ " "+ str(farmer.cashcode)+" Contactez ECOM au 0800189189 pour demande plus."
+            message ="Bonjour " + farmer.last_name +" votre prime 2022/2023 est CFA" + str(farmer.premium_amount) + ". Votre code de caisse est "+ " "+ str(farmer.cashcode)+". Merci, Zamacom."
         # print("message")
         # print(message)
         # data = {
@@ -551,3 +652,17 @@ def checknumber():
         "error": "null"}
         return jsonify(context),404
     
+
+
+@core.route('/download-duplicates')
+def download_duplicates():
+    # Retrieve the duplicates from the session
+    duplicates = session.get('duplicates')
+    # Generate a CSV file containing the duplicates
+    csv_content = generate_csv_content(duplicates)
+    # Create a temporary file to store the CSV content
+    temp_file = 'duplicates.csv'
+    with open(temp_file, 'w') as file:
+        file.write(csv_content)
+    # Return the file for download
+    return send_file(temp_file, as_attachment=True, attachment_filename='duplicates.csv')

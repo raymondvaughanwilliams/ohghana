@@ -82,25 +82,46 @@ def login():
     if form.validate_on_submit():
         # Grab the user from our User Models table
         user = User.query.filter_by(email=form.email.data).first()
-        session['email'] = form.email.data
-        session['id'] = user.id
+        
         
         userr = User.query.filter_by(email=form.email.data).first()
-        session['name'] = userr.name
-        session['role'] = userr.role
-        print("session")
-        print(session['name'])
+        
 
 
         # Check that the user was supplied and the password is right
         # The verify_password method comes from the User object
         # https://stackoverflow.com/questions/2209755/python-operation-vs-is-not
 
-        if user.check_password(form.password.data) and user is not None and user.role == 'admin':
-            #Log in the user
+        # if user is not None and user.check_password(form.password.data) and user.role == 'admin':
+        #     #Log in the user
 
+        #     login_user(user)
+        #     flash('Logged in successfully.')
+
+
+
+        #     # If a user was trying to visit a page that requires a login
+        #     # flask saves that URL as 'next'.
+        #     next = request.args.get('next')
+
+        #     # So let's now check if that next exists, otherwise we'll go to
+        #     # the welcome page.
+        #     if next == None or not next[0]=='/':
+        #         next = url_for('userportal.userdash')
+
+        #     return redirect(next)
+
+        if user is not None and user.check_password(form.password.data)  :
+            #Log in the user
+            session['name'] = userr.name
+            session['role'] = userr.role
+            session['email'] = form.email.data
+            session['id'] = user.id
+            print("session")
+            print(session['name'])
             login_user(user)
             flash('Logged in successfully.')
+
 
 
 
@@ -111,20 +132,12 @@ def login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('userportal.userdash')
+                next = url_for('core.agent_dashboard')
+            
 
             return redirect(next)
-
-        if user.check_password(form.password.data) and user is not None :
-            #Log in the user
-
-            login_user(user)
-            flash('Logged in successfully.')
-
-
-
-            # If a user was trying to visit a page that requires a login
-            # flask saves that URL as 'next'.
+        else:
+            session['loginmsg'] = "Invalid credentials. Try again"
             next = request.args.get('next')
 
             # So let's now check if that next exists, otherwise we'll go to
@@ -147,6 +160,7 @@ def logout():
     session.pop('email',None)
     session.pop('name',None)
     session.pop('role',None)
+    # session.pop('loginmsg',None)
 
     return redirect(url_for("users.login"))
 

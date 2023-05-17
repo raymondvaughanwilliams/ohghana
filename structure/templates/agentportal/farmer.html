@@ -45,9 +45,10 @@
                             {{ form.premium_amount(class="form-control",placeholder="Premium Amount") }}
                         </div>
                         <div class="form-group"  style="margin-bottom:20px">
-                            <label for="donationinput4" class="s-only">Location</label>
-                            {{ form.location(class="form-control",placeholder="Location") }}
+                            <label for="donationinput4" class="s-only">Cash Code</label>
+                            {{ form.cashcode(class="form-control",placeholder="Cash Code") }}
                         </div>
+                      
                         <div class="form-group"  style="margin-bottom:20px">
                             <label for="donationinput4" class="s-only">Language</label>
                             {{ form.language(class="form-control",placeholder="Language") }}
@@ -65,10 +66,7 @@
                             <label for="donationinput4" class="s-only">Cooperative</label>
                             {{ form.cooperative(class="form-control",placeholder="cooperative") }}
                         </div>
-                        <div class="form-group"  style="margin-bottom:20px">
-                            <label for="donationinput4" class="s-only" style="margin-right:auto">Order Number</label>
-                            {{ form.ordernumber(class="form-control",placeholder="ordernumber") }}
-                        </div>
+                    
                    <div class="form-actions center"  style="margin-bottom:20px">
                         {{ form.submit(value="Send",class="btn btn-primary text-center",style="color: white;background-color:#0F9B93;border-color:#FFF9B9;") }}
                     </div>
