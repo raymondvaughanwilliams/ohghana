@@ -14,6 +14,7 @@ import requests
 import csv
 import os
 from os import environ
+from sqlalchemy import and_, or_, desc
 
 core = Blueprint('core', __name__)
 
@@ -50,12 +51,6 @@ def require_api_key(view_function):
 
     return decorated_function
 
-def generate_csv_content(duplicates):
-    output = StringIO()
-    csv_writer = csv.writer(output)
-    csv_writer.writerow(['Cooperative', 'Farmer Code', 'Last Name', 'Society', 'Number', 'Premium Amount', 'Language', 'Cash Code', 'Country'])
-    csv_writer.writerows(duplicates)
-    return output.getvalue()
 
 @core.route('/base')
 def base():
@@ -239,10 +234,14 @@ def farmers():
     form = FilterForm()
     page = request.args.get('page', 1, type=int)
     farmers = Farmer.query.paginate(page, 10, False)
+
+    all_farmers = Farmer.query.all()
+    all_farmers = [farmer_to_dict(item) for item in all_farmers]
+
     session.pop('msg',None)
     # session.pop('uploaded',None)
     # session.pop('duplicates',None)
-      search="no"
+    search="no"
     if request.method == "POST":
         search = "yes"
         # Get the filter values from the form
@@ -334,7 +333,7 @@ def farmers():
     # user = User.query.filter_by(id=session['id']).first()
 
     return render_template("agentportal/farmers.html", farmers=farmers, form=form, filterform=form, page=page,
-                           search=search)
+                           search=search, all_farmers=all_farmers)
 
 
 @core.route("/farmer/<int:id>", methods=["POST", 'GET'])
@@ -633,18 +632,3 @@ def checknumber():
         "message":"Farmer not found",
         "error": "null"}
         return jsonify(context),404
-    
-
-
-@core.route('/download-duplicates')
-def download_duplicates():
-    # Retrieve the duplicates from the session
-    duplicates = session.get('duplicates')
-    # Generate a CSV file containing the duplicates
-    csv_content = generate_csv_content(duplicates)
-    # Create a temporary file to store the CSV content
-    temp_file = 'duplicates.csv'
-    with open(temp_file, 'w') as file:
-        file.write(csv_content)
-    # Return the file for download
-    return send_file(temp_file, as_attachment=True, attachment_filename='duplicates.csv')
