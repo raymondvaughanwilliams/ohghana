@@ -632,3 +632,13 @@ def checknumber():
         "message":"Farmer not found",
         "error": "null"}
         return jsonify(context),404
+
+
+
+@core.route('/sendbulksms', methods=['POST'])
+def sendbulksms():
+    data = request.get_json()  # Retrieve the data from the request
+    # Process the data as needed
+    # ...
+    response = {'message': 'Data received successfully'}
+    return jsonify(response)
