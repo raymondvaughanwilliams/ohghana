@@ -15,8 +15,8 @@ jobs:
           username: ${{ secrets.PROD_SERVER_USER }}
           key: ${{ secrets.PROD_SERVER_PRIVATE_SSH_KEY }}
           port: ${{ secrets.PROD_SERVER_SSH_PORT }}
-          use_insecure_cypher: true
           debug: true
+          use_insecure_cipher: true
           script: |
             cd ${{ secrets.PROD_APP_PATH }}
             git checkout main
