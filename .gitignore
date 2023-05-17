@@ -133,3 +133,5 @@ dmypy.json
 .vscode/
 .fleet/
 .DS_Store
+
+structure/data.sqlite
