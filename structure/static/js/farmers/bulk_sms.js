@@ -1,103 +1,67 @@
 document.addEventListener("DOMContentLoaded", function (e) {
-    // Build a set of values for use in the bulk sms form
-    let cooperatives = new Set();
-    let cooperativesInTable = document.querySelectorAll("#farmers-table > tbody > tr > td:nth-child(2)");
-    cooperativesInTable.forEach((element, index) => {
-        cooperatives.add(element.innerText);
-    });
-
-    cooperatives.forEach((value) => {
-        console.log(value);
-    });
-
-
     let smsRecipientGroupType = document.getElementById("sms-recipient-group");
     let smsRecipientCooperativeHolder = document.getElementById("sms-recipient-cooperative-holder");
-    let smsRecipientCooperative = document.getElementById("sms-recipient-cooperative");
-
     let smsRecipientSocietyHolder = document.getElementById("sms-recipient-society-holder");
-    let smsRecipientSociety = document.getElementById("sms-recipient-society");
-
     let smsRecipientCountryHolder = document.getElementById("sms-recipient-country-holder");
-    let smsRecipientCountry = document.getElementById("sms-recipient-country");
-
     let smsRecipientLanguageHolder = document.getElementById("sms-recipient-language-holder");
-    let smsRecipientLanguage = document.getElementById("sms-recipient-language");
+
+
+    function toggleRecipientGroup(groups, groupName) {
+        Object.values(groups).map((value) => {
+            value.hidden = true
+        });
+
+        if (!(groupName in groups) || groupName === 'all') {
+            return
+        }
+        groups[groupName].hidden = false;
+    }
+
+    let recipientGroups = {
+        cooperative: smsRecipientCooperativeHolder,
+        society: smsRecipientSocietyHolder,
+        country: smsRecipientCountryHolder,
+        language: smsRecipientLanguageHolder,
+    }
 
     smsRecipientGroupType.addEventListener("change", function (e) {
-        switch (this.value.toLowerCase().trim()) {
-            case "all":
-                break;
-            case "cooperative":
-                smsRecipientCooperative.required = true;
-                smsRecipientCooperativeHolder.hidden = false;
-
-                smsRecipientSociety.required = false;
-                smsRecipientSocietyHolder.hidden = true
-
-                smsRecipientCountry.required = false;
-                smsRecipientCountryHolder.hidden = true;
-
-                smsRecipientLanguage.required = false;
-                smsRecipientLanguageHolder.hidden = true;
-                break;
-
-            case "society":
-                smsRecipientCooperative.required = false;
-                smsRecipientCooperativeHolder.hidden = true;
-
-                smsRecipientSociety.required = true;
-                smsRecipientSocietyHolder.hidden = false
-
-                smsRecipientCountry.required = false;
-                smsRecipientCountryHolder.hidden = true;
-
-                smsRecipientLanguage.required = false;
-                smsRecipientLanguageHolder.hidden = true;
-                break
-
-            case "country":
-                smsRecipientCooperative.required = false;
-                smsRecipientCooperativeHolder.hidden = true;
-
-                smsRecipientSociety.required = false;
-                smsRecipientSocietyHolder.hidden = true
-
-                smsRecipientCountry.required = true;
-                smsRecipientCountryHolder.hidden = false;
-
-                smsRecipientLanguage.required = false;
-                smsRecipientLanguageHolder.hidden = true;
-                break;
-
-            case "language":
-                smsRecipientCooperative.required = false;
-                smsRecipientCooperativeHolder.hidden = true;
-
-                smsRecipientSociety.required = false;
-                smsRecipientSocietyHolder.hidden = true
-
-                smsRecipientCountry.required = false;
-                smsRecipientCountryHolder.hidden = true;
-
-                smsRecipientLanguage.required = true;
-                smsRecipientLanguageHolder.hidden = false;
-                break;
-
-            default:
-                alert("unknown recipient group");
-                return;
-        }
+        toggleRecipientGroup(recipientGroups, this.value.trim().toLowerCase())
     });
 
 
     let templateVariables = document.getElementsByClassName("template-variable");
-    let messageTemplate = document.getElementById("message-body");
-
+    let messageBody = document.getElementById("message-body");
     for (let i = 0; i < templateVariables.length; i++) {
         templateVariables[i].addEventListener("click", function (e) {
-            messageTemplate.value = messageTemplate.value + `{${this.textContent.toLowerCase().trim()}}`;
-            messageTemplate.focus();
+            messageBody.value = messageBody.value + `{${this.textContent.toLowerCase().trim()}}`;
+            messageBody.focus();
         });
     }
+
+
+    function populateGroupValues(groupName, holder, columnNumber) {
+        let uniqueValues = new Set();
+        let valuesFromTableColumn = document.querySelectorAll(`#farmers-table > tbody > tr > td:nth-child(${columnNumber})`);
+        valuesFromTableColumn.forEach((element, index) => {
+            uniqueValues.add(element.innerText.trim().toUpperCase());
+        });
+
+        holder.innerHTML = null;
+        holder.innerHTML = `<label>Select ${groupName.toLowerCase()}</label>`;
+        uniqueValues.forEach((value) => {
+            holder.innerHTML += `
+        <div class="form-check">
+             <input class="form-check-input" type="checkbox" value="${value}" id="${value}">
+                 <label class="form-check-label" for="${value}">
+                     ${value}
+                 </label>
+         </div>
+        `;
+        });
+    }
+
+    populateGroupValues("cooperatives", smsRecipientCooperativeHolder, 2)
+    populateGroupValues("societies", smsRecipientSocietyHolder, 8)
+    populateGroupValues("countries", smsRecipientCountryHolder, 7)
+    populateGroupValues("languages", smsRecipientLanguageHolder, 9)
 });
