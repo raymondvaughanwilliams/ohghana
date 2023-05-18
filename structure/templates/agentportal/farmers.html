@@ -15,12 +15,9 @@
                     <div class="card-header">
                         <form method="post">
                             <div class="row col-lg-12">
+
                                 <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
-                                    <label for="donationinput1 "> First Name:</label>
-                                    {{ filterform.first_name(class="form-control btn btn-secondary dropdown-toggle ") }}
-                                </div>
-                                <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
-                                    <label for="donationinput1 "> Last Name:</label>
+                                    <label for="donationinput1 "> Farmer Name:</label>
                                     {{ filterform.last_name(class="form-control btn btn-secondary dropdown-toggle ") }}
                                 </div>
                                 <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
@@ -55,18 +52,6 @@
                                 </div>
                             </div>
                         </form>
-
-                        <!-- Modal Action Buttons -->
-                        <div class="row d-flex justify-content-end">
-                            <div class="col-sm-2 mr-1">
-                                <!-- Send bulk sms modal trigger -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#bulk-sms-modal">
-                                    <i class="fa fa-comments"></i>
-                                    Send Bulk SMS
-                                </button>
-                            </div>
-                        </div>
                     </div>
 
 
@@ -87,79 +72,103 @@
                                         <th></th>
 
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {%if search =="no"%}
-                                    {% for farmer in farmers.items %}
-                                   
-                                    <tr>
-                                        <td><a >{{farmer.cooperative}}</a></td>
-                                        <td><a href="{{url_for('core.farmer',id=farmer.id)}}">{{farmer.last_name}}</a></td>
-                                        <td>{{farmer.number}}</td>
-                                        <td>{{farmer.premium_amount}}</td>
-                                        <td>{{farmer.cashcode}}</td>
-                                        <td>{{farmer.country}}</td>
-                                        <td>{{farmer.society}}</td>
-                                        <td>{{farmer.language}}</td>
-                                        <td>
-                                        <button class="fa fa-trash" type="button"  data-target="#deleteModal{{farmer.id}}" data-toggle="modal"></button>
-                                        </td>
-                                        <div class="modal fade" id="deleteModal{{farmer.id}}">
-                                            <div class="modal-dialog">
-                                             <div class="modal-content">
-                                              <div class="modal-header">
-                                               <h5 class="modal-title" id="exampleModalLabel">Delete farmer?</h5>
-                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                               <span aria-hidden="true">&times;</span>
-                                               </button>
-                                              </div>
-                                              <div class="modal-body">
-                                               <p>Are you sure you want to delete {{farmer.last_name}}?</p>
-                                             </div>
-                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" id="close-modal">No</button>
-                                               <a href="{{url_for('core.delete_farmer',farmer_id=farmer.id)}}"><button type="button" class="btn btn-danger">Yes</button></a>
-                                              </div>
-                                             </div>
-                                            </div>
-                                           </div>
+                                    </thead>
+                                    <tbody>
+                                    {% if search =="no" %}
+                                        {% for farmer in farmers.items %}
 
-                                    </tr>
-                                    {% endfor %}
-                                    {%else%}
-                                    {% for farmer in farmers %}
-                                   
-                                    <tr>
-                                        <td><a >{{farmer.cooperative}}</a></td>
-                                        <td><a href="{{url_for('core.farmer',id=farmer.id)}}">{{farmer.first_name}}</a></td>
-                                        <td>{{farmer.last_name}}</td>
-                                        <td>{{farmer.number}}</td>
-                                        <td>{{farmer.premium_amount}}</td>
-                                        <td>{{farmer.cashcode}}</td>
-                                        <td>{{farmer.country}}</td>
-                                        <td>{{farmer.society}}</td>
-                                        <td>{{farmer.language}}</td>
-                                        <td>  <button class="fa fa-trash" type="button"  data-target="#deleteModal{{farmer.id}}" data-toggle="modal"></button>
-                                        </td>
-                                        <div class="modal fade" id="deleteModal{{farmer.id}}">
-                                            <div class="modal-dialog">
-                                             <div class="modal-content">
-                                              <div class="modal-header">
-                                               <h5 class="modal-title" id="exampleModalLabel">Delete farmer?</h5>
-                                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                               <span aria-hidden="true">&times;</span>
-                                               </button>
-                                              </div>
-                                              <div class="modal-body">
-                                               <p>Are you sure you want to delete {{farmer.last_name}}?</p>
-                                             </div>
-                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" id="close-modal">No</button>
-                                               <a href="{{url_for('core.delete_farmer',farmer_id=farmer.id)}}"><button type="button" class="btn btn-danger">Yes</button></a>
-                                              </div>
-                                             </div>
-                                            </div>
-                                           </div>
+                                            <tr>
+                                                <td><a>{{ farmer.cooperative }}</a></td>
+                                                <td>
+                                                    <a href="{{ url_for('core.farmer',id=farmer.id) }}">{{ farmer.last_name }}</a>
+                                                </td>
+                                                <td>{{ farmer.number }}</td>
+                                                <td>{{ farmer.premium_amount }}</td>
+                                                <td>{{ farmer.cashcode }}</td>
+                                                <td>{{ farmer.country }}</td>
+                                                <td>{{ farmer.society }}</td>
+                                                <td>{{ farmer.language }}</td>
+                                                <td>
+                                                    <button class="fa fa-trash" type="button"
+                                                            data-target="#deleteModal{{ farmer.id }}"
+                                                            data-toggle="modal"></button>
+                                                </td>
+                                                <div class="modal fade" id="deleteModal{{ farmer.id }}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Delete
+                                                                    farmer?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Are you sure you want to
+                                                                    delete {{ farmer.last_name }}?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        id="close-modal">No
+                                                                </button>
+                                                                <a href="{{ url_for('core.delete_farmer',farmer_id=farmer.id) }}">
+                                                                    <button type="button" class="btn btn-danger">Yes
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for farmer in farmers %}
+
+                                            <tr>
+                                                <td><a>{{ farmer.cooperative }}</a></td>
+                                                <td>
+                                                    <a href="{{ url_for('core.farmer',id=farmer.id) }}">{{ farmer.last_name }}</a>
+                                                </td>
+                                                <td>{{ farmer.number }}</td>
+                                                <td>{{ farmer.premium_amount }}</td>
+                                                <td>{{ farmer.cashcode }}</td>
+                                                <td>{{ farmer.country }}</td>
+                                                <td>{{ farmer.society }}</td>
+                                                <td>{{ farmer.language }}</td>
+                                                <td>
+                                                    <button class="fa fa-trash" type="button"
+                                                            data-target="#deleteModal{{ farmer.id }}"
+                                                            data-toggle="modal"></button>
+                                                </td>
+                                                <div class="modal fade" id="deleteModal{{ farmer.id }}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Delete
+                                                                    farmer?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Are you sure you want to
+                                                                    delete {{ farmer.last_name }}?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        id="close-modal">No
+                                                                </button>
+                                                                <a href="{{ url_for('core.delete_farmer',farmer_id=farmer.id) }}">
+                                                                    <button type="button" class="btn btn-danger">Yes
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </tr>
                                         {% endfor %}
@@ -213,103 +222,98 @@
         </div>
 
         <!-- Bulk SMS Modal -->
-        <div class="modal fade" id="bulk-sms-modal" tabindex="-1" role="dialog" aria-labelledby="Bulk SMS modal"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="Bulk SMS modal"><i class="fa fa-comments"></i> Send Bulk SMS</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <form id="bulk-sms-form">
-                            <div class="row">
-                                <!-- Recipient Details -->
-                                <div class="col-4">
-                                    <h4>Select recipients</h4>
-                                    <hr>
-                                    <div class="form-group">
-                                        <label for="sms-recipient-group">Group recipients by</label>
-                                        <select required class="form-control form-control-sm" name="recipientGroup"
-                                                id="sms-recipient-group">
-                                            <option value="">-- Select --</option>
-                                            <option value="all">All</option>
-                                            <option value="cooperative">Cooperative</option>
-                                            <option value="society">Society</option>
-                                            <option value="country">Country</option>
-                                            <option value="language">Language</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group" id="sms-recipient-cooperative-holder" hidden></div>
-                                    <div class="form-group" id="sms-recipient-society-holder" hidden></div>
-                                    <div class="form-group" id="sms-recipient-country-holder" hidden></div>
-                                    <div class="form-group" id="sms-recipient-language-holder" hidden></div>
-                                </div>
-
-                                <!-- Message Details -->
-                                <div class="col-8" style="border-left: 1px solid #eee">
-                                    <h4>Draft Message</h4>
-                                    <hr>
-
-                                    <div class="row">
-                                        <div class="col"><p>Click to insert variable</p></div>
-                                        <div class="col d-flex justify-content-between">
-                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
-                                          style="cursor: pointer">Name</span>
-                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
-                                                  style="cursor: pointer">Phone</span>
-                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
-                                                  style="cursor: pointer">Cooperative</span>
-                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
-                                                  style="cursor: pointer">Premium_Amount</span>
-                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
-                                                  style="cursor: pointer">Country</span>
-                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
-                                                  style="cursor: pointer">Society</span>
-                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"
-                                                  style="cursor: pointer">Language</span>
-                                        </div>
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <label for="message-body">Message Body</label>
-                                        <textarea required class="form-control form-control-sm" id="message-body"
-                                                  name="messageBody" rows="8"
-                                                  cols="20"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="modal-footer flex-column">
-                        <div>
-                            <button type="reset" form="bulk-sms-form" class="btn btn-sm btn-danger">Reset</button>
-                            <button type="reset" form="bulk-sms-form" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" form="bulk-sms-form" class="btn btn-sm btn-primary">Send</button>
-                        </div>
-
-                        <br>
-
-                        <div id="bulk-sms-form-feedback"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {#        <div class="modal fade" id="bulk-sms-modal" tabindex="-1" role="dialog" aria-labelledby="Bulk SMS modal"#}
+        {#             aria-hidden="true">#}
+        {#            <div class="modal-dialog modal-lg" role="document">#}
+        {#                <div class="modal-content">#}
+        {#                    <div class="modal-header">#}
+        {#                        <h4 class="modal-title" id="Bulk SMS modal"><i class="fa fa-comments"></i> Send Bulk SMS</h4>#}
+        {#                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+        {#                            <span aria-hidden="true">&times;</span>#}
+        {#                        </button>#}
+        {#                    </div>#}
+        {##}
+        {#                    <div class="modal-body">#}
+        {#                        <form id="bulk-sms-form">#}
+        {#                            <div class="row">#}
+        {#                                <!-- Recipient Details -->#}
+        {#                                <div class="col-4">#}
+        {#                                    <h4>Select recipients</h4>#}
+        {#                                    <hr>#}
+        {#                                    <div class="form-group">#}
+        {#                                        <label for="sms-recipient-group">Group recipients by</label>#}
+        {#                                        <select required class="form-control form-control-sm" name="recipientGroup"#}
+        {#                                                id="sms-recipient-group">#}
+        {#                                            <option value="">-- Select --</option>#}
+        {#                                            <option value="all">All</option>#}
+        {#                                            <option value="cooperative">Cooperative</option>#}
+        {#                                            <option value="society">Society</option>#}
+        {#                                            <option value="country">Country</option>#}
+        {#                                            <option value="language">Language</option>#}
+        {#                                        </select>#}
+        {#                                    </div>#}
+        {##}
+        {#                                    <div class="form-group" id="sms-recipient-cooperative-holder" hidden></div>#}
+        {#                                    <div class="form-group" id="sms-recipient-society-holder" hidden></div>#}
+        {#                                    <div class="form-group" id="sms-recipient-country-holder" hidden></div>#}
+        {#                                    <div class="form-group" id="sms-recipient-language-holder" hidden></div>#}
+        {#                                </div>#}
+        {##}
+        {#                                <!-- Message Details -->#}
+        {#                                <div class="col-8" style="border-left: 1px solid #eee">#}
+        {#                                    <h4>Draft Message</h4>#}
+        {#                                    <hr>#}
+        {##}
+        {#                                    <div class="row">#}
+        {#                                        <div class="col"><p>Click to insert variable</p></div>#}
+        {#                                        <div class="col d-flex justify-content-between">#}
+        {#                                    <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"#}
+        {#                                          style="cursor: pointer">Name</span>#}
+        {#                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"#}
+        {#                                                  style="cursor: pointer">Phone</span>#}
+        {#                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"#}
+        {#                                                  style="cursor: pointer">Cooperative</span>#}
+        {#                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"#}
+        {#                                                  style="cursor: pointer">Premium_Amount</span>#}
+        {#                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"#}
+        {#                                                  style="cursor: pointer">Country</span>#}
+        {#                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"#}
+        {#                                                  style="cursor: pointer">Society</span>#}
+        {#                                            <span class="shadow shadow-sm badge badge-pill badge-secondary template-variable"#}
+        {#                                                  style="cursor: pointer">Language</span>#}
+        {#                                        </div>#}
+        {#                                    </div>#}
+        {#                                    <br>#}
+        {##}
+        {#                                    <div class="form-group">#}
+        {#                                        <label for="message-body">Message Body</label>#}
+        {#                                        <textarea required class="form-control form-control-sm" id="message-body"#}
+        {#                                                  name="messageBody" rows="8"#}
+        {#                                                  cols="20"></textarea>#}
+        {#                                    </div>#}
+        {#                                </div>#}
+        {#                            </div>#}
+        {#                        </form>#}
+        {#                    </div>#}
+        {##}
+        {#                    <div class="modal-footer flex-column">#}
+        {#                        <div>#}
+        {#                            <button type="reset" form="bulk-sms-form" class="btn btn-sm btn-danger">Reset</button>#}
+        {#                            <button type="reset" form="bulk-sms-form" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>#}
+        {#                            <button type="submit" form="bulk-sms-form" class="btn btn-sm btn-primary">Send</button>#}
+        {#                        </div>#}
+        {##}
+        {#                        <br>#}
+        {##}
+        {#                        <div id="bulk-sms-form-feedback"></div>#}
+        {#                    </div>#}
+        {#                </div>#}
+        {#            </div>#}
+        {#        </div>#}
 
     </section>
     <!--/ eCommerce statistic -->
 
-    <script>
-        sessionStorage.setItem("allFarmers", JSON.stringify({{ all_farmers | tojson }}))
-    </script>
-
-    <script src="{{ url_for('static', filename='js/farmers/bulk_sms.js') }}"></script>
 {% endblock %}
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->

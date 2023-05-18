@@ -97,7 +97,6 @@ class FarmerForm(Form):
     last_name = StringField('Last Name')
     number = StringField('Premium Amount')
     premium_amount = StringField('Premium Amount')
-    premium_amount = StringField('Premium Amount')
     location = StringField('Location')
     language = StringField('Language')
     country = StringField('Country')
