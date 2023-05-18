@@ -1,22 +1,20 @@
+import datetime
 import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_login import LoginManager
-from sqlalchemy import MetaData
-from flask_mail import Mail, Message
-from flask_mail import Mail, Message
-from dotenv import load_dotenv
-# from flask_apscheduler import APScheduler
-from flask_uploads import UploadSet, configure_uploads, IMAGES
-from os import environ
 # from flask_jwt_extended import JWTManager
 from datetime import timedelta
-import jwt
-import datetime
+
+from dotenv import load_dotenv
+from flask import Flask
+from flask_login import LoginManager
+from flask_mail import Mail
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+# from flask_apscheduler import APScheduler
+from flask_uploads import UploadSet, configure_uploads, IMAGES
+from sqlalchemy import MetaData
+
 app = Flask(__name__)
 load_dotenv()
-
 
 # scheduler = APScheduler()
 
@@ -25,7 +23,7 @@ app.config['SECRET_KEY'] = 'asecretkey'
 ### DATABASE SETUP ##########
 ########################
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.getenv('DB_LOCATION')  # os.path.join(basedir,'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
@@ -36,9 +34,9 @@ naming_convention = {
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
     "pk": "pk_%(table_name)s"
 }
-db = SQLAlchemy(app,metadata=MetaData(naming_convention=naming_convention))
+db = SQLAlchemy(app, metadata=MetaData(naming_convention=naming_convention))
 
-Migrate(app,db)
+Migrate(app, db)
 migrate = Migrate(app, db, render_as_batch=True)
 with app.app_context():
     if db.engine.url.drivername == "sqlite":
@@ -46,14 +44,9 @@ with app.app_context():
     else:
         migrate.init_app(app, db, render_as_batch=True)
 
-
-
-
 # app.config["JWT_SECRET_KEY"] = "super-secret"
 # app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=12)
 # jwt = JWTManager(app)
-
-
 
 
 app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/images/certificates')
@@ -64,7 +57,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 
 app.config.update(
-    UPLOAD_PATH = os.path.join(basedir, 'static')
+    UPLOAD_PATH=os.path.join(basedir, 'static')
 )
 
 #########################
@@ -72,20 +65,14 @@ app.config.update(
 # LOGIN CONFIGS
 login_manager = LoginManager()
 
-
 login_manager.init_app(app)
 login_manager.login_view = 'users.login'
 
-
-
-
-exp_time = datetime.datetime.utcnow() + timedelta(days=365 * 10) # Expires in 10 years
+exp_time = datetime.datetime.utcnow() + timedelta(days=365 * 10)  # Expires in 10 years
 
 # Encode the token using the user's credentials
 # token = jwt.encode({'username': 'apikey', 'exp': exp_time}, app.config['SECRET_KEY'], algorithm='HS256')
 # print(token)
-
-
 
 
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
@@ -101,10 +88,6 @@ from structure.core.views import core
 from structure.users.views import users
 from structure.error_pages.handlers import error_pages
 
-
 app.register_blueprint(core)
 app.register_blueprint(users)
 app.register_blueprint(error_pages)
-
-
-

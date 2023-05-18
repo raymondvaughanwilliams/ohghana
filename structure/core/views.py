@@ -210,12 +210,11 @@ def addfarmer():
 @core.route("/farmers", methods=["GET", "POST"])
 @login_required
 def farmers():
+    print("from farmers route: ", os.getenv("DB_LOCATION"))
     form = FilterForm()
     page = request.args.get('page', 1, type=int)
     farmers = Farmer.query.paginate(page, 20, False)
 
-    print('csv_data')
-    print(session)
 
     session.pop('msg', None)
     # session.pop('csv_data',None)
