@@ -15,12 +15,9 @@
                     <div class="card-header">
                         <form method="post">
                             <div class="row col-lg-12">
+
                                 <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
-                                    <label for="donationinput1 "> First Name:</label>
-                                    {{ filterform.first_name(class="form-control btn btn-secondary dropdown-toggle ") }}
-                                </div>
-                                <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
-                                    <label for="donationinput1 "> Last Name:</label>
+                                    <label for="donationinput1 "> Farmer Name:</label>
                                     {{ filterform.last_name(class="form-control btn btn-secondary dropdown-toggle ") }}
                                 </div>
                                 <div class="col-lg-2" style="margin-bottom:20px;margin-top:20px; ">
@@ -131,8 +128,7 @@
                                    
                                     <tr>
                                         <td><a >{{farmer.cooperative}}</a></td>
-                                        <td><a href="{{url_for('core.farmer',id=farmer.id)}}">{{farmer.first_name}}</a></td>
-                                        <td>{{farmer.last_name}}</td>
+                                        <td><a href="{{url_for('core.farmer',id=farmer.id)}}">{{farmer.last_name}}</a></td>
                                         <td>{{farmer.number}}</td>
                                         <td>{{farmer.premium_amount}}</td>
                                         <td>{{farmer.cashcode}}</td>
