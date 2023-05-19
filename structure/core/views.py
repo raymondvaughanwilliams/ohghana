@@ -1,10 +1,10 @@
 import csv
 import os
 from os import environ
+from uuid import uuid4
 
 import requests
 from flask import render_template, Blueprint, session, redirect, url_for, jsonify, current_app, request
-
 from flask_login import login_required
 from sqlalchemy import and_, or_, desc
 
@@ -17,6 +17,7 @@ from structure.models import User, About, Farmer, EcomRequest
 core = Blueprint('core', __name__)
 
 API_KEY = os.environ.get('API_KEY')
+
 
 def require_api_key(view_function):
     def decorated_function(*args, **kwargs):
@@ -215,7 +216,6 @@ def farmers():
     page = request.args.get('page', 1, type=int)
     farmers = Farmer.query.paginate(page, 20, False)
 
-
     session.pop('msg', None)
     # session.pop('csv_data',None)
     session.pop('duplicates', None)
@@ -367,34 +367,17 @@ def uploadfarmer():
         session.pop('duplicates', None)
 
         if form.uploadfile.data:
-
             uploaded_file = request.files['uploadfile']
             print("file")
             print(uploaded_file.filename)
-            filepath = os.path.join(current_app.root_path, uploaded_file.filename)
-            session['current_file'] = filepath
+
+            # Generate a unique name for the uploaded file
+            unique_file_name = str(uuid4()) + uploaded_file.filename
+            filepath = os.path.join(current_app.root_path, unique_file_name)
+
             uploaded_file.save(filepath)
+            session['current_file'] = filepath
             return redirect(url_for('core.uploadsummary'))
-
-            with open(filepath, encoding='ISO-8859-1') as file:
-                csv_file = csv.reader(file)
-                upload_data = []
-                tdata = []
-                # print(csv_file)
-                next(csv_file)
-                line_count = 0
-                for row in csv_file:
-                    upload_data.append(row)
-
-                session['csv_data'] = upload_data
-
-                # return str(len(session['csv_data'][0][0]))
-                # return str(session['csv_data'][498])
-
-                # print("testing session data =================================================")
-                # print(session['csv_data'])
-                # print(upload_data)
-                return redirect(url_for('core.uploadsummary'))
 
     return render_template('agentportal/uploadfarmer.html', form=form, user=user, data=data)
 
@@ -439,8 +422,6 @@ def uploadsummary():
                     db.session.commit()
                     uploaded.append(data[i])
                     print("saved")
-
-
                 except Exception as e:
                     # Add the line number to the error message
                     error_message = f"Error on line {line_count}: {str(e)}"
