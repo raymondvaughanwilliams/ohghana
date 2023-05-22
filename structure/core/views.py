@@ -211,7 +211,6 @@ def addfarmer():
 @core.route("/farmers", methods=["GET", "POST"])
 @login_required
 def farmers():
-    print("from farmers route: ", os.getenv("DB_LOCATION"))
     form = FilterForm()
     page = request.args.get('page', 1, type=int)
     farmers = Farmer.query.paginate(page, 20, False)
@@ -575,7 +574,7 @@ def checknumber():
             'type': '0',
             'dlr': '1',
             'destination': number,
-            'source': 'test',
+            'source': 'ECOM',
             'message': message
         }
 
@@ -611,3 +610,35 @@ def sendbulksms():
     # ...
     response = {'message': 'Data received successfully'}
     return jsonify(response)
+
+
+@core.route("/farmersapi", methods=["GET", "POST"])
+def farmersapi():
+    farmers = Farmer.query.all()
+    farmer_list = []
+    if farmers:
+        for farmer in farmers:
+            payload = {
+                    "farmerName": farmer.last_name,
+                    "premiumAmount": farmer.premium_amount,
+                    "cooperative":farmer.cooperative,
+                    "cashcode":farmer.cashcode,
+                    "society":farmer.society,
+                    "country":farmer.country,
+                    "language":farmer.language,
+                    "number":farmer.number
+                    }
+            farmer_list.append(payload)
+        context = {"status": True,
+                    "message": " Farmer found!",
+                    "data": farmer_list
+                    }
+
+
+        return jsonify(context), 200
+    else:
+        context = {"status" :False,
+        "message":"Farmer not found",
+        "error": "null"}
+
+        return jsonify(context),404
