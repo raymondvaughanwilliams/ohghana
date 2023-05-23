@@ -48,6 +48,7 @@ let farmersTable = $("#farmers-table-dt").DataTable({
         }
     ],
     buttons: [
+        'print',
         'pdf',
         'csv',
         {
