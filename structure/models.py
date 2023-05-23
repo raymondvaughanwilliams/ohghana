@@ -323,12 +323,14 @@ class Farmer(db.Model):
     
 class EcomRequest(db.Model):
     id = db.Column(db.Integer,primary_key=True)
-    date = db.Column(db.Date,default=datetime.now)
+    date = db.Column(db.DateTime,default=datetime.utcnow)
     number = db.Column(db.Integer())
     cashcode = db.Column(db.String())
     farmer_id = db.Column(db.Integer, db.ForeignKey('farmers.id'), nullable=True)
     farmers  = db.relationship("Farmer", foreign_keys=[farmer_id])
     country = db.Column(db.String(255), nullable=True)
+    disposition = db.Column(db.String())
+    sms_disposition = db.Column(db.String())
   
    
     
