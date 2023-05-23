@@ -81,6 +81,7 @@ let farmersTable = $("#farmers-table-dt").DataTable({
                         .then(payload => {
                             Array.from(selectedRows).forEach((row) => {
                                 table.row(row).remove().draw();
+                                table.ajax.reload(null, false);
                             });
                         });
                 }
