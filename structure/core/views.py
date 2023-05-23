@@ -649,26 +649,26 @@ def farmersapi():
     if farmers:
         for farmer in farmers:
             payload = {
-                    "farmerName": farmer.last_name,
-                    "premiumAmount": farmer.premium_amount,
-                    "cooperative":farmer.cooperative,
-                    "cashcode":farmer.cashcode,
-                    "society":farmer.society,
-                    "country":farmer.country,
-                    "language":farmer.language,
-                    "number":farmer.number
-                    }
+                "id": farmer.id,
+                "farmerName": farmer.last_name,
+                "premiumAmount": farmer.premium_amount,
+                "cooperative": farmer.cooperative,
+                "cashcode": farmer.cashcode,
+                "society": farmer.society,
+                "country": farmer.country,
+                "language": farmer.language,
+                "number": farmer.number
+            }
             farmer_list.append(payload)
         context = {"status": True,
-                    "message": " Farmer found!",
-                    "data": farmer_list
-                    }
-
+                   "message": " Farmer found!",
+                   "data": farmer_list
+                   }
 
         return jsonify(context), 200
     else:
-        context = {"status" :False,
-        "message":"Farmer not found",
-        "error": "null"}
+        context = {"status": False,
+                   "message": "Farmer not found",
+                   "error": "null"}
 
-        return jsonify(context),404
+        return jsonify(context), 404
