@@ -459,6 +459,31 @@ def delete_farmer(farmer_id):
     return redirect(url_for('core.farmers'))
 
 
+
+@core.route("/api/delete_farmers", methods=['POST', 'GET'])
+def delete_farmers():
+    farmers = request.args.get('farmers') 
+    farmers_list = [int(farmer) for farmer in farmers.split(",")]
+    successfully_deleted = []
+    failed = []
+    for thefarmer in farmers_list:
+        farmer = Farmer.query.filter_by(id=thefarmer).first()
+        if farmer:
+            db.session.delete(farmer)
+            db.session.commit()
+            successfully_deleted.append(thefarmer)
+        else:
+            failed.append(thefarmer)
+    payload = {
+        "status": True,
+                    "message": " Farmers deleted",
+                    "successful": successfully_deleted,
+                    "failed":failed
+    }
+    return jsonify(payload), 200
+    
+
+
 @core.route('/api/addfarmer', methods=['GET', 'POST'])
 # @jwt_required()
 def addplan():
@@ -537,19 +562,18 @@ def checknumber():
     farmer = Farmer.query.filter_by(number=number).first()
     if farmer is not None:
 
-        ecomrequest = EcomRequest(number=number, country=farmer.country, farmer_id=farmer.id, cashcode=farmer.cashcode)
-        db.session.add(ecomrequest)
-        db.session.commit()
+        
 
         # endPoint = 'https://api.mnotify.com/api/sms/quick'
         # # apiKey =
-        if farmer.country == "Ghana":
-            message = "Hello " + farmer.last_name + " . Your 2022/2023 premium is GHS" + str(
+        # if farmer.country == "Ghana":
+        message = "Hello " + farmer.last_name + " . Your 2022/2023 premium is GHS" + str(
                 farmer.premium_amount) + ". Your cash code is " + str(farmer.cashcode) + ".  Thank you,ECOM."
-        else:
-            message = "Bonjour " + farmer.last_name + " votre prime 2022/2023 est CFA" + str(
-                farmer.premium_amount) + ". Votre code de caisse est " + " " + str(
-                farmer.cashcode) + ". Merci, Zamacom."
+        # else:
+        #     message = "Bonjour " + farmer.last_name + " votre prime 2022/2023 est CFA" + str(
+        #         farmer.premium_amount) + ". Votre code de caisse est " + " " + str(
+        #         farmer.cashcode) + ". Merci, Zamacom."
+        
         # print("message")
         # print(message)
         # data = {
@@ -585,6 +609,9 @@ def checknumber():
         # print("response_data")
         res = response.text.split("|")
         print(res)
+        ecomrequest = EcomRequest(number=number,  farmer_id=farmer.id,disposition="200",sms_disposition=res[0] )
+        db.session.add(ecomrequest)
+        db.session.commit()
 
         payload = {"True": True, "firstName": farmer.first_name,
                    "lastName": farmer.last_name,
@@ -597,6 +624,9 @@ def checknumber():
                    }
         return jsonify(context), 200
     else:
+        ecomrequest = EcomRequest(number=number,  farmer_id=None,disposition="404",sms_disposition="No sms sent" )
+        db.session.add(ecomrequest)
+        db.session.commit()
         context = {"status": False,
                    "message": "Farmer not found",
                    "error": "null"}
