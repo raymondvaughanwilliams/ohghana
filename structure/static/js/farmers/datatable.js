@@ -1,37 +1,20 @@
-// $('#farmers-table-dt thead tr')
-//     .clone(true)
-//     .addClass('filters')
-//     .appendTo('#farmers-table-dt thead');
-
-
 let farmersTable = $("#farmers-table-dt").DataTable({
-    dom: 'lBftirp',
-    buttons: [
-        'pdf',
-        'csv',
-        {
-            extend: 'selected',
-            text: 'Delete',
-            action: function (e, table, button, config) {
-                let selectedRows = table.rows({selected: true}).indexes();
-                Array.from(selectedRows).forEach((value, index) => {
-                    console.log(table.row(value).data());
-                    table.row(value).remove().draw();
-                })
-            }
-        }
-    ],
-
+    dom: '<"row mb-2"<"col-12"l>>rBftip',
+    ajax: {url: "/farmersapi"},
+    processing: true,
+    language: {
+        processing: 'Loading farmers...',
+    },
     columnDefs: [{
         orderable: false,
         className: 'select-checkbox',
         targets: 0
     }],
     select: {
-        style: 'os',
-        selector: 'td:first-child'
+        style: 'multi+shift',
+        selector: 'td:first-child',
+        info: true,
     },
-    ajax: {url: "/farmersapi"},
     columns: [
         {
             data: null,
@@ -62,14 +45,49 @@ let farmersTable = $("#farmers-table-dt").DataTable({
         },
         {
             data: 'language',
-        },
-        {
-            data: null,
-            render: function render(data, type, row, meta) {
-                return `<span class="shadow btn btn-sm btn-outline-danger text-danger"><i class="fa fa-trash-o"></i></span>`;
-            },
         }
     ],
+    buttons: [
+        'pdf',
+        'csv',
+        {
+            extend: 'selectNone',
+            name: 'selectNone',
+        },
+        {
+            extend: '',
+            text: 'Refresh Table',
+            action: function (e, table, button, config) {
+                table.ajax.reload(null, false);
+            }
+        },
+        {
+            extend: 'selected',
+            text: 'Delete',
+            attr: {
+                class: 'ml-2 btn btn-sm btn-danger',
+            },
+            action: function (e, table, button, config) {
+                let selectedRows = table.rows({selected: true}).indexes();
+                let farmerIds = [];
+                Array.from(selectedRows).forEach((rowIndex) => {
+                    let data = table.row(rowIndex).data();
+                    farmerIds.push(data.id);
+                });
+
+                if (confirm("Are you sure you want to delete?")) {
+                    fetch(`/api/delete_farmers?farmers=${farmerIds.join(',')}`)
+                        .then(res => res.json())
+                        .then(payload => {
+                            Array.from(selectedRows).forEach((row) => {
+                                table.row(row).remove().draw();
+                            });
+                        });
+                }
+            }
+        }
+    ],
+
 });
 
 
