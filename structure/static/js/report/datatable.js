@@ -5,11 +5,6 @@ let farmersTable = $("#report-table").DataTable({
     language: {
         processing: 'Loading reports...',
     },
-    // columnDefs: [{
-    //     orderable: false,
-    //     className: 'select-checkbox',
-    //     targets: 0
-    // }],
     columns: [
         {
             data: 'timestamp',

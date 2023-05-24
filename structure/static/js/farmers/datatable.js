@@ -48,9 +48,24 @@ let farmersTable = $("#farmers-table-dt").DataTable({
         }
     ],
     buttons: [
-        'print',
-        'pdf',
-        'csv',
+        {
+            extend: 'print',
+            exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7, 8],
+            }
+        },
+        {
+            extend: 'csv',
+            exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7, 8],
+            }
+        },
+        {
+            extend: 'pdf',
+            exportOptions: {
+                columns: [1, 2, 3, 4, 5, 6, 7, 8],
+            }
+        },
         {
             extend: 'selectNone',
             name: 'selectNone',
