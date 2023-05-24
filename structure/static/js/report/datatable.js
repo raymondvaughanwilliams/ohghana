@@ -19,7 +19,7 @@ let farmersTable = $("#report-table").DataTable({
             data: null,
             render: function (data, type, row, meta) {
                 if (data.disposition === null || data.disposition === undefined) {
-                    return <span className='badge-pill badge-secondary'>Unknown</span>;
+                    return "<span className='badge-pill badge-secondary'>Unknown</span>";
                 }
                 return data.disposition.trim() === "200" ? "<span class='badge-pill badge-success'>Yes</span>" : "<span class='badge-pill badge-danger'>No</span>";
             }
