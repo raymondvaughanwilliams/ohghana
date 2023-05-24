@@ -72,6 +72,8 @@ let farmersTable = $("#farmers-table-dt").DataTable({
                     return;
                 }
                 let data = table.row(selectedRows.indexes()[0]).data();
+                $("#edit-farmer-form").attr("action", `/farmer/${data.id}`);
+                $("#edit-farmer-id").val(data.id);
                 $("#edit-farmer-cooperative").val(data.cooperative);
                 $("#edit-farmer-last-name").val(data.farmerName);
                 $("#edit-farmer-number").val(data.number);

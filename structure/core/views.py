@@ -513,8 +513,7 @@ def checknumber():
 
     farmer = Farmer.query.filter_by(number=number).first()
     if farmer is not None:
-        message = "Hello " + farmer.last_name + " . Your 2022/2023 premium is GHS" + str(
-            farmer.premium_amount) + ". Your cash code is " + str(farmer.cashcode) + ".  Thank you,ECOM."
+        message = f"Hello {farmer.last_name}. Your 2022/2023 premium is GHS{farmer.premium_amount}. Your cash code is {farmer.cashcode}. Thank you, ECOM."
 
         url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
         route_sms_password = environ.get('ROUTESMS_PASS')
