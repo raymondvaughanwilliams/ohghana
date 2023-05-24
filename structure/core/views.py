@@ -611,6 +611,12 @@ def farmersapi():
         return jsonify(context), 404
 
 
+@core.route("/report", methods=["GET"])
+@login_required
+def report():
+    return render_template("agentportal/report.html")
+
+
 @core.route("/api/logs", methods=["GET", "POST"])
 def logs():
     logs = EcomRequest.query.all()
@@ -621,7 +627,9 @@ def logs():
             "id": log.id,
             "farmerName": log.farmers.last_name if log.farmer_id else "N/A",
             "number": log.farmers.number if log.farmer_id else "N/A",
-            "disposition": log.disposition
+            "disposition": log.disposition,
+            "timestamp": log.date,
+            "smsDisposition": log.sms_disposition,
         }
         payload_list.append(payload)
 
