@@ -18,13 +18,15 @@ let farmersTable = $("#report-table").DataTable({
         {
             data: null,
             render: function (data, type, row, meta) {
-                return data.disposition.trim() === "200" ? "Yes" : "No";
+                if (data.disposition === null || data.disposition === undefined) {
+                    return <span className='badge-pill badge-secondary'>Unknown</span>;
+                }
+                return data.disposition.trim() === "200" ? "<span class='badge-pill badge-success'>Yes</span>" : "<span class='badge-pill badge-danger'>No</span>";
             }
         },
         {
             data: null,
             render: function (data, type, row, meta) {
-                console.log(data);
                 if (data.smsDisposition === null || data.smsDisposition === undefined) {
                     return "Unknown";
                 }
@@ -43,7 +45,7 @@ let farmersTable = $("#report-table").DataTable({
                     case smsStatus.ipNotAuthenticated:
                         return `<span class="shadow font-weight-bold badge badge-pill badge-warning">Pending (${smsStatus.ipNotAuthenticated})</span>`;
                     default:
-                        return "Unknown";
+                        return "<span class='shadow font-weight-bold badge badge-pill badge-secondary'>Unknown</span>";
                 }
             }
         },
