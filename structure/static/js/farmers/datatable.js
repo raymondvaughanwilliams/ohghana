@@ -111,7 +111,6 @@ let farmersTable = $("#farmers-table-dt").DataTable({
                 }
             }
         },
-
     ],
 });
 
