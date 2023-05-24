@@ -619,7 +619,7 @@ def report():
 
 @core.route("/api/logs", methods=["GET", "POST"])
 def logs():
-    logs = EcomRequest.query.all()
+    logs = EcomRequest.query.order_by(desc(EcomRequest.date))
     payload_list = []
 
     for log in logs:

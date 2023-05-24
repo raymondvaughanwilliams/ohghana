@@ -1,6 +1,8 @@
 let farmersTable = $("#report-table").DataTable({
     dom: '<"row mb-2"<"col-12"l>>rBftip',
     ajax: {url: "/api/logs"},
+    // ordering: false,
+    order: [],
     processing: true,
     language: {
         processing: 'Loading reports...',
@@ -19,7 +21,7 @@ let farmersTable = $("#report-table").DataTable({
             data: null,
             render: function (data, type, row, meta) {
                 if (data.disposition === null || data.disposition === undefined) {
-                    return "<span className='badge-pill badge-secondary'>Unknown</span>";
+                    return "<span class='badge-pill badge-secondary'>Unknown</span>";
                 }
                 return data.disposition.trim() === "200" ? "<span class='badge-pill badge-success'>Yes</span>" : "<span class='badge-pill badge-danger'>No</span>";
             }
