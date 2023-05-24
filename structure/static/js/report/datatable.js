@@ -12,7 +12,10 @@ let farmersTable = $("#report-table").DataTable({
             data: 'timestamp',
         },
         {
-            data: 'farmerName',
+            data: null,
+            render: function (data, type, row, meta) {
+                return data.farmerName.toUpperCase();
+            }
         },
         {
             data: 'number',
