@@ -40,15 +40,18 @@ let farmersTable = $("#report-table").DataTable({
                     successful: "1701",
                     noCredit: "1025",
                     ipNotAuthenticated: "69",
+                    noSmsSent: "no sms sent"
                 };
 
-                switch (data.smsDisposition) {
+                switch (data.smsDisposition.toLowerCase()) {
                     case smsStatus.successful:
                         return "<span class='shadow font-weight-bold badge badge-pill badge-success'>Successful</span>";
                     case smsStatus.noCredit:
                         return `<span class="shadow font-weight-bold badge badge-pill badge-warning">Pending (${smsStatus.noCredit})</span>`;
                     case smsStatus.ipNotAuthenticated:
                         return `<span class="shadow font-weight-bold badge badge-pill badge-warning">Pending (${smsStatus.ipNotAuthenticated})</span>`;
+                    case smsStatus.noSmsSent:
+                        return "<span class='shadow font-weight-bold badge badge-pill badge-dark'>No SMS sent</span>";
                     default:
                         return "<span class='shadow font-weight-bold badge badge-pill badge-secondary'>Unknown</span>";
                 }
