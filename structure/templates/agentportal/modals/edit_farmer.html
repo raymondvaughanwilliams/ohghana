@@ -9,12 +9,11 @@
             </div>
 
             <div class="modal-body">
-                <div>
-                    <p class="alert alert-warning p-1">Under Construction</p>
-                </div>
-                <form class="form" method="post" action="/addfarmer">
+                <form class="form" method="post" id="edit-farmer-form">
                     {{ form.hidden_tag() }}
 
+                    <input type="text" name="id" id="edit-farmer-id" hidden>
+                    
                     <div class="form-body">
                         <div class="form-group" style="margin-bottom:20px">
                             <label for="edit-farmer-cooperative">Cooperative</label>
