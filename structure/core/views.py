@@ -672,3 +672,25 @@ def farmersapi():
                    "error": "null"}
 
         return jsonify(context), 404
+
+
+@core.route("/api/logs", methods=["GET", "POST"])
+def logs():
+    logs = EcomRequest.query.all()
+    payload_list=[]
+    for log in logs:
+
+        payload = {
+            "id": log.id,
+    "farmerName": log.farmers.last_name if log.farmer_id else "N/A",
+            "number": log.farmers.number if  log.farmer_id else "N/A",
+            "disposition": log.disposition
+        }
+
+        payload_list.append(payload)
+    context = {"status": True,
+                   "message": " Farmer  found!",
+                   "data": payload_list
+                   }
+
+    return jsonify(context), 200
