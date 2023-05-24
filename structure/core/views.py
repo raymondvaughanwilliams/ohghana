@@ -12,8 +12,6 @@ from structure import db
 from structure.core.forms import FilterForm, FarmerForm
 from structure.models import User, About, Farmer, EcomRequest
 
-# from structure.team.views import team
-
 core = Blueprint('core', __name__)
 
 API_KEY = os.environ.get('API_KEY')
@@ -42,48 +40,40 @@ def base():
 @core.route('/agent/dashboard')
 @login_required
 def agent_dashboard():
-    # session.pop('uploaded',None)
-    # session.pop('duplicates',None)
     user = User.query.filter_by(id=session['id']).first()
     about = About.query.get(1)
     name = "ecom"
     session.pop('msg', None)
 
     farmers = Farmer.query.order_by(desc(Farmer.id)).all()
-    # ecomrequests  = EcomRequest.query.all()
-    ecomrequests = EcomRequest.query.order_by(desc(EcomRequest.id)).all()
+    ecom_requests = EcomRequest.query.order_by(desc(EcomRequest.id)).all()
 
     form = FilterForm()
     if session['role'] == 'agent':
         name = user.name
-        # print(op)
 
-    return render_template('agentportal/dashboard.html', form=form, user=user, about=about, name=name, farmers=farmers,
-                           ecomrequests=ecomrequests)
+    return render_template(
+        'agentportal/dashboard.html',
+        form=form, user=user, about=about,
+        name=name, farmers=farmers, ecomrequests=ecom_requests
+    )
 
 
 @core.route('/claims', methods=['GET', 'POST'])
 @login_required
 def claims():
-    user = User.query.filter_by(id=session['id']).first()
-    about = About.query.get(1)
-
     ecomrequests = EcomRequest.query.all()
 
     form = FilterForm()
 
-    name = user.name
-
     if request.method == "POST":
         # Get the filter values from the form
         first_name = form.first_name.data
-        print(first_name)
         last_name = form.last_name.data
 
         location = form.location.data
         number = form.number.data
         cooperative = form.cooperative.data
-        language = form.language.data
         country = form.country.data
         society = form.society.data
 
@@ -157,11 +147,7 @@ def claims():
             # condition that matches any of the location variations
             conditions.append(or_(*country_conditions))
 
-        print(conditions[0])
         ecomrequests = EcomRequest.query.filter(and_(*conditions)).all()
-        print(ecomrequests)
-
-    # print(op)
 
     return render_template('agentportal/claims.html', form=form, ecomrequests=ecomrequests, filterform=form)
 
@@ -177,35 +163,24 @@ def addfarmer():
             session['msg'] = "Farmer already exists"
             return redirect(url_for("core.addfarmer"))
         else:
-
-            farmer = Farmer(first_name="NA", last_name=form.last_name.data, number=form.number.data,
-                            premium_amount=form.premium_amount.data, location="NA", language=form.language.data,
-                            country=form.country.data, cooperative=form.cooperative.data, ordernumber="NA",
-                            cashcode=form.cashcode.data, society=form.society.data)
+            farmer = Farmer(
+                first_name="NA",
+                last_name=form.last_name.data,
+                number=form.number.data,
+                premium_amount=form.premium_amount.data,
+                location="NA",
+                language=form.language.data,
+                country=form.country.data,
+                cooperative=form.cooperative.data,
+                ordernumber="NA",
+                cashcode=form.cashcode.data,
+                society=form.society.data
+            )
             db.session.add(farmer)
             db.session.commit()
             return redirect(url_for("core.farmers"))
+
     return render_template("agentportal/addfarmer.html", form=form, items=items)
-
-
-# def farmer_to_dict(item):
-#     return {
-#         'id': item.id,
-#         'first_name': item.first_name,
-#         'last_name': item.last_name,
-#         'number': item.number,
-#         'premium_amount': item.premium_amount,
-#         'location': item.location,
-#         'country': item.country,
-#         'cashcode': item.cashcode,
-#         'date_added': item.date_added,
-#         'last_modified': item.last_modified,
-#         'language': item.language,
-#         'society': item.society,
-#         'farmercode': item.farmercode,
-#         'cooperative': item.cooperative,
-#         'ordernumber': item.ordernumber
-#     }
 
 
 @core.route("/farmers", methods=["GET", "POST"])
@@ -216,7 +191,6 @@ def farmers():
     farmers = Farmer.query.paginate(page, 20, False)
 
     session.pop('msg', None)
-    # session.pop('csv_data',None)
     session.pop('duplicates', None)
 
     search = "no"
@@ -224,12 +198,10 @@ def farmers():
         search = "yes"
         # Get the filter values from the form
         first_name = form.first_name.data
-        print(first_name)
         last_name = form.last_name.data
         location = form.location.data
         number = form.number.data
         cooperative = form.cooperative.data
-        language = form.language.data
         country = form.country.data
         society = form.society.data
 
@@ -303,15 +275,14 @@ def farmers():
             # condition that matches any of the location variations
             conditions.append(or_(*country_conditions))
 
-        # print(conditions[0])
-        # else:
-
         farmers = Farmer.query.filter(and_(*conditions)).all()
-        print(farmers)
-    # user = User.query.filter_by(id=session['id']).first()
 
-    return render_template("agentportal/farmers.html", farmers=farmers, form=form, filterform=form, page=page,
-                           search=search)
+    return render_template(
+        "agentportal/farmers.html",
+        farmers=farmers, form=form,
+        filterform=form, page=page,
+        search=search
+    )
 
 
 @core.route("/farmer/<int:id>", methods=["POST", 'GET'])
@@ -319,7 +290,6 @@ def farmers():
 def farmer(id):
     form = FarmerForm()
     farmer = Farmer.query.filter_by(id=id).first()
-    farmers = Farmer.query.all()
 
     if request.method == "POST":
         farmer.first_name = form.first_name.data
@@ -331,7 +301,6 @@ def farmer(id):
         farmer.society = form.society.data
         farmer.cooperative = form.cooperative.data
         farmer.cashcode = form.cashcode.data
-        # bid.status = 'bid'
 
         db.session.commit()
 
@@ -367,8 +336,6 @@ def uploadfarmer():
 
         if form.uploadfile.data:
             uploaded_file = request.files['uploadfile']
-            print("file")
-            print(uploaded_file.filename)
 
             # Generate a unique name for the uploaded file
             unique_file_name = str(uuid4()) + uploaded_file.filename
@@ -398,35 +365,38 @@ def uploadsummary():
     if request.method == 'POST':
         uploaded = []
         duplicates = []
-        print('saving')
         line_count = 0
-        print("len")
-        print(len(data))
+
         for i in range(0, len(data)):
-            print("in range")
-            print("saving")
             farmer = Farmer.query.filter_by(number=data[i][4]).first()
 
             if farmer:
-                print("duplicate found")
                 duplicates.append(data[i])
             else:
                 try:
-                    # farmers_save = Farmer(first_name=row[0],last_name=row[1],number=row[2])
-                    farmers_save = Farmer(cooperative=data[i][0], farmercode=data[i][1], last_name=data[i][2],
-                                          society=data[i][3], number=data[i][4], premium_amount=data[i][5],
-                                          language=data[i][6], cashcode=data[i][7], country=data[i][8], first_name="NA",
-                                          location="NA")
+                    farmers_save = Farmer(
+                        cooperative=data[i][0],
+                        farmercode=data[i][1],
+                        last_name=data[i][2],
+                        society=data[i][3],
+                        number=data[i][4],
+                        premium_amount=data[i][5],
+                        language=data[i][6],
+                        cashcode=data[i][7],
+                        country=data[i][8],
+                        first_name="NA",
+                        location="NA"
+                    )
+
                     db.session.add(farmers_save)
                     db.session.commit()
                     uploaded.append(data[i])
-                    print("saved")
                 except Exception as e:
                     # Add the line number to the error message
                     error_message = f"Error on line {line_count}: {str(e)}"
+
                     # Handle the error appropriately
                     message = error_message
-                    print(message)
                     session.pop('csv_data', None)
         session['uploaded_farmers'] = uploaded
         session['duplicates'] = duplicates
@@ -434,20 +404,13 @@ def uploadsummary():
         os.remove(filepath)
         session.pop('current_file')
 
-        return render_template('agentportal/uploadsummarydetails.html',
-                               len_added=len(uploaded), uploaded=uploaded,
-                               len_duplicates=len(duplicates), duplicates=duplicates)
+        return render_template(
+            'agentportal/uploadsummarydetails.html',
+            len_added=len(uploaded), uploaded=uploaded,
+            len_duplicates=len(duplicates), duplicates=duplicates
+        )
 
     return render_template('agentportal/uploadsummary.html', len_added=len(data), data=data, form=form)
-
-
-# @core.route('/uploadsummarydetails', methods=['GET', 'POST'])
-# def uploadsummarydetails():
-#     print(session)
-#     duplicates = session['duplicates']
-#     uploaded = session['uploaded_farmers']
-#     return render_template('agentportal/uploadsummarydetails.html', len_added=len(uploaded), uploaded=uploaded,
-#                            len_duplicates=len(duplicates), duplicates=duplicates)
 
 
 @core.route("/delete_farmer/<int:farmer_id>", methods=['POST', 'GET'])
@@ -459,13 +422,13 @@ def delete_farmer(farmer_id):
     return redirect(url_for('core.farmers'))
 
 
-
 @core.route("/api/delete_farmers", methods=['POST', 'GET'])
 def delete_farmers():
-    farmers = request.args.get('farmers') 
+    farmers = request.args.get('farmers')
     farmers_list = [int(farmer) for farmer in farmers.split(",")]
     successfully_deleted = []
     failed = []
+
     for thefarmer in farmers_list:
         farmer = Farmer.query.filter_by(id=thefarmer).first()
         if farmer:
@@ -474,14 +437,15 @@ def delete_farmers():
             successfully_deleted.append(thefarmer)
         else:
             failed.append(thefarmer)
+
     payload = {
         "status": True,
-                    "message": " Farmers deleted",
-                    "successful": successfully_deleted,
-                    "failed":failed
+        "message": " Farmers deleted",
+        "successful": successfully_deleted,
+        "failed": failed
     }
+
     return jsonify(payload), 200
-    
 
 
 @core.route('/api/addfarmer', methods=['GET', 'POST'])
@@ -495,10 +459,14 @@ def addplan():
     location = request.json['location']
     number = request.json['number']
 
-    plan = Farmer(first_name=first_name,
-                  premium_amount=premium_amount,
-                  last_name=last_name, number=number, location=location
-                  )
+    plan = Farmer(
+        first_name=first_name,
+        premium_amount=premium_amount,
+        last_name=last_name,
+        number=number,
+        location=location
+    )
+
     db.session.add(farmer)
     db.session.commit()
     status = 1
@@ -511,15 +479,9 @@ def addplan():
 @core.route('/api/senddemosms', methods=['GET', 'POST'])
 # @require_api_key
 def senddemosms():
-    # print(request.args.get('number'))
-
-    # number = requests.json['number']
     number = request.args.get('number')
-    print("number")
-    print(number[1:])
 
     url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
-    # apiKey =
     rpassword = environ.get('ROUTESMS_PASS')
     data = {
         'username': 'dlp-testacc',
@@ -530,71 +492,35 @@ def senddemosms():
         'source': 'test',
         'message': 'Welcome to Delaphone’s Cloud Answering Service, partner with us to optimize your customer experience'
     }
+
     response = requests.post(url, data)
-
-    # response_data = response.json()
-    # print("response_data")
     res = response.text.split("|")
-    print(res)
-    print(res)
+    payload = {"True": True, "res": res}
+    context = {
+        "status": True,
+        "message": " Message triggered",
+        "data": payload
+    }
 
-    payload = {"True": True,
-               "res": res
-               }
-    context = {"status": True,
-               "message": " Message triggered",
-               "data": payload
-               }
     return jsonify(context)
 
 
 @core.route('/api/checknumber', methods=['GET', 'POST'])
 # @require_api_key
 def checknumber():
-    # print(request.args.get('number'))
-
-    # number = requests.json['number']
     number = request.args.get('number')
     number = number.strip()
-    print("Checking for number:")
-    print(number)
 
     farmer = Farmer.query.filter_by(number=number).first()
     if farmer is not None:
-
-        
-
-        # endPoint = 'https://api.mnotify.com/api/sms/quick'
-        # # apiKey =
-        # if farmer.country == "Ghana":
         message = "Hello " + farmer.last_name + " . Your 2022/2023 premium is GHS" + str(
-                farmer.premium_amount) + ". Your cash code is " + str(farmer.cashcode) + ".  Thank you,ECOM."
-        # else:
-        #     message = "Bonjour " + farmer.last_name + " votre prime 2022/2023 est CFA" + str(
-        #         farmer.premium_amount) + ". Votre code de caisse est " + " " + str(
-        #         farmer.cashcode) + ". Merci, Zamacom."
-        
-        # print("message")
-        # print(message)
-        # data = {
-        # 'recipient[]':number,
-        # 'sender': 'Ecom',
-        # 'message': message,
-        # 'is_schedule': False,
-        # 'schedule_date': " "
-        # }
-        # url = endPoint + '?key=' + akey
-        # # if credit_balance > number_messages:
-        # response = requests.post(url, data)
-        # response_data = response.json()
-        # print("response_data")
-        # print(response_data)
+            farmer.premium_amount) + ". Your cash code is " + str(farmer.cashcode) + ".  Thank you,ECOM."
+
         url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
-        # apiKey =
-        rpassword = environ.get('ROUTESMS_PASS')
+        route_sms_password = environ.get('ROUTESMS_PASS')
         data = {
             'username': 'dlp-testacc',
-            'password': rpassword,
+            'password': route_sms_password,
             'type': '0',
             'dlr': '1',
             'destination': number,
@@ -602,50 +528,58 @@ def checknumber():
             'message': message
         }
 
-        # --------------------------------
         response = requests.post(url, data)
 
-        # response_data = response.json()
-        # print("response_data")
         res = response.text.split("|")
-        print(res)
-        ecomrequest = EcomRequest(number=number,  farmer_id=farmer.id,disposition="200",sms_disposition=res[0] )
-        db.session.add(ecomrequest)
+        ecom_request = EcomRequest(
+            number=number,
+            farmer_id=farmer.id,
+            disposition="200",
+            sms_disposition=res[0]
+        )
+
+        db.session.add(ecom_request)
         db.session.commit()
 
-        payload = {"True": True, "firstName": farmer.first_name,
-                   "lastName": farmer.last_name,
-                   "premium_amount": farmer.premium_amount,
-                   "location": farmer.location
-                   }
-        context = {"status": True,
-                   "message": " Farmer found",
-                   "data": payload
-                   }
+        payload = {
+            "True": True,
+            "firstName": farmer.first_name,
+            "lastName": farmer.last_name,
+            "premium_amount": farmer.premium_amount,
+            "location": farmer.location
+        }
+
+        context = {
+            "status": True,
+            "message": " Farmer found",
+            "data": payload
+        }
         return jsonify(context), 200
+
     else:
-        ecomrequest = EcomRequest(number=number,  farmer_id=None,disposition="404",sms_disposition="No sms sent" )
-        db.session.add(ecomrequest)
+        ecom_request = EcomRequest(
+            number=number,
+            farmer_id=None,
+            disposition="404",
+            sms_disposition="No sms sent",
+        )
+
+        db.session.add(ecom_request)
         db.session.commit()
-        context = {"status": False,
-                   "message": "Farmer not found",
-                   "error": "null"}
+        context = {
+            "status": False,
+            "message": "Farmer not found",
+            "error": "null"
+        }
+
         return jsonify(context), 404
-
-
-@core.route('/sendbulksms', methods=['POST'])
-def sendbulksms():
-    data = request.get_json()  # Retrieve the data from the request
-    # Process the data as needed
-    # ...
-    response = {'message': 'Data received successfully'}
-    return jsonify(response)
 
 
 @core.route("/farmersapi", methods=["GET", "POST"])
 def farmersapi():
     farmers = Farmer.query.all()
     farmer_list = []
+
     if farmers:
         for farmer in farmers:
             payload = {
@@ -660,16 +594,20 @@ def farmersapi():
                 "number": farmer.number
             }
             farmer_list.append(payload)
-        context = {"status": True,
-                   "message": " Farmer found!",
-                   "data": farmer_list
-                   }
+
+        context = {
+            "status": True,
+            "message": " Farmer found!",
+            "data": farmer_list,
+        }
 
         return jsonify(context), 200
     else:
-        context = {"status": False,
-                   "message": "Farmer not found",
-                   "error": "null"}
+        context = {
+            "status": False,
+            "message": "Farmer not found",
+            "error": "null"
+        }
 
         return jsonify(context), 404
 
@@ -677,20 +615,21 @@ def farmersapi():
 @core.route("/api/logs", methods=["GET", "POST"])
 def logs():
     logs = EcomRequest.query.all()
-    payload_list=[]
-    for log in logs:
+    payload_list = []
 
+    for log in logs:
         payload = {
             "id": log.id,
-    "farmerName": log.farmers.last_name if log.farmer_id else "N/A",
-            "number": log.farmers.number if  log.farmer_id else "N/A",
+            "farmerName": log.farmers.last_name if log.farmer_id else "N/A",
+            "number": log.farmers.number if log.farmer_id else "N/A",
             "disposition": log.disposition
         }
-
         payload_list.append(payload)
-    context = {"status": True,
-                   "message": " Farmer  found!",
-                   "data": payload_list
-                   }
+
+    context = {
+        "status": True,
+        "message": " Farmer  found!",
+        "data": payload_list
+    }
 
     return jsonify(context), 200

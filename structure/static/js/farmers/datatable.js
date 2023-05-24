@@ -64,6 +64,27 @@ let farmersTable = $("#farmers-table-dt").DataTable({
         },
         {
             extend: 'selected',
+            text: 'Edit Farmer',
+            action: function (e, table, button, config) {
+                let selectedRows = table.rows({selected: true});
+                if (selectedRows.count() !== 1) {
+                    alert("Sorry, you can only edit one farmer. Kindly select only one farmer");
+                    return;
+                }
+                let data = table.row(selectedRows.indexes()[0]).data();
+                $("#edit-farmer-cooperative").val(data.cooperative);
+                $("#edit-farmer-last-name").val(data.farmerName);
+                $("#edit-farmer-number").val(data.number);
+                $("#edit-farmer-premium-amount").val(data.premiumAmount);
+                $("#edit-farmer-cash-code").val(data.cashcode);
+                $("#edit-farmer-language").val(data.language);
+                $("#edit-farmer-society").val(data.society);
+                $("#edit-farmer-country").val(data.country);
+                $('#editFarmerModal').modal('show');
+            }
+        },
+        {
+            extend: 'selected',
             text: 'Delete',
             attr: {
                 class: 'ml-2 btn btn-sm btn-danger',
@@ -87,9 +108,11 @@ let farmersTable = $("#farmers-table-dt").DataTable({
                         });
                 }
             }
-        }
-    ],
+        },
 
+    ],
 });
+
+
 
 
