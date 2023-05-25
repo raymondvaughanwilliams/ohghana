@@ -651,42 +651,54 @@ def logs():
     return jsonify(context), 200
 
 
-# @core.route("/resend_sms", methods=["GET","POST"])
-# def resend_sms():
-#     print("running")
-#     logs = EcomRequest.query.filter(EcomRequest.sms_disposition != "1701").all()
-#     print("logs")
-#     print(logs)
-#     for log in logs:
-#         print("in for loop")
-#         message = f"Hello {log.farmers.last_name}. Your 2022/2023 premium is GHS{log.farmers.premium_amount}. Your cash code is {log.farmers.cashcode}. Thank you, ECOM."
+@core.route("/resend_sms", methods=["GET","POST"])
+def resend_sms():
+    print("running")
+    logs = EcomRequest.query.filter(EcomRequest.disposition == 200,EcomRequest.sms_disposition != "1701",EcomRequest.sms_attempts < 3).all()
+    print("logs")
+    print(logs)
+    for log in logs:
+        print("in for loop")
+        message = f"Hello {log.farmers.last_name}. Your 2022/2023 premium is GHS{log.farmers.premium_amount}. Your cash code is {log.farmers.cashcode}. Thank you, ECOM."
 
-#         url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
-#         route_sms_password = environ.get('ROUTESMS_PASS')
-#         data = {
-#                 'username': 'dlp-testacc',
-#                 'password': route_sms_password,
-#                 'type': '0',
-#                 'dlr': '1',
-#                 'destination': log.number,
-#                 'source': 'ECOM',
-#                 'message': message
-#             }
+        url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
+        route_sms_password = environ.get('ROUTESMS_PASS')
+        print("routesmspass")
+        print(route_sms_password)
+        print("number")
+        print(log.number)
+        data = {
+                'username': 'dlp-testacc',
+                'password': route_sms_password,
+                'type': '0',
+                'dlr': '1',
+                'destination': log.number,
+                'source': 'ECOM',
+                'message': message
+            }
 
-#         response = requests.post(url, data)
+        response = requests.post(url, data)
 
-#         res = response.text.split("|")
-#         print("sms sent")
-  
-#         particular_log = EcomRequest.query.filter_by(id=log.id).first()
-#         particular_log.sms_disposition = res[0]
+        res = response.text.split("|")
+        if res[0] == "1701":
+            print("sms sent")
+            print(res)
+        else:
+            print("failed")
+            print(res)
 
-#         db.session.commit()
-#         print("done")
-#         return "done"
+        particular_log = EcomRequest.query.filter_by(id=log.id).first()
+        particular_log.sms_disposition = res[0]
+        particular_log.sms_attempts += 1
+
+        db.session.commit()
+
+        print("done un")
+    print("========done=========")
+    return "done"
         
 
-# scheduler = BackgroundScheduler()
-# scheduler.add_job(func=resend_sms,trigger="interval",seconds=60)
-# scheduler.start()
-# atexit.register(lambda:scheduler.shutdown())
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=resend_sms,trigger="interval",seconds=600)
+scheduler.start()
+atexit.register(lambda:scheduler.shutdown())

@@ -331,6 +331,7 @@ class EcomRequest(db.Model):
     country = db.Column(db.String(255), nullable=True)
     disposition = db.Column(db.String())
     sms_disposition = db.Column(db.String())
+    sms_attempts = db.Column(db.Integer(),default =0)
   
    
     
