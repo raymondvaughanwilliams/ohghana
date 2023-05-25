@@ -626,7 +626,7 @@ def logs():
         payload = {
             "id": log.id,
             "farmerName": log.farmers.last_name if log.farmer_id else "N/A",
-            "number": log.farmers.number if log.farmer_id else "N/A",
+            "number": log.number,
             "disposition": log.disposition,
             "timestamp": log.date,
             "smsDisposition": log.sms_disposition,
