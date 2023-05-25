@@ -1,9 +1,11 @@
+import atexit
 import csv
 import os
 from os import environ
 from uuid import uuid4
 
 import requests
+from apscheduler.schedulers.background import BackgroundScheduler
 from flask import render_template, Blueprint, session, redirect, url_for, jsonify, current_app, request
 from flask_login import login_required
 from sqlalchemy import and_, or_, desc
@@ -11,9 +13,7 @@ from sqlalchemy import and_, or_, desc
 from structure import db
 from structure.core.forms import FilterForm, FarmerForm
 from structure.models import User, About, Farmer, EcomRequest
-
-from apscheduler.schedulers.background import BackgroundScheduler
-import atexit
+from structure.core.notifications import notify_slack
 
 core = Blueprint('core', __name__)
 
@@ -177,7 +177,7 @@ def addfarmer():
                 cooperative=form.cooperative.data,
                 ordernumber="NA",
                 cashcode=form.cashcode.data,
-                farmercode = form.farmercode.data,
+                farmercode=form.farmercode.data,
                 society=form.society.data
             )
             db.session.add(farmer)
@@ -638,7 +638,7 @@ def logs():
             "disposition": log.disposition,
             "timestamp": log.date,
             "smsDisposition": log.sms_disposition,
-            
+
         }
         payload_list.append(payload)
 
@@ -651,54 +651,55 @@ def logs():
     return jsonify(context), 200
 
 
-@core.route("/resend_sms", methods=["GET","POST"])
+@core.route("/resend_sms", methods=["GET", "POST"])
 def resend_sms():
-    print("running")
-    logs = EcomRequest.query.filter(EcomRequest.disposition == 200,EcomRequest.sms_disposition != "1701",EcomRequest.sms_attempts < 3).all()
-    print("logs")
-    print(logs)
-    for log in logs:
-        print("in for loop")
-        message = f"Hello {log.farmers.last_name}. Your 2022/2023 premium is GHS{log.farmers.premium_amount}. Your cash code is {log.farmers.cashcode}. Thank you, ECOM."
+    logs = EcomRequest.query.filter(
+        EcomRequest.disposition == 200,
+        EcomRequest.sms_disposition != "1701",
+        EcomRequest.sms_attempts < 3
+    ).all()
 
+    for log in logs:
+        message = f"Hello {log.farmers.last_name}. Your 2022/2023 premium is GHS{log.farmers.premium_amount}. Your cash code is {log.farmers.cashcode}. Thank you, ECOM."
         url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
         route_sms_password = environ.get('ROUTESMS_PASS')
-        print("routesmspass")
-        print(route_sms_password)
-        print("number")
-        print(log.number)
         data = {
-                'username': 'dlp-testacc',
-                'password': route_sms_password,
-                'type': '0',
-                'dlr': '1',
-                'destination': log.number,
-                'source': 'ECOM',
-                'message': message
-            }
+            'username': 'dlp-testacc',
+            'password': route_sms_password,
+            'type': '0',
+            'dlr': '1',
+            'destination': log.number,
+            'source': 'ECOM',
+            'message': message
+        }
 
         response = requests.post(url, data)
-
         res = response.text.split("|")
-        if res[0] == "1701":
-            print("sms sent")
-            print(res)
-        else:
-            print("failed")
-            print(res)
 
         particular_log = EcomRequest.query.filter_by(id=log.id).first()
         particular_log.sms_disposition = res[0]
         particular_log.sms_attempts += 1
-
         db.session.commit()
 
-        print("done un")
-    print("========done=========")
+        # Send notification to Slack if this is the third failed attempt.
+        if particular_log.sms_attempts >= 3 and res[0] != '1701':
+            slack_message = f"""Failure in Ecom DBMS:
+            ❌ Failed to send SMS after 3 attempts
+            Timestamp: {particular_log.date}
+            Farmer Name: {particular_log.farmers.last_name.upper()}
+            Phone: {particular_log.number}
+            Farmer ID: {particular_log.farmer_id}
+            SMS Disposition: {particular_log.sms_disposition}
+            
+            
+            """
+
+            notify_slack(slack_message)
+
     return "done"
-        
+
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=resend_sms,trigger="interval",seconds=600)
+scheduler.add_job(func=resend_sms, trigger="interval", seconds=600)
 scheduler.start()
-atexit.register(lambda:scheduler.shutdown())
+atexit.register(lambda: scheduler.shutdown())
