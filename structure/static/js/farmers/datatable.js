@@ -26,6 +26,9 @@ let farmersTable = $("#farmers-table-dt").DataTable({
             data: 'cooperative',
         },
         {
+            data: 'farmercode',
+        },
+        {
             data: 'farmerName',
         },
         {
@@ -90,6 +93,7 @@ let farmersTable = $("#farmers-table-dt").DataTable({
                 $("#edit-farmer-form").attr("action", `/farmer/${data.id}`);
                 $("#edit-farmer-id").val(data.id);
                 $("#edit-farmer-cooperative").val(data.cooperative);
+                $("#edit-farmer-farmercode").val(data.farmercode);
                 $("#edit-farmer-last-name").val(data.farmerName);
                 $("#edit-farmer-number").val(data.number);
                 $("#edit-farmer-premium-amount").val(data.premiumAmount);

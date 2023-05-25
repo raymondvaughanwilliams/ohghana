@@ -12,6 +12,9 @@ from structure import db
 from structure.core.forms import FilterForm, FarmerForm
 from structure.models import User, About, Farmer, EcomRequest
 
+from apscheduler.schedulers.background import BackgroundScheduler
+import atexit
+
 core = Blueprint('core', __name__)
 
 API_KEY = os.environ.get('API_KEY')
@@ -174,6 +177,7 @@ def addfarmer():
                 cooperative=form.cooperative.data,
                 ordernumber="NA",
                 cashcode=form.cashcode.data,
+                farmercode = form.farmercode.data,
                 society=form.society.data
             )
             db.session.add(farmer)
@@ -301,6 +305,7 @@ def farmer(id):
         farmer.society = form.society.data
         farmer.cooperative = form.cooperative.data
         farmer.cashcode = form.cashcode.data
+        farmer.farmercode = form.farmercode.data
 
         db.session.commit()
 
@@ -316,6 +321,7 @@ def farmer(id):
         form.country.data = farmer.country
         form.cooperative.data = farmer.cooperative
         form.cashcode.data = farmer.cashcode
+        form.farmercode.data = farmer.farmercode.data
 
     return render_template("agentportal/farmer.html", farmer=farmer, form=form)
 
@@ -583,6 +589,7 @@ def farmersapi():
         for farmer in farmers:
             payload = {
                 "id": farmer.id,
+                "farmercode": farmer.farmercode,
                 "farmerName": farmer.last_name,
                 "premiumAmount": farmer.premium_amount,
                 "cooperative": farmer.cooperative,
@@ -626,10 +633,12 @@ def logs():
         payload = {
             "id": log.id,
             "farmerName": log.farmers.last_name if log.farmer_id else "N/A",
+            "farmercode": log.farmers.farmercode if log.farmer_id else "N/A",
             "number": log.number,
             "disposition": log.disposition,
             "timestamp": log.date,
             "smsDisposition": log.sms_disposition,
+            
         }
         payload_list.append(payload)
 
@@ -640,3 +649,44 @@ def logs():
     }
 
     return jsonify(context), 200
+
+
+# @core.route("/resend_sms", methods=["GET","POST"])
+# def resend_sms():
+#     print("running")
+#     logs = EcomRequest.query.filter(EcomRequest.sms_disposition != "1701").all()
+#     print("logs")
+#     print(logs)
+#     for log in logs:
+#         print("in for loop")
+#         message = f"Hello {log.farmers.last_name}. Your 2022/2023 premium is GHS{log.farmers.premium_amount}. Your cash code is {log.farmers.cashcode}. Thank you, ECOM."
+
+#         url = 'http://rslr.connectbind.com:8080/bulksms/bulksms'
+#         route_sms_password = environ.get('ROUTESMS_PASS')
+#         data = {
+#                 'username': 'dlp-testacc',
+#                 'password': route_sms_password,
+#                 'type': '0',
+#                 'dlr': '1',
+#                 'destination': log.number,
+#                 'source': 'ECOM',
+#                 'message': message
+#             }
+
+#         response = requests.post(url, data)
+
+#         res = response.text.split("|")
+#         print("sms sent")
+  
+#         particular_log = EcomRequest.query.filter_by(id=log.id).first()
+#         particular_log.sms_disposition = res[0]
+
+#         db.session.commit()
+#         print("done")
+#         return "done"
+        
+
+# scheduler = BackgroundScheduler()
+# scheduler.add_job(func=resend_sms,trigger="interval",seconds=60)
+# scheduler.start()
+# atexit.register(lambda:scheduler.shutdown())

@@ -47,3 +47,4 @@ Werkzeug==2.0.2
 WTForms==2.3.3
 WTForms-Components==0.10.5
 zipp==3.6.0
+APScheduler==3.9.1
