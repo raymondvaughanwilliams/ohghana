@@ -683,8 +683,15 @@ def resend_sms():
 
         # Send notification to Slack if this is the third failed attempt.
         if particular_log.sms_attempts >= 3 and res[0] != '1701':
+            environment = os.getenv("APP_ENV").lower()
+            if environment == "staging":
+                environment = "🚧 Staging"
+            elif environment == "production":
+                environment = "🟢 Production"
+
             slack_message = f"""Failure in Ecom DBMS:
             ❌ Failed to send SMS after 3 attempts
+            Environment: {environment}
             Timestamp: {particular_log.date}
             Farmer Name: {particular_log.farmers.last_name.upper()}
             Phone: {particular_log.number}
