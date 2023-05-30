@@ -634,6 +634,8 @@ def logs():
             "id": log.id,
             "farmerName": log.farmers.last_name if log.farmer_id else "N/A",
             "farmercode": log.farmers.farmercode if log.farmer_id else "N/A",
+            "cashcode": log.cashcode,
+            "premiumAmount": log.farmers.premium_amount if log.farmer_id else "N/A",
             "number": log.number,
             "disposition": log.disposition,
             "timestamp": log.date,

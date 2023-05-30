@@ -24,6 +24,12 @@ let farmersTable = $("#report-table").DataTable({
             data: 'number',
         },
         {
+            data: 'cashcode',
+        },
+        {
+            data: 'premiumAmount',
+        },
+        {
             data: null,
             render: function (data, type, row, meta) {
                 if (data.disposition === null || data.disposition === undefined) {
