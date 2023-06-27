@@ -18,8 +18,9 @@ python3 -m venv venv
 
 ### Activate virtual environment
 #### Windows
+Navigate to venv/Scripts and run:
 ```bash
- TODO: Windows command here
+  activate
 ```
 
 #### Linux/Mac
@@ -38,3 +39,6 @@ Start the app by navigating to the home directory and running:
 ```bash
  python app.py
 ```
+
+## Open site
+Your app will run on [http:127.0.0.1:5000/](http:127.0.0.1:5000)
