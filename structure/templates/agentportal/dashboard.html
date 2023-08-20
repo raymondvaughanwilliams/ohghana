@@ -15,7 +15,7 @@
                     <div class="col-sm-6">
 					<h5 class="card-title" style="font-size:1.7rem;color:white">Welcome {{user.name}}</h5>
 		<div class="row col-lg-9">
-            <a class="btn btn-primary col-lg-12" style="background:white;margin-bottom:20px;color:#4CAF50;" href="{{url_for('core.farmers')}}" >Go to farmers</a>
+            <a class="btn btn-primary col-lg-12" style="background:white;margin-bottom:20px;color:#4CAF50;" href="{{url_for('core.siprequests')}}" >Go to results</a>
 
         </div>
 </div>
@@ -47,7 +47,7 @@
     <div class="col-xl-6 col-lg-12">
         <div class="card text-center">
             <div class="card-header">
-                <h4 class="card-title" id="heading-multiple-thumbnails" style="color:green;">Recently Added Farmers</h4>
+                <h4 class="card-title" id="heading-multiple-thumbnails" style="color:green;">Recently Added Subjects</h4>
                 <a class="heading-elements-toggle">
                     <i class="la la-ellipsis-v font-medium-3"></i>
                 </a>
@@ -56,11 +56,9 @@
             <div class="card-content">
                 <div class="card-body">
                     <ul class="list-group ">
-                        {% for farmer in farmers[:10] %}
+                        {% for subject in subjects[:10] %}
                         <li class="list-group-item col-md-12">
-                            <a href="{{url_for('core.farmer',id=farmer.id)}}" class="col-md-4" style="float:left;">{{farmer.cooperative}}</a>
-                            <span class="col-md-4" style="float:left"> {{farmer.last_name}}</span>
-                        <span class="col-md-4" style="float:left">	{{farmer.society}} </span>
+                            <a href="" class="col-md-12" style="float:left;">{{subject.name}}</a>
                         </li>
 
 
@@ -69,7 +67,6 @@
                         
                     </ul>
                                        
-<a class="btn btn-primary" href="{{url_for('core.farmers')}}" style="color:white">All Farmers</a>
                 </div>
             </div>
         </div>
@@ -77,7 +74,7 @@
     <div class="col-xl-6 col-lg-12">
             <div class="card text-center">
                 <div class="card-header" style="background-color:#4CAF50">
-                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Recent Requests/Claims</h4>
+                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Recently Added Results</h4>
                     <a class="heading-elements-toggle">
                         <i class="la la-ellipsis-v font-medium-3"></i>
                     </a>
@@ -88,12 +85,13 @@
                         <div class="card-content">
                             <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                {% for item in ecomrequests[:8]%}
+                                {% for item in studentresults[:8]%}
                                 <li class="list-group-item col-md-12">
-                                    <a class="col-md-4" style="float:left" href="{{url_for('core.farmer',id=item.id)}}"> {{item.farmers.first_name}}</a >
+                                    <a class="col-md-4" style="float:left" href=""> {{item.student.index_number}}</a >
 
-                                    <span class="col-md-4" style="float:left;">{{item.farmers.last_name}} </span>
-                                   <span class="col-md-4" style="float:left"> {{item.date}}</span>
+                                    <span class="col-md-4" style="float:left;">{{item.subject.name}} </span>
+                                    <span class="col-md-4" style="float:left;">{{item.result}}% </span>
+
                                 </li>
                                 {% endfor %}
                                 
@@ -121,22 +119,6 @@
 
 
 
-    <div class="modal fade" id="rescheduleModal" tabindex="-1" role="dialog" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="rescheduleModalLabel">Reschedule Appointment</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              
-                    </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+  
     {% endblock %}
     <!-- ////////////////////////////////////////////////////////////////////////////-->

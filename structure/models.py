@@ -30,12 +30,8 @@ class User(db.Model,UserMixin):
     phone_number = db.Column(db.String)
     biography = db.Column(db.String)
     status=db.Column(db.String,default="unverified")
-    business_name = db.Column(db.String)
-    certificate = db.Column(db.String)
-    parts = db.Column(db.String(250))
-    cars = db.Column(db.String(250))
-    returnable  = db.Column(db.String(250),default="no")
-    return_period = db.Column(db.String(250),default="none")
+    index_number = db.Column(db.String)
+    completed_year=db.Column(db.String)
     # rec_payment_id = db.Column(db.Integer,db.ForeignKey('payments.id'),nullable=True)
     # payments = db.relationship('Payment',backref='users',lazy=True)
 
@@ -252,9 +248,53 @@ class Testimonial(db.Model):
         return f"Post ID: {self.id} -- {self.name} -- {self.company} -- {self.text} -- {self.rating}"
 
 
+class StudentResult(db.Model):
+    __tablename__ = "student_results"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    subject = db.Column(db.String(128), nullable=False)
+    year = db.Column(db.String(128))
+    result = db.Column(db.Integer, nullable=False)
+    index_number = db.Column(db.String(128))
+    student_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    student = db.relationship("User", foreign_keys=[student_id])
+    subject_id = db.Column(db.Integer, db.ForeignKey('subjects.id'))
+    subject = db.relationship("Subject", foreign_keys=[subject_id])
+
+    def __repr__(self):
+        return f'<StudentResult {self.name}>'
 
 
+class Subject(db.Model):
+    __tablename__ = "subjects"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
 
+
+    def __repr__(self):
+        return f'<StudentResult {self.name}>'
+
+class SipRequest(db.Model):
+    __tablename__ = "siprequests"
+    id = db.Column(db.Integer, primary_key=True)
+    channels = db.Column(db.String(128), nullable=True)
+    other = db.Column(db.String(512), nullable=True)
+    codecs = db.Column(db.Integer, nullable=True)
+    inbound = db.Column(db.String(128), nullable=True)
+    outbound = db.Column(db.String(128), nullable=True)
+    provider = db.Column(db.String(128), nullable=True)
+    certificate = db.Column(db.String(128), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship("User", foreign_keys=[user_id])
+    status = db.Column(db.String(16), nullable=False,default="unverified")
+    email = db.Column(db.String(106), nullable=True)
+    name = db.Column(db.String(106), nullable=True)
+    customer_id = db.Column(db.String(106), nullable=True)
+    
+
+
+    def __repr__(self):
+        return f'<Part {self.name}>'
 
 class PartRequest(db.Model):
     __tablename__ = "partrequests"

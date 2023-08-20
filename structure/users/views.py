@@ -75,7 +75,7 @@ def vendorregister(id):
 
 
 
-@users.route('/', methods=['GET', 'POST'])
+@users.route('/login', methods=['GET', 'POST'])
 def login():
 
     form = LoginForm()
