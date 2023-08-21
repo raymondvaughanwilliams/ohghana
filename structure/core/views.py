@@ -307,6 +307,9 @@ def newsiprequest():
     password = generate_secure_password()
  
     if request.method == 'POST':
+        print("name")
+        print(request.args.get('name'))
+        print(request.args.get('channels'))
         
         
         customer_data = {

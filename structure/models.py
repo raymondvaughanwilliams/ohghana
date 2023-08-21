@@ -211,41 +211,41 @@ class About(db.Model):
 
 
 
-class Faq(db.Model):
+# class Faq(db.Model):
 
 
-    id = db.Column(db.Integer,primary_key=True)
-    question = db.Column(db.String(140),nullable=False)
-    answer = db.Column(db.Text,nullable=False)
+#     id = db.Column(db.Integer,primary_key=True)
+#     question = db.Column(db.String(140),nullable=False)
+#     answer = db.Column(db.Text,nullable=False)
 
-    def __init__(self,question,answer):
-        self.question = question
-        self.answer = answer
+#     def __init__(self,question,answer):
+#         self.question = question
+#         self.answer = answer
 
-    def __repr__(self):
-        return f"{self.question} -- {self.answer}"
-
-
+#     def __repr__(self):
+#         return f"{self.question} -- {self.answer}"
 
 
-class Testimonial(db.Model):
 
 
-    id = db.Column(db.Integer,primary_key=True)
-    company = db.Column(db.String,nullable=True)
-    name = db.Column(db.String,nullable=True)
-    text = db.Column(db.String(140),nullable=True)
-    rating = db.Column(db.Integer,nullable=True)
+# class Testimonial(db.Model):
 
 
-    def __init__(self,name,company,text,rating):
-        self.name = name
-        self.company = company
-        self.text = text
-        self.rating = rating
+#     id = db.Column(db.Integer,primary_key=True)
+#     company = db.Column(db.String,nullable=True)
+#     name = db.Column(db.String,nullable=True)
+#     text = db.Column(db.String(140),nullable=True)
+#     rating = db.Column(db.Integer,nullable=True)
 
-    def __repr__(self):
-        return f"Post ID: {self.id} -- {self.name} -- {self.company} -- {self.text} -- {self.rating}"
+
+#     def __init__(self,name,company,text,rating):
+#         self.name = name
+#         self.company = company
+#         self.text = text
+#         self.rating = rating
+
+#     def __repr__(self):
+#         return f"Post ID: {self.id} -- {self.name} -- {self.company} -- {self.text} -- {self.rating}"
 
 
 class StudentResult(db.Model):
