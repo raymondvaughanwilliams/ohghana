@@ -326,10 +326,10 @@ def newsiprequest():
         
         
         customer_data = {
-            "name": request.args.get('name'),
+            "name": name,
             "portal_access": "yes",
-            "channels": request.args.get('channels'),
-            "portal_username": request.args.get('email'),
+            "channels": channels,
+            "portal_username": email,
             "portal_password": password,
             "portal_url": "portal.delaphonegh.com" ,
             "portal_access":"yes",
@@ -355,7 +355,7 @@ def newsiprequest():
         print(create_customer_response_data)
         
         contact_data = {
-            "email": request.args.get('email'),
+            "email": email,
               "password":customer_data['portal_password'],
             "customer_id": create_customer_response_data["id"],
             # Include other SIP user data fields as needed
@@ -370,15 +370,15 @@ def newsiprequest():
         print("contact info")
         print(create_contact)
         sip_request = SipRequest(
-            channels = request.args.get('channels'),
-            other = request.args.get('channels'),
-            codecs = request.args.get('codecs'),
+            channels = channels,
+            other = message,
+            codecs = channels,
             certificate = request.args.get('certificate'),
-            inbound = request.args.get('inbound'),
-            outbound = request.args.get('outbound'),
-            provider = request.args.get('provider'),
-            name = request.args.get('name'),
-            email = request.args.get('email'),
+            inbound = inbound_calls,
+            outbound = outbound_calls,
+            provider = provider,
+            name = name,
+            email = email,
             customer_id = create_customer_response_data["id"]
 
         )

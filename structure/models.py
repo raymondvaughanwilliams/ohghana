@@ -134,7 +134,7 @@ class About(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     title = db.Column(db.String(140),nullable=False)
     subtitle= db.Column(db.String(140),nullable=True)
-    atext = db.Column(db.Text,nullable=False)
+    atext = db.Column(db.Text,nullable=True)
     image = db.Column(db.String(64),nullable=True,default='default_profile.png')
     about_image = db.Column(db.String(64),nullable=True,default='default_profile.png')
     location = db.Column(db.String(140),nullable=False,default='location')
