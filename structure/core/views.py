@@ -309,7 +309,7 @@ def newsiprequest():
     if request.method == 'POST':
         print("name")
         print(request.args.get('name'))
-        print(request.args.get('channels'))
+        print(request.form.get('name'))
         
         
         customer_data = {
