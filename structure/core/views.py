@@ -307,6 +307,9 @@ def newsiprequest():
     password = generate_secure_password()
  
     if request.method == 'POST':
+        print(request)
+        print(request.args)
+        print(request.form)
         print("name")
         print(request.args.get('name'))
         print(request.form.get('name'))
