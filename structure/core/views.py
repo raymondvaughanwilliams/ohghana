@@ -307,6 +307,16 @@ def newsiprequest():
     password = generate_secure_password()
  
     if request.method == 'POST':
+
+        form_data = request.form.to_dict()
+        name = form_data.get('fields[name][value]')
+        email = form_data.get('fields[email][value]')
+        message = form_data.get('fields[message][value]')
+        channels = form_data.get('fields[field_53cf759][value]')
+        provider = form_data.get('fields[field_6716889][value]')
+        inbound_calls = form_data.get('fields[field_c974d69][value]')
+        outbound_calls = form_data.get('fields[field_8fa2d33][value]')
+        print(name)
         print(request)
         print(request.args)
         print(request.form)
