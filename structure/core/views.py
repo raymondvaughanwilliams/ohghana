@@ -404,7 +404,6 @@ def newsiprequest():
             channels = channels,
             other = message,
             codecs = channels,
-            certificate = request.args.get('certificate'),
             inbound = inbound_calls,
             outbound = outbound_calls,
             provider = provider,
