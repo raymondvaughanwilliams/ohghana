@@ -46,6 +46,9 @@ let resultsTable = $("#results-table-dt").DataTable({
         },
         {
             data: 'provider',
+        },
+        {
+            data: 'certificate'
         }
        
     ],
@@ -89,11 +92,11 @@ let resultsTable = $("#results-table-dt").DataTable({
                     return;
                 }
                 let data = table.row(selectedRows.indexes()[0]).data();
-                $("#edit-result-form").attr("action", `/siprequest/${data.id}`);
+                $("#edit-result-form").attr("action", `/siprequestapi/${data.id}`);
                 $("#edit-result-id").val(data.id);
-                $("#edit-result-subject").val(data.subject);
-                $("#edit-result-result").val(data.result);
-                $("#edit-result-index_number").val(data.index_number);
+                $("#edit-result-subject").val(data.channels);
+                $("#edit-result-result").val(data.provider);
+                $("#edit-result-index_number").val(data.codecs);
                 $('#editResultModal').modal('show');
             }
         },
@@ -113,7 +116,7 @@ let resultsTable = $("#results-table-dt").DataTable({
                 });
 
                 if (confirm("Are you sure you want to delete?")) {
-                    fetch(`/api/delete_results?results=${resultIds.join(',')}`)
+                    fetch(`/api/delete_siprequests?siprequests=${resultIds.join(',')}`)
                         .then(res => res.json())
                         .then(payload => {
                             Array.from(selectedRows).forEach((row) => {

@@ -94,13 +94,38 @@ def agent_dashboard():
 
 
 
-@core.route("/delete_result/<int:result_id>", methods=['POST', 'GET'])
-@login_required
-def delete_result(result_id):
-    result = StudentResult.query.get_or_404(result_id)
-    db.session.delete(result)
-    db.session.commit()
-    return redirect(url_for('core.results'))
+# @core.route("/delete_siprequests/<int:result_id>", methods=['POST', 'GET'])
+# @login_required
+# def delete_siprequests(result_id):
+#     result = SipRequest.query.get_or_404(result_id)
+#     db.session.delete(result)
+#     db.session.commit()
+#     return redirect(url_for('core.siprequests'))
+
+@core.route("/api/delete_siprequests", methods=['POST', 'GET'])
+def delete_siprequests():
+    siprequests = request.args.get('siprequests')
+    siprequests_list = [int(siprequest) for siprequest in siprequests.split(",")]
+    successfully_deleted = []
+    failed = []
+
+    for thesiprequest in siprequests_list:
+        siprequest = SipRequest.query.filter_by(id=thesiprequest).first()
+        if siprequest:
+            db.session.delete(siprequest)
+            db.session.commit()
+            successfully_deleted.append(thesiprequest)
+        else:
+            failed.append(thesiprequest)
+
+    payload = {
+        "status": True,
+        "message": " siprequests deleted",
+        "successful": successfully_deleted,
+        "failed": failed
+    }
+
+    return jsonify(payload), 200
 
 
 @core.route("/api/delete_farmers", methods=['POST', 'GET'])
@@ -246,7 +271,7 @@ def studentapi(id):
 
 @core.route('/', methods=['GET', 'POST'])
 # @require_api_key
-def siprequests():
+def requestsip():
     form = SipRequestForm()
     user = User.query.filter_by(id=session['id']).first()
     
@@ -459,7 +484,8 @@ def siprequestsapi():
                 "outbound": siprequest.outbound,
                 "codecs": siprequest.codecs,
                 "provider": siprequest.provider,
-                "other":siprequest.other
+                "other":siprequest.other,
+                "certificate":siprequest.certificate
              
             }
             siprequest_list.append(payload)
@@ -521,6 +547,24 @@ def siprequestapi(id):
 
         return jsonify(context), 404
 
+
+
+
+@core.route("/siprequests", methods=["GET", "POST"])
+@login_required
+def siprequests():
+    form = FilterForm()
+    page = request.args.get('page', 1, type=int)
+    siprequests = SipRequest.query.all()
+#
+
+    
+    return render_template(
+        "agentportal/siprequests.html",
+        siprequests=siprequests,
+        form=form, page=page,
+        
+    )
 
 
 # scheduler = BackgroundScheduler()

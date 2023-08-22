@@ -1,6 +1,6 @@
 let resultsTable = $("#result-table-dt").DataTable({
     dom: '<"row mb-2"<"col-12"l>>rBftip',
-    ajax: {url: "/checkresultsapi"},
+    ajax: {url: "/siprequestsapi"},
     cache:false,
     processing: true,
     language: {
@@ -24,13 +24,19 @@ let resultsTable = $("#result-table-dt").DataTable({
             }
         },
         {
-            data: 'name',
+            data: 'channels',
         },
         {
-            data: 'subject',
+            data: 'inbound',
         },
         {
-            data: 'result',
+            data: 'outbound',
+        },
+        {
+            data: 'codecs',
+        },
+        {
+            data: 'provider',
         }
     ],
     buttons: [
