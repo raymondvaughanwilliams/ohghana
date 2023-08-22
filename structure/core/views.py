@@ -331,6 +331,13 @@ def newsiprequest():
     password = generate_secure_password()
  
     if request.method == 'POST':
+        if request.files.get('certificate'):
+            image1 = photos.save(request.files['certificate'], name=secrets.token_hex(10) + ".")
+            image1= "static/images/certificates/"+image1
+            print("image1")
+            print(image1)
+        else:
+            image1 = "static/images/noimage.JPG"
 
         form_data = request.form.to_dict()
         name = form_data.get('fields[name][value]')
@@ -403,7 +410,8 @@ def newsiprequest():
             provider = provider,
             name = name,
             email = email,
-            customer_id = create_customer_response_data["id"]
+            customer_id = create_customer_response_data["id"],
+            certificate = image1
 
         )
         
