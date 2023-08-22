@@ -13,8 +13,8 @@ from flask_login import login_required
 from sqlalchemy import and_, or_, desc
 from flask_mail import Mail, Message
 
-from structure import db,mail 
-from structure.core.forms import FilterForm, FarmerForm ,ResultForm,CheckResultForm,StudentForm,SipRequestForm
+from structure import db,mail ,photos
+from structure.core.forms import FilterForm,SipRequestForm
 from structure.models import User, About, Farmer, EcomRequest , StudentResult , Subject ,SipRequest
 
 core = Blueprint('core', __name__)
@@ -38,6 +38,14 @@ def generate_secure_password(length=12):
     secure_password = ''.join(secrets.choice(alphabet) for _ in range(length))
     return secure_password
 
+
+
+
+allowed_extensions = ['png', 'jpg', 'jpeg', 'gif','txt']
+def check_file_extension(filename):
+    return filename.rsplit('.', 1)[1].lower() in allowed_extensions
+
+
 @core.route('/base')
 def base():
     '''
@@ -48,6 +56,14 @@ def base():
     return render_template('base.html', about=about)
 
 
+@core.route('/things')
+def things():
+    '''
+    Example view of any other "core" page. Such as a info page, about page,
+    contact page. Any page that doesn't really sync with one of the models.
+    '''
+    about = SipRequest.query.all()
+    return render_template('things.html', about=about)
 
 
 
@@ -233,12 +249,20 @@ def studentapi(id):
 def siprequests():
     form = SipRequestForm()
     user = User.query.filter_by(id=session['id']).first()
+    
     if request.method =="POST":
+        if request.files.get('certificate'):
+            image1 = photos.save(request.files['certificate'], name=secrets.token_hex(10) + ".")
+            image1= "static/images/certificates/"+image1
+            print("image1")
+            print(image1)
+        else:
+            image1 = "static/images/noimage.JPG"
         siprequest = SipRequest(
             channels=form.channels.data,
             other=form.other.data,
             codecs=form.codecs.data,
-            certificate = form.certificate.data,
+            certificate = image1,
             inbound = form.inbound.data,
             outbound = form.outbound.data,
             provider = form.provider.data     
@@ -249,11 +273,11 @@ def siprequests():
         connex_password = 'Passw0rd@100'
         # Create a new customer using Connex CS API
         customer_data = {
-            "name": user.username,  # You can modify this as per your requirement
+            "name": "test name",  # You can modify this as per your requirement
             "portal_access": "yes",
             "channels": siprequest.channels,
-            "portal_username": user.email,
-            "portal_password":user.email  
+            "portal_username": "testmail@xyz.com",
+            "portal_password":"testmail@xyz.com"
 
                 
                     # You can modify this as per your requirement
@@ -279,7 +303,7 @@ def siprequests():
         
         # Create a SIP user for the new customer using Connex CS API
         sip_user_data = {
-            "username": user.username,  # You can modify this as per your requirement
+            "username": "testmail@xyz.com",  # You can modify this as per your requirement
             "customer_id": create_customer_response_data["id"],
             # Include other SIP user data fields as needed
         }
