@@ -15,7 +15,7 @@ from flask_mail import Mail, Message
 
 from structure import db,mail ,photos
 from structure.core.forms import FilterForm,SipRequestForm
-from structure.models import User, About, Farmer, EcomRequest , StudentResult , Subject ,SipRequest
+from structure.models import User, About, SipRequest
 
 core = Blueprint('core', __name__)
 
@@ -411,11 +411,13 @@ def newsiprequest():
         create_customer_response_data = create_customer_response.json()
         print("create_customer_response_data")
         print(create_customer_response_data)
+
+
         
         contact_data = {
             "email": email,
               "password":customer_data['portal_password'],
-            "customer_id": create_customer_response_data["id"],
+              "company_id": create_customer_response_data["id"],
             # Include other SIP user data fields as needed
         }
         
@@ -426,7 +428,7 @@ def newsiprequest():
             auth=HTTPBasicAuth(connex_username, connex_password)
         )
         print("contact info")
-        print(create_contact)
+        print(create_contact.content)
         sip_request = SipRequest(
             channels = channels,
             other = message,
@@ -468,6 +470,60 @@ def newsiprequest():
         return jsonify({"message": "Success"})
     
     return "Welcome to the SIP Request API"
+
+
+
+
+@core.route('/newsiprequestapi2', methods=['POST'])
+def newsiprequest2():
+    print("request")
+    print(request)
+    password = generate_secure_password()
+ 
+    if request.method == 'POST':
+        # if request.files.get('certificate'):
+        #     image1 = photos.save(request.files['certificate'], name=secrets.token_hex(10) + ".")
+        #     image1= "static/images/certificates/"+image1
+        #     print("image1")
+        #     print(image1)
+        # else:
+        #     image1 = "static/images/noimage.JPG"
+
+        
+        
+        headers = {
+            "Content-Type": "application/json"
+        }
+        
+        
+        company_id = '109725'
+        email= 'gifty.boakye@delaphonegh.com'
+        password= 'random'
+        
+        contact_data = {
+            "email": email,
+              "password":'random',
+            # "company_id": create_customer_response_data["id"],
+            "company_id": company_id,
+            # Include other SIP user data fields as needed
+        }
+        
+        create_contact = requests.post(
+            "https://app.connexcs.com/api/cp/contact",
+            json=contact_data,
+            headers=headers,
+            auth=HTTPBasicAuth(connex_username, connex_password)
+        )
+        print("contact info")
+        print(create_contact.content)
+    
+        
+        return jsonify({"message": "Success"})
+    
+    return "Welcome to the SIP Request API"
+
+
+
 
 
 @core.route("/siprequestsapi", methods=["GET", "POST"])
@@ -556,7 +612,7 @@ def siprequests():
     form = FilterForm()
     page = request.args.get('page', 1, type=int)
     siprequests = SipRequest.query.all()
-#
+
 
     
     return render_template(
@@ -565,6 +621,116 @@ def siprequests():
         form=form, page=page,
         
     )
+
+
+#EMERGENT/CE AIRTIME API
+
+#API URLS. USE Variables cos you have to change them later
+EMERGENCE_API_URL = 'https://emergenceapi.com/topup'
+EMERGENCE_API_URL_MOMO = 'https://emergenceapi.com/topupbymm'
+EMERGENCE_API_URL_BANK = 'https://emergenceapi.com/topupbybankacct'
+
+#Any payment platform? 
+def perform_any_request(form_data):
+    topup_params = {
+        'app_id': form_data['app_id'],
+        'app_key': form_data['app_key'],
+        'payername': form_data['payername'],
+        'payermobile': form_data['payermobile'],
+        'payeremail': form_data.get('payeremail'),
+        'recipientmobile': form_data['recipientmobile'],
+        'amount': form_data['amount'],
+        'merchtxnref': form_data['merchtxnref'],
+        'countryid': form_data['countryid'],
+        'oprid': form_data['oprid']
+    }
+    
+    response = requests.post(EMERGENCE_API_URL, data=topup_params)
+    
+    if response.status_code == 200:
+        response_data = response.json()
+        return response_data
+    else:
+        return {"error": "API request failed"}
+
+#Momo payments
+def perform_momo_request(form_data):
+    momo_params = {
+        'app_id': form_data['app_id'],
+        'app_key': form_data['app_key'],
+        'payername': form_data['payername'],
+        'payermobile': form_data['payermobile'],
+        'payeremail': form_data.get('payeremail'),
+        'payercountryid': form_data['payercountryid'],
+        'payeroprid': form_data['payeroprid'],
+        'recipientmobile': form_data['recipientmobile'],
+        'vouchernumber': form_data.get('vouchernumber'),
+        'amount': form_data['amount'],
+        'merchtxnref': form_data['merchtxnref']
+    }
+    
+    response = requests.post(EMERGENCE_API_URL_MOMO, data=momo_params)
+    
+    if response.status_code == 200:
+        response_data = response.json()
+        return response_data
+    else:
+        return {"error": "API request failed"}
+    
+#Bank topups
+def perform_bank_topup_request(form_data):
+    bank_topup_params = {
+        'app_id': form_data['app_id'],
+        'app_key': form_data['app_key'],
+        'payername': form_data['payername'],
+        'payermsisdn': form_data.get('payermsisdn'),
+        'payeremail': form_data.get('payeremail'),
+        'payerbankacctno': form_data['payerbankacctno'],
+        'payerbankaccttitle': form_data['payerbankaccttitle'],
+        'bankbranchsortcode': form_data['bankbranchsortcode'],
+        'recipientmsisdn': form_data['recipientmsisdn'],
+        'amount': form_data['amount'],
+        'merchtxnref': form_data['merchtxnref'],
+        'countryid': form_data['countryid'],
+        'oprid': form_data['oprid']
+    }
+    
+    response = requests.post(EMERGENCE_API_URL_BANK, data=bank_topup_params)
+    
+    if response.status_code == 200:
+        response_data = response.json()
+        return response_data
+    else:
+        return {"error": "API request failed"}
+
+
+#Topup route/api
+@core.route('/api/topup', methods=['POST'])
+def topup_route():
+    if request.method == 'POST':
+        if 'type' in request.form:
+            if request.form['type'] == 'topup':
+                response = perform_any_request(request.form)
+                return jsonify(response)
+            elif request.form['type'] == 'momo':
+                response = perform_momo_request(request.form)
+                return jsonify(response)
+            elif request.form['type'] == 'bank':
+                response = perform_momo_request(request.form)
+                return jsonify(response)
+            else:
+                return jsonify({"error": "Invalid type value"})
+        else:
+            return jsonify({"error": "Missing type field"})
+    else:
+        return jsonify({"error": "Method not allowed"})
+
+
+
+
+
+
+
 
 
 # scheduler = BackgroundScheduler()

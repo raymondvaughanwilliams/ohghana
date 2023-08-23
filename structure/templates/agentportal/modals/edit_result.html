@@ -9,6 +9,8 @@
             </div>
 
             <div class="modal-body">
+                <img src="{{certificate}}" alt="cert" />
+                {{certificate}}
                 <form class="form" method="post" id="edit-result-form">
                     {{ form.hidden_tag() }}
 
@@ -26,9 +28,10 @@
                         </div>
 
                         <div class="form-group" style="margin-bottom:20px">
-                            <label for="edit-result-result">Other</label>
+                            <label for="edit-result-other">Other</label>
                             <input type="text" name="other" id="edit-result-other" class="form-control" placeholder="result Name">
                         </div>
+                        
 
 
                         <div class="form-actions center" style="margin-bottom:20px">

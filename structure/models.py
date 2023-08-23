@@ -248,31 +248,31 @@ class About(db.Model):
 #         return f"Post ID: {self.id} -- {self.name} -- {self.company} -- {self.text} -- {self.rating}"
 
 
-class StudentResult(db.Model):
-    __tablename__ = "student_results"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128), nullable=False)
-    subject = db.Column(db.String(128), nullable=False)
-    year = db.Column(db.String(128))
-    result = db.Column(db.Integer, nullable=False)
-    index_number = db.Column(db.String(128))
-    student_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    student = db.relationship("User", foreign_keys=[student_id])
-    subject_id = db.Column(db.Integer, db.ForeignKey('subjects.id'))
-    subject = db.relationship("Subject", foreign_keys=[subject_id])
+# class StudentResult(db.Model):
+#     __tablename__ = "student_results"
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(128), nullable=False)
+#     subject = db.Column(db.String(128), nullable=False)
+#     year = db.Column(db.String(128))
+#     result = db.Column(db.Integer, nullable=False)
+#     index_number = db.Column(db.String(128))
+#     student_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     student = db.relationship("User", foreign_keys=[student_id])
+#     subject_id = db.Column(db.Integer, db.ForeignKey('subjects.id'))
+#     subject = db.relationship("Subject", foreign_keys=[subject_id])
 
-    def __repr__(self):
-        return f'<StudentResult {self.name}>'
-
-
-class Subject(db.Model):
-    __tablename__ = "subjects"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128), nullable=False)
+#     def __repr__(self):
+#         return f'<StudentResult {self.name}>'
 
 
-    def __repr__(self):
-        return f'<StudentResult {self.name}>'
+# class Subject(db.Model):
+#     __tablename__ = "subjects"
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(128), nullable=False)
+
+
+#     def __repr__(self):
+#         return f'<StudentResult {self.name}>'
 
 class SipRequest(db.Model):
     __tablename__ = "siprequests"
@@ -290,88 +290,90 @@ class SipRequest(db.Model):
     email = db.Column(db.String(106), nullable=True)
     name = db.Column(db.String(106), nullable=True)
     customer_id = db.Column(db.String(106), nullable=True)
+    ip = db.Column(db.String(106), nullable=True)
+    
     
 
 
     def __repr__(self):
         return f'<Part {self.name}>'
 
-class PartRequest(db.Model):
-    __tablename__ = "partrequests"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128), nullable=False)
-    description = db.Column(db.String(512), nullable=False)
-    model_year = db.Column(db.Integer, nullable=False)
-    car_make = db.Column(db.String(128), nullable=False)
-    car_model = db.Column(db.String(128), nullable=False)
-    note = db.Column(db.String(128), nullable=True)
-    quantity = db.Column(db.Integer, nullable=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship("User", foreign_keys=[user_id])
-    status = db.Column(db.String(16), nullable=False)
+# class PartRequest(db.Model):
+#     __tablename__ = "partrequests"
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(128), nullable=False)
+#     description = db.Column(db.String(512), nullable=False)
+#     model_year = db.Column(db.Integer, nullable=False)
+#     car_make = db.Column(db.String(128), nullable=False)
+#     car_model = db.Column(db.String(128), nullable=False)
+#     note = db.Column(db.String(128), nullable=True)
+#     quantity = db.Column(db.Integer, nullable=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     user = db.relationship("User", foreign_keys=[user_id])
+#     status = db.Column(db.String(16), nullable=False)
 
 
-    def __repr__(self):
-        return f'<Part {self.name}>'
+#     def __repr__(self):
+#         return f'<Part {self.name}>'
 
-class Bid(db.Model):
-    __tablename__ = 'bids'
-    id = db.Column(db.Integer, primary_key=True)
-    part_id = db.Column(db.Integer, db.ForeignKey('partrequests.id'), nullable=False)
-    parts = db.relationship("PartRequest", foreign_keys=[part_id])
-    vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    vendors  = db.relationship("User", foreign_keys=[vendor_id])
-    price = db.Column(db.Float, nullable=False)
-    quantity = db.Column(db.Integer, nullable=True)
-    status = db.Column(db.String(16), nullable=False)
-    delivery = db.Column(db.String(16), nullable=True)
-    note = db.Column(db.String(255), nullable=True)
+# class Bid(db.Model):
+#     __tablename__ = 'bids'
+#     id = db.Column(db.Integer, primary_key=True)
+#     part_id = db.Column(db.Integer, db.ForeignKey('partrequests.id'), nullable=False)
+#     parts = db.relationship("PartRequest", foreign_keys=[part_id])
+#     vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+#     vendors  = db.relationship("User", foreign_keys=[vendor_id])
+#     price = db.Column(db.Float, nullable=False)
+#     quantity = db.Column(db.Integer, nullable=True)
+#     status = db.Column(db.String(16), nullable=False)
+#     delivery = db.Column(db.String(16), nullable=True)
+#     note = db.Column(db.String(255), nullable=True)
 
-    def __repr__(self):
-        return f'<Bid {self.id}>'
+#     def __repr__(self):
+#         return f'<Bid {self.id}>'
 
 
-class Review(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    user = db.relationship("User", foreign_keys=[user_id])
-    text = db.Column(db.String(255), nullable=True)
-    date = db.Column(db.Date)
-    vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    vendors  = db.relationship("User", foreign_keys=[vendor_id])
+# class Review(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     user = db.relationship("User", foreign_keys=[user_id])
+#     text = db.Column(db.String(255), nullable=True)
+#     date = db.Column(db.Date)
+#     vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+#     vendors  = db.relationship("User", foreign_keys=[vendor_id])
     
 
 
-class Farmer(db.Model):
-    __tablename__ = "farmers"
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(255))
-    last_name = db.Column(db.String(255))
-    number = db.Column(db.Integer())
-    premium_amount = db.Column(db.Integer())
-    location = db.Column(db.String(255))
-    country = db.Column(db.String(255))
-    cashcode = db.Column(db.String(255))
-    date_added = db.Column(db.Date,default=datetime.now)
-    last_modified = db.Column(db.Date,default=datetime.now)
-    language = db.Column(db.String(255))
-    society = db.Column(db.String(255))
-    farmercode = db.Column(db.String(255))
-    cooperative = db.Column(db.String(255))
-    ordernumber = db.Column(db.String(255))
+# class Farmer(db.Model):
+#     __tablename__ = "farmers"
+#     id = db.Column(db.Integer, primary_key=True)
+#     first_name = db.Column(db.String(255))
+#     last_name = db.Column(db.String(255))
+#     number = db.Column(db.Integer())
+#     premium_amount = db.Column(db.Integer())
+#     location = db.Column(db.String(255))
+#     country = db.Column(db.String(255))
+#     cashcode = db.Column(db.String(255))
+#     date_added = db.Column(db.Date,default=datetime.now)
+#     last_modified = db.Column(db.Date,default=datetime.now)
+#     language = db.Column(db.String(255))
+#     society = db.Column(db.String(255))
+#     farmercode = db.Column(db.String(255))
+#     cooperative = db.Column(db.String(255))
+#     ordernumber = db.Column(db.String(255))
     
     
-class EcomRequest(db.Model):
-    id = db.Column(db.Integer,primary_key=True)
-    date = db.Column(db.DateTime,default=datetime.utcnow)
-    number = db.Column(db.Integer())
-    cashcode = db.Column(db.String())
-    farmer_id = db.Column(db.Integer, db.ForeignKey('farmers.id'), nullable=True)
-    farmers  = db.relationship("Farmer", foreign_keys=[farmer_id])
-    country = db.Column(db.String(255), nullable=True)
-    disposition = db.Column(db.String())
-    sms_disposition = db.Column(db.String())
-    sms_attempts = db.Column(db.Integer(),default =0)
+# class EcomRequest(db.Model):
+#     id = db.Column(db.Integer,primary_key=True)
+#     date = db.Column(db.DateTime,default=datetime.utcnow)
+#     number = db.Column(db.Integer())
+#     cashcode = db.Column(db.String())
+#     farmer_id = db.Column(db.Integer, db.ForeignKey('farmers.id'), nullable=True)
+#     farmers  = db.relationship("Farmer", foreign_keys=[farmer_id])
+#     country = db.Column(db.String(255), nullable=True)
+#     disposition = db.Column(db.String())
+#     sms_disposition = db.Column(db.String())
+#     sms_attempts = db.Column(db.Integer(),default =0)
   
    
     

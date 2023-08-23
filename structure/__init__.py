@@ -23,6 +23,7 @@ app.config['SECRET_KEY'] = 'asecretkey'
 ### DATABASE SETUP ##########
 ########################
 basedir = os.path.abspath(os.path.dirname(__file__))
+print(basedir)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.getenv('DB_LOCATION')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
   # os.path.join(basedir,'data.sqlite')
