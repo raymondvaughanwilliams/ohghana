@@ -415,6 +415,8 @@ def newsiprequest():
 
         
         contact_data = {
+            "name":name,
+            "contact_type":"General",
             "email": email,
               "password":customer_data['portal_password'],
               "company_id": create_customer_response_data["id"],
@@ -439,7 +441,8 @@ def newsiprequest():
             name = name,
             email = email,
             customer_id = create_customer_response_data["id"],
-            certificate = certificate
+            certificate = certificate,
+            ip = ip 
 
         )
         
@@ -451,7 +454,7 @@ def newsiprequest():
         recipients=[sip_request.email],
         # recipients=['raymondvaughanwilliams@gmail.com'],
         # html="<p>Package has been created.<p>Details:<br><ul><li>Item:{}</li><li>Sender Location:{}</li><li>Destination:{}</li><li>Price:{}</li><li>Start Date:{}</li><li>End Date:{}</li></ul>".format( form.item_description.data,  delivery.sender_location.name,delivery.sender_location.name,delivery.price,form.start_date.data,form.end_date.data)
-        html= render_template('mails/welcome.html', sip_request=sip_request,password=password,ip =ip )
+        html= render_template('mails/welcome.html', sip_request=sip_request,password=password )
 
         )
         mail.send(msg)
@@ -466,61 +469,17 @@ def newsiprequest():
 
         )
         mail.send(msg)
-        
-        return jsonify({"message": "Success"})
+        context = {
+            "status": True,
+            "message": " Customer Created!",
+        }
+
+        return jsonify(context), 200
+        # return jsonify({"message": "Success"})
     
     return "Welcome to the SIP Request API"
 
 
-
-
-@core.route('/newsiprequestapi2', methods=['POST'])
-def newsiprequest2():
-    print("request")
-    print(request)
-    password = generate_secure_password()
- 
-    if request.method == 'POST':
-        # if request.files.get('certificate'):
-        #     image1 = photos.save(request.files['certificate'], name=secrets.token_hex(10) + ".")
-        #     image1= "static/images/certificates/"+image1
-        #     print("image1")
-        #     print(image1)
-        # else:
-        #     image1 = "static/images/noimage.JPG"
-
-        
-        
-        headers = {
-            "Content-Type": "application/json"
-        }
-        
-        
-        company_id = '109725'
-        email= 'gifty.boakye@delaphonegh.com'
-        password= 'random'
-        
-        contact_data = {
-            "email": email,
-              "password":'random',
-            # "company_id": create_customer_response_data["id"],
-            "company_id": company_id,
-            # Include other SIP user data fields as needed
-        }
-        
-        create_contact = requests.post(
-            "https://app.connexcs.com/api/cp/contact",
-            json=contact_data,
-            headers=headers,
-            auth=HTTPBasicAuth(connex_username, connex_password)
-        )
-        print("contact info")
-        print(create_contact.content)
-    
-        
-        return jsonify({"message": "Success"})
-    
-    return "Welcome to the SIP Request API"
 
 
 
