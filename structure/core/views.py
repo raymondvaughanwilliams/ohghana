@@ -972,7 +972,7 @@ def cdrapi():
 
 
 
-@core.route('/contact_lookup', methods=['GET', 'POST'])
+@core.route('/contact_lookup', methods=['GET'])
 # @require_api_key
 def contactlookup():
    
@@ -981,7 +981,7 @@ def contactlookup():
     
     print(number)
     if(request.args.get('phone_mobile')):
-        number = number.strip()
+        number = number.strip().replace("'","")
         contact = Contact.query.filter_by(phone_mobile=number).first()
         
     elif(request.args.get('email')):
