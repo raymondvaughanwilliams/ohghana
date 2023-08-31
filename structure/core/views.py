@@ -972,7 +972,7 @@ def cdrapi():
 
 
 
-@core.route('/contactlookup', methods=['GET', 'POST'])
+@core.route('/contact_lookup', methods=['GET', 'POST'])
 # @require_api_key
 def contactlookup():
    
