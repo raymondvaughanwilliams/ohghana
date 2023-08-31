@@ -978,10 +978,16 @@ def contactlookup():
    
     number = request.args.get('phone_mobile')
     print(request.args.get('phone_mobile'))
-    number = number.strip()
+    
     print(number)
-
-    contact = Contact.query.filter_by(phone_mobile=number).first()
+    if(request.args.get('phone_mobile')):
+        number = number.strip()
+        contact = Contact.query.filter_by(phone_mobile=number).first()
+        
+    elif(request.args.get('email')):
+        contact = Contact.query.filter_by(email=request.args.get('email')).first()
+    else:
+        contact  = None
     contacts = Contact.query.all()
     print(contact)
     print(contacts)
@@ -998,10 +1004,12 @@ def contactlookup():
         # db.session.commit()
         print('contact exists')
         payload = {
+            'id': contact.id,
             "True": True,
             "firstName": contact.first_name,
             "lastName": contact.last_name,
             "phone_mobile": contact.phone_mobile,
+            "email":contact.email
         }
 
         context = {
