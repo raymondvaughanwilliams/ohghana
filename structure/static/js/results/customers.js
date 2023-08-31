@@ -1,10 +1,17 @@
 let resultsTable = $("#results-table-dt").DataTable({
     dom: '<"row mb-2"<"col-12"l>>rBftip',
+    
     ajax: {
-        url: "/studentapi/" + window.location.pathname.split('/').pop(),
+        // url: function (data) {
+        //     // Get the ID from the URL
+        //     let id = window.location.pathname.split('/').pop();
 
-        // url: "/studentapi"
-    },    processing: true,
+        //     // Construct the API URL with the ID
+        //     return `/studentapi/${id}`;
+        // },
+        url: "/customersapi"
+    },
+    processing: true,
     language: {
         processing: 'Loading results...',
     },
@@ -26,20 +33,17 @@ let resultsTable = $("#results-table-dt").DataTable({
             }
         },
         {
-            data:"index_number"
-            },
-        {
             data: 'name',
         },
         {
-            data: 'subject',
+            data: 'credit',
         },
         {
-            data: 'result',
+            data: 'ip',
         },
         {
-        data:"completed_year",
-        },
+            data: 'debit_limit',
+        }
        
     ],
     buttons: [
@@ -74,7 +78,7 @@ let resultsTable = $("#results-table-dt").DataTable({
         },
         {
             extend: 'selected',
-            text: 'Edit result',
+            text: 'Edit Customer',
             action: function (e, table, button, config) {
                 let selectedRows = table.rows({selected: true});
                 if (selectedRows.count() !== 1) {
@@ -82,13 +86,18 @@ let resultsTable = $("#results-table-dt").DataTable({
                     return;
                 }
                 let data = table.row(selectedRows.indexes()[0]).data();
-                $("#edit-result-form").attr("action", `/result/${data.id}`);
+                $("#edit-result-form").attr("action", `/editsiprequest/${data.id}`);
                 $("#edit-result-id").val(data.id);
-                $("#edit-result-name").val(data.name);
-                $("#edit-result-result").val(data.result);
+                $("#edit-result-channels").val(data.channels);
+                $("#edit-result-provider").val(data.provider);
+                $("#edit-result-codecs").val(data.codecs);
+                $("#edit-result-certificate").val(data.certificate);
+                $("#edit-result-status").val(data.status);
+                $("#edit-result-ip").val(data.ip);
                 $('#editResultModal').modal('show');
             }
         },
+     
         {
             extend: 'selected',
             text: 'Delete',
@@ -104,7 +113,7 @@ let resultsTable = $("#results-table-dt").DataTable({
                 });
 
                 if (confirm("Are you sure you want to delete?")) {
-                    fetch(`/api/delete_results?results=${resultIds.join(',')}`)
+                    fetch(`/api/delete_siprequests?siprequests=${resultIds.join(',')}`)
                         .then(res => res.json())
                         .then(payload => {
                             Array.from(selectedRows).forEach((row) => {

@@ -49,6 +49,12 @@ let resultsTable = $("#results-table-dt").DataTable({
         },
         {
             data: 'certificate'
+        },
+        {
+            data: 'status'
+        },
+        {
+            data: 'ip'
         }
        
     ],
@@ -92,11 +98,14 @@ let resultsTable = $("#results-table-dt").DataTable({
                     return;
                 }
                 let data = table.row(selectedRows.indexes()[0]).data();
-                $("#edit-result-form").attr("action", `/siprequestapi/${data.id}`);
+                $("#edit-result-form").attr("action", `/editsiprequest/${data.id}`);
                 $("#edit-result-id").val(data.id);
-                $("#edit-result-subject").val(data.channels);
-                $("#edit-result-result").val(data.provider);
-                $("#edit-result-index_number").val(data.codecs);
+                $("#edit-result-channels").val(data.channels);
+                $("#edit-result-provider").val(data.provider);
+                $("#edit-result-codecs").val(data.codecs);
+                $("#edit-result-certificate").val(data.certificate);
+                $("#edit-result-status").val(data.status);
+                $("#edit-result-ip").val(data.ip);
                 $('#editResultModal').modal('show');
             }
         },

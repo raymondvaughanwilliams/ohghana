@@ -47,12 +47,16 @@ class StudentForm(FlaskForm):
 
 class SipRequestForm(FlaskForm):
     channels = StringField('Text', [validators.DataRequired()])
+    ip = StringField('IP', [validators.DataRequired()])
+    create_extension = SelectField('Inbound',validators=[DataRequired()],choices=[('yes', 'Yes'), ('no', 'No')])
     other = TextAreaField('Text')
     codecs = StringField('Codecs')
+    status = SelectField('Status',validators=[DataRequired()],choices=[('verified', 'Verified'), ('unverified', 'Unverified')])
     certificate = FileField('Certificate', validators=[ FileAllowed(['jpg','png','gif','jpeg'])])
     inbound = SelectField('Inbound',validators=[DataRequired()],choices=[('yes', 'Yes'), ('no', 'No')])
     outbound = SelectField('Outbound',validators=[DataRequired()],choices=[('yes', 'Yes'), ('no', 'No')])
     provider = SelectField('Provider',validators=[DataRequired()],choices=[('mtn', 'MTN'), ('vodafone', 'Vodafone')])
+    ratecard = SelectField('Provider',validators=[DataRequired()],choices=[('MTN O.15 Termination', 'MRH1-zAeN'), ('Vodafone 0.16 Termination', '7M8u-2Pv'),('MTN International','mB_2-ijp6'),('Vezeti','ytV2-Kjbn')])
     submit = SubmitField('Add')
 
 

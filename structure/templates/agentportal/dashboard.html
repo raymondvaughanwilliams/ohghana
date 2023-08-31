@@ -47,7 +47,7 @@
     <div class="col-xl-6 col-lg-12">
         <div class="card text-center">
             <div class="card-header">
-                <h4 class="card-title" id="heading-multiple-thumbnails" style="color:green;">Recently Added Subjects</h4>
+                <h4 class="card-title" id="heading-multiple-thumbnails" style="color:green;">RInactive Clients</h4>
                 <a class="heading-elements-toggle">
                     <i class="la la-ellipsis-v font-medium-3"></i>
                 </a>
@@ -56,9 +56,9 @@
             <div class="card-content">
                 <div class="card-body">
                     <ul class="list-group ">
-                        {% for subject in subjects[:10] %}
+                        {% for item in inactive %}
                         <li class="list-group-item col-md-12">
-                            <a href="" class="col-md-12" style="float:left;">{{subject.name}}</a>
+                            <a href="" class="col-md-12" style="float:left;">{{item.name}}</a>
                         </li>
 
 
@@ -74,7 +74,7 @@
     <div class="col-xl-6 col-lg-12">
             <div class="card text-center">
                 <div class="card-header" style="background-color:#4CAF50">
-                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Recently Added Results</h4>
+                    <h4 class="card-title" id="heading-multiple-thumbnails" style="color:white;">Low Balances</h4>
                     <a class="heading-elements-toggle">
                         <i class="la la-ellipsis-v font-medium-3"></i>
                     </a>
@@ -85,12 +85,12 @@
                         <div class="card-content">
                             <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                {% for item in studentresults[:8]%}
+                                {% for item in low_balance%}
                                 <li class="list-group-item col-md-12">
-                                    <a class="col-md-4" style="float:left" href=""> {{item.student.index_number}}</a >
+                                    <a class="col-md-4" style="float:left" href=""> {{item.name}}</a >
 
-                                    <span class="col-md-4" style="float:left;">{{item.subject.name}} </span>
-                                    <span class="col-md-4" style="float:left;">{{item.result}}% </span>
+                                    <span class="col-md-4" style="float:left;">{{item.credit}} {{item.currency}}</span>
+                                    <span class="col-md-4" style="float:left;"> </span>
 
                                 </li>
                                 {% endfor %}

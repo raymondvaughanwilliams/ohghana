@@ -62,71 +62,6 @@ class User(db.Model,UserMixin):
 
 
 
-# class WebFeature(db.Model):
-#     __tablename__ = "webfeatures"
-
-
-#     id = db.Column(db.Integer,primary_key=True)
-#     date = db.Column(db.DateTime,nullable=False,default=datetime.utcnow)
-#     title = db.Column(db.String(140),nullable=False)
-#     wtext = db.Column(db.Text,nullable=False)
-#     price = db.Column(db.Float,nullable=True)
-#     type = db.Column(db.String(100),nullable=True)
-#     email = db.Column(db.String(40),nullable=True)
-#     city = db.Column(db.String(50),nullable=True)
-#     phone = db.Column(db.String(50),nullable=True)
-
-
-
-#     def __init__(self,title,wtext,date):
-#         self.title = title
-#         self.wtext = wtext
-#         self.date = date
-     
-
-#     def __repr__(self):
-#         return f"Post ID: --- {self.title}---{self.wtext}--{self.date}"
-
-
-
-
-# class Therapist(db.Model):
-#     __tablename__ = 'therapists'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String)
-#     specialty = db.Column(db.String)
-#     location = db.Column(db.String)
-#     email = db.Column(db.String)
-#     phone_number = db.Column(db.String)
-#     biography = db.Column(db.String)
-#     qualifications = db.Column(db.String)
-#     years_of_experience = db.Column(db.Integer)
-#     license_number = db.Column(db.String)
-#     insurance_provider = db.Column(db.String)
-
-
-
-# class TherapistDetails(db.Model):
-#     __tablename__ = 'therapistdetails'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     specialty = db.Column(db.String)
-#     location = db.Column(db.String)
-#     email = db.Column(db.String)
-#     phone_number = db.Column(db.String)
-#     biography = db.Column(db.String)
-#     qualifications = db.Column(db.String)
-#     years_of_experience = db.Column(db.Integer)
-#     license_number = db.Column(db.String)
-#     insurance_provider = db.Column(db.String)
-#     platforms = db.Column(db.String)
-#     user_id = db.Column(db.Integer,db.ForeignKey('user.id'),nullable=True)
-#     user= db.relationship('User',backref='users',lazy=True)
-    
-    
-
-
 
 class About(db.Model):
 
@@ -187,92 +122,6 @@ class About(db.Model):
 
 
 
-# class Price(db.Model):
-#     __tablename__ = "prices"
-
-
-#     id = db.Column(db.Integer,primary_key=True)
-#     title = db.Column(db.String(140),nullable=False)
-#     amount = db.Column(db.Text,nullable=False)
-#     features = db.Column(db.Text(64),nullable=False,default='default_profile.png')
-#     numsessions = db.Column(db.Integer,nullable=True)
-#     numchatweeks = db.Column(db.Integer,nullable=True)
-
-#     def __init__(self,title,amount,features,numsessions,numchatweeks):
-#         self.title = title
-#         self.amount = amount
-#         self.features = features 
-#         self.numsessions = numsessions
-#         self.numchatweeks = numchatweeks
-
-#     def __repr__(self):
-#         return f"Post ID: {self.id} -- {self.title}"
-
-
-
-
-# class Faq(db.Model):
-
-
-#     id = db.Column(db.Integer,primary_key=True)
-#     question = db.Column(db.String(140),nullable=False)
-#     answer = db.Column(db.Text,nullable=False)
-
-#     def __init__(self,question,answer):
-#         self.question = question
-#         self.answer = answer
-
-#     def __repr__(self):
-#         return f"{self.question} -- {self.answer}"
-
-
-
-
-# class Testimonial(db.Model):
-
-
-#     id = db.Column(db.Integer,primary_key=True)
-#     company = db.Column(db.String,nullable=True)
-#     name = db.Column(db.String,nullable=True)
-#     text = db.Column(db.String(140),nullable=True)
-#     rating = db.Column(db.Integer,nullable=True)
-
-
-#     def __init__(self,name,company,text,rating):
-#         self.name = name
-#         self.company = company
-#         self.text = text
-#         self.rating = rating
-
-#     def __repr__(self):
-#         return f"Post ID: {self.id} -- {self.name} -- {self.company} -- {self.text} -- {self.rating}"
-
-
-# class StudentResult(db.Model):
-#     __tablename__ = "student_results"
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(128), nullable=False)
-#     subject = db.Column(db.String(128), nullable=False)
-#     year = db.Column(db.String(128))
-#     result = db.Column(db.Integer, nullable=False)
-#     index_number = db.Column(db.String(128))
-#     student_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     student = db.relationship("User", foreign_keys=[student_id])
-#     subject_id = db.Column(db.Integer, db.ForeignKey('subjects.id'))
-#     subject = db.relationship("Subject", foreign_keys=[subject_id])
-
-#     def __repr__(self):
-#         return f'<StudentResult {self.name}>'
-
-
-# class Subject(db.Model):
-#     __tablename__ = "subjects"
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(128), nullable=False)
-
-
-#     def __repr__(self):
-#         return f'<StudentResult {self.name}>'
 
 class SipRequest(db.Model):
     __tablename__ = "siprequests"
@@ -298,90 +147,114 @@ class SipRequest(db.Model):
     def __repr__(self):
         return f'<Part {self.name}>'
 
-# class PartRequest(db.Model):
-#     __tablename__ = "partrequests"
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(128), nullable=False)
-#     description = db.Column(db.String(512), nullable=False)
-#     model_year = db.Column(db.Integer, nullable=False)
-#     car_make = db.Column(db.String(128), nullable=False)
-#     car_model = db.Column(db.String(128), nullable=False)
-#     note = db.Column(db.String(128), nullable=True)
-#     quantity = db.Column(db.Integer, nullable=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     user = db.relationship("User", foreign_keys=[user_id])
-#     status = db.Column(db.String(16), nullable=False)
 
 
-#     def __repr__(self):
-#         return f'<Part {self.name}>'
-
-# class Bid(db.Model):
-#     __tablename__ = 'bids'
-#     id = db.Column(db.Integer, primary_key=True)
-#     part_id = db.Column(db.Integer, db.ForeignKey('partrequests.id'), nullable=False)
-#     parts = db.relationship("PartRequest", foreign_keys=[part_id])
-#     vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-#     vendors  = db.relationship("User", foreign_keys=[vendor_id])
-#     price = db.Column(db.Float, nullable=False)
-#     quantity = db.Column(db.Integer, nullable=True)
-#     status = db.Column(db.String(16), nullable=False)
-#     delivery = db.Column(db.String(16), nullable=True)
-#     note = db.Column(db.String(255), nullable=True)
-
-#     def __repr__(self):
-#         return f'<Bid {self.id}>'
 
 
-# class Review(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-#     user = db.relationship("User", foreign_keys=[user_id])
-#     text = db.Column(db.String(255), nullable=True)
-#     date = db.Column(db.Date)
-#     vendor_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-#     vendors  = db.relationship("User", foreign_keys=[vendor_id])
-    
+class Extension(db.Model):
+    __tablename__ = "extensions"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(106), nullable=True)
+    password = db.Column(db.String(106), nullable=True)
+    ip = db.Column(db.String(106), nullable=True)
+    channels = db.Column(db.String(106), nullable=True)
+    company_id = db.Column(db.String(106), nullable=True)
+    siprequest_id = db.Column(db.Integer, db.ForeignKey('siprequests.id'))
+    siprequest = db.relationship("SipRequest", foreign_keys=[siprequest_id])
+
+    def __repr__(self):
+        return f'<Extension {self.name}>'
 
 
-# class Farmer(db.Model):
-#     __tablename__ = "farmers"
-#     id = db.Column(db.Integer, primary_key=True)
-#     first_name = db.Column(db.String(255))
-#     last_name = db.Column(db.String(255))
-#     number = db.Column(db.Integer())
-#     premium_amount = db.Column(db.Integer())
-#     location = db.Column(db.String(255))
-#     country = db.Column(db.String(255))
-#     cashcode = db.Column(db.String(255))
-#     date_added = db.Column(db.Date,default=datetime.now)
-#     last_modified = db.Column(db.Date,default=datetime.now)
-#     language = db.Column(db.String(255))
-#     society = db.Column(db.String(255))
-#     farmercode = db.Column(db.String(255))
-#     cooperative = db.Column(db.String(255))
-#     ordernumber = db.Column(db.String(255))
+
+class AirtimeTopUp(db.Model):
+    __tablename__ = "airtimetopups"
+    id = db.Column(db.Integer, primary_key=True)
+    payername = db.Column(db.String(106), nullable=True)
+    payermobile = db.Column(db.String(106), nullable=True)
+    payeremail = db.Column(db.String(106), nullable=True)
+    recipientmobile = db.Column(db.String(106), nullable=True)
+    amount = db.Column(db.String(106), nullable=True)
+    merchtxnref = db.Column(db.String(106), nullable=True)
+    countryid =db.Column(db.String(106), nullable=True)
+    oprid =db.Column(db.String(106), nullable=True)
+    vouchernumber =db.Column(db.String(106), nullable=True)
+    type =db.Column(db.String(106), nullable=True)
+    payerbankacctno =db.Column(db.String(106), nullable=True)
+    payerbankaccttitle =db.Column(db.String(106), nullable=True)
+    bankbranchsortcode =db.Column(db.String(106), nullable=True)
+    payermsisdn =db.Column(db.String(106), nullable=True)
+    recepientmsisdn =db.Column(db.String(106), nullable=True)
     
     
-# class EcomRequest(db.Model):
-#     id = db.Column(db.Integer,primary_key=True)
-#     date = db.Column(db.DateTime,default=datetime.utcnow)
-#     number = db.Column(db.Integer())
-#     cashcode = db.Column(db.String())
-#     farmer_id = db.Column(db.Integer, db.ForeignKey('farmers.id'), nullable=True)
-#     farmers  = db.relationship("Farmer", foreign_keys=[farmer_id])
-#     country = db.Column(db.String(255), nullable=True)
-#     disposition = db.Column(db.String())
-#     sms_disposition = db.Column(db.String())
-#     sms_attempts = db.Column(db.Integer(),default =0)
-  
-   
-    
+
+    def __repr__(self):
+        return f'<Extension {self.name}>'
+
+
+
+
+class CDR(db.Model):
+    __tablename__ = "cdrs"
+    id = db.Column(db.Integer, primary_key=True)
+    call_type = db.Column(db.String(50))
+    number = db.Column(db.String(20))
+    call_direction = db.Column(db.String(50))
+    name = db.Column(db.String(100))
+    entity_id = db.Column(db.Integer)
+    entity_type = db.Column(db.String(50))
+    contact_id = db.Column(db.String(50))
+    queue_extension = db.Column(db.String(20))
+    agent = db.Column(db.String(50))
+    agent_first_name = db.Column(db.String(50))
+    agent_last_name = db.Column(db.String(50))
+    agent_email = db.Column(db.String(100))
+    duration = db.Column(db.Integer)
+    duration_timespan = db.Column(db.String(50))
+    date_time = db.Column(db.DateTime, default=datetime.utcnow)
+    call_start_time_local = db.Column(db.DateTime)
+    call_start_time_utc = db.Column(db.DateTime)
+    call_established_time_local = db.Column(db.DateTime)
+    call_established_time_utc = db.Column(db.DateTime)
+    call_end_time_local = db.Column(db.DateTime)
+    call_end_time_utc = db.Column(db.DateTime)
+    call_start_time_local_millis = db.Column(db.BigInteger)
+    call_start_time_utc_millis = db.Column(db.BigInteger)
+    call_established_time_local_millis = db.Column(db.BigInteger)
+    call_established_time_utc_millis = db.Column(db.BigInteger)
+    call_end_time_local_millis = db.Column(db.BigInteger)
+    call_end_time_utc_millis = db.Column(db.BigInteger)
+    subject = db.Column(db.String(200))
+    inbound_call_text = db.Column(db.Text)
+    missed_call_text = db.Column(db.Text)
+    outbound_call_text = db.Column(db.Text)
+    not_answered_outbound_call_text = db.Column(db.Text)  
+
+    def __repr__(self):
+        return f'<Extension {self.name}>' 
  
 
+class Contact(db.Model):
+    __tablename__ = "contacts"
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    email = db.Column(db.String(100))
+    phone_mobile = db.Column(db.String(20))
+    phone_mobile2 = db.Column(db.String(20))
+    phone_home = db.Column(db.String(20))
+    phone_home2 = db.Column(db.String(20))
+    phone_business = db.Column(db.String(20))
+    phone_business2 = db.Column(db.String(20))
+    phone_other = db.Column(db.String(20))
+    contact_url = db.Column(db.String(200))
+    entity_id = db.Column(db.Integer)
+    entity_type = db.Column(db.String(50))
 
-
-
+    def __repr__(self):
+        return f'<Contact {self.phone_mobile}>'
+    
+    
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
