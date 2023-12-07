@@ -183,12 +183,7 @@ def new_issue():
     # user = User.query.filter_by(id=session['id']).first()
     
     if request.method == "POST":
-        # if request.files.get('image1'):
-        #     image1 = photos.save(request.files['image1'], name=secrets.token_hex(10) + ".")
-        #     image1= "static/uploads/issues/"+image1
-        #     print("image1")
-        #     print(image1)
-        
+
         print(form.description.data)
         issue = Issue(user_id=session['id'],description= form.description.data,title = form.title.data,
                        location = form.location.data,organization_id = form.organization.data ,date = datetime.now(),contact=form.contact.data
@@ -323,7 +318,7 @@ def add_discussion_comment(discussion_id):
     db.session.commit()
 
     # return redirect(url_for('core.dashboard', discussion_id=discussion_id))
-    return redirect(url_for('core.dashboard'))
+    return redirect(url_for('core.discussion', discussion_id=discussion_))
 
 
 
@@ -584,32 +579,3 @@ def dislike_discussion(discussion_id):
     discussion.dislikes = total_dislikes
     db.session.commit()
     return redirect(url_for('core.dashboard', discussion_id=discussion_id))
-
-# @core.route('/dislike/discussion/<int:discussion_id>', methods=['POST','GET'])
-# @login_required
-# def dislike_discussion(discussion_id):
-#     like = LikeDislike(user_id=session['id'], likeable_id=discussion_id, likeable_type='discussion',value=0,discussion_id=discussion_id)
-#     db.session.add(like)
-#     db.session.commit()
-#     return redirect(url_for('core.dashboard', discussion_id=discussion_id))
-
-# @core.route('/food', methods=['POST'])
-# def food():
-#     # Get the uploaded file
-#     image = request.files['file']
-#     # Save the image temporarily
-#     image_path = 'temp.png'
-#     image.save(image_path)
-#     # Use pytesseract to extract text
-#     extracted_text = pytesseract.image_to_string(Image.open(image_path))
-#     print(extracted_text)
-
-#     # Now, you can process the extracted_text and store it in your database
-
-#     # Clean up: delete the temporary image
-#     os.remove(image_path)
-
-#     return render_template('result.html', text=extracted_text)
-
-
-
