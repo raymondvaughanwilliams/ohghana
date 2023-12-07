@@ -20,9 +20,7 @@ from structure.about.forms import AboutForm
 from structure.models import User , Organization , Issue ,IssueComment ,Discussion,DiscussionComment ,Poll, PollOption, PollVote ,LikeDislike , Favorite,Upload
 from werkzeug.utils import secure_filename
 from PIL import Image
-import pytesseract 
-from io import BytesIO
-import base64
+
 
 core = Blueprint('core', __name__)
 
