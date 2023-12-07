@@ -226,7 +226,7 @@ def issue(issue_id):
 @core.route('/issue/<int:issue_id>/add_comment', methods=['POST'])
 def add_comment(issue_id):
     issue = Issue.query.get(issue_id)
-    user_id = 3  # Replace with the actual user ID
+    user_id = session['id']  # Replace with the actual user ID
     content = request.form.get('content')
     parent_comment_id = request.form.get('parent_comment_id')
     if parent_comment_id:
@@ -301,7 +301,7 @@ def delete_discussion(discussion_id):
 @core.route('/discussions/<int:discussion_id>/add_comment', methods=['POST'])
 def add_discussion_comment(discussion_id):
     discussion = Discussion.query.get(discussion_id)
-    user_id = 1  # Replace with the actual user ID
+    user_id = session['id']  # Replace with the actual user ID
     content = request.form.get('content')
     parent_comment_id = request.form.get('parent_comment_id')
     print(parent_comment_id)
@@ -316,7 +316,7 @@ def add_discussion_comment(discussion_id):
     db.session.commit()
 
     # return redirect(url_for('core.dashboard', discussion_id=discussion_id))
-    return redirect(url_for('core.discussion', discussion_id=discussion_))
+    return redirect(url_for('core.view_discussion', discussion_id=discussion_id))
 
 
 
