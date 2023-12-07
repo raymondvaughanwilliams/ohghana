@@ -1,15 +1,24 @@
 # users/views.py
 from flask import render_template,url_for,flash,redirect,request,Blueprint,session
 from flask_login import login_user, current_user, logout_user, login_required
-from structure import db,photos 
-from structure.models import User
+from structure import db,photos,mail 
+from structure.models import User 
 from structure.users.forms import RegistrationForm,LoginForm,UpdateUserForm
 from structure.users.picture_handler import add_profile_pic
 import secrets
 import requests
+import os
+from requests.auth import HTTPBasicAuth
+from flask_mail import Mail, Message
+from structure.core.views import generate_secure_password
+import random
 
 users = Blueprint('users',__name__)
 
+
+
+connex_username = os.environ.get('connex_username')
+connex_password = os.environ.get('connex_password')
 # register
 @users.route('/register',methods=['GET','POST'])
 def register():
@@ -22,56 +31,30 @@ def register():
                     name=form.name.data,
                     username=form.username.data,
                     password=form.password.data,
-                    last_name=form.last_name.data,role=form.role.data,
+                    last_name=form.last_name.data,role="user",
                     number=form.number.data)
 
         db.session.add(user)
         db.session.commit()
         flash('Thanks for registering!')
-        if form.role.data == 'user':
-            return redirect(url_for('users.login'))
+        if user.role == 'user':
+            session['id'] = user.id
+            return redirect(url_for('users.enterartist'))
         else:
             return redirect(url_for('users.vendorregister',id=user.id))
             
 
-    return render_template('register.html',form=form)
+    return render_template('user/signup.html',form=form)
 
 
 
-@users.route('/vendorregister/<int:id>',methods=['GET','POST'])
-def vendorregister(id):
-    form = RegistrationForm()
-    user = User.query.filter_by(id=id).first()
 
-    # if form.validate_on_submit():
-    if request.method == 'POST':
-        print("df")
-        print(request.files.get('certificate'))
-        if request.files.get('certificate'):
-            print(form.certificate.data)
-        # if form.certificate.data is not None:
 
-            image = photos.save(request.files['certificate'], name=secrets.token_hex(10) + ".")
-            image= "static/images/certificates/"+image
-        else:
-            image = "static/images/noimage.JPG"  
-        user.business_name  = form.company.data
-        user.biography = form.bio.data
-        user.parts = form.parts.data
-        user.cars = form.cars.data
-        user.certificate = image
-        user.status = "unverifieed"
-        user.location  = form.location.data
-        user.returnable = form.returnable.data
-        user.return_period = form.returnperiod.data
-        db.session.add(user)
-        db.session.commit()
-        flash('Thanks for registering!')
-        return redirect(url_for('users.login'))
 
-            
 
-    return render_template('web/vendorregister.html',form=form)
+
+
+
 
 
 
@@ -88,35 +71,13 @@ def login():
         
 
 
-        # Check that the user was supplied and the password is right
-        # The verify_password method comes from the User object
-        # https://stackoverflow.com/questions/2209755/python-operation-vs-is-not
-
-        # if user is not None and user.check_password(form.password.data) and user.role == 'admin':
-        #     #Log in the user
-
-        #     login_user(user)
-        #     flash('Logged in successfully.')
-
-
-
-        #     # If a user was trying to visit a page that requires a login
-        #     # flask saves that URL as 'next'.
-        #     next = request.args.get('next')
-
-        #     # So let's now check if that next exists, otherwise we'll go to
-        #     # the welcome page.
-        #     if next == None or not next[0]=='/':
-        #         next = url_for('userportal.userdash')
-
-        #     return redirect(next)
-
         if user is not None and user.check_password(form.password.data)  :
             #Log in the user
             session['name'] = userr.name
             session['role'] = userr.role
             session['email'] = form.email.data
             session['id'] = user.id
+            session['username'] = user.username
             print("session")
             print(session['name'])
             login_user(user)
@@ -132,7 +93,7 @@ def login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('core.agent_dashboard')
+                next = url_for('core.dashboard')
             
 
             return redirect(next)
@@ -143,7 +104,7 @@ def login():
             # So let's now check if that next exists, otherwise we'll go to
             # the welcome page.
             if next == None or not next[0]=='/':
-                next = url_for('core.agent_dashboard')
+                next = url_for('core.dashboard')
             
 
             return redirect(next)
@@ -151,7 +112,7 @@ def login():
 
 
 
-    return render_template('login.html', form=form)
+    return render_template('user/signin.html', form=form)
 
 # logout
 @users.route("/logout")
@@ -160,6 +121,8 @@ def logout():
     session.pop('email',None)
     session.pop('name',None)
     session.pop('role',None)
+    session.pop('username',None)
+    session.pop('id',None)
     # session.pop('loginmsg',None)
 
     return redirect(url_for("users.login"))
@@ -203,18 +166,3 @@ def account():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# user's list of Blog posts

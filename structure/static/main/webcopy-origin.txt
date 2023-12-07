@@ -1,0 +1,1432 @@
+Uri: https://coderthemes.com/adminto/layouts/apps-calendar.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\apps-calendar.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/apps-chat.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\apps-chat.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/apps-projects.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\apps-projects.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/assets/css/app.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\css\app.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/css/icons.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\css\icons.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dripicons-v2.eot
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dripicons-v2.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dripicons-v2.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dripicons-v2-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dripicons-v2.svg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dripicons-v2.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dripicons-v2.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dripicons-v2.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dripicons-v2.woff
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dripicons-v2.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dropify.eot
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dropify.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dropify.svg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dropify.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dropify.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dropify.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/dropify.woff
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\dropify.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-brands-400.eot
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-brands-400.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-brands-400.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-brands-400-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-brands-400.svg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-brands-400.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-brands-400.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-brands-400.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-brands-400.woff
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-brands-400.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-brands-400.woff2
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-brands-400.woff2
+Content Type: font/woff2
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-regular-400.eot
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-regular-400.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-regular-400.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-regular-400-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-regular-400.svg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-regular-400.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-regular-400.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-regular-400.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-regular-400.woff
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-regular-400.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-regular-400.woff2
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-regular-400.woff2
+Content Type: font/woff2
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-solid-900.eot
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-solid-900.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-solid-900.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-solid-900-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-solid-900.svg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-solid-900.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-solid-900.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-solid-900.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-solid-900.woff
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-solid-900.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/fa-solid-900.woff2
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\fa-solid-900.woff2
+Content Type: font/woff2
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/feather.eot?t=1525787366991
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\feather.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/feather.svg?t=1525787366991
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\feather.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/feather.ttf?t=1525787366991
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\feather.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/feather.woff?t=1525787366991
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\feather.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/materialdesignicons-webfont.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\materialdesignicons-webfont-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/materialdesignicons-webfont.eot?v=5.9.55
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\materialdesignicons-webfont.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/materialdesignicons-webfont.ttf?v=5.9.55
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\materialdesignicons-webfont.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/materialdesignicons-webfont.woff2?v=5.9.55
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\materialdesignicons-webfont.woff2
+Content Type: font/woff2
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/materialdesignicons-webfont.woff?v=5.9.55
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\materialdesignicons-webfont.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/simple-Line-Icons.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\simple-Line-Icons-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/simple-Line-Icons.eot?-i3a2kk
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\simple-Line-Icons.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/simple-Line-Icons.svg?-i3a2kk
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\simple-Line-Icons.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/simple-Line-Icons.ttf?-i3a2kk
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\simple-Line-Icons.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/simple-Line-Icons.woff2?-i3a2kk
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\simple-Line-Icons.woff2
+Content Type: font/woff2
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/simple-Line-Icons.woff?-i3a2kk
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\simple-Line-Icons.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/themify.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\themify-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/themify.eot?-fvbane
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\themify.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/themify.svg?-fvbane
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\themify.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/themify.ttf?-fvbane
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\themify.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/themify.woff?-fvbane
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\themify.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/weathericons-regular-webfont.eot
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\weathericons-regular-webfont.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/weathericons-regular-webfont.eot?
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\weathericons-regular-webfont-1.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/weathericons-regular-webfont.svg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\weathericons-regular-webfont.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/weathericons-regular-webfont.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\weathericons-regular-webfont.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/weathericons-regular-webfont.woff
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\weathericons-regular-webfont.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/fonts/weathericons-regular-webfont.woff2
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\fonts\weathericons-regular-webfont.woff2
+Content Type: font/woff2
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/attached-files/img-1.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\attached-files\img-1.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/attached-files/img-2.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\attached-files\img-2.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/attached-files/img-3.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\attached-files\img-3.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/bg-auth3.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\bg-auth3.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/clear.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\clear.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/email/1.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\email\1.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/email/2.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\email\2.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/email/3.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\email\3.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/favicon.ico
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\favicon.ico
+Content Type: image/vnd.microsoft.icon
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/1.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\1.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/10.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\10.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/11.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\11.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/12.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\12.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/2.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\2.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/3.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\3.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/4.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\4.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/5.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\5.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/6.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\6.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/7.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\7.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/8.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\8.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/gallery/9.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\gallery\9.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/jstree.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\jstree.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/loading.gif
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\loading.gif
+Content Type: image/gif
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/logo-dark.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\logo-dark.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/logo-light.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\logo-light.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/logo-sm.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\logo-sm.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/mail_confirm.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\mail_confirm.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/megamenu-bg.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\megamenu-bg.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/multiple-arrow.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\multiple-arrow.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/small/img-1.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\small\img-1.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/small/img-2.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\small\img-2.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/small/img-3.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\small\img-3.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/small/img-4.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\small\img-4.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/profile.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\profile.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-1.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-1.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-10.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-10.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-2.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-2.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-3.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-3.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-4.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-4.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-5.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-5.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-6.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-6.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-7.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-7.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-8.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-8.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/images/users/user-9.jpg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\images\users\user-9.jpg
+Content Type: image/jpeg
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/app.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\app.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/calendar.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\calendar.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/chart-sparkline.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\chart-sparkline.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/chartist.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\chartist.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/chartjs.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\chartjs.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/coming-soon.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\coming-soon.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/dashboard.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\dashboard.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/datatables.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\datatables.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/draggable.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\draggable.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/flot.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\flot.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/fontawesome.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\fontawesome.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/form-advanced.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\form-advanced.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/form-fileuploads.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\form-fileuploads.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/form-pickers.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\form-pickers.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/form-quilljs.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\form-quilljs.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/form-validation.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\form-validation.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/form-wizard.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\form-wizard.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/form-xeditable.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\form-xeditable.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/gallery.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\gallery.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/google-maps.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\google-maps.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/inbox.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\inbox.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/jquery.chat.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\jquery.chat.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/jquery.todo.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\jquery.todo.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/kanban.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\kanban.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/materialdesign.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\materialdesign.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/morris.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\morris.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/range-sliders.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\range-sliders.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/responsive-table.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\responsive-table.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/sweet-alerts.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\sweet-alerts.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/tabledit.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\tabledit.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/tablesaw.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\tablesaw.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/task-detail.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\task-detail.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/toastr.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\toastr.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/tour.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\tour.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/treeview.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\treeview.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/vector-maps.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\vector-maps.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/js/pages/widgets.init.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\js\pages\widgets.init.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\jquery-jvectormap-1.2.2.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\jquery-jvectormap-1.2.2.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-au-mill-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-au-mill-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-ca-lcc-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-ca-lcc-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-es-merc.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-es-merc.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-es-mill.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-es-mill.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-europe-mill-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-europe-mill-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-fr-merc-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-fr-merc-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-in-mill-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-in-mill-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-uk-mill-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-uk-mill-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-il-chicago-mill-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-us-il-chicago-mill-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-us-merc-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\jquery.vectormap\maps\jquery-jvectormap-world-mill-en.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/rwd-table/rwd-table.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\rwd-table\rwd-table.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/admin-resources/rwd-table/rwd-table.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\admin-resources\rwd-table\rwd-table.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\bootstrap-datepicker\css\bootstrap-datepicker.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\bootstrap-datepicker\js\bootstrap-datepicker.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\bootstrap-maxlength\bootstrap-maxlength.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\bootstrap-tagsinput\bootstrap-tagsinput.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/bootstrap/js/bootstrap.bundle.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\bootstrap\js\bootstrap.bundle.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/chart.js/Chart.bundle.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\chart.js\Chart.bundle.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltip.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\chartist-plugin-tooltips\chartist-plugin-tooltip.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/chartist/chartist.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\chartist\chartist.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/chartist/chartist.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\chartist\chartist.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/clockpicker/bootstrap-clockpicker.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\clockpicker\bootstrap-clockpicker.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/clockpicker/bootstrap-clockpicker.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\clockpicker\bootstrap-clockpicker.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/custombox/custombox.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\custombox\custombox.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/custombox/custombox.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\custombox\custombox.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-bs5\css\dataTables.bootstrap5.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-bs5\js\dataTables.bootstrap5.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-buttons-bs5\css\buttons.bootstrap5.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-buttons-bs5\js\buttons.bootstrap5.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/buttons.flash.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-buttons\js\buttons.flash.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/buttons.html5.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-buttons\js\buttons.html5.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/buttons.print.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-buttons\js\buttons.print.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-buttons\js\dataTables.buttons.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-keytable\js\dataTables.keyTable.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-responsive-bs5\css\responsive.bootstrap5.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-responsive-bs5\js\responsive.bootstrap5.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-responsive\js\dataTables.responsive.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-select-bs5\css\select.bootstrap5.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net-select/js/dataTables.select.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net-select\js\dataTables.select.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/datatables.net/js/jquery.dataTables.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\datatables.net\js\jquery.dataTables.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/devbridge-autocomplete/jquery.autocomplete.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\devbridge-autocomplete\jquery.autocomplete.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropify/css/dropify.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropify\css\dropify.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropify/fonts/dropify.eot
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropify\fonts\dropify.eot
+Content Type: application/vnd.ms-fontobject
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropify/fonts/dropify.svg
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropify\fonts\dropify.svg
+Content Type: image/svg+xml
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropify/fonts/dropify.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropify\fonts\dropify.ttf
+Content Type: font/ttf
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropify/fonts/dropify.woff
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropify\fonts\dropify.woff
+Content Type: font/woff
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropify/js/dropify.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropify\js\dropify.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropzone/min/dropzone.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropzone\min\dropzone.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/dropzone/min/dropzone.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\dropzone\min\dropzone.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/feather-icons/feather.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\feather-icons\feather.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flatpickr/flatpickr.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flatpickr\flatpickr.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flatpickr/flatpickr.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flatpickr\flatpickr.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-charts/jquery.flot.crosshair.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-charts\jquery.flot.crosshair.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-charts/jquery.flot.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-charts\jquery.flot.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-charts/jquery.flot.pie.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-charts\jquery.flot.pie.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-charts/jquery.flot.resize.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-charts\jquery.flot.resize.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-charts/jquery.flot.selection.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-charts\jquery.flot.selection.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-charts/jquery.flot.stack.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-charts\jquery.flot.stack.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-charts/jquery.flot.time.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-charts\jquery.flot.time.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/flot-orderbars/js/jquery.flot.orderBars.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\flot-orderbars\js\jquery.flot.orderBars.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/fullcalendar/main.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\fullcalendar\main.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/fullcalendar/main.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\fullcalendar\main.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/gmaps/gmaps.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\gmaps\gmaps.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/hopscotch/css/hopscotch.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\hopscotch\css\hopscotch.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/hopscotch/img/sprite-green.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\hopscotch\img\sprite-green.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/hopscotch/js/hopscotch.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\hopscotch\js\hopscotch.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/ion-rangeslider/css/ion.rangeSlider.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\ion-rangeslider\css\ion.rangeSlider.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/ion-rangeslider/js/ion.rangeSlider.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\ion-rangeslider\js\ion.rangeSlider.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/isotope-layout/isotope.pkgd.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\isotope-layout\isotope.pkgd.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery-countdown/jquery.countdown.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery-countdown\jquery.countdown.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery-knob/jquery.knob.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery-knob\jquery.knob.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery-mockjax/jquery.mockjax.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery-mockjax\jquery.mockjax.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery-sparkline/jquery.sparkline.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery-sparkline\jquery.sparkline.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery-tabledit/jquery.tabledit.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery-tabledit\jquery.tabledit.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery-toast-plugin/jquery.toast.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery-toast-plugin\jquery.toast.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery-ui/jquery-ui.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery-ui\jquery-ui.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery.counterup/jquery.counterup.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery.counterup\jquery.counterup.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery.flot.tooltip\js\jquery.flot.tooltip.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery.scrollto/jquery.scrollTo.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery.scrollto\jquery.scrollTo.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jquery/jquery.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jquery\jquery.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jstree/jstree.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jstree\jstree.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jstree/themes/default/32px.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jstree\themes\default\32px.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jstree/themes/default/40px.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jstree\themes\default\40px.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jstree/themes/default/style.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jstree\themes\default\style.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/jstree/themes/default/throbber.gif
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\jstree\themes\default\throbber.gif
+Content Type: image/gif
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/magnific-popup/jquery.magnific-popup.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\magnific-popup\jquery.magnific-popup.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/magnific-popup/magnific-popup.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\magnific-popup\magnific-popup.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/mohithg-switchery/switchery.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\mohithg-switchery\switchery.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/mohithg-switchery/switchery.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\mohithg-switchery\switchery.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/moment/min/moment.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\moment\min\moment.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/morris.js06/morris.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\morris.js06\morris.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/multiselect/css/multi-select.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\multiselect\css\multi-select.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/multiselect/img/switch.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\multiselect\img\switch.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/multiselect/js/jquery.multi-select.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\multiselect\js\jquery.multi-select.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/node-waves/waves.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\node-waves\waves.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/parsleyjs/parsley.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\parsleyjs\parsley.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/pdfmake/build/pdfmake.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\pdfmake\build\pdfmake.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/pdfmake/build/vfs_fonts.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\pdfmake\build\vfs_fonts.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/peity/jquery.peity.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\peity\jquery.peity.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/quill/quill.bubble.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\quill\quill.bubble.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/quill/quill.core.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\quill\quill.core.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/quill/quill.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\quill\quill.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/quill/quill.snow.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\quill\quill.snow.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/raphael/raphael.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\raphael\raphael.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/select2/css/select2.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\select2\css\select2.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/select2/js/select2.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\select2\js\select2.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/selectize/css/selectize.bootstrap3.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\selectize\css\selectize.bootstrap3.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/selectize/js/standalone/selectize.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\selectize\js\standalone\selectize.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/simplebar/simplebar.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\simplebar\simplebar.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/spectrum-colorpicker2/spectrum.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\spectrum-colorpicker2\spectrum.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/spectrum-colorpicker2/spectrum.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\spectrum-colorpicker2\spectrum.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/sweetalert2/sweetalert2.all.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\sweetalert2\sweetalert2.all.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/sweetalert2/sweetalert2.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\sweetalert2\sweetalert2.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/sweetalert2/sweetalert2.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\sweetalert2\sweetalert2.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/tablesaw/tablesaw.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\tablesaw\tablesaw.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/tablesaw/tablesaw.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\tablesaw\tablesaw.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/tippy.js/tippy.all.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\tippy.js\tippy.all.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/toastr/build/toastr.min.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\toastr\build\toastr.min.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/toastr/build/toastr.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\toastr\build\toastr.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/waypoints/lib/jquery.waypoints.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\waypoints\lib\jquery.waypoints.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\x-editable\bootstrap-editable\css\bootstrap-editable.css
+Content Type: text/css
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/x-editable/bootstrap-editable/img/clear.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\x-editable\bootstrap-editable\img\clear.png
+Content Type: image/png
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/x-editable/bootstrap-editable/img/loading.gif
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\x-editable\bootstrap-editable\img\loading.gif
+Content Type: image/gif
+
+Uri: https://coderthemes.com/adminto/layouts/assets/libs/x-editable/bootstrap-editable/js/bootstrap-editable.min.js
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\assets\libs\x-editable\bootstrap-editable\js\bootstrap-editable.min.js
+Content Type: application/javascript
+
+Uri: https://coderthemes.com/adminto/layouts/auth-confirm-mail.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\auth-confirm-mail.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/auth-lock-screen.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\auth-lock-screen.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/auth-login.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\auth-login.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/auth-logout.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\auth-logout.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/auth-recoverpw.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\auth-recoverpw.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/auth-register.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\auth-register.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/charts-chartist.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\charts-chartist.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/charts-chartjs.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\charts-chartjs.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/charts-flot.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\charts-flot.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/charts-morris.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\charts-morris.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/charts-sparklines.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\charts-sparklines.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/contacts-list.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\contacts-list.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/contacts-profile.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\contacts-profile.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/email-inbox.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\email-inbox.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/email-templates-action.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\email-templates-action.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/email-templates-alert.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\email-templates-alert.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/email-templates-billing.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\email-templates-billing.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/email-templates.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\email-templates.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/extended-draggable-cards.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\extended-draggable-cards.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/extended-notification.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\extended-notification.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/extended-range-slider.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\extended-range-slider.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/extended-sweet-alert.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\extended-sweet-alert.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/extended-tour.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\extended-tour.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/extended-treeview.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\extended-treeview.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-advanced.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-advanced.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-elements.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-elements.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-file-uploads.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-file-uploads.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-pickers.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-pickers.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-quilljs.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-quilljs.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-validation.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-validation.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-wizard.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-wizard.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/forms-x-editable.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\forms-x-editable.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/icons-dripicons.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\icons-dripicons.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/icons-feather.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\icons-feather.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/icons-font-awesome.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\icons-font-awesome.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/icons-mdi.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\icons-mdi.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/icons-themify.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\icons-themify.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/index.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\index.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/layouts-horizontal-dark.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\layouts-horizontal-dark.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/layouts-horizontal.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\layouts-horizontal.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/layouts-preloader.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\layouts-preloader.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/maps-google.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\maps-google.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/maps-vector.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\maps-vector.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-404.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-404.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-500.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-500.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-coming-soon.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-coming-soon.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-faqs.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-faqs.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-gallery.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-gallery.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-invoice.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-invoice.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-maintenance.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-maintenance.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-pricing.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-pricing.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-starter.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-starter.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/pages-timeline.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\pages-timeline.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/tables-basic.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\tables-basic.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/tables-datatables.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\tables-datatables.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/tables-editable.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\tables-editable.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/tables-responsive.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\tables-responsive.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/tables-tablesaw.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\tables-tablesaw.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/task-details.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\task-details.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/task-kanban-board.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\task-kanban-board.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-avatars.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-avatars.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-buttons.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-buttons.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-cards.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-cards.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-carousel.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-carousel.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-dropdowns.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-dropdowns.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-general.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-general.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-grid.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-grid.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-images.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-images.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-modals.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-modals.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-notifications.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-notifications.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-offcanvas.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-offcanvas.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-placeholders.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-placeholders.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-progress.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-progress.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-spinners.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-spinners.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-tabs-accordions.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-tabs-accordions.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-tooltips-popovers.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-tooltips-popovers.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-typography.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-typography.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/ui-video.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\ui-video.html
+Content Type: text/html
+
+Uri: https://coderthemes.com/adminto/layouts/widgets.html
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\adminto\layouts\widgets.html
+Content Type: text/html
+
+Uri: https://fonts.googleapis.com/css?family=Karla:400,700
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\css-2
+Content Type: text/css
+
+Uri: https://fonts.googleapis.com/css?family=Roboto:400,500,700
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\css-1
+Content Type: text/css
+
+Uri: https://fonts.googleapis.com/css?family=Roboto:400,500,700);@import url(https://fonts.googleapis.com/css?family=Karla:400,700);:root{--ct-link-color:
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\css-3
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/karla/v31/qkBIXvYC6trAT55ZBi1ueQVIjQTD-JqaE0lP.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\s\karla\v31\qkBIXvYC6trAT55ZBi1ueQVIjQTD-JqaE0lP-1.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/karla/v31/qkBIXvYC6trAT55ZBi1ueQVIjQTDH52aE0lP.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\s\karla\v31\qkBIXvYC6trAT55ZBi1ueQVIjQTDH52aE0lP-1.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc9.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\s\roboto\v30\KFOlCnqEu92Fr1MmEU9fBBc9.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc9.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\s\roboto\v30\KFOlCnqEu92Fr1MmWUlfBBc9.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxP.ttf
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\s\roboto\v30\KFOmCnqEu92Fr1Mu4mxP.ttf
+Content Type: font/ttf
+
+Uri: https://www.datatables.net/examples/resources/details_close.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\examples\resources\details_close.png
+Content Type: image/png
+
+Uri: https://www.datatables.net/examples/resources/details_open.png
+File Name: C:\Users\p\Desktop\Area\theft\coderthemes.com\examples\resources\details_open.png
+Content Type: image/png
+

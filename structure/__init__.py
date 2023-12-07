@@ -52,7 +52,8 @@ with app.app_context():
 # jwt = JWTManager(app)
 
 
-app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/images/certificates')
+app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/uploads/issues')
+# app.config['UPLOADED_PHOTOS_ALLOW'] = set(['jpg', 'jpeg', 'png', 'gif'])
 photos = UploadSet('photos', IMAGES)
 configure_uploads(app, photos)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024

@@ -1,0 +1,54 @@
+﻿{% extends "portal/base.html" %}
+{% block content %}
+        <!-- main contents -->
+        <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+
+            <div class="max-w-3xl mx-auto">
+
+
+                <div class="box relative rounded-lg shadow-md">
+    
+            
+                   
+    
+    
+                        
+    
+                        <!-- tab user basic info -->
+                        <div>
+    
+                            <div>
+                                <form method="post" enctype="multipart/form-data" >
+ 
+                                <div class="space-y-6">
+                                    <div class="md:flex items-center gap-10">
+                                        <label class="md:w-32 text-right"> Title </label>
+                                        <div class="flex-1 max-md:mt-4">
+                                            <input type="text" name ="question" placeholder="Eg Broken Street Lights" class="lg:w-1/2 w-full">
+                                        </div>
+                                    </div>
+                                    
+                                   
+            
+                                    <div class="md:flex items-start gap-10">
+                                        <label class="md:w-32 text-right"> Options </label>
+                                        <!-- <span>Separate options with commas</span> -->
+                                        <div class="flex-1 max-md:mt-4">
+                                            <textarea name="option_text" class="w-full" rows="5" placeholder="Eg. Yes,No"></textarea>
+                                        </div>
+                                    </div> 
+                                    
+                                   
+                                <div class="flex items-center gap-4 mt-16 lg:pl-[10.5rem]">
+                                    <button type="submit" class="button lg:px-10 bg-primary text-white max-md:flex-1"> Save <span class="ripple-overlay"></span></button>
+                                </div>
+                            </form>
+
+                            </div> 
+    
+                        </div>
+    
+                      
+    
+              </div>
+   {%endblock%}

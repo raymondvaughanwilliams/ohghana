@@ -1,0 +1,234 @@
+﻿{% extends "portal/base.html" %}
+{% block content %}
+   
+
+        <!-- main contents -->
+        <main id="site__main" class="2xl:ml-[--w-side]  xl:ml-[--w-side-sm] p-2.5 h-[calc(100vh-var(--m-top))] mt-[--m-top]">
+
+            <div class="2xl:max-w-[1220px] max-w-[1065px] mx-auto">
+
+                <div class="page-heading">
+                    
+                    <h1 class="page-title"> Favorites </h1>
+    
+                    <nav class="nav__underline">
+    
+                        <ul uk-tab="" class="group" uk-switcher="connect: #ttabs ; animation: uk-animation-slide-right-medium, uk-animation-slide-left-medium"> 
+                       
+                            <li> <a href="#"> Issues  </a> </li>
+                            <li> <a href="#"> Discussions </a> </li>
+                            <li> <a href="#"> Polls </a> </li>
+                            <li> <a href="#"> Organization </a> </li>
+                            
+                        </ul> 
+    
+                    </nav>
+    
+                </div>
+                
+                <!-- event feautred -->
+                <div class="relative" tabindex="-1" uk-slider="finite:true">
+        
+                    <div class="uk-slider-container pb-1">
+                    
+                        <ul class="uk-slider-items grid-small">
+                           {%for issue in myfavoriteissues%}
+                            <li class="lg:w-1/4 sm:w-1/3 w-1/2">
+                                <div class="card">
+                                    <a href="timeline-event.html">
+                                        <div class="card-media h-32">
+                                            <img src="/static/main/assets/images/events/img-3.jpg" alt="">
+                                            <div class="card-overly"></div>
+                                        </div>
+                                    </a>
+                                    <div class="card-body">
+                                        <p class="text-xs font-medium text-blue-600 mb-1"> Next week </p> 
+                                        <a href="timeline-event.html"><h4 class="card-title text-sm"> {{issue.title}} </h4> </a>
+                                        <a href="#"> <p class="card-text text-black mt-2"> {{issue.location}} </p> </a> 
+                                        <div class="card-list-info text-xs mt-1">
+                                            <div> {{issue.views}} Intersted</div>
+                                            <div class="md:block hidden">·</div>
+                                            <div> {{issue.likes}} Thumbs Ups</div>
+                                        </div>
+                                        <div class="flex gap-2">
+                                            <a href="{{url_for('core.issue', issue_id=issue.id)}}" class="button bg-primary text-white flex-1">View</a>
+                                            <button type="button" class="button bg-secondery !w-auto"> <ion-icon name="arrow-redo" class="text-lg"></ion-icon> </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li> 
+                            {%endfor%}
+                            
+                        </ul>
+                        <div class="flex justify-center my-6">
+                            <button type="button" class="bg-white py-2 px-5 rounded-full shadow-md font-semibold text-sm dark:bg-dark2">View All Issues</button>
+                        </div>
+                    </div>
+                
+                    <!-- slide nav icons -->
+                    <a class="nav-prev !top-20" href="#" uk-slider-item="previous"> <ion-icon name="chevron-back" class="text-2xl"></ion-icon> </a>
+                    <a class="nav-next !top-20" href="#" uk-slider-item="next"> <ion-icon name="chevron-forward" class="text-2xl"></ion-icon></a>
+                    
+                    </div>
+                    </div>
+    
+                <div class="sm:my-6 my-3 flex items-center justify-between md:mt-10">
+                    <div>
+                        <h2 class="text-xl font-semibold"> My Favorite Organizations</h2>
+                    </div>
+                </div>
+    
+                <!-- listing  slider -->
+                <div class="mt-4" tabindex="-1" uk-slider="finite:true">
+    
+                    <div class="uk-slider-container pb-1">
+                       
+                        <ul class="uk-slider-items grid-small">
+                            {% if myfavoriteorganizations %}
+                            {% for organization in myfavoriteorganizations %}
+                            <li class="md:w-1/5 sm:w-1/3 w-1/2">
+                                <a href="#">
+                                    <div class="relative rounded-lg overflow-hidden">
+                                        <img src="/static/main/assets/images/events/listing-1.jpg" alt="" class="h-36 w-full object-cover">
+                                        <div class="w-full bottom-0 absolute left-0 bg-gradient-to-t from-black/60 pt-10">
+                                            <div class="text-white p-5">
+                                                <div class="text-sm font-light"> {{organization.views}}  </div>
+                                                <div class="text-lg leading-3 mt-1.5"> {{organization.user.name}} </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            {%endfor%} 
+                            {% else %}
+                            <div class="">
+                                NO FAVORITE ORGANIZATIONS 
+                                <br>
+                            </div>
+                            <br>
+                            {%endif%}
+                        </ul>
+                        <div class="flex justify-center my-6">
+                            <button type="button" class="bg-white py-2 px-5 rounded-full shadow-md font-semibold text-sm dark:bg-dark2">View All Organizations</button>
+                        </div>
+                    </div>
+                   
+                    <!-- slide nav icons -->
+                    <a class="nav-prev" href="#" uk-slider-item="previous"> <ion-icon name="chevron-back" class="text-2xl"></ion-icon> </a>
+                    <a class="nav-next" href="#" uk-slider-item="next"> <ion-icon name="chevron-forward" class="text-2xl"></ion-icon></a>
+                    
+                </div>
+    
+
+
+                <!--Discussions-->
+
+
+
+
+
+
+
+
+
+
+
+                <div class="sm:my-6 my-3 flex items-center justify-between lg:mt-10">
+                    <div>
+                        <h2 class="md:text-lg text-base font-semibold text-black">My Favorite Discussions </h2>
+                        <p class="font-normal text-sm text-gray-500 leading-6"> Your Favorite Discussions </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 md:gap-2 gap-3">
+                    {% if myfavoritediscussions %}
+                        {% for item in myfavoritediscussions%}
+                    <div class="flex md:items-center space-x-4 p-4 rounded-md box">
+                        <div class="sm:w-20 w-14 sm:h-20 h-14 flex-shrink-0 rounded-lg relative"> 
+                            <img src="/static/main/assets/images/group/group-4.jpg" class="absolute w-full h-full inset-0 rounded-md object-cover shadow-sm" alt="">
+                        </div> 
+                        <div class="flex-1">
+                            <a href="timeline-group.html" class="md:text-lg text-base font-semibold capitalize text-black dark:text-white"> {{item.title}}  </a>
+                            <div class="flex space-x-2 items-center text-sm font-normal">
+                                <div> {{item.views}} Views</div>
+                                <div>·</div>
+                                <div> 12 Likes</div>
+                            </div>
+                            <div class="flex items-center mt-2">
+                                <img src="/static/main/assets/images/avatars/avatar-2.jpg" class="w-6 rounded-full border-2 border-gray-200 -mr-2" alt="">
+                                <img src="/static/main/assets/images/avatars/avatar-4.jpg" class="w-6 rounded-full border-2 border-gray-200" alt="">
+                                <div class="text-sm text-gray-500 ml-2"> 14 Comments</div>
+                            </div>
+                        </div>
+                        <button type="button" class="button bg-primary-soft text-primary dark:text-white gap-1 max-md:hidden"> <ion-icon name="add-circle" class="text-xl -ml-1"></ion-icon>View</button>
+
+                    </div>
+                    {%endfor%}
+                    {% else %}
+                    <div class="">
+                        NO FAVORITE DISCUSSIONS 
+                        <br>
+                    </div>
+
+                    <br>
+                    {%endif%}
+                    </div>
+                     <div class="flex justify-center my-6">
+                    <button type="button" class="bg-white py-2 px-5 rounded-full shadow-md font-semibold text-sm dark:bg-dark2">View All Discussions</button>
+                </div>
+              
+                
+                
+                        
+
+
+            <div class="flex items-center justify-between text-black dark:text-white py-3 mt-6">
+                <h3 class="text-xl font-semibold"> Polls </h3>
+            </div>          
+                <div class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-2.5 mt-4">
+                    {% if myfavoritepolls %}
+                {%for poll in myfavoritepolls%}
+                <div class="bg-white rounded-xl shadow p-5 px-6 border1 dark:bg-dark2">
+                <h3 class="font-semibold text-base"> {{poll.polls.question}} </h3>
+
+                <ul class="relative space-y-2.5 text-sm mt-3" uk-accordion="active: 0">
+                    {% for option in poll.polls.options %}
+                    <li class="rounded-md bg-secondery">
+                        <a href="{{ url_for('core.vote_poll', poll_id=poll.id, option_id=option.id) }}" class="flex items-center justify-between p-3 py-2 font-semibold group text-black dark:text-white uk-accordion-title">
+                            <a href="{{ url_for('core.vote_poll', poll_id=poll.id, option_id=option.id) }}">{{ option.option_text }}</a>
+                            <span class="text-sm text-gray-500">({{ get_option_percentage(poll.polls.id, option.id) }}%)</span>
+                            <ion-icon name="chevron-down-outline" class="duration-200 -mr-0.5 text-base group-aria-expanded:rotate-180"></ion-icon>
+                        </a>        
+                    </li>
+                    {%endfor%}  
+                </ul> 
+
+            
+
+            </div>
+            {%endfor%}
+            {% else %}
+            <div class="">
+                NO FAVORITE POLLS 
+                <br>
+            </div>
+
+            <br>
+            {%endif%}
+            </div>
+             <div class="flex justify-center my-6">
+            <button type="button" class="bg-white py-2 px-5 rounded-full shadow-md font-semibold text-sm dark:bg-dark2">View All Polls</button>
+        </div>
+
+
+            </div>
+                         
+                            
+                
+                            </div>
+                            
+                        </div>
+                        
+                    </main>
+
+                {% endblock %}
